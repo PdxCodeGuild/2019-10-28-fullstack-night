@@ -1,5 +1,6 @@
 **pdxcg_solutions
 instructor_checklist.md
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
