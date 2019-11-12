@@ -22,6 +22,7 @@ data = [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
 def max_finder(data):
     return max(data)
 
+
 #this function reverses the data list
 def backwardser(data):
     return data[::-1]
@@ -60,8 +61,14 @@ data = backwardser(data)
 
 
 
-
+print("First run:")
 print(f"max_finder(data) = {max_finder(data)}")
 print(f"valley_filler(data) = {valley_filler(data)}")
 print(f"data_truncator(data) = {data_truncator(data)} length = {len(data_truncator(data))}")
 print(f"backwardser(data) = {backwardser(data)}")
+print()
+
+first_result_valley_filler = valley_filler(data)
+first_result_data_truncator = data_truncator(data)
+print("Second run:")
+print(f"valley_filler(data_truncator(data)) = {valley_filler(data_truncator(data))}")
