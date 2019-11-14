@@ -15,7 +15,8 @@ def credit_card_validator(credit_card_number):
 # Slice off the last digit. That is the check digit.
     check_digit = credit_card_int_list[15]
 # Reverse the digits.
-    reversed_list = credit_card_int_list[::-1].pop()
+    credit_card_int_list.pop()
+    reversed_list = credit_card_int_list[::-1]
 # Double every other element in the reversed list.
     false = True
     double_every_other_list = []

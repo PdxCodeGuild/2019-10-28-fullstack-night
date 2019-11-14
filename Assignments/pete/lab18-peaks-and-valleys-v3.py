@@ -63,7 +63,7 @@ data = backwardser(data)
 
 print("First run:")
 print(f"max_finder(data) = {max_finder(data)}")
-print(f"valley_filler(data) = {valley_filler(data)}")
+print(f"valley_filler(data) = {valley_filler(data)}--O_count, count")
 print(f"data_truncator(data) = {data_truncator(data)} length = {len(data_truncator(data))}")
 print(f"backwardser(data) = {backwardser(data)}")
 print()
