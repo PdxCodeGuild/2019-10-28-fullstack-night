@@ -20,5 +20,7 @@ for city in rows[1:]:
     city_dict = {}
     for i in range(len(row_list)):
         city_dict[header_list[i]] = row_list[i]
+    # city_dict = dict(zip(headers, row_list)) Do this instead in the future
     cities_list.append(city_dict)
+
 print(f"cities_list {cities_list}")
