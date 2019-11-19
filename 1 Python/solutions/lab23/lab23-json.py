@@ -1,33 +1,18 @@
+import json
+
 def get_contacts(contacts_file):
   with open(contacts_file) as f:
-    lines = f.readlines()
-    headers = lines.pop(0).strip().split(',')
+    return json.loads(f.read())
 
-    contacts = []
-
-    for line in lines:
-      columns = line.strip().split(',')
-
-      # Manual way:
-      # contact = {}
-      # for i in range(len(headers)):
-      #   contact[headers[i]] = columns[i]
-      # Fancy Python way:
-      contact = dict(zip(headers, columns))
-      contacts.append(contact)
-
-  return headers, contacts
-
-def save_contacts(contacts_file, headers, contacts):
+def save_contacts(contacts_file, contacts):
   with open(contacts_file, "w") as f:
-    f.write(",".join(headers) + "\n")
-    for contact in contacts:
-      f.write(",".join(contact.values()) + "\n")
+    return f.write(json.dumps(contacts))
     
 
-headers, contacts = get_contacts("contacts.csv")
+contacts = get_contacts("contacts.json")
 
 actions = ["create", "retrieve", "update", "delete", "quit"]
+headers = ["name", "number"]
 
 while True:
   action = input("What would you like to CRUD? Or quit! ").casefold()
@@ -39,7 +24,7 @@ while True:
 
   # Check if they're quitting
   if action == "quit":
-    save_contacts("contacts.csv", headers, contacts)
+    save_contacts("contacts.json", contacts)
     print("Thanks for stealing people's information!")
     break
 
@@ -89,4 +74,3 @@ while True:
       
     # Pop it from the list
     contacts.pop(i)
-
