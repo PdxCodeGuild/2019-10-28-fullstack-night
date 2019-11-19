@@ -1,13 +1,15 @@
-import math #'''import math-The math module is a standard module in Python and is always 
+import math #import math-The math module is a standard module in Python and is always 
 #available. To use mathematical functions under this module, you have to import the module using import math . 
-#It gives access to the underlying C library functions.'''
+#It gives access to the underlying C library functions.
 
 number = int(input("Enter in a number 0-99: "))
+
+#list
 
 number_list = ["zero","one","two","three","four","five","six","seven","eight","nine"]
 teen_list = ["ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]
 decades_list =["twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"] 
-'''used a dictionary to implement numbers to be written as words'''
+#used a dictionary to implement numbers to be written as words
 
 
 if number <= 9:
