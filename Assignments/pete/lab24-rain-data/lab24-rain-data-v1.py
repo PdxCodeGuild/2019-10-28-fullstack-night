@@ -17,7 +17,7 @@ def read_rain_data(rain_data_file):
         count += 1
     rows = rows[count:]
 
-    # print(rows[::-1])
+    print(rows[::-1])
     date_and_rain_data = []
     for row in rows:
         date_and_rain = {}
@@ -31,4 +31,5 @@ def read_rain_data(rain_data_file):
         date_and_rain_data.append(date_and_rain)
     return date_and_rain_data
 read_rain_data('nw_portland_rain_data.txt')
-# print(read_rain_data('nw_portland_rain_data.txt'))
+result = read_rain_data('nw_portland_rain_data.txt')
+# print(result[::-1])
