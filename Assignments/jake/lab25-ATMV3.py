@@ -1,7 +1,6 @@
 import math
 
-# Python program to create Bankaccount class 
-# with both a deposit() and a withdraw() function 
+# atm lab allowing the user to input and decide what they want to do and how much $$ is in their account
 class Bank_Account: 
     def __init__(self): 
         self.balance=0
@@ -23,12 +22,12 @@ class Bank_Account:
     def display(self): 
         print("\n Net Available Balance=",self.balance) 
   
-# Driver code 
+# code being driven
    
-# creating an object of class 
+# the object of the class 
 s = Bank_Account() 
    
-# Calling functions with that class object 
+# callable functions with the class
 s.deposit() 
 s.withdraw() 
 s.display() 
