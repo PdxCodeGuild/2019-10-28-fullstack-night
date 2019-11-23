@@ -1,38 +1,38 @@
+class ATM:
+    def __init__(self, balance, interest_rate):
+        self.balance = balance
+        self.interest_rate = interest_rate
 
-# Python program to create Bankaccount class 
-# with both a deposit() and a withdraw() function 
-class Bank_Account: 
-    def __init__(self): 
-        self.balance=0
-        print("Hello!!! Welcome to the Deposit & Withdrawal Machine") 
-  
-    def deposit(self): 
-        amount=float(input("Enter amount to be Deposited: ")) 
-        self.balance += amount 
-        print("\n Amount Deposited:",amount) 
-  
-    def withdraw(self): 
-        amount = float(input("Enter amount to be Withdrawn: ")) 
-        if self.balance>=amount: 
-            self.balance-=amount 
-            print("\n You Withdrew:", amount) 
-        else: 
-            print("\n Insufficient balance  ") 
-  
-    def display(self): 
-        print("\n Net Available Balance=",self.balance) 
-  
-# Driver code 
-   
-# creating an object of class 
-s = Bank_Account() 
-   
-# Calling functions with that class object 
-s.deposit() 
-s.withdraw() 
-s.display() 
+    def check_balance(self):
+        return self.balance
 
-print('your reciept: ')
-print(s.deposit)
-print(s.withdraw)
-print(s.display)
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+
+    def check_withdrawal(self, amount):
+        if amount > self.balance:
+            return False
+        else:
+            return True
+    
+    def withdraw(self, amount):
+        self.balance -= amount
+        return self.balance
+
+    def calc_interest(self):
+        interest = self.interest_rate * self.balance
+        self.balance += interest
+        return self.balance
+
+
+atm_test = ATM(20, .01)
+print(atm_test.check_balance())
+print(atm_test.balance)
+print(atm_test.deposit(850))
+print(atm_test.balance)
+print(atm_test.check_withdrawal(20))
+print(atm_test.withdraw(100))
+print(atm_test.balance)
+print(atm_test.calc_interest())
+
