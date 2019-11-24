@@ -48,6 +48,18 @@ class Game:
                     print(f"{token} wins!")
                     quit()
 
+            for i in range(3):
+                column = []
+                for row in self.board:
+                    column.append(row[i])
+                if set(column) == {token}:
+                    print(f"{token} wins!")
+                    quit()
+            diagonal_1 = self.board[0][0], self.board[1][1], self.board[2][2]
+            diagonal_2 = self.board[0][2], self.board[1][1], self.board[2][0]
+            if set(diagonal_1) == {token} or set(diagonal_2) == {token}:
+                print(f"{token} wins!")
+                quit()
 
     def is_full(self):
         long_board = []
@@ -57,7 +69,7 @@ class Game:
         return ' ' not in long_board
 
 player1_name = 'Pete'
-player2_name = 'Al'
+player2_name = 'Matt'
 test = Game()
 player1 = Player(player1_name, 'X')
 # test.move(1, 2, player1)
