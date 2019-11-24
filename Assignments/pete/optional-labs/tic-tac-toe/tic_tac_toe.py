@@ -1,7 +1,7 @@
 '''
 Tic-Tac-Toe
 '''
-import numpy
+# import numpy
 
 class Player:
     def __init__(self, name, token):
