@@ -1,0 +1,43 @@
+head {
+
+}
+
+h1 {
+    justify-content: center;
+}
+
+body {
+    background-image: url("merricat_background.jpeg");
+    text-align: center;
+    color: white;
+}
+
+p {
+    margin: 15px;
+    padding: 25px;
+}
+
+blockquote {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 150%;
+    /* font-style: italic; */
+}
+
+img {
+    justify-content: center;
+}
+
+#link {
+    color: green;
+    }
+
+#big_pic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto ;
+    border-radius: 44%;
+}
+
+ul {
+    list-style-image: url("merri_cat.jpeg")
+}
