@@ -10,6 +10,8 @@ body {
     background-image: url("merricat_background.jpeg");
     text-align: center;
     color: white;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 p {
@@ -18,8 +20,9 @@ p {
 }
 
 blockquote {
-    font-family: 'Reenie Beanie', cursive;
-    font-size: 150%;
+    font-style: italic;
+    font-family: 'Baskervville', serif;
+    font-size: 125%;
     /* font-style: italic; */
 }
 
@@ -39,5 +42,5 @@ img {
 }
 
 ul {
-    list-style-image: url("merri_cat.jpeg")
+    list-style-image: url("merri_cat.jpeg.png")
 }
