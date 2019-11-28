@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    float: right;
+    width: 200px;
+  }
+
+body{
+    margin: 20px;  
+    border: 1px solid blueviolet;
+    padding: 20;
+  }
+
+  body {
+    background-color: rgba(0, 0, 255, .3)
+  }
+
+body {
+    color: maroon;
+}
+
+q {
+    color: black;
+}
+
+ul {
+    list-style-type: lower-greek;
+  }
+
+hr {
+    display:flex;
+    justify-content: left;
+}
+
+button {
+    color: chocolate;
+}
