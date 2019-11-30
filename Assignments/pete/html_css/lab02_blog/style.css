@@ -1,3 +1,109 @@
 header {
     text-align: center;
+    font-size: xxx-large;
+    background-color: hsl(105, 97%, 60%, 0.5);
+    
+}
+
+
+.second {
+    font-size: xx-large;
+    background-color: hsl(293, 92%, 46%, 0.5);
+}
+
+header.steamy {
+    background-color: hsla(22, 55%, 50%, 0.49) !important;
+}
+
+body {
+    background-image: url(spiral_background.gif);
+    background-size: cover;
+    color: white;
+    size: 300%;
+
+}
+
+body.steamy {
+    background-image: url(danganronpa_sauna.jpg);
+    /* background-size: contain; */
+}
+
+
+section {
+    border: 25px, sandybrown;
+    /* -o-border-image: url(spiral_background.gif); */
+    /* border-style: dotted; */
+    float: left;
+    width: 50%;
+    background-image: url(spiral_background.gif);
+    background-size: cover;
+    font-size: large;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    right: 50%;
+}
+
+aside {
+    width: 30%;
+    padding: 5%;
+    margin: 5%;
+    font-style: italic;
+    color: white;
+    font-size: xx-large;
+    color: red;
+    text-align: center;
+    background-image: url(xmas.gif);
+    background-size: cover;
+    border-radius: 100%;
+    position: fixed;
+    right: 0;
+    top: 7%;
+    opacity: 0.75;
+}
+
+
+article {
+    float: left;
+    width: 50%;
+    font-size: large;
+}
+
+article header {
+    font-size: x-large;
+}
+
+#frozen2 {
+    background-image: url(snow_falling.gif);
+    background-size: cover;
+    border-radius: 5%;
+}
+
+#frozen2 header {
+    background-color: hsla(203, 100%, 70%, 0.5);
+    background-blend-mode: luminosity;
+}
+
+li {
+    /* background:  */
+    font-size: x-large;
+}
+
+ul {
+    margin: 15%;
+    /* border: 30%; */
+    /* left: 30%;
+    right: 30%; */
+    background-image: url(steam1.gif);
+    opacity: 60%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+aside p {
+    text-emphasis: bold;
+    font-size: xx-large;
 }
