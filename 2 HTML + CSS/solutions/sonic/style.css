@@ -1,8 +1,24 @@
+header, main {
+	background-color: rgba(255, 255, 255, .6); /* we set the background to be white, with 60% transparency */
+	box-shadow: 10px 10px 15px 12px black; /* we shift the shadow 10px down and 10px right, and we give the
+						shadow 15px of blur, and 12px of additional thickness */
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin: 2% auto;
+}
+
 header {
 	color: darkblue;
 	display: flex;
 	flex-direction: column; /* make everything in the header verticle */
 	align-items: center; /* make everything  in the header centered horizontally */
+}
+
+.header-h {
+ 	-webkit-text-fill-color: transparent; /* Outline letters in the header */
+  	-webkit-text-stroke-width: 1px;
+  	-webkit-text-stroke-color: darkblue;	
 }
 nav {
 	display: flex; /* make everything in the nav verticle */
@@ -10,6 +26,10 @@ nav {
 				 this is overwritten by the @media if the width is larger than the limit */
 }
 
+nav span {
+	height: 2em; /* give the links in the nav some space to grow and shrink */
+	width: 4em; /* em is a size relative to font size */
+}
 nav a {
 	border: 1px solid darkblue;
 	border-width: 0 0 1px 0; /* these numbers go clockwise: top 0, right 0, bottom 1px, left 0
@@ -27,22 +47,12 @@ a {
 	text-decoration: none; /* this removes the default underline from anchor tags */
 }
 body {
-	background: radial-gradient(transparent 40%, steelblue 90%), linear-gradient(to bottom right, darkblue 30%, skyblue 40%, skyblue 60%, darkblue 70%); /* The radial gradient starts from the center, and goes out
-																			     the linear gradient we set to start top left, and go to bottom right
-																			     
-				      each percentage is a breakpoint, where a color starts or stops being applied */
+	background: radial-gradient(transparent 40%, steelblue 90%),
+	linear-gradient(to bottom right, darkblue 30%, skyblue 40%, skyblue 60%, darkblue 70%);
+	/* The radial gradient starts from the center, and goes out
+	the linear gradient we set to start top left, and go to bottom right
+	each percentage is a breakpoint, where a color starts or stops being applied */
 }
-
-header, main {
-	background-color: rgba(255, 255, 255, .6); /* we set the background to be white, with 60% transparency */
-	box-shadow: 10px 10px 15px 12px black; /* we shift the shadow 10px down and 10px right, and we give the
-						shadow 15px of blur, and 12px of additional thickness */
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-	margin: 2% auto;
-}
-
 img {
 	max-width: 100%; /* we don't want the image to get bigger than it's container */
 	margin: auto;
@@ -54,6 +64,7 @@ img {
 .item-container {
 	display: flex;
 	flex-direction: column;
+	margin-bottom: 5%; /* put some space on the bottom */
 }
 
 .item {
