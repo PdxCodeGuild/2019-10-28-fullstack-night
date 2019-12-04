@@ -5,6 +5,41 @@ header {
     
 }
 
+@keyframes xmasskull {
+    from {background-image: url(xmas.gif);}
+    to {background-image: url(skull.jpeg)}
+}
+
+body.blood {
+    background-image: url(xmas.gif);
+    background-size: auto;
+    animation-name: xmasskull;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+h1.blood {
+    color: white;
+    background-color: black;
+    text-align: center;
+}
+
+/* body.blood{
+    display: flex;
+    flex-direction: column;
+} */
+
+section.blood {
+    font-size: xx-large;
+    width: 33%;
+    height: 33%;
+    /* width: 300px;
+    height: 300px; */
+    left: 33%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
 
 .second {
     font-size: xx-large;
@@ -13,6 +48,16 @@ header {
 
 header.steamy {
     background-color: hsla(22, 55%, 50%, 0.49) !important;
+}
+
+#xmas1 {
+    background: red 0.5;
+    color: green;
+}
+
+#xmas2 {
+    background: green 0.5;
+    color: red;
 }
 
 body {
@@ -25,26 +70,38 @@ body {
 
 body.steamy {
     background-image: url(danganronpa_sauna.jpg);
-    /* background-size: contain; */
+    background-size: contain;
 }
 
+
+body.xmas {
+    background-image: url(xmas.gif);
+    background-size: auto;
+}
 
 section {
     border: 25px, sandybrown;
     /* -o-border-image: url(spiral_background.gif); */
     /* border-style: dotted; */
-    float: left;
+    /* float: left; */
     width: 50%;
     background-image: url(spiral_background.gif);
     background-size: cover;
     font-size: large;
+    opacity: 75%;
+    color: pink;
+    position: relative;
+    right: 0;
 }
 
 footer {
+    font-size: large;
     position: fixed;
     bottom: 0;
     text-align: center;
     right: 50%;
+    background-color: hsla(14, 87%, 51%, 0.5);
+    /* color:  */
 }
 
 aside {
@@ -106,4 +163,116 @@ ul {
 aside p {
     text-emphasis: bold;
     font-size: xx-large;
+}
+
+a:link {
+    color: red;
+}
+
+a:visited {
+    color: green;
+}
+
+.xmas * {
+    font-size: xx-large;
+}
+
+span {
+    opacity: 0.85;
+}
+
+#sp1 {
+    color: red;
+    background: green;
+}
+
+#sp2 {
+    color: green;
+    background-color: gold;
+    position: absolute;
+    left: 33%;
+}
+
+#sp3 {
+    color: gold;
+    background-color: red;
+    position: absolute;
+    right: 0;
+}
+
+#sp4 {
+    color: green;
+    background-color: gold;
+}
+
+#sp5 {
+    color: gold;
+    background-color: red;
+    position: absolute;
+    right: 0;
+}
+
+#sp6 {
+    color: black;
+    background-color: blueviolet;
+}
+
+#goodtree {
+    position: absolute;
+    right: 33%;
+}
+
+select option:first-child{
+    color:red
+}
+
+button.blood {
+    background-image: url(blood-drop.gif);
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+}
+
+button.tree {
+    background-image: url(spiral_background.gif);
+    background-size: cover;
+    width: 835px;
+    height: 835px;
+}
+
+body.tree {
+    background-image: url(wrapping_paper.jpg);
+    display: flex;
+    justify-content: center;
+
+}
+
+body.tree section {
+    display: flex;
+    flex-direction: column;
+    background: none;
+    justify-content: center;
+}
+
+body.observations {
+    background-image: url(moonboy.jpg);
+}
+
+section div {
+    text-align: center;
+    font-size: large;
+    background-color: black;
+    color: red;
+}
+
+section header {
+    text-align: center;
+    background-color: red;
+    color: green;
+}
+
+a button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
