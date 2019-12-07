@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin+Sketch:700|Patrick+Hand+SC|Waiting+for+the+Sunrise);
+body{
+  font-family:Patrick Hand SC;
+  font-size:45px;
+  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs5FtRG4p7xaINAsAJvCHPI6pwOsn3_SIupRyiZxWtG9ubWAzm');
+  background-size:cover;
+  background: linear-gradient(to bottom right, #ff0000 0%, #ff6600 50%);
+
+  
+h1{
+  font-family:Cabin Sketch;
+  font-size:80px;
+}
+form{
+  background-color:#211e1e;
+  color:white;
+  border-radius:5px;
+  height:auto;
+  width:950px;
+}
+#wrapper{
+  margin-top:-50px;
+ float:center;
+}
+input{
+  font-family:Waiting for the Sunrise;
+  font-size:17px;
+  font-weight:bold;
+}
