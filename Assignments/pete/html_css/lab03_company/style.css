@@ -108,7 +108,7 @@ h1 {
 
 #small-stories {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     width: fit-content;
 }
 
