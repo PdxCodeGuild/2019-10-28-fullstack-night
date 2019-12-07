@@ -1,0 +1,114 @@
+
+#user_name { 
+    display: inline-block;
+    flex-direction: row;
+    text-align: center;
+    font-size: 15pt;
+    font-weight: bold;
+    margin-left: 400px;
+}
+
+.right_column > span { 
+    border-style: solid;
+    padding: 15px 15px 15px 15px;
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+#img1 { 
+    float: left;
+    width: 160px;
+    height: 180px;
+    margin-left: 400px;
+    margin-right: 10px;
+}
+
+#topnav {
+    font-size: 11pt;
+    color: white;
+    background-color: blue;
+    font-family: verdana,arial,sans-serif,helvetica;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+}
+
+.nav_link {
+    text-decoration: none;
+    color: white;
+}
+
+#subhead_nav {
+    font-size: 11pt;
+    color: white;
+    background-color: cornflowerblue;
+    font-family: verdana,arial,sans-serif,helvetica;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+}
+
+header {
+    padding-top: 50px;
+    text-align: center;
+}
+
+#user_info {
+    font-family: verdana,arial,sans-serif,helvetica;
+    font-size: 10pt;
+}
+
+.left_column {
+    padding-top: 30px;
+}
+
+.right_column {
+    padding-top: 30px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+.blog_entry {
+    font-style: verdana,arial,sans-serif,helvetica;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.old_blogs {
+    font-style: verdana,arial,sans-serif,helvetica;
+    font-size: 9pt;
+}
+
+.about_header {
+    font-weight: bold;
+    color: #FF6600;
+    background-color: #FFCC99;
+    font-size: 11pt;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 50%;
+}
+
+.about_title {
+    font-weight: bold;
+    color: #FF6600;
+    font-size: 11pt;
+    padding-top: 7px;
+    padding-left: 7px;
+    padding-bottom: 4px;
+}
+
+.about_body {
+    font-size: 8pt;
+    padding-left: 7px;
+    width: 50%;
+}
+
+#faq {
+    text-decoration: none;
+}

@@ -1,0 +1,49 @@
+/*
+Use with pyscss
+python3 -m pip install pyscss
+python3 -m pyscss lab01_bio_css_doc.scss > lab01_bio_css_doc.css
+*/
+
+h1, h2, {
+    text-align: center;
+}
+
+
+button {
+    border-block-color: rgba(255, 0, 0, 1);
+    margin: 0 50px;
+    padding: 0 100px 10px 10px;
+    color: rgba(255, 0, 0, 1);
+}
+
+body {
+    background-color: rgba(0, 0, 255, 0.41);
+}
+
+#sonic_img {
+    animation-name: sonic_run;
+    animation-duration: 5s;
+}
+
+li, blockquote {
+    background-color: rgba(10, 110, 10, .4);
+}
+
+@keyframes sonic_run {
+    0% {left: 0;}
+    50% {left: 100%;}
+    100% {left: 0;}
+}
+
+#animation {
+    bottom: -80%;
+    position: absolute;
+    animation: linear infinite alternate;
+    animation-name: sonic_run;
+    animation-duration: 3s;
+}
+
+#sonic_feet_img {
+    position: fixed;
+    top: 50%;
+}
