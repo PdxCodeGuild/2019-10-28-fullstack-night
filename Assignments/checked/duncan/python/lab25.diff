@@ -1,0 +1,28 @@
+2c2
+< transaction_list = []
+---
+> transaction_list = [] # because you're using one list initialized outside of the init function, multiple atms will have conflicting transaction lists
+11c11
+<         return (f"Currnt Balance ${self.balance}")
+---
+>         return (f"Currnt Balance ${self.balance}") # What is "currnt"!?!?
+18c18
+<     def check_withdrawl(self, amount):
+---
+>     def check_withdrawl(self, amount):  # this should return a boolean, true or false
+31c31
+<     def withdraw(self, amount):
+---
+>     def withdraw(self, amount):  # this should be something like, "if check_withdrawal returned True, let them withdraw funds"
+39c39
+<         print(transaction_list)
+---
+>         print(transaction_list)  # consider using ',\n'.join(transaction_list) or something
+45c45
+< money = ATM('0')
+---
+> money = ATM('0')  # Usually you'd just put in an integer and not convert, but your way is good too
+57c57
+< while True:
+---
+> while True:  # clean repl, but you don't need any of those `continue`s. an `if/elif/else` block in a `while true` loop will just run one indented section and then loop back.

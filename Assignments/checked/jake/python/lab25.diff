@@ -1,0 +1,23 @@
+1c1
+< import math
+---
+> import math  # You aren't using this import, are you?
+10c10
+<         amount=float(input("Enter amount to be Deposited: ")) 
+---
+>         amount=float(input("Enter amount to be Deposited: "))  # You probably want to take this in as a parameter, not have the input in the method
+15,16c15,16
+<         amount = float(input("Enter amount to be Withdrawn: ")) 
+<         if self.balance>=amount: 
+---
+>         amount = float(input("Enter amount to be Withdrawn: "))  # You probably want to take this in as a parameter, not have the input in the method
+>         if self.balance>=amount:   # this should be a separate method that returns a boolean
+31c31
+< s.deposit() 
+---
+> s.deposit()   # This should all be in a repl
+33c33
+< s.display() 
+\ No newline at end of file
+---
+> s.display() 
