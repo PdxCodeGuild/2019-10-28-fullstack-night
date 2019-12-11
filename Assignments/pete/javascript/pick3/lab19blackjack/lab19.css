@@ -1,0 +1,8 @@
+#cards {
+    display: flex;
+    flex-direction: column;
+}
+
+#cards * {
+    width: 25vw;
+}
