@@ -1,0 +1,36 @@
+25c25
+<         else:
+---
+>         else:  # you don't need else here. don't worry about two `return`s running
+41c41
+<             print(transaction)
+---
+>             print(transaction)  # consider something like ",\n".join(transaction_list)
+45c45
+< while True:
+---
+> while True:  # clean repl, nice!
+53c53
+<         if sufficient_funds == True:
+---
+>         if sufficient_funds == True:  # You don't need the == True
+63a64,82
+> 
+> 
+> '''
+> looks great! if you want to reorganize your code in a fun way, you can make a dictionary that has methods as values.
+> 
+> >>> option_dict = {'a': lambda: print('a'), 'b': lambda: print('b' + input('punctuation: '))}
+> >>> user_input = input('a or b: ')
+> a or b: b
+> >>> option_dict.get(user_input, lambda: print('not a or b'))
+> <function <lambda> at 0x7f99cfe3a440>
+> >>> option_dict.get(user_input, lambda: print('not a or b'))()
+> punctuation: !
+> b!
+> >>> option_dict.get(input('a or b: '), lambda: print('not a or b'))()
+> a or b: c
+> not a or b
+> >>> 
+> 
+> '''
