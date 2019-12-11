@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#face-input {
+							display: grid;
+							grid-template-columns: 1fr 5fr;
+			}
+			#face-input span {
+							text-align: right;
+							margin-right: 10px;
+			}
+		</style>
+				<script>
+					window.onload = function() {
+						let face = {'eyes': [':', ';', 'B'], 'noses': '>', 'mouths': ')'};
+						let mainDiv = document.querySelector("#main-div");
+						let faceInput = document.querySelector("#face-input");
+						let faceInputs = document.querySelectorAll(".face-input");
+						let faceOutput = document.querySelector("#face-output");
+						let faceButton = document.querySelector("#face-button");
+									function randface() {
+													let chosen_eye = face.eyes[ Math.floor(Math.random() * face.eyes.length)  ];
+													let chosen_nose = face.noses;
+													let chosen_mouth = face.mouths;
+													faceOutput.innerText = chosen_eye + chosen_nose + chosen_mouth;
+									}
+						faceButton.onclick = randface;
+						let eyeInput = faceInputs[0];
+						function updateEyes() {
+							face["eyes"] = eyeInput.value.split('');
+						}
+						eyeInput.addEventListener('input', updateEyes);
+					}
+					
+				</script>
+	</head>
+	<body>
+		<div id="main-div">
+						<div id="face-input">
+										<span>Eyes: </span>
+										<input id="eyes" class="face-input" type="text" placeholder=":">
+										<span>Noses: </span>
+										<input id="nose" class="face-input" type="text" placeholder="-">
+										<span>Mouths: </span>
+										<input id="mouths" class="face-input" type="text" placeholder=")">
+						</div>
+						<button id="face-button">Random face</button>
+						<div id="face-output">
+						</div>
+		</div>
+	</body>
+</html>
