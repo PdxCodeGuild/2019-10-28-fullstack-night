@@ -19,10 +19,8 @@ function blackjackAdvisor(card1, card2, card3) {
     console.log(num1)
     // let num1 = parseInt(str1);
     let num2 = cardObject[card2];
-    console.log(num2)
     // let num2 = parseInt(str2);
     let num3 = cardObject[card3];
-    console.log(num3)
     // let num3 = parseInt(str3);
     let cardTotal = num1 + num2 + num3;
     console.log(cardTotal)
@@ -44,15 +42,14 @@ function blackjackAdvisor(card1, card2, card3) {
 window.onload = function() {
     let adviceButton = document.querySelector('#advice-button')
     let adviceSpan = document.querySelector('#advice')
-    
+    let card1 = document.querySelector('#card1')
+    card1Value = card1.value //ask al why let b4 card1Value didn't work
+    let card2 = document.querySelector('#card2')
+    card2Value = card2.value
+    let card3 = document.querySelector('#card3')
+    card3Value = card3.value
+    blackjackAdvice = blackjackAdvisor(card1Value, card2Value, card3Value)
     adviceButton.onclick = function() {
-        let card1 = document.querySelector('#card1')
-        card1Value = card1.value
-        let card2 = document.querySelector('#card2')
-        card2Value = card2.value
-        let card3 = document.querySelector('#card3')
-        card3Value = card3.value
-    
-        adviceSpan.innerText =  blackjackAdvisor(card1Value, card2Value, card3Value)
+        adviceSpan.innerText = blackjackAdvice
     }
 }
