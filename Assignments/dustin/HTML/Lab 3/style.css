@@ -1,0 +1,30 @@
+titlebar img {
+    margin: 0 auto;
+    width: 225px;
+    height: 57px;
+    
+    
+}
+
+hr {
+    padding: 0px;
+    width: 100%;
+    height: 3px;
+    margin: 0 auto;
+    background: linear-gradient(to right, rgba(100, 149, 237, 1), rgba(100, 149, 237, 0));
+}
+
+body {
+    height: 200vh;
+    /*margin-top: 60px;
+    top: 60px;*/
+    background-image: url("Aperture_Science.png");
+    background-size: 55%;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+main {
+    
+}

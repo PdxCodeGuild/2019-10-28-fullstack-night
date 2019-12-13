@@ -36,13 +36,13 @@ with open('MobyDickUTF8.txt', 'r', encoding='UTF-8') as moby_dick:
         letter = moby_list[k]
         if letter in string.ascii_lowercase: #count number of characters
             characters_total += 1
-        if letter in string.ascii_lowercase or letter in string.whitespace or letter == ".": #removed punctuationexcept . from text
+        if letter in string.ascii_lowercase or letter in string.whitespace or letter == ".": #removed punctuation except "." from text
             moby_after.append(letter)
     for k in range(0, len(moby_after)):
         moby_usable = moby_usable + moby_after[k] #converts back to string
     
     for words in moby_usable:
-        if words.endswith("."): #count sentences
+        if words.endswith(".") or words.endswith("!") or words.endswith("?") or words.endswith("..."): #count sentences
             sentences += 1
         elif words.endswith(" "): #count words(non-total)
             words_total += 1

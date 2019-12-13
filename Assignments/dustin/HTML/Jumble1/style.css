@@ -1,0 +1,33 @@
+nav {
+    height: 5vh;
+    width: 80%;
+    font-family: monospace;
+    position: fixed; /* keeps it in place when you scroll */
+    top: 0; /* the element will be at the top of the screen
+    works for something with position: fixed */
+    background-color: white;
+}
+main {
+    height: 200vh; /* make the height twice as big as the screen */
+    background-color: lightgreen;
+    font-family: "Times New Roman", Times, serif;
+    margin-top: 5vh; /* push element down 5% of viewing height*/
+}
+
+main div {
+    height: 200px;
+    width: 200px;
+    background-color: darkgreen;
+    padding: 5%; /* pushes border out from the inside 5% */
+}
+
+#text-div {
+    color: white;
+    text-align: center; /* center-align your text */
+}
+
+li {
+    margin: 0 2%; /* top and bottom have no margin
+    left and right have 2% margin */
+    display: inline; /* making it horizontal */
+}
