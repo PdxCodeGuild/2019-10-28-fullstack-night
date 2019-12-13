@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Magic 8 Ball</title>
+        <script>
+            function random_element(array) {
+                let random_index = Math.floor(Math.random()*answers.length);
+                return array[random_index];}
+            let answers = ["it is certain", "yes", "most likely", "reply hazy, try again",
+"ask again later", "don't count on it", "no", "outlook not so good"];
+            let random = random_element(answers);
+            let question = prompt("Ask the magic 8 ball anything");
+            alert(random);
+        </script>
+    </head>
+    <body>
+        <body background="https://royalbilliard.com/wp-content/uploads/2015/09/8-ball.png">
+    </body>
+</html>
