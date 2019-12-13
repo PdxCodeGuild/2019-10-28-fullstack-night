@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
-				<head>
-					<style>
-								#main-div {
-												display: flex;
-												flex-wrap: wrap;
-								}
-								.blue-div {
-									height: 100px;
-									width: 100px;
-									background-color: blue;
-									margin: 10px;
-								}
-					</style>
-				</head>
-				<body>
-								<div id="main-div"></div>
-				<script>
-								let mainDiv = document.querySelector("#main-div")
-								for (let i=0; i<10; i++) {
-									let newDiv = document.createElement("div");
-									newDiv.classList.add("blue-div");
-									mainDiv.appendChild(newDiv)
-									newDiv.onclick = function() {
-										newDiv.parentNode.removeChild(this)
-									}
-								}
-				</script>
-				</body>
+	<head>
+		<style>
+			#main-div {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.blue-div {
+				height: 100px;
+				width: 100px;
+				background-color: blue;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main-div"></div>
+	<script>
+		let mainDiv = document.querySelector("#main-div")
+		for (let i=0; i<10; i++) {
+			let newDiv = document.createElement("div");
+			newDiv.classList.add("blue-div");
+			mainDiv.appendChild(newDiv)
+			newDiv.onclick = function() {
+				newDiv.parentNode.removeChild(this)
+			}
+		}
+	</script>
+	</body>
 </html>
