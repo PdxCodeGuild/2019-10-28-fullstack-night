@@ -1,34 +1,49 @@
 window.onload = function() {
-    // console.log('hey')
-    let todoObj = {}
+    // let todoObj = {}
     let addItem = document.querySelector('#add')
     let todoList = document.querySelector('#list')
     let newItem
     let newItemHTML
     let newListElement
+    let removeItem
+    let crossOutItem
     addItem.addEventListener('keypress', function(e) {
         console.log(e)
-        // console.log('hey you got this fuckin far')
         let key = e.which || e.keyCode;
         if (key === 13) {
-            // console.log('fuck you')
             newItem = addItem.value
-            if (!(newItem in todoObj)) {
-                todoObj[newItem] = 'in'
-                console.log(todoObj)
-            }
+            // // if (!(newItem in todoObj)) {
+            //     // todoObj[newItem] = 'in'
+            //     // console.log(todoObj)
+            // }
             
-            else {return}
-            newItemHTML = `${newItem} <button id="remove">Remove Item</button><button id="cross-out">Cross-Out Item</button>`
+            // else {return}
+            newItemHTML = `<span>${newItem}</span> <button class="remove">Remove Item</button><button class="cross-out">Cross-Out Item</button>`
             newListElement = document.createElement('li')
             newListElement.innerHTML = newItemHTML
             todoList.appendChild(newListElement)
-            
+
+            removeItem = document.querySelectorAll('.remove')
+            for (let i=0; i<removeItem.length; i++) {
+                removeItem[i].onclick = function() {
+                    this.parentNode.parentElement.removeChild(this.parentNode)
+    
+            }
+            }
+
+            crossOutItem = document.querySelectorAll('.cross-out')
+            for (let i=0; i<crossOutItem.length; i++) {
+                crossOutItem[i].onclick = function() {
+                    this.parentNode.firstChild.style.textDecoration = "line-through"
+                }
+            }
         }
-        
     })
-    let removeItem = document.querySelectorAll('#remove')
-    let crossOutItem = document.querySelectorAll('#cross-out')
+
+
+
+
+    // let crossOutItem = document.querySelectorAll('.cross-out')
 
 }
 
