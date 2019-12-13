@@ -1,0 +1,43 @@
+11c11
+< user_list = list(user_string)
+---
+> user_list = list(user_string)  # unneccessary
+13,14c13,14
+< letter_list = list(string.ascii_lowercase)
+< new_string = []
+---
+> letter_list = list(string.ascii_lowercase)  # unneccessary
+> new_string = []  #
+17,22c17,22
+< for k in range(0, len(user_list)): #iterates through list
+<     user_letter = user_list[k]
+<     if user_letter in string.ascii_lowercase: #only converts ascii characters
+<         number = string.ascii_lowercase.index(user_letter) + 1 #converts letter to ascii lowercase number
+<         new_letter_number = number + 13 #shifts the letter
+<         new_letter = letter_list[(new_letter_number - 1) % len(letter_list)] #converts new ascii number back to character
+---
+> for k in range(0, len(user_list)): # 0 is unneccessary
+>     user_letter = user_list[k]  # consider enumerate instead of this
+>     if user_letter in string.ascii_lowercase: # nice!
+>         number = string.ascii_lowercase.index(user_letter) # nice!
+>         new_letter_number = number + 13 # nice!
+>         new_letter = letter_list[(new_letter_number) % len(letter_list)] #converts new ascii number back to character
+27c27
+<     output = output + new_string[k] #converts list back to string
+---
+>     output = output + new_string[k] # This can be done with the wonky command ''.join(list)
+28a29,42
+> 
+> 
+> '''
+> Consider:
+> use the str.isupper method, and use string.ascii_uppercase as well as string.ascii_lowercase
+> 
+> use the ord, chr method
+> >>> ord('a')
+> 97
+> >>> ord('A')
+> 65
+> You'd have to change the number by an offset to get the number between 0 and 25, then use %26, then add the offset. Offsets are case-sensitive
+> 
+> '''

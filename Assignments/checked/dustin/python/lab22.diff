@@ -1,0 +1,41 @@
+42,43c42,48
+<         moby_usable = moby_usable + moby_after[k] #converts back to string
+<     
+---
+>         moby_usable = moby_usable + moby_after[k] # use ''.join(list)
+>     '''
+>     in the loop below, you use words.endswith(), but words just points at one
+>     character of the string.
+>     I believe that two spaces counts as two words
+>     '''
+>     moby_usable += ' ' * 100_000  # test
+45c50
+<         if words.endswith("."): #count sentences
+---
+>         if words.endswith("."): # same as words == "."
+47c52
+<         elif words.endswith(" "): #count words(non-total)
+---
+>         elif words.endswith(" "): # same as words == " "
+50c55
+<     words_total = words_total + sentences #calculate total words
+---
+>     words_total = words_total + sentences # Why are you adding these?
+56c61
+<     ari_calc = float((4.71*characters_total)/words_total)+float((0.5*words_total)/sentences)-21.43 #calculate ARI
+---
+>     ari_calc = float((4.71*characters_total)/words_total)+float((0.5*words_total)/sentences)-21.43 # You don't have to convert to a float after multiplying by a float
+57a63
+>     # you should probably add ari_calc = math.ceil(ari_calc)
+62a69,74
+>     '''
+>     The next part you should be able to do without a for loop
+>     ari_calc = math.ceil(ari_calc)
+>     if ari_calc in ari_scale.keys():
+>         print(ari_scale[ari_calc]['grade_level'])
+>     '''
+68c80
+<         
+\ No newline at end of file
+---
+>         

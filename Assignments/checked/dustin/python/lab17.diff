@@ -1,0 +1,26 @@
+12a13,20
+> '''
+> I think this is a little cleaner: 
+> user_list = list(user_in)
+> before = user_list.copy()
+> user_list.reverse()
+> after = user_list.copy()
+> '''
+> 
+20,21c28,29
+< wordone = input("Please enter a word or string of words: ").lower().replace(" ","")
+< wordtwo = input("Please enter another word or string of words: ").lower().replace(" ","")
+---
+> wordone = input("Please enter a word or string of words: ").lower()
+> wordtwo = input("Please enter another word or string of words: ").lower()
+25,26c33,34
+< wordoneedit = wordone.translate(str.maketrans('', '', string.punctuation))
+< wordtwoedit = wordtwo.translate(str.maketrans('', '', string.punctuation))
+---
+> wordoneedit = wordone.translate(str.maketrans('', '', string.punctuation + ' ')) 
+> wordtwoedit = wordtwo.translate(str.maketrans('', '', string.punctuation + ' '))
+54c62
+< #print(listtwo)
+\ No newline at end of file
+---
+> #print(listtwo)
