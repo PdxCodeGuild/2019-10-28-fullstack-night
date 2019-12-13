@@ -5,33 +5,34 @@ window.onload = function() {
     let todoList = document.querySelector('ul');
 
     //button version below
-    // let addInput = document.querySelector('#add');
-    // addInput.addEventListener('click', function() {
-    //     let input = prompt("Add Item To List:");
-    //     let newLi = document.createElement('li');
-    //     let newLiText = document.createTextNode(input);
-    //     newLi.appendChild(newLiText);
-    //     todoList.appendChild(newLi);
-    //     todoArray.push(newLiText)
-    // });
+    let addInput = document.querySelector('#add');
+    addInput.addEventListener('click', function() {
+        let input = prompt("Add Item To List:");
+        let newLi = document.createElement('li');
+        let newLiText = document.createTextNode(input);
+        newLi.appendChild(newLiText);
+        todoList.appendChild(newLi);
+        todoArray.push(newLiText)
+    });
 
-    //input version below
-    // let addInput = document.querySelector();
-    let newLiText = document.querySelector('#add');
+    // input version below
+    // // let addInput = document.querySelector();
+    // let newLiText = document.querySelector('#add');
 
-    newLiText.addEventListener('keypress', function(e) {
-        var key = e.which || e.keyCode;
-        if (key === 13 ){
+    // newLiText.addEventListener('keypress', function(e) {
+    //     var key = e.which || e.keyCode;
+    //     if (key === 13 ){
 
-            let newLi = document.createElement('li');
-            newLi.appendChild(newLiText);
-            todoList.appendChild(newLi);
-            todoArray.push(newLiText);
-        }
+    //         let newLi = document.createElement('li');
+    //         newLi.appendChild(newLiText);
+    //         todoList.appendChild(newLi);
+    //         todoArray.push(newLiText);
+    //         // listDiv.appendChild('<input id="add" type="text" placeholder="Add item to list..."></input>');
+    //     }
         
-        // let newInput = document.createElement('input');
-        // newInput.innerHTML = ;
-        listDiv.appendChild('<input id="add" type="text" placeholder="Add item to list..."></input>');
+    //     // let newInput = document.createElement('input');
+    //     // newInput.innerHTML = ;
+        
 
     });
 

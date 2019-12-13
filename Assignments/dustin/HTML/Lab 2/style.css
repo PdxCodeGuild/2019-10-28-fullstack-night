@@ -1,0 +1,123 @@
+
+html {
+    margin: 0px;
+    padding: 0px;    
+}
+body {
+    margin: 0 auto;
+    padding: 0px;
+    width: 80%;
+    background-color: #263238;
+}
+
+a {
+    display: inline-block;
+    color: lime;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: forestgreen;
+}
+
+hr {
+    border-radius: 3px;
+    border: none;
+    height: 5px;
+    width: 98%;
+    /* Set the hr color */
+    color: darkgrey; /* old IE */
+    background-color: lightgreen; /* Modern Browsers */
+}
+    
+nav {
+    position: fixed;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom: solid 1px lightgreen;
+    width: 80%;
+    height: 7vh;
+    top: 0;
+    background-color: rgb(36, 36, 36);
+    text-align: center;  
+    z-index: 999;
+    font-family: serif;
+}
+
+central-bar {
+    margin: 0 15%;
+    border-left: dotted 6px lightgreen;
+    border-right: dotted 6px lightgreen;
+    color: darkgrey;
+
+}
+
+sidebar {
+    position: fixed;
+    top: 7vh;
+    width: 13%;
+    margin-top: -3vh;
+    margin-left: -2%;
+    height: auto;
+    color: lightgreen;
+    /*border-right: solid 6px #000;
+    border-right-style: dotted;*/
+    
+}
+
+sidebar li {
+    list-style: none;
+    margin: 15% auto;
+}
+
+imagebar {
+    position: fixed;
+    top: 4vh;
+    width: 13%;
+    margin-top: 1vh;
+    margin-left: 67.5%;
+    height: auto;
+    /*border-left: solid 6px #000;
+    border-left-style: dotted;*/
+    padding: 1%;
+}
+
+imagebar img {
+    padding: 15% 0;
+    width: 10vw;
+    height: 10vh;
+    
+}
+
+
+main {
+    height: auto;
+    overflow: visible;
+    background-color: #37474f;
+    position: relative;
+    margin-top: 7vh;
+    border-radius: 20px;
+    border: solid 1px lightgreen;
+    
+}
+
+main div {
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    margin: 0 2%;
+}
+
+#title {
+    display: flex;
+    justify-content: left;
+    color: lightgreen;
+}
+
+ul {
+    padding: 0px;
+}
+nav li {
+    margin: 0 2%;
+    display: inline;
+}

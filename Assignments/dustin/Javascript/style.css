@@ -1,0 +1,120 @@
+#title {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+button {
+    padding: 0px;
+}
+
+#answer {
+    color: white;
+}
+#calcbackground {
+    background-color: lightgray;
+    margin: 0 auto;
+    width: 200px;
+}
+
+
+calcbox div {
+    width: 100%;
+    height: 50%;
+    background: lightgray;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+
+
+#textbox {
+    grid-column: 1  / span 4;
+    grid-row: 1;
+    resize: none;
+}
+
+#seven {
+    grid-column: 1 / span 1;
+    grid-row: 2;
+
+}
+
+#eight {
+    grid-column: 2 / span 1;
+    grid-row: 2;
+}
+
+#nine {
+    grid-column: 3 / span 1;
+    grid-row: 2;
+}
+
+#added {
+    grid-column: 4 / span 1;
+    grid-row: 2;
+
+}
+
+#four {
+    grid-column: 1 / span 1;
+    grid-row: 3;
+}
+
+#five {
+    grid-column: 2 / span 1;
+    grid-row: 3;
+}
+
+#six {
+    grid-column: 3 / span 1;
+    grid-row: 3;
+}
+
+#subtracted {
+    grid-column: 4 / span 1;
+    grid-row: 3;
+}
+
+#one {
+    grid-column: 1 / span 1;
+    grid-row: 4;
+}
+
+#two {
+    grid-column: 2 / span 1;
+    grid-row: 4;
+}
+
+#three {
+    grid-column: 3 / span 1;
+    grid-row: 4;
+}
+
+#times {
+    grid-column: 4 / span 1;
+    grid-row: 4;
+}
+
+#zero {
+    grid-column: 1 / span 1;
+    grid-row: 5;
+}
+
+#point {
+    grid-column: 2 / span 1;
+    grid-row: 5;
+}
+
+#equals {
+    grid-column: 3 / span 1;
+    grid-row: 5;
+}
+
+#divided {
+    grid-column: 4 / span 1;
+    grid-row: 5;
+}

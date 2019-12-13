@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <title>
+            Blogspace Triple Double Deluxe
+        </title>
+
+        <style>
+                .content {
+                    width: 80%;
+                    margin: 40px auto;
+                    background: linear-gradient(to bottom, black, darkgrey);
+                    
+                }
+        
+                .topnav {
+                    overflow: hidden;
+                    background-color: #818181;
+                    position: fixed; /* Set the navbar to fixed position */
+                    top: 0; /* Position the navbar at the top of the page */
+                    width: 80%; /* Full width */
+                    z-index: 999;
+                }
+                
+                .topnav a {
+                    float:left;
+                    display:block;
+                    color:#b8b3b3;
+                    align-content: center;
+                    align-items: center;
+                    text-align:center;
+                    padding: 10px 25px;
+                }
+
+                .topnav span {
+                    justify-content: center;
+                }
+        
+                .workspace {
+                    overflow:auto;
+                    display:grid;
+                    background-color: transparent;
+                    color: lime;
+                    padding: 0px 0px;
+                    grid-template-columns: 15vw auto auto auto auto auto;
+                    grid-template-rows: auto auto auto auto;
+                }
+        
+                .navbar {
+                    grid-column: 1 / span 1;
+                    grid-row: 1 / span 4;
+                    /*background-color: rgb(0, 59, 56);*/
+                    padding: 0px 20px;
+                    position: fixed;
+                    top: 40px;
+                    z-index: 999;
+                }
+        
+                .item2 {
+                    grid-column: 2 / span 4;
+                    grid-row: 1 / span 1;
+                    background-color: rgb(66, 66, 66);
+                    padding: 20px 25px;
+                    margin:auto;
+                }
+        
+                .item3 {
+                    grid-column: 6 / span 1;
+                    grid-row: 1 / span 1;
+                    background-color: rgb(66, 66, 66);
+                    padding: 20px 25px;
+                    
+                }
+                
+                .item4 {
+                    grid-column: 2 / span 4;
+                    grid-row: 2 / span 1;
+                    background-color: rgb(97, 97, 97);
+                    padding: 20px 25px;
+                    margin:auto;
+                }
+        
+                .item5 {
+                    grid-column: 6 / span 1;
+                    grid-row: 2 / span 1;
+                    background-color: rgb(97, 97, 97);
+                    padding: 20px 25px;
+                    
+                }
+        
+                .item6 {
+                    grid-column: 2 / span 4;
+                    grid-row: 3 / span 1;
+                    background-color: rgb(66, 66, 66);
+                    padding: 20px 25px;
+                    margin:auto;
+                }
+
+                .item7 {
+                    grid-column: 6 / span 1;
+                    grid-row: 3 / span 1;
+                    background-color: rgb(66, 66, 66);
+                    padding: 20px 25px;
+                    
+                }
+        
+                .topnav a:hover {
+                    background-color:aliceblue;
+                    color: orange;
+                }
+
+                ul {
+                    list-style-type:none;
+                }
+
+                img {
+                    margin: auto auto;
+                }
+                
+                    
+                </style>
+    </head>
+    
+    <body class="content">
+        
+
+        <nav class="topnav">
+            <span><a href="#">Link</a></span>
+            <span><a href="#">Link</a></span>
+            <span><a href="#">Link</a></span>
+        </nav>
+        <div class="workspace">
+                <div class="navbar"><h1>Blog List</h1><h3><ul>
+                    <li><a href="#date1">Date of Blog 1</a>
+                    <li><a href="#date2">Date of Blog 2</a>
+                    <li><a href="#date3">Date of Blog 3</a>
+                    <li><a href="#date4">Date of Blog 4</a>
+                    </ul></h3>
+                </div>
+
+                <div class="item2" id="date1"><h1>2</h1>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+
+                <div class="item3"><img src="placeholder.jpg" height="135px" width="200px"></div>
+
+                <div class="item4" id="date2"><h1>4</h1>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+
+                <div class="item5"><img src="placeholder.jpg" height="135px" width="200px"></div>
+
+                <div class="item6" id="date3"><h1>6</h1>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+
+                <div class="item7"><img src="placeholder.jpg" height="135px" width="200px"></div>
+
+        </div>
+    </body>
+</html>

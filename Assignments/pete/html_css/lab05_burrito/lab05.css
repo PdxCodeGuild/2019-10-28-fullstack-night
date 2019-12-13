@@ -32,6 +32,15 @@ main {
     flex-direction: column;
 }
 
+#burrito-customize {
+    width: 50vw;
+    background-color: white, 0.5;
+}
+
+#order-total {
+    width: 25vw;
+}
+
 img {
     width: 25vw;
 }
@@ -39,6 +48,7 @@ img {
 .border {
     border-style: solid;
     border-width: thin;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 main * {

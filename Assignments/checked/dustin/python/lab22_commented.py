@@ -36,30 +36,42 @@ with open('MobyDickUTF8.txt', 'r', encoding='UTF-8') as moby_dick:
         letter = moby_list[k]
         if letter in string.ascii_lowercase: #count number of characters
             characters_total += 1
-        if letter in string.ascii_lowercase or letter in string.whitespace or letter == ".": #removed punctuation except "." from text
+        if letter in string.ascii_lowercase or letter in string.whitespace or letter == ".": #removed punctuationexcept . from text
             moby_after.append(letter)
     for k in range(0, len(moby_after)):
-        moby_usable = moby_usable + moby_after[k] #converts back to string
-    
+        moby_usable = moby_usable + moby_after[k] # use ''.join(list)
+    '''
+    in the loop below, you use words.endswith(), but words just points at one
+    character of the string.
+    I believe that two spaces counts as two words
+    '''
+    moby_usable += ' ' * 100_000  # test
     for words in moby_usable:
-        if words.endswith(".") or words.endswith("!") or words.endswith("?") or words.endswith("..."): #count sentences
+        if words.endswith("."): # same as words == "."
             sentences += 1
-        elif words.endswith(" "): #count words(non-total)
+        elif words.endswith(" "): # same as words == " "
             words_total += 1
     
-    words_total = words_total + sentences #calculate total words
+    words_total = words_total + sentences # Why are you adding these?
 
     print(f"Sentences: {sentences}")
     print(f"Words: {words_total}")
     print(f"Characters: {characters_total}")
 
-    ari_calc = float((4.71*characters_total)/words_total)+float((0.5*words_total)/sentences)-21.43 #calculate ARI
+    ari_calc = float((4.71*characters_total)/words_total)+float((0.5*words_total)/sentences)-21.43 # You don't have to convert to a float after multiplying by a float
 
+    # you should probably add ari_calc = math.ceil(ari_calc)
     print(f"ARI: {math.ceil(ari_calc)}") #print rounded up ARI
 
     if math.ceil(ari_calc) > 14: #adjusts all values > 14 ARI down to 14
         ari_calc = 14
 
+    '''
+    The next part you should be able to do without a for loop
+    ari_calc = math.ceil(ari_calc)
+    if ari_calc in ari_scale.keys():
+        print(ari_scale[ari_calc]['grade_level'])
+    '''
     for ari in ari_scale.keys():
         if math.ceil(ari_calc) == ari:
             print(f"This corresponds to a {ari_scale[ari]['grade_level']} grade level and is suitable for an average person of ages {ari_scale[ari]['ages']}.")
