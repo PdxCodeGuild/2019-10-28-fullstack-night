@@ -27,4 +27,3 @@ else /*if guessed number is less than the actual number */
 } 
 } 
 
-<input type="button" value="Reload Page" onClick="document.location.reload(true)">
