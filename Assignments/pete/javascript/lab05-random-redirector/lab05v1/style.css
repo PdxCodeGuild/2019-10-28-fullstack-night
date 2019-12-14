@@ -1,6 +1,7 @@
 * {
     /* placeholder font */
     font-family: 'Press Start 2P', cursive;
+    box-sizing: border-box;
 }
 
 body {
@@ -12,9 +13,13 @@ body {
 }
 
 main {
-    transform: translate(50%, 50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     /* height: 100vh; */
 }
 
