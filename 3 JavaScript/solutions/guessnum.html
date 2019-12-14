@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script>
+            window.onload = function() {
+                let upperNum = Math.floor(Math.random() * 100) + 1
+                let randNum = Math.floor(Math.random() * upperNum) + 1
+                let mainDiv = document.querySelector("#main-div")
+                let buttonDiv = document.querySelector("#button-div")
+                console.log(randNum)
+                for (let i=0; i<upperNum; i++) { 
+                    let newButton = document.createElement("button")
+                    newButton.innerText = i + 1
+                    newButton.onclick = function() {
+                        if (this.innerText == randNum) {
+                            alert('correct!')
+                        }
+                    }
+                    buttonDiv.appendChild(newButton)
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="main-div"></div>
+        <div id="button-div"></div>
+        <div id="output-div"></div>
+    </body>
+</html>
