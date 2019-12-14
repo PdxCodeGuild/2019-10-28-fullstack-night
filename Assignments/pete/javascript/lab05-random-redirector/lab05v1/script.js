@@ -6,26 +6,34 @@ function getGuggly () {
 
 function getGuggled () {
     let feelingGuggly = document.querySelector('button')
-    let getGuggledIn = document.createElement('div');
-    let guggledSpan = document.createElement('span');
-    let guggledIn = document.createElement('span');
-    guggledSpan.innerText = 'Get Guggled In:  '
-    for (i=5; i > 0; i--) {
-        guggledIn.innerText = `00:0${i}`;
-        getGuggledIn.appendChild(guggledSpan);
-        getGuggledIn.appendChild(guggledIn);
-        feelingGuggly.parentElement.appendChild(getGuggledIn)
-        //version of python sleep() would be really nice here
-        
-    }
+    let getGuggledIn = document.createElement('div'); //parent div of...
+    // let guggledSpan = document.createElement('span');//span1 of timer
+    // let guggledIn = document.createElement('span');//span2 of timer
+    // getGuggledIn.appendChild(guggledSpan);
+    // getGuggledIn.appendChild(guggledIn);
+    
+    feelingGuggly.parentElement.appendChild(getGuggledIn)
+
+    let timerString = '543210';
+    let timerArray = timerString.split('');
+    let timerArrayIndex = 0;
+    getGuggledIn.innerText = '';
+    let gettinGuggledID = setInterval(function() {
+        getGuggledIn.innerText = `Get Guggled In:  00:0${timerArray[timerArrayIndex]}`;
+
+        if (++timerArrayIndex >= timerArray.length) {
+
+            clearInterval(gettinGuggledID)
+            getGuggly()
+        }
+    }, 1000);
+
 }
 
 window.onload = function() {
 
     let feelingGuggly = document.querySelector('button');
-    feelingGuggly.onclick = function() {
-        setTimeout(getGuggly, 5000);
-        getGuggled(this);
-        
-    }
+
+    feelingGuggly.onclick = getGuggled
+
 }
