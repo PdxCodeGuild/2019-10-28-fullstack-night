@@ -4,6 +4,11 @@ body {
     flex-direction: column;
 }
 
+main {
+    height: 70vh;
+    width: 100vw;
+}
+
 main.clock {
     background-image: url(clock.gif);
 }

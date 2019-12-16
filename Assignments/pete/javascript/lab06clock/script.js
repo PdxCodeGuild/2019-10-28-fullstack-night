@@ -5,9 +5,9 @@ window.onload = function() {
     let stopwatchButton = document.querySelector('button.stopwatch')
     let countdownButton = document.querySelectorAll('button.countdown')
     clockButton.onclick = function() {
-        // main.classList.remove('river')
-        // main.classList.add('clock')
-        main.removeChild(blockQuote) //either this works, or lines 8-9 work, not both
+        main.classList.remove('river')
+        main.classList.add('clock')
+        blockQuote.style.display = 'none'
     }
 
 }
