@@ -1,0 +1,71 @@
+body {
+
+    display: flex;
+    flex-direction: column;
+}
+
+main.clock {
+    background-image: url(clock.gif);
+}
+
+main.countdown {
+    background-image: url(red-alarm.gif);
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-content: space-around; bad code*/
+    background-image: linear-gradient(to bottom, red 0%, green 25%, blue 50%, yellow 75%, purple 100%);
+    width: 100vw;
+    height: 30vh;
+}
+
+nav header {
+    font-size: xx-large;
+    align-self: center;
+    font-style: italic;
+    color: white;
+}
+
+#nav-buttons {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-around;
+}
+
+button {
+    width: 25vw;
+    height: 10vh;
+    background-image: linear-gradient(to right, red 0%, green 25%, blue 50%, yellow 75%, purple 100%);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-size: x-large;
+}
+
+main.river {
+    background-image: url(river.png);
+    background-size: cover;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main blockquote {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    color: white;
+    background: hsla(0, 0%, 48%, 0.49);
+    font-size: 3rem;
+    font-family: 'Ruthie', cursive;
+    border-radius: 20px;
+}
+
+blockquote div {
+    display: flex;
+    justify-content: right;
+}
