@@ -1,0 +1,17 @@
+2a3
+> data = list(range(4, 1, -1)) + list(range(1, 4)) # this data shouldn't say that the first index is a peak, but it does say that
+5c6
+<     for peak in range(len(data)-1):
+---
+>     for peak in range(len(data)-1): # this shouldn't start at zero
+11c12
+<         if valley > 0 < len(data)-1:
+---
+>         if valley > 0 < len(data)-1: # nice, but you should just change the range to range(1, len(data)-1)
+14a16,21
+> '''
+> In both functions you are creating a parameter, then overwriting it with
+> the loop variable. Both functions should have one of these lines
+> for i in range(1, len(peak)):
+> for i in range(1, len(valley)):
+> '''
