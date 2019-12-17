@@ -1,0 +1,22 @@
+9,10c9,10
+<         if not row:
+<             continue
+---
+>         if not row: # nice, catching the empty string
+>             continue 
+41a42
+>             # user_list = [user_name, user_phone, user_email, user_address]
+52c53,55
+<             print(index, contact)
+---
+>             print(index, contact) # this will give the last one if it can't be found.
+>             # you could set a boolean flag, found=False, and then set found=True if a contact matches
+>             # then only print if the flag is set to True
+65c68
+<             print(index, contacts)
+---
+>             print(index, contacts) # nice!
+74c77
+<             print(index, contacts)
+---
+>             print(index, contacts) # nice!
