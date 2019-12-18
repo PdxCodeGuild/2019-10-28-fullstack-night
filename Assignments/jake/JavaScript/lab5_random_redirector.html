@@ -11,7 +11,7 @@
 
         
               <h1 style="margin:3px">Lets go to a random WebPage </h1>
-              <div>For Random Website click on the button below</div>
+              <div>5</div>
             
                 <script>
                       
@@ -24,9 +24,17 @@
                         links[2]='https://findtheinvisiblecow.com/'
                         links[3]='https://www.pointerpointer.com/'
                         links[4]='https://www.musictheory.net/'
-
+                        
+                        
                         window.location=links[myrandom]
                         }
+                        let oneDiv = document.querySelector('div');
+                        function addToDiv() {
+                        oneDiv.innerText = parseInt(oneDiv.innerText) - 1;
+                        setTimeout(addToDiv, 1000);
+                        }
+                        setTimeout(addToDiv, 1000);                  
+
                     </script>
         <form>
             <input type="button" value="Click me!" onClick="randomlinks()">
