@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Random Redirector</title>
+
+    </head>
+    <body>
+        <h1>
+
+
+
+        
+              <h1 style="margin:3px">Lets go to a random WebPage </h1>
+              <div>For Random Website click on the button below</div>
+            
+                <script>
+                      
+                       
+                        function randomlinks(){
+                        var myrandom=Math.round(Math.random()*4)
+                        var links=new Array()
+                        links[0]='https://w3docs.com'
+                        links[1]='https://theuselessweb.com/'
+                        links[2]='https://findtheinvisiblecow.com/'
+                        links[3]='https://www.pointerpointer.com/'
+                        links[4]='https://www.musictheory.net/'
+
+                        window.location=links[myrandom]
+                        }
+                    </script>
+        <form>
+            <input type="button" value="Click me!" onClick="randomlinks()">
+        </form>
+                
+     </body>
+</html>

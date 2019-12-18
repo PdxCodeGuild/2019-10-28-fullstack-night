@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Random Redirector</title>
+        <script>
+            function random_element(array) {
+                let random_index = Math.floor(Math.random()*sites.length);
+                return array[random_index];}
+            let sites = ["https://www.amazon.com/", "https://www.google.com/", "https://www.yahoo.com/", "https://www.reddit.com/",
+            "https://www.theonion.com/"];
+            let random = random_element(sites);
+            alert(random);
+            location.assign(random);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
