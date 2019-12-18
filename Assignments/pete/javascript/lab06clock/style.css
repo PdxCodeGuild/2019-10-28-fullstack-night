@@ -2,15 +2,38 @@ body {
 
     display: flex;
     flex-direction: column;
+
+}
+
+a {
+    text-decoration: none;
+    color: none;
+}
+
+a:visited {
+    color: white;
 }
 
 main {
     height: 70vh;
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 main.clock {
     background-image: url(clock.gif);
+    background-size: contain;
+    background-size: 33.3333vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main.stopwatch {
+    background-image: url(stopwatch.gif);
+    background-size: 20vw;
 }
 
 main.countdown {
@@ -22,9 +45,15 @@ nav {
     flex-direction: column;
     justify-content: space-around;
     /* align-content: space-around; bad code*/
-    background-image: linear-gradient(to bottom, red 0%, green 25%, blue 50%, yellow 75%, purple 100%);
+    /* background-image: linear-gradient(to bottom, red 0%, green 25%, blue 50%, yellow 75%, purple 100%); old version*/
+    background-image: linear-gradient(to bottom, #EE24FF 0%, #26EB57 25%, #FF7B42 50%, #158BEB 75%, #FFD81F 100%);
     width: 100vw;
     height: 30vh;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+nav.clock {
+    background-image: linear-gradient(to bottom, red 0%, green 25%, blue 50%, yellow 75%, purple 100%);
 }
 
 nav header {
@@ -43,11 +72,19 @@ nav header {
 button {
     width: 25vw;
     height: 10vh;
-    background-image: linear-gradient(to right, red 0%, green 25%, blue 50%, yellow 75%, purple 100%);
-    color: white;
+    color: black;
     border-radius: 50%;
     border: none;
     font-size: x-large;
+    background-image: linear-gradient(to right, #FF2D0D 0%, #B43BEB 25%, #599CFF 50%, #00EB75 75%, #D2FF1E 100%);
+    /* background-image: linear-gradient(to right, red 0%, green 25%, blue 50%, yellow 75%, purple 100%); old version*/
+
+}
+
+button:hover {
+    text-decoration: bold;
+    color: white;
+    background-image: linear-gradient(to right, red 0%, green 25%, blue 50%, yellow 75%, purple 100%);
 }
 
 main.river {
@@ -73,4 +110,34 @@ main blockquote {
 blockquote div {
     display: flex;
     justify-content: right;
+}
+
+div.clock {
+    background: white;
+    color: black;
+    font-size: 4rem;
+    font-family: 'Source Code Pro', monospace;
+}
+
+#stopwatch {
+    display: none;
+    flex-direction: column;
+}
+
+#stopwatch button.stopwatch {
+    border-radius: 5px;
+    background: radial-gradient(white 0%, black 50%, red 100%);
+    margin: 5vw;
+}
+
+#stopwatch button:hover {
+    color: red;
+}
+
+#stopwatch-field {
+    background-color: hsla(0, 0%, 62%, 0.83);
+    border-radius: 10px;
+    font-size: 4rem;
+    width: 33.33vw;
+    height: 4rem;
 }

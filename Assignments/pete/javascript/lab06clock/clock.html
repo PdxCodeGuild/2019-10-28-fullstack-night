@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Ruthie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200|Ubuntu+Condensed&display=swap" rel="stylesheet">
+
     <script src="script.js"></script>
     <title>TimePage.com</title>
 </head>
 <body>
     <nav>
-        <header>Welcome to TimePage.com</header>
+        <header>Welcome to <a href="clock.html">TimePage.com</a></header>
         <div id="nav-buttons">
             <button class="clock">Clock</button>
             <button class="stopwatch">Stopwatch</button>
@@ -20,12 +24,30 @@
         </div>
     </nav>
     <main class="river">
+        <!--RIVER-->
         <blockquote>
             “Time is like a river made up of the events which happen, and a violent stream; for as soon as a thing has been seen, it is carried away, and another comes in its place, and this will be carried away too.”
             </br>
             <div>― Marcus Aurelius, Meditations</div>
-            
         </blockquote>
+        
+        <!--CLOCK-->
+        <!-- <div id="clock" class="clock"> -->
+
+        </div>
+        <!--STOPWATCH-->
+        <div id="stopwatch">
+            <div id="stopwatch-field">
+            </div>
+            <div id="stopwatch-buttons">
+                <button class="stopwatch" id="start">Start</button><button class="stopwatch" id="stop">Stop</button>
+            </div>
+        </div>
     </main>
+    <!-- <main class="clock">
+        <div id="clock">
+            This is a test-ass div
+        </div>
+    </main> -->
 </body>
 </html>
