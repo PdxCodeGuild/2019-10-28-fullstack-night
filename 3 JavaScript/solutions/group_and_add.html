@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style> 
+            #main-div {
+                height: 100vh;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+
+            #output {
+                grid-column: 1/5;
+                grid-row: 1;
+            }
+
+        </style>
+        <meta charset="UTF-8">
+
+    </head>
+    <body>
+        <div id="main-div">
+            <div id="output"></div>
+            <div id="n1" class="number">1</div>
+            <div id="n2" class="number">2</div>
+            <div id="n3" class="number">3</div>
+            <div id="calc">calc</div>
+
+        </div>
+        <script>
+            let numbers = document.querySelectorAll(".number")
+            let calc = document.querySelector("#calc")
+            let output = document.querySelector("#output")
+            for (let i=0; i<numbers.length; i++) {
+                numbers[i].onclick = function() {
+                    output.innerText += numbers[i].innerText
+                }
+            }
+            calc.onclick = function() {
+                output.innerText = output.innerText.split('').reduce(function(acc, el) {
+                    acc[1] = acc[1] + el;
+                    if (acc[1].length >= 2) {
+                        acc[0] += parseInt(acc[1]);
+                        acc[1] = ''; 
+                    }
+                    return acc;
+                }, [0, ''])[0]
+            }
+        </script>
+    </body>
+</html>
