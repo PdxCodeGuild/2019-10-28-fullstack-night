@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Ruthie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200|Ubuntu+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet"> 
 
     <script src="script.js" defer></script>
     <title>TimePage.com</title>
@@ -49,7 +50,22 @@
         <div id="countdown">
             <div id="countdown-field"></div>
             <div id="enter-countdown">
-                <input id="enter-countdown-field" placeholder="Set Countdown Timer"></input><button id="begin-countdown">Begin Countdown</button>
+                <div id="set-countdown">
+                    <span>Set your countdown:</span>
+                    <select>
+                        <option value="1">1 Minute</option>
+                        <option value="2">2 Minutes</option>
+                        <option value="3">3 Minutes</option>
+                        <option value="4">4 Minutes</option>
+                        <option value="5">5 Minutes</option>
+                        <option value="6">6 Minutes</option>
+                        <option value="7">7 Minutes</option>
+                        <option value="8">8 Minutes</option>
+                        <option value="9">9 Minutes</option>
+                        <option value="10">10 Minutes</option>
+                    </select>
+                </div>
+                <button id="begin-countdown">Begin Countdown</button>
             </div>
         </div>
     </main>

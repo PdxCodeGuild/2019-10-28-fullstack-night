@@ -41,6 +41,30 @@ main.countdown {
     background-size: 12.5vw;
 }
 
+main.counting-down {
+    height: 100vh;
+    background-image: url(hourglass.gif);
+    background-size: 25vh;
+}
+
+main.counting-down-thirty {
+    background-image: url(hourglass2.gif);
+    height: 100vh;
+    /* background-size:  */
+}
+
+main.counting-down-ten {
+    background-image: url(red-alarm.gif);
+    height: 100vh;
+    background-size: 20vw;
+}
+
+main.explosion {
+    background-image: url(explosion.gif);
+    height: 100vh;
+    background-size: auto;
+}
+
 nav {
     display: flex;
     flex-direction: column;
@@ -55,6 +79,7 @@ nav {
 
 nav.clock {
     background-image: linear-gradient(to bottom, red 0%, green 25%, blue 50%, yellow 75%, purple 100%);
+    background-image: linear-gradient(to bottom, #5A5C5B 0%, #666968 25%, #414242 50%, #BEC2C1 75%, #414242 100%)
 }
 
 nav header {
@@ -148,4 +173,43 @@ div.clock {
 
 #countdown {
     display: none;
+    flex-direction: column;
+}
+
+#countdown-field {
+    border-radius: 30px;
+    background-color: hsla(31, 13%, 52%, 0.54);
+    text-align: center;
+    font-size: 3rem;
+    width: 25vw;
+    height: 15vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+#enter-countdown {
+    display: flex;
+    flex-direction: column;
+}
+
+#set-countdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#set-countdown span {
+    font-size: 1.5rem
+}
+
+#enter-countdown-field {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#begin-countdown {
+    border-radius: 5px;
+    background: radial-gradient(#ce985f 25%, #3fb8e4 75%)
 }

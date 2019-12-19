@@ -18,8 +18,8 @@ let stopButton = document.querySelector('#stop');
 // countdown elements
 let countdownField = document.querySelector('#countdown-field');
 let enterCountdown = document.querySelector('#enter-countdown');
-let enterCountdownField = document.querySelector('#enter-countdown-field');
 let beginCountdown = document.querySelector('#begin-countdown');
+let setCountdown = document.querySelector('select')
 
 //Clock
 clockButton.onclick = function() {
@@ -60,11 +60,14 @@ stopwatchButton.onclick = function() {
 }
 
 //stopwatch JavaScript
-let stopwatchDate = new Date();
-stopwatchDate.setHours(0, 0, 0, 0);
 function stopwatchFunction() {
     stopwatchField.innerText = `${stopwatchDate.getHours()} : ${stopwatchDate.getMinutes()} : ${stopwatchDate.getSeconds()} . ${stopwatchDate.getMilliseconds() / 100}`
 }
+
+//stopwatchDate
+let stopwatchDate = new Date();
+stopwatchDate.setHours(0, 0, 0, 0);
+
 //stopwatchBool
 let stopwatchBool = false
 startButton.onclick = function() {
@@ -84,6 +87,7 @@ stopButton.onclick = function() {
     }
 }
 
+//countdown
 countdownButton.onclick = function() {
     //hide all non-countdown divs
     blockQuote.style.display = 'none';
@@ -95,3 +99,62 @@ countdownButton.onclick = function() {
     main.classList.remove('stopwatch');
     main.classList.add('countdown');
 }
+
+//countdown function
+let countdownDate
+let countdownMinutes
+function countdownFunction() {
+    // console.log("it has begun")
+    if (!(countdownDate.getMinutes())) {
+        console.log('under1minute')
+        if (countdownDate.getSeconds() < 11  && !(countdownDate.getMilliseconds())) {
+            main.classList.remove('counting-down-thirty')
+            main.classList.add('counting-down-ten')
+        } else if (countdownDate.getSeconds() < 31  && !(countdownDate.getMilliseconds())) {
+            main.classList.remove('counting-down')
+            main.classList.add('counting-down-thirty')
+        }
+        if (!(countdownDate.getSeconds()) && !(countdownDate.getMilliseconds())) {
+            main.innerHTML = ''
+            main.classList.remove('couning-down-ten');
+            main.classList.add('explosion');
+            alert("Your computer has exploded.  Thanks for using TimePage.com")
+        }
+        
+    }
+    if (countdownDate.getMinutes()) {
+        countdownField.innerText = `${countdownDate.getMinutes()} : ${countdownDate.getSeconds()}`
+    }
+    else {
+        countdownField.innerText = `${countdownDate.getSeconds()}.${countdownDate.getMilliseconds() / 100}`
+    }
+}
+
+//countdown bool
+let countingDown = false;
+let lastMinute = false
+//countdown onclick
+beginCountdown.onclick = function() {
+    // console.log(countdownDate)
+    nav.style.display = 'none';
+    enterCountdown.style.display = 'none';
+    beginCountdown.style.display = 'none';
+    setCountdown.style.display = 'none';
+    countdownField.style.display = 'flex';
+    main.classList.remove('countdown')
+    main.classList.add('counting-down')
+    if (!(countingDown)) {
+        countdownDate = new Date();
+        countdownMinutes = setCountdown.value
+        countdownDate.setHours(0, countdownMinutes, 1, 0);
+        countingDown = true;
+    }
+
+    setInterval(function() {
+
+        countdownFunction()
+        countdownDate.setMilliseconds(countdownDate.getMilliseconds() - 100)
+    }, 100)
+    
+}
+    
