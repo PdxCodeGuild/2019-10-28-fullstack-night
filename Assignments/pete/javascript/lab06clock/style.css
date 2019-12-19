@@ -37,7 +37,8 @@ main.stopwatch {
 }
 
 main.countdown {
-    background-image: url(red-alarm.gif);
+    background-image: url(hourglass3.gif);
+    background-size: 12.5vw;
 }
 
 nav {
@@ -140,4 +141,11 @@ div.clock {
     font-size: 4rem;
     width: 33.33vw;
     height: 4rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+#countdown {
+    display: none;
 }

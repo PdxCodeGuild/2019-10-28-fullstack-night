@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200|Ubuntu+Condensed&display=swap" rel="stylesheet">
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>TimePage.com</title>
 </head>
 <body>
@@ -32,15 +32,24 @@
         </blockquote>
         
         <!--CLOCK-->
-        <!-- <div id="clock" class="clock"> -->
+        <div id="clock" class="clock">
 
         </div>
+
         <!--STOPWATCH-->
         <div id="stopwatch">
             <div id="stopwatch-field">
             </div>
             <div id="stopwatch-buttons">
                 <button class="stopwatch" id="start">Start</button><button class="stopwatch" id="stop">Stop</button>
+            </div>
+        </div>
+
+        <!--COUNTDOWN-->
+        <div id="countdown">
+            <div id="countdown-field"></div>
+            <div id="enter-countdown">
+                <input id="enter-countdown-field" placeholder="Set Countdown Timer"></input><button id="begin-countdown">Begin Countdown</button>
             </div>
         </div>
     </main>
