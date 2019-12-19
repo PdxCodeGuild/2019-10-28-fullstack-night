@@ -35,15 +35,25 @@
                     output.innerText += numbers[i].innerText
                 }
             }
+
             calc.onclick = function() {
+                // output.innerText = output.innerText.split('').reduce(function(acc, el) {
+                //     acc[1] = acc[1] + el;
+                //     if (acc[1].length >= 2) {
+                //         acc[0] += parseInt(acc[1]);
+                //         acc[1] = ''; 
+                //     }
+                //     return acc;
+                // }, [0, ''])[0]
                 output.innerText = output.innerText.split('').reduce(function(acc, el) {
-                    acc[1] = acc[1] + el;
-                    if (acc[1].length >= 2) {
-                        acc[0] += parseInt(acc[1]);
-                        acc[1] = ''; 
+                    acc = acc + el;
+                    if (acc.length >= 4) {
+                        acc = parseInt(acc.slice(0, 2)) + parseInt(acc.slice(2, 4));
+                        acc = acc.toString();
+                        offset = acc.length > 2? acc.length - 2:0;
                     }
                     return acc;
-                }, [0, ''])[0]
+                }, '')
             }
         </script>
     </body>
