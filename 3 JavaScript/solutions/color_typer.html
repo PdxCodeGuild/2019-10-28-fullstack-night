@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			div {
+				height: 80vh;
+				width: 80vw;
+				margin: 10vh 10vw;
+				background-color: lemonchiffon;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+		</div>
+	<script>
+		let colorDiv = document.querySelector("DIV");
+		let colorArr = ["cornsilk", "lemonchiffon", "lightgoldenrodyellow", "blanchedalmond", "mintcream", "rosybrown"];
+		//colorDiv.onclick = function() {}
+		colorDiv.addEventListener("click", function(event) {
+			event.target.style.backgroundColor = colorArr[Math.floor(Math.random()*colorArr.length)];
+		})
+		document.addEventListener("keydown", function() {
+			colorDiv.style.backgroundColor = colorArr[Math.floor(Math.random()*colorArr.length)];
+		});
+	</script>
+	</body>
+</html>

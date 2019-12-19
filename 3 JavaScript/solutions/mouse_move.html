@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+            div {
+                word-wrap: break-word;
+            }
+		</style>
+	</head>
+	<body>
+		<div>
+		</div>
+	<script>
+		let textDiv = document.querySelector("DIV");
+        let letterCounter = 0;
+		document.addEventListener("mousemove", function() {
+            console.log('hi');
+            let jackString = "AllworkandnoplaymakesJackadullboy."
+            textDiv.innerText += jackString[letterCounter++%jackString.length];
+        });
+	</script>
+	</body>
+</html>
