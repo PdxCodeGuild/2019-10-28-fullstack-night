@@ -1,0 +1,11 @@
+canvas {
+    border: 2px solid green;
+    background-color: red;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    /* height: 100vh; */
+}
