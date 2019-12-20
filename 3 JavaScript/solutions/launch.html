@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            outline: 2px solid black;
+        }
+    </style>
+
+</head>
+<body>
+    <canvas id="cnv" width="300" height="300"></canvas>    
+    <script>
+        let cnv = document.querySelector("canvas");
+        let ctx = cnv.getContext("2d");
+        let colorArr = ["red", "green"];
+        let colorCounter = 0;
+        let width = 300;
+        let height = 300;
+        let ball = {
+            x: 1,
+            y: height-1,
+            radius: 100,
+            vx: 1,
+            vy: -1.5,
+            ay: .01,
+        }
+        console.log(ball["radius"])
+        console.log(ball.radius)
+        function draw() {
+            console.log('drawing');
+            ctx.clearRect(0, 0, width, height);
+            if ((ball.y < 0) || (ball.y > height) || (ball.x < 0) || (ball.x > width)) {
+                ball.radius *=5;
+                ctx.fillStyle = "red";
+                ctx.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI);
+                ctx.fill();
+                ctx.beginPath;
+                if (ball.radius < 500) {
+                    window.requestAnimationFrame(draw);
+                }
+                else {
+                    ball = {
+                        x: 1,
+                        y: height-1,
+                        radius: 100,
+                        vx: 1,
+                        vy: -1.5,
+                        ay: .01,
+                    }
+                    window.requestAnimationFrame(draw);
+                }
+            } else { 
+                ctx.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI);
+                ball.vy += ball.ay;
+                ball.x += ball.vx;
+                ball.y += ball.vy;
+                ctx.fillStyle = colorArr[Math.floor(colorCounter++/20)%colorArr.length];
+                ctx.fill();
+                ctx.beginPath();
+                window.requestAnimationFrame(draw);
+            }
+        }
+        draw();
+    </script>
+</body>
+</html>
