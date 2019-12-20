@@ -118,7 +118,7 @@ function countdownFunction() {
             main.innerHTML = ''
             main.classList.remove('couning-down-ten');
             main.classList.add('explosion');
-            alert("Your computer has exploded.  Thanks for using TimePage.com")
+            alert("Your computer has exploded.  Thank you for visitng TimePage.com")
         }
         
     }

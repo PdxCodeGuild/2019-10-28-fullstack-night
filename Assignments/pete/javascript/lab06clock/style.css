@@ -38,7 +38,8 @@ main.stopwatch {
 
 main.countdown {
     background-image: url(hourglass3.gif);
-    background-size: 12.5vw;
+    /* background-size: 12.5vw; */
+    background-size: auto 33.333vh;
 }
 
 main.counting-down {
