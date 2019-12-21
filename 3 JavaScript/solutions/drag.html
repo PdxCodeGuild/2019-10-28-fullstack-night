@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        main {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .draggable {
+            user-select: none;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: rosybrown; /* best color */
+        }
+        .blank-div {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+        #trash-div {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: black;
+        }
+    </style>
+
+</head>
+<body>
+    <main>
+        <div id="trash-div"></div>
+        
+    </main>
+    <script>
+        let mainDiv = document.querySelector("main");
+        let trashDiv = document.querySelector("#trash-div"); // this is where we throw away divs
+        let activeDiv;
+        for (let i=0; i<20; i++) { // make twenty divs
+            let newDiv = document.createElement("div");
+            newDiv.classList.add("draggable")
+            mainDiv.append(newDiv);
+            newDiv.innerText = i; // give the div the inner number
+            newDiv.untouched = true; // we make a blank div to keep positioning on the first mousedown
+            // But we don't want to make a blank div on the second+ mousedown, so we check if it's the first
+            newDiv.addEventListener("mousedown", function(e) {
+                activeDiv = newDiv;
+                activeDiv.style.position = "absolute"; // This lets us position the div based on the mouse position
+                if (activeDiv.untouched) { // If we haven't made the blank div
+                    activeDiv.untouched = false; // Change the flag to say we've made the blank div
+                    let blankDiv = document.createElement("div");
+                    blankDiv.classList.add("blank-div");
+                    mainDiv.insertBefore(blankDiv, activeDiv.nextSibling); // Find the element after the clicked div,
+                    // and place the blank div right before it
+                }
+            })
+            
+        }
+        document.addEventListener("mousemove", function(e) {
+            // The document will always look to see if the mouse is moving, and if there is an active div
+            // that div will follow the mouse
+            if (activeDiv) {
+                activeDiv.style.top = `${e.y - 50}px`;
+                activeDiv.style.left = `${e.x - 50}px`;
+            }
+        })
+        document.addEventListener("mouseup", function(e) {
+            trashRect = trashDiv.getBoundingClientRect(); // Get the borders of the trash div
+            console.log(trashRect);
+            if ((e.y < trashRect.bottom) && (e.y > trashRect.top) && (e.x > trashRect.left) && (e.x < trashRect.right)) {
+                // if the mouseup event is inside the borders of the trash div
+                activeDiv.parentElement.removeChild(activeDiv); // remove the active div
+            }
+            activeDiv = null; // When the mouse is up, don't have a div that follows the mouse
+        })
+    </script>
+</body>
+</html>
