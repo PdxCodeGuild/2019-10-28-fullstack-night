@@ -1,0 +1,12 @@
+main {
+    background: repeating-linear-gradient(to bottom right, black, grey, white, grey, black 25%);
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+canvas {
+    border: 2px solid black;
+    background: repeating-radial-gradient(black, grey, white, grey, black 25%);
+}
