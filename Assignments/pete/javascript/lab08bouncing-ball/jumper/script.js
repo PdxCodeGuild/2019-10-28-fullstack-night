@@ -1,3 +1,6 @@
+/*
+NEXT TIME: Add a blocky key to each platform (or rectangle).  This will be a boolean to see if blocky is on that particular platform.
+*/
 let width = 1000;
 let height = 1000;
 let cnv = document.querySelector('canvas')
@@ -28,6 +31,7 @@ let rect1 = {
     py: 750,
     width: 250,
     height: 50,
+    blockyContact = '',
 }
 
 let rect2 = {
@@ -36,6 +40,7 @@ let rect2 = {
     py: 750,
     width: 250,
     height: 50,
+    blockyContact: '',
 }
 
 let rect3 = {
@@ -44,6 +49,7 @@ let rect3 = {
     py: 750,
     width: 250,
     height: 50,
+    blockyContact: '',
 }
 
 let rectArr = [rect1, rect2, rect3]
@@ -51,6 +57,7 @@ let rectArr = [rect1, rect2, rect3]
 function mainLoop() {
     ctx.clearRect(0, 0, width, height)
     for (let i=0; i<rectArr.length; i++) {
+
         ctx.fillStyle = rectArr[i].color
         ctx.fillRect(rectArr[i].px, rectArr[i].py, rectArr[i].width, rectArr[i].height)
         
@@ -69,23 +76,20 @@ function mainLoop() {
         ctx.fillRect(blocky.px, blocky.py, blocky.width, blocky.height);
 
         //check collision
-        if (blocky.ground === true) {
-            if (blocky.px + blocky.width < rectArr[i].px//blocky.px check1
-                && blocky.px > rectArr[i].px + rectArr[i].width//blocky.px check2
-            ) {
+        //if blocky.ground {see whether blocky walks off the platform}
+        if (blocky.ground) {
+            if (blocky.px + blocky.width > rectArr[i].px && blocky.px < rectArr[i].px + rectArr[i].width) {
                 blocky.ground = false;
+                blocky.ay = 0.1;
+                continue;
             }
         }
-
-        // else {
-        //     blocky.ground = true;
-        // }
-
         if (blocky.ground) {
             blocky.ay = 0;
-            // blocky.ground = false;
             continue;
         }
+        
+
 
         else if (
             (blocky.py + blocky.height > rectArr[i].py//blocky.py check1
@@ -93,28 +97,27 @@ function mainLoop() {
             && (blocky.px + blocky.width > rectArr[i].px//blocky.px check1
                 && blocky.px < rectArr[i].px + rectArr[i].width)//blocky.px check2
             ) {
+            // rectArr[i].blockyContact = true;
             blocky.py = rectArr[i].py - blocky.height;
             blocky.vy = 0;
             blocky.ay = 0;
             blocky.ground = true;
+            continue;
         }
-        // else {
-        //     blocky.ay = 0.1;
-        //     blocky.ground = false;
-        // }
     }
-    
+    // console.log(blocky.ground)
     window.requestAnimationFrame(mainLoop)
 }
 window.requestAnimationFrame(mainLoop)
 
 
 document.addEventListener('keydown', function(e) {
+
     if (e.which === 37 || e.which === 65) {
-        blocky.vx = -1;
+        blocky.vx = -1.5;
     }
     if (e.which === 39 || e.which === 68) {
-        blocky.vx = 1;
+        blocky.vx = 1.5;
     }
     if (e.which === 32  && blocky.ground) {
         blocky.vy = -5;

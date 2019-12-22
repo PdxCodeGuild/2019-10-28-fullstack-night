@@ -1,0 +1,11 @@
+main {
+    background: repeating-radial-gradient(red, yellow, blue, red 25%);
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+canvas {
+    border: 2px solid black;
+}
