@@ -1,0 +1,8 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(to bottom right, red 0%, orange 14.29%, yellow 28.57%, green 42.86%, blue 57.14%, indigo 71.43%, violet 85.71%, red 100%);
+    background: repeating-linear-gradient(to bottom left, red 0%, orange 14.29%, yellow 28.57%, green 42.86%, blue 57.14%, indigo 71.43%, violet 85.71%, red 100%);
+    display: flex;
+    justify-content: center;
+}

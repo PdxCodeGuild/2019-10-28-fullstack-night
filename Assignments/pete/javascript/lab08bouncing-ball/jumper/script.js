@@ -31,7 +31,7 @@ let rect1 = {
     py: 750,
     width: 250,
     height: 50,
-    blockyContact = '',
+    blockyContact: '',
 }
 
 let rect2 = {

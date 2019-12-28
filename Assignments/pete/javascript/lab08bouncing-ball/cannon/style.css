@@ -1,0 +1,6 @@
+main {
+    height: 100vh;
+    width: 100vw;
+    background: repeating-radial-gradient(closest-side at 3.33rem 3.33rem, black  35%, white 50%, green 77%, purple 99%);
+    background-size: 3.333rem 3.333rem;
+}

@@ -22,22 +22,22 @@ let ballArr = [
         vx: (2*Math.random()-1)*5,
         vy: (2*Math.random()-1)*5,
     },
-    // ball3 = {
-    //     color: 'black',
-    //     radius: 20,
-    //     px: Math.random()*460 + 20,
-    //     py: Math.random()*460 + 530,
-    //     vx: (2*Math.random()-1)*5,
-    //     vy: (2*Math.random()-1)*5,
-    // },
-    // ball4 = {
-    //     color: 'white',
-    //     radius: 20,
-    //     px: Math.random()*460 + 530,
-    //     py: Math.random()*460 + 530,
-    //     vx: (2*Math.random()-1)*5,
-    //     vy: (2*Math.random()-1)*5,
-    // },
+    ball3 = {
+        color: 'black',
+        radius: 20,
+        px: Math.random()*460 + 20,
+        py: Math.random()*460 + 530,
+        vx: (2*Math.random()-1)*5,
+        vy: (2*Math.random()-1)*5,
+    },
+    ball4 = {
+        color: 'white',
+        radius: 20,
+        px: Math.random()*460 + 530,
+        py: Math.random()*460 + 530,
+        vx: (2*Math.random()-1)*5,
+        vy: (2*Math.random()-1)*5,
+    },
 ]
 
 let wallArr = [

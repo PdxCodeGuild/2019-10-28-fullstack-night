@@ -3,8 +3,8 @@ let ctx = cnv.getContext('2d');
 let width = 1920;
 let height = 1080;
 let gravity = {
-    ax: 0.1,
-    ay: 0.4,
+    ax: 0.0,
+    ay: 0.5,
 }
 accDir = {
     x: '',
@@ -40,64 +40,28 @@ let gravObjs = [
 // let ax = 0.1
 // let ay = 0.4
 let r = 3
+rainbowArray = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+function ballGenerator(oldBall) {
+    newBall = {
+        color: rainbowArray[Math.floor(Math.random() * rainbowArray.length)],
+        radius: r,
+        px : oldBall.px,
+        py : oldBall.py,
+        vx : (2*Math.random() - 1)*15,
+        vy : (Math.random()*-1)*15,
+    }
+    return newBall
+}
 
 let rainbowBalls = [
-    red = {
-        color: 'red',
-        radius: r,
+    firstBall = {
+        color : rainbowArray[Math.floor(Math.random() * rainbowArray.length)],
+        radius : r,
         px : Math.random()*width,
         py : Math.random()*(height/2),
         vx : (2*Math.random() - 1)*15,
         vy : (Math.random()*-1)*15,
-    },
-    orange = {
-        color: 'orange',
-        radius: r,
-        px : Math.random()*width,
-        py : Math.random()*(height/2),
-        vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
-    },
-    yellow = {
-        color: 'yellow',
-        radius: r,
-        px : Math.random()*width,
-        py : Math.random()*(height/2),
-        vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
-    },
-    green = {
-        color: 'green',
-        radius: r,
-        px : Math.random()*width,
-        py : Math.random()*(height/2),
-        vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
-    },
-    blue = {
-        color: 'blue',
-        radius: r,
-        px : Math.random()*width,
-        py : Math.random()*(height/2),
-        vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
-    },
-    indigo = {
-        color: 'indigo',
-        radius: r,
-        px : Math.random()*width,
-        py : Math.random()*(height/2),
-        vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
-    },
-    violet = {
-        color: 'violet',
-        radius: r,
-        px : Math.random()*width,
-        py : Math.random()*(height/2),
-        vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
-    },
+    }
 ]
 
 function borderCollision(rainbowBalls) {
@@ -149,7 +113,7 @@ function rainbowLoop() {
     ctx.fillRect(0, 0, width, height);
     moveBalls(rainbowBalls);
     borderCollision(rainbowBalls);
-    explode()
+    explode();
     drawBalls(rainbowBalls);
     requestAnimationFrame(rainbowLoop)
 }
@@ -235,25 +199,16 @@ function getBigger2() {
 function getBigger3() {
     setTimeout(getBigger3, 100)
     for (let i=0; i<rainbowBalls.length; i++) {
-        rainbowBalls[i].radius += Math.random()*rainbowBalls[i].radius * 0.1;
+        rainbowBalls[i].radius += Math.random()*rainbowBalls[i].radius * 0.05;
     }
 }
 
 function explode() {
     for (let i=0; i<rainbowBalls.length; i++) {
         if (rainbowBalls[i].radius >= 100) {
-            for (let j=0; j<1; j++) {
-                let newBall = {
-                    color: rainbowBalls[i].color,
-                    radius: r,
-                    px: rainbowBalls[i].px,
-                    py: rainbowBalls[i].py,
-                    vx: (2*Math.random() - 1)*15,
-                    vy: (Math.random()*-1)*15,
-                }
-                rainbowBalls.push(newBall)
-            }
-            rainbowBalls[i].radius = r
+            let newBall = ballGenerator(rainbowBalls[i]);
+            rainbowBalls.push(newBall);
+            rainbowBalls[i].radius = r;
         }
     }
 }
