@@ -3,13 +3,14 @@ let ctx = cnv.getContext('2d');
 let width = 1920;
 let height = 1080;
 let gravity = {
-    ax: 0.0,
-    ay: 0.5,
+    ax: 0.5,
+    ay: 0.0,
 }
 accDir = {
     x: '',
     y: '',
 }
+let explodeBool
 
 
 let gravObjs = [
@@ -39,7 +40,7 @@ let gravObjs = [
 ]
 // let ax = 0.1
 // let ay = 0.4
-let r = 3
+let r = 1
 rainbowArray = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 function ballGenerator(oldBall) {
     newBall = {
@@ -48,7 +49,7 @@ function ballGenerator(oldBall) {
         px : oldBall.px,
         py : oldBall.py,
         vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
+        vy : (2*Math.random() - 1)*15,
     }
     return newBall
 }
@@ -76,7 +77,7 @@ function borderCollision(rainbowBalls) {
 
 
         }
-        if (rainbowBalls[i].py >= height - rainbowBalls[i].radius) {
+        if (rainbowBalls[i].py < rainbowBalls[i].radius || rainbowBalls[i].py >= height - rainbowBalls[i].radius) {
             //friction
             // rainbowBalls[i].vy *= -0.99
             // rainbowBalls[i].vx *= 0.99
@@ -209,9 +210,30 @@ function explode() {
             let newBall = ballGenerator(rainbowBalls[i]);
             rainbowBalls[i] = ballGenerator(rainbowBalls[i]);
             rainbowBalls.push(newBall);
+            explodeBool = true;
         }
+    }
+    if (explodeBool === true) {
+        changeGrav0();
+        explodeBool = false;
     }
 }
 
-// changeGrav3()
+function changeGrav0 () {
+    if (gravity.ay === 0.5) {
+        gravity.ay = 0;
+        gravity.ax = -0.5;
+    } else if (gravity.ax === -0.5) {
+        gravity.ax = 0;
+        gravity.ay = -0.5;
+    } else if (gravity.ay === -0.5) {
+        gravity.ay = 0;
+        gravity.ax = 0.5;
+    } else if (gravity.ax = 0.5) {
+        gravity.ax = 0;
+        gravity.ay = 0.5
+    }
+}
+
+changeGrav()
 getBigger3()

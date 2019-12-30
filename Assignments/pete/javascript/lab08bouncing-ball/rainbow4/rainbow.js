@@ -10,6 +10,7 @@ accDir = {
     x: '',
     y: '',
 }
+let explodeBool
 
 
 let gravObjs = [
@@ -39,7 +40,7 @@ let gravObjs = [
 ]
 // let ax = 0.1
 // let ay = 0.4
-let r = 3
+let r = 1
 rainbowArray = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 function ballGenerator(oldBall) {
     newBall = {
@@ -48,7 +49,8 @@ function ballGenerator(oldBall) {
         px : oldBall.px,
         py : oldBall.py,
         vx : (2*Math.random() - 1)*15,
-        vy : (Math.random()*-1)*15,
+        vy : (2*Math.random() - 1)*15,
+        children: getChildren(),
     }
     return newBall
 }
@@ -61,6 +63,7 @@ let rainbowBalls = [
         py : Math.random()*(height/2),
         vx : (2*Math.random() - 1)*15,
         vy : (Math.random()*-1)*15,
+        children : getChildren(),
     }
 ]
 
@@ -76,7 +79,7 @@ function borderCollision(rainbowBalls) {
 
 
         }
-        if (rainbowBalls[i].py >= height - rainbowBalls[i].radius) {
+        if (rainbowBalls[i].py >= height - rainbowBalls[i].radius) { //rainbowBalls[i].py < rainbowBalls[i].radius || add this for top border collision
             //friction
             // rainbowBalls[i].vy *= -0.99
             // rainbowBalls[i].vx *= 0.99
@@ -203,15 +206,66 @@ function getBigger3() {
     }
 }
 
+let ball
 function explode() {
     for (let i=0; i<rainbowBalls.length; i++) {
-        if (rainbowBalls[i].radius >= 100) {
-            let newBall = ballGenerator(rainbowBalls[i]);
-            rainbowBalls[i] = ballGenerator(rainbowBalls[i]);
-            rainbowBalls.push(newBall);
+        let ball = rainbowBalls[i];
+
+        if (ball.children === 1 && ball.radius >= 25) {
+            for (let j=0; j<ball.children; j++) {
+                let newBall = ballGenerator(ball);
+                rainbowBalls.push(newBall);
+            }
+            ball = ballGenerator(ball);
+            break;
+
+        } else if (ball.children === 3 && ball.radius >= 50) {
+            for (let j=0; j<ball.children; j++) {
+                let newBall = ballGenerator(ball);
+                rainbowBalls.push(newBall);
+            }
+            ball = ballGenerator(ball);
+            break;
+
+        } else if (ball.children === 6 && ball.radius >= 100) {
+            for (let j=0; j<ball.children; j++) {
+                let newBall = ballGenerator(ball);
+                rainbowBalls.push(newBall);
+            }
+            ball = ballGenerator(ball);
+            break;
         }
     }
 }
 
-// changeGrav3()
+function getChildren() {
+    let randChild = Math.random() * 7;
+    if (randChild >= 0 && randChild < 4) {
+        children = 1;
+    } else if (randChild >= 4 && randChild < 6) {
+        children = 3;
+    } else {
+        children = 6;
+    }
+    return children
+
+}
+
+function changeGrav0 () {
+    if (gravity.ay === 0.5) {
+        gravity.ay = 0;
+        gravity.ax = -0.5;
+    } else if (gravity.ax === -0.5) {
+        gravity.ax = 0;
+        gravity.ay = -0.5;
+    } else if (gravity.ay === -0.5) {
+        gravity.ay = 0;
+        gravity.ax = 0.5;
+    } else if (gravity.ax = 0.5) {
+        gravity.ax = 0;
+        gravity.ay = 0.5
+    }
+}
+
+// changeGrav()
 getBigger3()
