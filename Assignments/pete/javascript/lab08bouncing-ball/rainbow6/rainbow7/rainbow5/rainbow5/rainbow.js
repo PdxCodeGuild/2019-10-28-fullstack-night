@@ -80,7 +80,7 @@ function borderCollision(rainbowBalls) {
 
 
         }
-        if (rainbowBalls[i].py < rainbowBalls[i].radius || rainbowBalls[i].py >= height - rainbowBalls[i].radius) { //remove first half for no top border collision
+        if (rainbowBalls[i].py >= height - rainbowBalls[i].radius) { //rainbowBalls[i].py < rainbowBalls[i].radius || add this for top border collision
             //friction
             // rainbowBalls[i].vy *= -0.99
             // rainbowBalls[i].vx *= 0.99
@@ -247,7 +247,7 @@ function explode() {
             rainbowBalls[i] = ballGenerator(ball);
             console.log('the big one')
 
-        } else if (ball.children === 99 && ball.radius >= 1000) {
+        } else if (ball.children === 99 && ball.radius >= 500) {
             for (let j=0; j<ball.children; j++) {
                 let newBall = ballGenerator(ball);
                 rainbowBalls.push(newBall);
@@ -255,6 +255,7 @@ function explode() {
             rainbowBalls[i] = ballGenerator(ball);
             console.log('the bigger one')
         }
+    
     }
 }
 
@@ -262,9 +263,9 @@ function getChildren() {
     let randChild = Math.random() * 100;
     if (randChild >= 0 && randChild < 50) {
         children = 1;
-    } else if (randChild >= 50 && randChild < 85) {
+    } else if (randChild >= 50 && randChild < 80) {
         children = 3;
-    } else if (randChild >= 85 && randChild < 95) {
+    } else if (randChild >= 80 && randChild < 95) {
         children = 6;
     } else if (randChild >= 95 && randChild < 99) {
         children = 24;

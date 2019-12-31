@@ -40,7 +40,7 @@ let gravObjs = [
 ]
 // let ax = 0.1
 // let ay = 0.4
-let r = 3
+let r = 1
 rainbowArray = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 
 function ballGenerator(oldBall) {
@@ -93,6 +93,22 @@ function borderCollision(rainbowBalls) {
     }
 }
 
+function borderCollision2(rainbowBalls) {
+    for (let i=0; i<rainbowBalls.length; i++) {
+        if (rainbowBalls[i].px < rainbowBalls[i].radius) {
+            rainbowBalls[i].px = rainbowBalls[i].radius;
+            rainbowBalls[i].vx *= -1;
+        } else if (rainbowBalls[i].px > width - rainbowBalls[i].radius) {
+            rainbowBalls[i].px = width - rainbowBalls[i].radius;
+            rainbowBalls[i].vx *= -1;
+        }
+        if (rainbowBalls[i].py > height - rainbowBalls[i].radius) {
+            rainbowBalls[i].py = height - rainbowBalls[i].radius;
+            rainbowBalls[i].vy *= -1;
+        }
+    }
+}
+
 function drawBalls(rainbowBalls) {
     for (let i=0; i<rainbowBalls.length; i++) {
         ctx.beginPath();
@@ -116,7 +132,7 @@ function rainbowLoop() {
     ctx.fillStyle = 'hsla(0, 0%, 0%, 0.05)'
     ctx.fillRect(0, 0, width, height);
     moveBalls(rainbowBalls);
-    borderCollision(rainbowBalls);
+    borderCollision2(rainbowBalls);
     explode();
     drawBalls(rainbowBalls);
     requestAnimationFrame(rainbowLoop)
@@ -125,7 +141,7 @@ function rainbowLoop() {
 rainbowLoop()
 
 function changeGrav () {
-    setTimeout(changeGrav, 15000)
+    // setTimeout(changeGrav, 15000)
     // ctx.clearRect(0, 0, width, height);
     if (gravity.ay === 0.5) {
         gravity.ay = 0;
@@ -210,7 +226,11 @@ function getBigger3() {
 function getBigger4() {
     setTimeout(getBigger4, 100)
     for (let i=0; i<rainbowBalls.length; i++) {
-        rainbowBalls[i].radius += rainbowBalls[i].radius * Math.random()*0.01;
+        // rainbowBalls[i].radius += rainbowBalls[i].radius * Math.random()*0.01;//slower version
+        // rainbowBalls[i].radius += rainbowBalls[i].radius * Math.random()*0.1;//faster version
+        rainbowBalls[i].radius += rainbowBalls[i].radius * Math.random()*0.05;//medium version
+
+
     }
 }
 
@@ -238,22 +258,25 @@ function explode() {
                 rainbowBalls.push(newBall);
             }
             rainbowBalls[i] = ballGenerator(ball);
-
+            
         } else if (ball.children === 24 && ball.radius >= 200) {
             for (let j=0; j<ball.children; j++) {
                 let newBall = ballGenerator(ball);
                 rainbowBalls.push(newBall);
             }
             rainbowBalls[i] = ballGenerator(ball);
-            console.log('the big one')
-
+            console.log('the big one');
+            // changeGrav();
+            
         } else if (ball.children === 99 && ball.radius >= 1000) {
+            rainbowBalls = [];
             for (let j=0; j<ball.children; j++) {
                 let newBall = ballGenerator(ball);
                 rainbowBalls.push(newBall);
             }
-            rainbowBalls[i] = ballGenerator(ball);
-            console.log('the bigger one')
+            // rainbowBalls[i] = ballGenerator(ball);
+            console.log('the bigger one');
+            // changeGrav();
         }
     }
 }
