@@ -20,12 +20,13 @@ class Sprite():
         return self.uni
 
 class Item(Sprite):
-    def __init__(self, y, x, uni, id, uses):
+    def __init__(self, y, x, uni, id, uses, range):
         super().__init__(y, x, uni)
         self.id = id
         self.uses = uses
+        self.range = range
     def __repr__(self):
-        return f"{self.uni}: {self.uses}"
+        return f"{self.uni}:{self.uses}/{self.range}"
 
 class Character(Sprite):
     def __init__(self, y, x, uni, uni2):
@@ -73,7 +74,8 @@ def gen_enemies(hero, enemies, num=4):
         tiles.remove((co_ord))
     return tiles
 enemies = []
-tiles = gen_enemies(hero, enemies)
+enemies_num = random.randrange(3, 7)
+tiles = gen_enemies(hero, enemies, enemies_num)
 def gen_items(item_attr_list, tiles, num=3):
     items = []
     for i in range(num):
@@ -82,7 +84,7 @@ def gen_items(item_attr_list, tiles, num=3):
         y = co_ord[0]
         x = co_ord[1]
         item_attr = random.choice(item_attr_list)
-        item = Item(y, x, item_attr[0], item_attr[1], item_attr[2])
+        item = Item(y, x, item_attr[0], item_attr[1], item_attr[2], item_attr[3])
         items.append(item)
     return items
 
@@ -91,10 +93,12 @@ def gen_items(item_attr_list, tiles, num=3):
 #     Item(19, 5, '🔫', 'gun')
 # ]
 item_attr_list = [
-    ('🏹', 'bow', 2),
-    ('🗡', 'sword', 2),
+    ('🏹', 'bow', 1, 10),
+    ('🗡', 'sword', 3, 1),
+    ('🔫', 'gun', 2, 5)
 ]
-items = gen_items(item_attr_list, tiles)
+items_num = random.randrange(2, 5)
+items = gen_items(item_attr_list, tiles, items_num)
 unicode_storage_list = ['🗡', '⚔', '🔫', '🏹', '🛡', '🔑', '🗝', '❤', '☠', '☠', '⬆', '➡', '⬇', '⬅']
 
 moves = [[0, 1], [0, -1], [1, 0], [-1, 0]]
@@ -137,6 +141,10 @@ def shoot(hero, enemies, aim_dir, game_screen):
 def enemy_move(hero, enemies):
     for enemy in enemies:
         y_or_x = random.choice(['y', 'x'])
+        if enemy.y == hero.y:
+            y_or_x = 'x'
+        elif enemy.x == hero.x:
+            y_or_x = 'y'
         if y_or_x == 'y':
             if enemy.y > hero.y:
                 enemy.y -= 3
@@ -148,7 +156,7 @@ def enemy_move(hero, enemies):
                 enemy.x -= 5
             else:
                 enemy.x += 5
-    # fix_pos(enemy)
+        fix_pos(enemy)
 
 
 def draw_screen(hero, enemies, items, game_screen):
@@ -183,6 +191,9 @@ dead = False
 game_screen.keypad(True)
 game_screen.clear()
 draw_screen(hero, enemies, items, game_screen)
+game_screen.addstr(2, 41, "Arrow Keys To Move")
+game_screen.addstr(5, 41, "WASD     To    Aim")
+game_screen.addstr(8, 41, "SPACE   To   Shoot")
 # game_screen.addstr(hero.y, hero.x, str(hero))
 # game_screen.addstr(hero.y + 1, hero.x, hero.mouth_string())
 # [game_screen.addstr(item.y, item.x, str(item)) for item in items]
