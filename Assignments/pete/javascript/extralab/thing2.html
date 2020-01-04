@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <h1></h1>
+        <script>
+            let url = "http://192.168.1.173:8000/json/"
+            let body = document.querySelector('body')
+            axios.get(url)
+            .then(function(response) {
+                console.log(response);
+                document.querySelector('h1').innerText = response.data.color
+                // body.style.backgroundColor = response.data.color
+                let colorDiv = document.createElement('div')
+                colorDiv.style.height = '666px'
+                colorDiv.style.width = '666px'
+                colorDiv.style.backgroundColor = response.data.color
+                body.appendChild(colorDiv)
+                body.style.background = `linear-gradient(to bottom, maroon 0%, ${response.data.color} 50%, maroon 100%`
+            })
+        </script>
+    </body>
+</html>
