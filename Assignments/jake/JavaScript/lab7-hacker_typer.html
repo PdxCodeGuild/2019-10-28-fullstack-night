@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+            div {
+                word-wrap: break-word;
+            }
+            body {
+                background-color: black;
+                color: green;
+            }
+		</style>
+	</head>
+	<body>
+        <h1>Start typing...</h1>
+		<div>
+		</div>
+	<script>
+		let textDiv = document.querySelector("DIV");
+        let letterCounter = 0;
+		document.addEventListener("keydown", function() {
+            console.log('test');
+            let beer = "Loremipsum dolor sit amet; consectetur adipiscing elit. Mauris in enim nec nunc tincidunt adipiscing. Etiam sit amet lectus enim. Phasellus ornare rhoncus velit id cursus. Duis vitae tempor ante. In vitae orci at lacus dictum dapibus ornare at risus. Sed sit amet mattis est. Mauris faucibus condimentum dolor sed faucibus. "
+            textDiv.innerText += beer[letterCounter++%beer.length];
+        });
+	</script>
+	</body>
+</html>
