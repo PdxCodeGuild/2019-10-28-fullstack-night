@@ -7,7 +7,7 @@ import curses
 import random
 import time
 
-'''hjk hjkl hjlk 
+'''
 Below:  I establish classes.  In this version, I will convert some functions into methods.  Such as:
 aim() to hero.aim()
 shoot() to hero.shoot()
@@ -132,7 +132,7 @@ class Enemy(Character):
         if self.y == hero.y and self.x == hero.x:
             hero.alive = False
 
-    def generate(self):
+    def generate(self, hero):
         #gonna start here next time
         pass
 '''

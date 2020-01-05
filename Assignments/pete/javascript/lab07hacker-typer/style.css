@@ -1,3 +1,13 @@
-/* body * {
-    word-wrap: break-word;
-} */
+main {
+    font-family: 'Ruthie', cursive;
+    background-image: url(yellowed-paper.jpg);
+    background-size: contain;
+    width: 75vw;
+    height: 75vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+}
