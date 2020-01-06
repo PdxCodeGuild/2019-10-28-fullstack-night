@@ -14,7 +14,7 @@ let postcodeDiv = document.querySelector('#postcode')
 let usernameDiv = document.querySelector('#username')
 let passwordDiv = document.querySelector('#password')
 let membersinceDiv = document.querySelector('#membersince')
-let photoImg = document.querySelector('#photo')
+let photoImg = document.querySelector('img')
 
 axios.get(url)
 .then(function(response) {
@@ -43,9 +43,9 @@ axios.get(url)
     phoneDiv.innerText = `Phone #: ${phone}`
     ageDiv.innerText = `Age: ${age}`
     addressDiv.innerText = `Address: ${address}`
-    cityDiv = `City: ${city}`
+    cityDiv.innerText = `City: ${city}`
     stateDiv.innerText = `State: ${state}`
-    countryDiv.innerText = `Country: ${countryDiv}`
+    countryDiv.innerText = `Country: ${country}`
     postcodeDiv.innerText = `Postcode: ${postcode}`
     usernameDiv.innerText = `Username: ${username}`
     passwordDiv.innerText = `Passwod: ${password}`

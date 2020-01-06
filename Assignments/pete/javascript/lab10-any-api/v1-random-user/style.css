@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 5px;
+}
+
+nav {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    height: 20vh;
+    text-decoration: underline;
+    font-size: xx-large;
+    
+}
+
+main div {
+    outline: 2px solid black;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 50vh;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+img {
+    height: 50vh;
+}
