@@ -1,0 +1,22 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+#info {
+    display: flex;
+    flex-direction: column;
+}
+
+#icon {
+    size: auto;
+    /* padding: 3px; */
+}
+
+#info div {
+    /* margin: 2px;
+    border: 2px solid black; */
+}
