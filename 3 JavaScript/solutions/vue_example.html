@@ -9,30 +9,30 @@
     <body>
 		<div id="app">
 			<ol>
-				<li v-for="animal in animalsWithO">
-					{{ animal }}
+				<li v-for="animal in animalsWithO"> <!-- vue for loop based on vue property animalsWithO -->
+					{{ animal }} <!-- double curly is delimiter, animal is the variable set in the for loop above -->
 				</li>
 			</ol>
 		</div>
 
         <script>
 			var app = new Vue({
-				el: '#app',
+				el: '#app', // This identifies the html element that the vue instance gets tangled up with
 				data: {
-					animals: ['ao', 'bo'],
+					animals: ['ao', 'bo'], // this is the starting data, with is accessable through app.animals
 				},
 				computed: {
-					animalsWithO: function () {
+					animalsWithO: function () { // animalsWithO will act like a property, and it'll be a cached value
 						return this.animals.filter(animal => animal[1] === 'o');
 					}
                 },
-                beforeCreate: function () {
-                    let url = "http://192.168.1.173:8000/json/"
-                    axios.get(url)
-                    .then(function(response) {
-                        console.log(response);
-                        console.log(this);
-				        app.animals = response.data.list;
+                beforeCreate: function () { // this function will run before the vue instance is created
+                    let url = "http://192.168.1.173:8000/json/"; // this url is just my computer
+                    axios.get(url) // get the json from my computer
+                    .then(function(response) { // this function will run when your browser has gotten the json
+                        console.log(response); // this lets you see the json so you can see where the valuable info is
+                        console.log(this); // this lets you see the context for the function currently running
+				        app.animals = response.data.list; // this changes the app's data, which forces a change in the v-for
                     })
 
                 },
