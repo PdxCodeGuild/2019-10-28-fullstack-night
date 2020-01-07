@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+
+    <body>
+		<div id="app">
+			<ol>
+				<li v-for="animal in animalsWithO">
+					{{ animal }}
+				</li>
+			</ol>
+		</div>
+
+        <script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					animals: ['ao', 'bo'],
+				},
+				computed: {
+					animalsWithO: function () {
+						return this.animals.filter(animal => animal[1] === 'o');
+					}
+                },
+                beforeCreate: function () {
+                    let url = "http://192.168.1.173:8000/json/"
+                    axios.get(url)
+                    .then(function(response) {
+                        console.log(response);
+                        console.log(this);
+				        app.animals = response.data.list;
+                    })
+
+                },
+
+			});
+			
+        </script>
+    </body>
+</html>

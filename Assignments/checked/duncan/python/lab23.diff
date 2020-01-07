@@ -20,3 +20,8 @@
 <             print(index, contacts)
 ---
 >             print(index, contacts) # nice!
+77d79
+<             csv_data = f.write() # THIS IS NOT WORKING
+78a81,82
+> with open('contacts2.csv', 'w') as f:
+>     f.write(str(contacts)) # FORMAT ME

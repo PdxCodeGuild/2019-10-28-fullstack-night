@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <h1></h1>
+        <script>
+            let url = "http://192.168.1.173:8000/json/"
+            axios.get(url)
+            .then(function(response) {
+                console.log(response);
+                document.querySelector("h1").innerText = response.data.list;
+            })
+        </script>
+    </body>
+</html>

@@ -77,5 +77,6 @@ with open("contacts.csv") as f:
             print(index, contacts) # nice!
 
         elif user_action == "quit":
-            csv_data = f.write() # THIS IS NOT WORKING
             program_running = "False"
+with open('contacts2.csv', 'w') as f:
+    f.write(str(contacts)) # FORMAT ME
