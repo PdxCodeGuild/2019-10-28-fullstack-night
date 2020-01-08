@@ -1,0 +1,13 @@
+.container {
+    position: sticky;
+    top: 0;
+}
+
+img {
+    /* position: fixed; */
+    top: 0;
+}
+
+main {
+    height: 200vh;
+}

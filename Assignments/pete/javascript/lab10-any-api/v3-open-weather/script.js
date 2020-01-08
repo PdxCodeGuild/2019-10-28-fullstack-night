@@ -2,11 +2,11 @@ function weather(data, elArr) {
     // console.log(response)
     //get variables here
     // let data = response.data
-    console.log(data)
+    console.log(`${data} log in weather(data, todayArr)`)
 
-    let name = data.main.name
+
     
-    var timezone = data.timezone
+    let timezone = data.timezone
     console.log(timezone)
 
     let temp = data.main.temp
@@ -43,9 +43,10 @@ function weather(data, elArr) {
     // console.log(icon)
     // update divs here
     for (item of elArr) {
-        if (item.id === 'name') {
-            item.innerText = `${name} Now`
-        } else if (item.id === 'temp') {
+        // if (item.id === 'name') {
+        //     item.innerText = `${name} Now`
+        // } else
+        if (item.id === 'temp') {
             item.innerText = `${temp}°F`
         } else if (item.id === 'feels-like') {
             item.innerText = `${chillIndex}${feelsLike}°F`
@@ -71,7 +72,7 @@ function weather(data, elArr) {
 
 
 // let url = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=<api key goes here>"
-let apiKey = "<key goes here>"
+let apiKey = "<api key here>"
 let input = document.querySelector('input')
 
 let todayArr = document.querySelectorAll('.today')
@@ -82,7 +83,7 @@ let tomorrowArr = document.querySelectorAll('.tomorrow')
 // }
 
 // let iconImg = document.querySelector('#icon')
-// let nameDiv = document.querySelector('#name')
+let nameDiv = document.querySelector('#name')
 // let tempDiv = document.querySelector('#temp')
 // let feelsLikeDiv = document.querySelector('#feels-like')
 // let humidityDiv = document.querySelector('#humidity')
@@ -97,7 +98,9 @@ input.addEventListener('keydown', function(e) {
         .then(function(response) {
             console.log(response)
             let data = response.data
-            weather(data. todayArr)
+            let name = data.name
+            nameDiv.innerText = `${name} Now:`
+            weather(data, todayArr)
         })
         // .then(response => console.log(1, response, todayArr))
 
