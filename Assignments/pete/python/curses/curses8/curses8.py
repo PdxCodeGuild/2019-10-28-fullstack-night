@@ -125,25 +125,26 @@ class Enemy(Character):
         super().__init__(y, x, uni, uni2)
     
     def enemy_move(self, hero):
-        y_or_x = random.choice(['y', 'x'])
-        if self.y == hero.y:
-            y_or_x = 'x'
-        elif self.x == hero.x:
-            y_or_x = 'y'
-        
-        if y_or_x == 'y':
-            if self.y > hero.y:
-                self.y -= 3
+        if self.alive:
+            y_or_x = random.choice(['y', 'x'])
+            if self.y == hero.y:
+                y_or_x = 'x'
+            elif self.x == hero.x:
+                y_or_x = 'y'
+            
+            if y_or_x == 'y':
+                if self.y > hero.y:
+                    self.y -= 3
+                else:
+                    self.y += 3
             else:
-                self.y += 3
-        else:
-            # y_or_x == 'x'
-            if self.x > hero.x:
-                self.x -= 5
-            else:
-                self.x += 5
+                # y_or_x == 'x'
+                if self.x > hero.x:
+                    self.x -= 5
+                else:
+                    self.x += 5
 
-        self.fix_pos()
+            self.fix_pos()
 
         if self.y == hero.y and self.x == hero.x:
             hero.alive = False
@@ -262,8 +263,8 @@ while True:
             hero.pick_up(items)
             [enemy.enemy_move(hero) for enemy in enemies]
         if in_key in wasd:
-            aim_dir = hero.aim(in_key)
+            hero.aim_dir = hero.aim(in_key)
         if hero.aim_dir:
             if in_key == ' ':
-                hero.shoot(enemies, aim_dir)
+                hero.shoot(enemies, hero.aim_dir)
                 [enemy.enemy_move(hero) for enemy in enemies if enemy.alive]

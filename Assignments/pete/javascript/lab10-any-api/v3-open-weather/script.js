@@ -71,7 +71,7 @@ function weather(data, elArr) {
 
 
 // let url = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=<api key goes here>"
-let apiKey = '2a3b6c8a4967eb6fc1f41df5bbf6999b'
+let apiKey = "<key goes here>"
 let input = document.querySelector('input')
 
 let todayArr = document.querySelectorAll('.today')
