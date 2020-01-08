@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script></script> <!-- lets us use axios --->
+    </head>
+
+    <body>
+        <h1>Authors</h1>
+        <ul id="authors"></ul>>
+            <script>
+                    
+            let url = "https://favqs.com/api/quotes/"
+            let body = document.querySelector('body')
+            let authorDiv = document.querySelector('#author')
+            let quoteDiv = document.querySelector('#quote')
+            let input = document.querySelector('input')
+            let tag = input.value
+            let button = document.querySelector('button')
+            input.addEventListener('keypress', function() {
+                tag = input.value
+            })
+            button.onclick = function() {}
+
+                axios.get(url, {
+                    params: {
+                        // page: 2,
+                        filter: tag,
+                        type: 'tag',
+                    
+                    },
+                        headers: {
+                            Authorization: 'Token token=<api token goes here>'
+                        }
+                    })
+                      
+            axios.get(url) // Get a json response from the url
+            .then(function(response) { // run this function once you've gotten the json response
+                console.log(response);
+                document.querySelector("header").innerText = response.data.list; // set the inner text to the json response
+            })
+        </script>
+    </body>
+</html>

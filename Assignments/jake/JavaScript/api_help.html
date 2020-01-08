@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 5px;
+}
+
+nav {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    height: 20vh;
+    text-decoration: underline;
+    font-size: xx-large;
+    
+}
+
+main div {
+    outline: 2px solid black;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 50vh;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+img {
+    height: 50vh;
+}
+    </style>
+    <script>
+    let url = "https://randomuser.me/api/"
+let body = document.querySelector('body')
+let nameDiv = document.querySelector('#name')
+let genderDiv = document.querySelector('#gender')
+let emailDiv = document.querySelector('#email')
+let cellDiv = document.querySelector('#cell')
+let phoneDiv = document.querySelector('#phone')
+let ageDiv = document.querySelector('#age')
+let addressDiv = document.querySelector('#address')
+let cityDiv = document.querySelector('#city')
+let stateDiv = document.querySelector('#state')
+let countryDiv = document.querySelector('#country')
+let postcodeDiv = document.querySelector('#postcode')
+let usernameDiv = document.querySelector('#username')
+let passwordDiv = document.querySelector('#password')
+let membersinceDiv = document.querySelector('#membersince')
+let photoImg = document.querySelector('img')
+
+axios.get(url)
+.then(function(response) {
+    console.log(response)
+    let info = response.data.results[0]
+    console.log(info)
+    let name = `${info.name.title} ${info.name.first} ${info.name.last}`
+    let gender = info.gender
+    let email = info.email
+    let cell = info.cell
+    let phone = info.phone
+    let age = info.dob.age
+    let address = `${info.location.street.number} ${info.location.street.name}`
+    let city = info.location.city
+    let state = info.location.state
+    let country = info.location.country
+    let postcode = info.location.postcode
+    let username = info.login.username
+    let password = info.login.password
+    let membersince = `${info.registered.date} age ${info.registered.age}`
+    let photo = info.picture.large
+    nameDiv.innerText = `Name: ${name}`
+    genderDiv.innerText = `Gender: ${gender}`
+    emailDiv.innerText = `email: ${email}`
+    cellDiv.innerText = `Cell #: ${cell}`
+    phoneDiv.innerText = `Phone #: ${phone}`
+    ageDiv.innerText = `Age: ${age}`
+    addressDiv.innerText = `Address: ${address}`
+    cityDiv.innerText = `City: ${city}`
+    stateDiv.innerText = `State: ${state}`
+    countryDiv.innerText = `Country: ${country}`
+    postcodeDiv.innerText = `Postcode: ${postcode}`
+    usernameDiv.innerText = `Username: ${username}`
+    passwordDiv.innerText = `Passwod: ${password}`
+    membersinceDiv.innerText = `Member Since: ${membersince}`
+    photoImg.src = photo
+})
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        Random User Generator
+    </nav>
+    <main>
+        <div id="photo">
+
+            <img id="photo"></img>
+        </div>
+        <div id="info">
+        
+            <div id="name"></div>
+            <div id="gender"></div>
+            <div id="email"></div>
+            <div id="cell"></div>
+            <div id="phone"></div>
+            <div id="age"></div>
+            <div id="address"></div>
+            <div id="city"></div>
+            <div id="state"></div>
+            <div id="country"></div>
+            <div id="postcode"></div>
+            <div id="username"></div>
+            <div id="password"></div>
+            <div id="membersince"></div>
+            
+        </div>
+    </main>
+</body>
+</html>
