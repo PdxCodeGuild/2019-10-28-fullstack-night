@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .crossed-out {
+            text-decoration: line-through;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div>To Do:</div>
+    <div id="app">
+        <input v-model="newTask">
+        <button         id="add"       v-on:click="addTask(newTask)">Add Task</button>
+        <ol>
+            <li v-for="task in tasks" v-bind:class="[task.crossedOut?'crossed-out':'']">
+                {{ task.text }}
+                <button id="cross-out" v-on:click="crossOutTask(task)">Cross Out</button>
+                <button id="remove"    v-on:click="removeTask(task)">Remove</button>
+            </li>
+        </ol>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                newTask: '',
+                tasks: [],
+            },
+            methods: {
+                addTask: function(newTask) {
+                    taskObj = {text: newTask, crossedOut: false}
+                    this.tasks.push(taskObj)
+                    this.newTask = ''
+                },
+                removeTask: function(task) {
+                    console.log(this.tasks);
+                    console.log(task)
+                    if (this.tasks.indexOf(task) >= 0) {
+                        this.tasks.splice(this.tasks.indexOf(task), 1)
+                    }
+                    // this.tasks.remove(task);
+                },
+                crossOutTask: function(task) {
+                    let activeIndex = this.tasks.indexOf(task);
+                    if (activeIndex >= 0) {
+                        this.tasks[activeIndex].crossedOut = !this.tasks[activeIndex].crossedOut
+                    }
+
+
+
+                    // if (this.tasks.indexOf(task) >= 0) {
+                    //     this.tasks.indexOf(task).crossedOut = !this.tasks.indexOf(task).crossedOut
+                    // }
+                }
+            },
+        })
+    </script>
+</body>
+</html>

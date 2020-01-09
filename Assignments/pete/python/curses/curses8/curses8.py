@@ -108,7 +108,7 @@ class Hero(Character):
         pass
     
     def shoot(self, enemies, aim_dir=''):#here definitely want to fix the bug of killing multiple enemies with one shot maybe that'll have to wait until later
-        if self.inv:
+        if self.inv[0]:
             in_line_enemies = []
             for enemy in enemies:
                 if (aim_dir == 'up' and self.x == enemy.x and self.y > enemy.y) or (aim_dir == 'left' and self.y == enemy.y and self.x > enemy.x) or (aim_dir == 'down' and self.x == enemy.x and self.y < enemy.y) or (aim_dir == 'right' and self.y == enemy.y and self.x < enemy.x):
