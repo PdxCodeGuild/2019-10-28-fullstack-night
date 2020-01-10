@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1></h1>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            let url = "https://favqs.com/api/qotd/"
+            axios.get(url)
+            .then(function(response) {
+                console.log(response);
+                document.querySelector("h1").innerHTML = response.data.quote.body;
+                document.querySelector("h1").innerText += `${"\n"} -${response.data.quote.author}`;
+            })
+        </script>
+        <input type="text" id="user_search" placeholder="Enter Search...">
+        <button id="search_button" type="button">Search</button>
+        <h2 id="quote1"></h2>
+        <h3 id="quote2"></h3>
+        <h4 id="quote3"></h4>
+        <script>
+            let searchText = document.querySelector("#user_search")
+            let searchButton = document.querySelector("#search_button")
+            searchButton.onclick = function() {
+                console.log(searchText.value);
+                let search_url = "https://favqs.com/api/quotes?type=tag&filter="+searchText.value
+                console.log(search_url);
+                axios.get(search_url, {
+                    headers: {Authorization: 'Token token=""'}
+                })
+                .then(function(response) {
+                    console.log(response);
+                    document.querySelector("#quote1").innerHTML = response.data.quotes[0].body;
+                    document.querySelector("#quote1").innerText += `${"\n"} -${response.data.quotes[0].author}`;
+                    document.querySelector("#quote2").innerHTML = response.data.quotes[1].body;
+                    document.querySelector("#quote2").innerText += `${"\n"} -${response.data.quotes[1].author}`;
+                    document.querySelector("#quote3").innerHTML = response.data.quotes[2].body;
+                    document.querySelector("#quote3").innerText += `${"\n"} -${response.data.quotes[2].author}`;
+            })
+        }
+        </script>
+    </body>
+</html>
