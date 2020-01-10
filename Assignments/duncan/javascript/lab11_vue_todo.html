@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue Todo</title>
+</head>
+<body>
+    <div id="todoDiv">
+        <input v-model="message">
+        <button v-on:click="add_todo">Add ToDo</button>
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        var todoVue = new Vue ({
+            el: "#todoDiv",
+            data: {
+                message: "Test Message",
+                todos: [
+                    {text: "ToDo Test"},
+                ],
+            },
+            methods: {
+                add_todo: function() {
+                    let todoTask = {text: this.message};
+                    console.log(todoTask);
+                    this.todos.push(todoTask);
+                }
+            },
+        })
+    </script>
+</body>
+</html>
