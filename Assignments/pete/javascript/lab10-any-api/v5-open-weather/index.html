@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <main id="vm">
+
+        <div id="input-div">
+            <input v-model="city" type="text" placeholder="Weather for which city?">
+        </div>
+        <forecast-div v-for="forecast in forecasts" v-bind:forecast="forecast" v-bind:key="forecast"></forecast-div>
+        <!-- <div v-for="forecast in forecasts" class="outer-container-div">
+            <img src='http://openweathermap.org/img/wn/{{forecast.icon}}@2x.png'>
+
+            <div class="inner-container-div">
+                <div class="temp">{{ forecast.main.temp }}</div>
+                <div class="feels-like">{{ forecast.main.feels_like }}</div>
+                <div class="humidity">{{ forecast.main.humidity }}</div>
+                <div class="description">{{ forecast.weather.description }}</div>
+                <div class="wind">{{ forecast.wind.speed }}</div>
+            </div>
+        </div> -->
+        
+    </main>
+</body>
+</html>
