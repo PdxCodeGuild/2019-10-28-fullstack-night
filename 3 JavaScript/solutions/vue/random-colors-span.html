@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<div id="app">
+		<color-div v-for="item in items">
+			<color-span>
+			{{ item }}
+			</color-span>
+		</color-div>
+	</div>
+	<script>
+		function randomColor() {
+			return `hsl(${Math.floor(Math.random()*360)}, 75%, 85%)`;
+		};
+		let colorDiv = {
+			template: `<p v-bind:style="{ backgroundColor: color }"><slot></slot></p>`,
+			data: () => ({
+				color: randomColor(),
+			}),
+		}
+		let colorSpan = {
+			template: `<span v-bind:style="{ backgroundColor: color }"><slot></slot></span>`,
+			data: () => ({
+				color: randomColor(),
+			}),
+		}
+		let app = new Vue({
+			el: "#app",
+			data: {
+				items: ['one', 'two', 'three', 'four', 'five'],
+			},
+			components: {
+				colorDiv,
+				colorSpan,
+			},
+		});
+	</script>
+</body>
+</html>
+<!--
+<div>
+	<p v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+		<span v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+			one
+		</span>
+	</p>
+</div>
+<div>
+	<p v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+		<span v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+			two
+		</span>
+	</p>
+</div>
+<div>
+	<p v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+		<span v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+			three
+		</span>
+	</p>
+</div>
+<div>
+	<p v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+		<span v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+			four
+		</span>
+	</p>
+</div>
+<div>
+	<p v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+		<span v-bind:style="{ backgroundColor: hsl(60, 75%, 85%) }">
+			five
+		</span>
+	</p>
+</div>
+-->

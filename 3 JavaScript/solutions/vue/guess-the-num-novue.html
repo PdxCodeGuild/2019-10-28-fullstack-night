@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<style>
+		.correct { /* style of correct answers */
+			margin: 20px;
+			border: 3px solid green;
+		}
+		.incorrect { /* style of incorrect answers */
+			margin: 20px;
+			border: 3px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="buttonHolder"></div>
+	<div id="guessHolder"></div>
+	<script>
+		let buttonDiv = document.querySelector("#buttonHolder");
+		let guessDiv = document.querySelector("#guessHolder");
+		let highestNumber = 10; // max possible number
+		let randNum = Math.floor(Math.random() * highestNumber) + 1; // randomly selected number
+		for (let i=1; i<=highestNumber; i++) {
+			let guessButton = document.createElement("button"); // creates a button
+			guessButton.innerText = i; // puts the guessing number inside
+			guessButton.onclick = function() {
+				outcome = document.createElement('div');
+				outcome.innerText = `Guess: ${i}`;
+				outcome.classList.add(i===randNum?'correct':'incorrect');
+				// it assigns a class to the div based on correctness
+				/*
+				let activeClass;
+				if (i===randNum) {
+					activeClass = 'correct'
+				} else activeClass = 'incorrect';
+				outcome.classList.add(activeClass);
+				*/
+				guessDiv.appendChild(outcome);
+			}
+			buttonDiv.appendChild(guessButton);
+		}
+	</script>
+</body>
+</html>

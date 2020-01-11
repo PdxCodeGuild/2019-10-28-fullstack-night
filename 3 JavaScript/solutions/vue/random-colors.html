@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<div id="app">
+		<color-div v-for="(item, i) in items" v-on:click.native="items.splice(i, 1)" v-bind:key="item">
+			{{ item }}
+		</color-div>
+	</div>
+	<script>
+		function randomColor() {
+			return `hsl(${Math.floor(Math.random()*360)}, 75%, 85%)`;
+		};
+		let colorDiv = {
+			template: `<p v-bind:style="{ backgroundColor: color }"><slot></slot></p>`,
+			data: () => ({
+				color: randomColor(),
+			}),
+		}
+		let app = new Vue({
+			el: "#app",
+			data: {
+				items: ['one', 'two', 'three', 'four', 'five'],
+			},
+			components: {
+				colorDiv
+			},
+		});
+	</script>
+</body>
+</html>
