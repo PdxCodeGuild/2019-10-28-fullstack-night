@@ -1,0 +1,9 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.outer-container {
+    display: flex;
+    flex-direction: row;
+}
