@@ -1,5 +1,18 @@
 main {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+main:first-child {
+    flex-direction: column;
+}
+
+main:nth-child(2) {
+    flex-direction: column;
+}
+
+main:nth-child(3) {
     flex-direction: column;
 }
 
