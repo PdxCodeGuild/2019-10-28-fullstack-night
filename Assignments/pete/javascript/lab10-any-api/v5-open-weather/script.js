@@ -1,19 +1,24 @@
 //vue component forecastDiv
 let forecastDiv = {
-    props: ['forecast'],
+    props: ['forecast', 'moment'],
     template: `<div class="outer-container">
         <img :src="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'">
 
         <div class="inner-container">
-            <div class="datetime">{{forecast.dt}}</div>
-            <div class="dt-text">{{forecast.dt_txt.toLocaleString()}}</div>
-            <div class="temp">{{forecast.main.temp}}</div>
-            <div class="feels-like">{{ forecast.main.feels_like}}</div>
-            <div class="humidity">{{ forecast.main.humidity}}</div>
-            <div class="description">{{ forecast.weather.description}}</div>
-            <div class="wind">{{forecast.wind.speed}}</div>
+            <div class="datetime">datetime: {{forecast.dt}}</div>
+            <div class="dt-text">dt-text: {{moment(forecast.dt_txt.toLocaleString()).calendar()}}</div>
+            <div class="temp">temp: {{Math.round(forecast.main.temp)}}°F</div>
+            <div class="feels-like">feels-like: {{ Math.round(forecast.main.feels_like)}}°F</div>
+            <div class="humidity">humidity: {{ forecast.main.humidity}}%</div>
+            <div class="description">description: {{ forecast.weather[0].description}}</div>
+            <div class="wind">wind speed: {{Math.round(forecast.wind.speed)}}</div>
         </div>
-    </div>`,
+        </div>`,
+    // methods: {
+    //     firstOneIsDifferent: function() {
+
+    //     }
+    // }
     // data: () => ({
     //     forecast: getWeather(),
     // }),
@@ -21,7 +26,22 @@ let forecastDiv = {
     //     forecasts: []
     // }
 }
+let currentDiv = {
+    props: ['forecast', 'moment', 'city'],
+    template: `<div class="outer-container">
+        <div class="dt-text">City{{this.city}} Now:</div>
+        <img :src="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'">
 
+        <div class="inner-container">
+            <div class="datetime">datetime: {{forecast.dt}}</div>
+            <div class="temp">temp: {{Math.round(forecast.main.temp)}}°F</div>
+            <div class="feels-like">feels-like: {{ Math.round(forecast.main.feels_like)}}°F</div>
+            <div class="humidity">humidity: {{ forecast.main.humidity}}%</div>
+            <div class="description">description: {{ forecast.weather[0].description}}</div>
+            <div class="wind">wind speed: {{Math.round(forecast.wind.speed)}}</div>
+        </div>
+        </div>`,
+}
 //vue stuff
 var vm = new Vue({
     el: '#vm',
@@ -30,13 +50,16 @@ var vm = new Vue({
         city: '',
         forecasts: [],
         timeZone: '',
+        moment: moment,
     },
     methods: {
 
     },
     components: {
         forecastDiv,
+        currentDiv,
     }
+    // computed
 })
 let cityName = document.querySelector('#city-name')
 

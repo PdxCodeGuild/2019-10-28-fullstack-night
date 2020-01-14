@@ -20,3 +20,7 @@ main:nth-child(3) {
     display: flex;
     flex-direction: row;
 }
+
+img {
+    size: auto;
+}
