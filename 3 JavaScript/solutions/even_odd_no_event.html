@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Evens Odds</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			#button-holder {
+				display: flex;
+			}
+			#button-holder div {
+				margin: 10px;
+				padding: 10px;
+				border: 1px solid black;
+			  -webkit-touch-callout: none; /* iOS Safari */
+			    -webkit-user-select: none; /* Safari */
+			     -khtml-user-select: none; /* Konqueror HTML */
+			       -moz-user-select: none; /* Old versions of Firefox */
+			        -ms-user-select: none; /* Internet Explorer/Edge */
+			            user-select: none;
+			}
+			.top {
+				height: 50px;
+			}
+		</style>
+
+
+	</head>
+	<body>
+							<!--  -->
+		<main id="app">
+			<div id="history" class="top">{{cleanHistory}}</div >
+			<div id="output" class="top">{{output}}</div >
+			<div id="button-holder">
+				<calc-button
+					v-for="item in buttonChars"
+					v-bind:button-text="item"
+					v-on:click.native="receiveButton(item)">
+					 <!-- for loop over app.buttonChars -->  
+					 <!-- give the value of 'item to the component's prop --> 
+					 <!-- .native is necessary when adding an event listener to a component instance -->
+				</calc-button>
+
+			</div>
+		</main >
+		<script>
+			var calcButton = {
+				props: ['buttonText'], // this is like a parameter
+				template: `<div class='calc-button'> {{buttonText}} </div>`,
+			}
+			var app = new Vue({
+				el: "#app",
+				components: {
+					calcButton // register the component
+				},
+				data: {
+					buttonChars: ['1', '2', '3', '4', 'even', 'odd', 'evaluate'], // this will be iterated over to create our buttons
+					history: ['2', '3', '4', '3'], // this is the history that will be added to
+					output: '', // this is the output value, which will be overwritten with 'even' or 'odd'
+				},
+				methods: {
+					evaluateHistory: function() {
+						translate = {
+							'0': 0,
+							'1': 1,
+							'2': 0,
+							'3': 1,
+							'4': 0,
+							'even': 0,
+							'odd': 1,
+						} // will translate even values to 0, odd values to 1
+						inArr = []
+						for (let i=0; i<this.history.length; i++) { // iterate over the history
+							inArr.push(this.history[i])
+							while (inArr.length >= 2) { // if there are two values or more
+								let newVal = (translate[inArr[0]] + translate[inArr[1]]) % 2;
+								inArr.splice(0, 2, newVal); // reduce all values down to a 0 or 1
+								/* splice takes in start index, number of elements to delete, and what to add after delete */
+							}
+						};
+						/*
+						if (inArr.length === 0) {
+							this.output = 'nothing there';
+						} else if (translate[inArr[0]] === 1) {
+							this.output = 'odd';
+						} else this.output = 'even';
+						*/
+						this.output = inArr.length === 0? 'nothing there': translate[inArr[0]] === 1 ? 'odd': 'even';
+						this.history = [];
+					},
+					receiveButton: function(inButton) {
+						if (inButton === 'evaluate') {
+							this.evaluateHistory();
+						} else this.history.push(inButton);
+					},
+				},
+				computed: {
+					cleanHistory: function() { // computed properties will be cached results of methods that will update when needed
+						return this.history.join(' ');
+					}
+				},
+			});
+		</script>
+	</body>
+</html>
