@@ -27,27 +27,37 @@
 
 	</head>
 	<body>
+							<!--  -->
 		<main id="app">
 			<div id="history" class="top">{{cleanHistory}}</div >
 			<div id="output" class="top">{{output}}</div >
 			<div id="button-holder">
-				<calc-button v-for="item in buttonChars" v-bind:button-text="item" v-on:sendbutton="receiveButton"></calc-button>
+				<calc-button
+					v-for="item in buttonChars" <!-- for loop over app.buttonChars --> 
+					v-bind:button-text="item" <!-- give the value of 'item to the component's prop -->
+					v-on:sendbutton="receiveButton"> <!-- when the component emits the event, run the receiveButton method -->
+				</calc-button>
+
 			</div>
 		</main >
 		<script>
 			var calcButton = {
-				props: ['buttonText'],
-				template: `<div class='calc-button' v-on:click="$emit('sendbutton', buttonText)">{{buttonText}}</div>`,
+				props: ['buttonText'], // this is like a parameter
+				template: `<div
+							class='calc-button'
+							v-on:click="$emit('sendbutton', buttonText)">
+							<!-- when clicked on, emit the event 'sendbutton' for the element to receive -->
+							{{buttonText}}</div>`,
 			}
 			var app = new Vue({
 				el: "#app",
 				components: {
-					calcButton
+					calcButton // register the component
 				},
 				data: {
-					buttonChars: ['1', '2', '3', '4', 'even', 'odd', 'evaluate'],
-					history: ['2', '3', '4', '3'],
-					output: '',
+					buttonChars: ['1', '2', '3', '4', 'even', 'odd', 'evaluate'], // this will be iterated over to create our buttons
+					history: ['2', '3', '4', '3'], // this is the history that will be added to
+					output: '', // this is the output value, which will be overwritten with 'even' or 'odd'
 				},
 				methods: {
 					evaluateHistory: function() {
@@ -59,27 +69,34 @@
 							'4': 0,
 							'even': 0,
 							'odd': 1,
-						}
+						} // will translate even values to 0, odd values to 1
 						inArr = []
-						for (let i=0; i<this.history.length; i++) {
+						for (let i=0; i<this.history.length; i++) { // iterate over the history
 							inArr.push(this.history[i])
-							while (inArr.length >= 2) {
+							while (inArr.length >= 2) { // if there are two values or more
 								let newVal = (translate[inArr[0]] + translate[inArr[1]]) % 2;
-								inArr.splice(0, 2, newVal);
+								inArr.splice(0, 2, newVal); // reduce all values down to a 0 or 1
+								/* splice takes in start index, number of elements to delete, and what to add after delete */
 							}
 						};
+						/*
+						if (inArr.length === 0) {
+							this.output = 'nothing there';
+						} else if (translate[inArr[0]] === 1) {
+							this.output = 'odd';
+						} else this.output = 'even';
+						*/
 						this.output = inArr.length === 0? 'nothing there': translate[inArr[0]] === 1 ? 'odd': 'even';
 						this.history = [];
 					},
 					receiveButton: function(inButton) {
-						console.log('hi', inButton);
 						if (inButton === 'evaluate') {
 							this.evaluateHistory();
 						} else this.history.push(inButton);
 					},
 				},
 				computed: {
-					cleanHistory: function() {
+					cleanHistory: function() { // computed properties will be cached results of methods that will update when needed
 						return this.history.join(' ');
 					}
 				},
