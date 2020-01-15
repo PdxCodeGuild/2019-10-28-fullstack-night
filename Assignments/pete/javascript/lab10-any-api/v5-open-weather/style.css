@@ -4,7 +4,7 @@ main {
     flex-wrap: wrap;
 }
 
-main:first-child {
+/* main:first-child {
     flex-direction: column;
 }
 
@@ -14,7 +14,7 @@ main:nth-child(2) {
 
 main:nth-child(3) {
     flex-direction: column;
-}
+} */
 
 .outer-container {
     display: flex;
@@ -26,4 +26,8 @@ main:nth-child(3) {
 
 img {
     size: auto;
+}
+
+.big {
+    display: block;
 }

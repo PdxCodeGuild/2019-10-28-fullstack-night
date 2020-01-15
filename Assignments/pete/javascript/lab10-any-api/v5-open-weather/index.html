@@ -20,7 +20,7 @@
             <input v-model="search" type="text" placeholder="Weather for which city?">
         </div>
         <!-- <div id="city-name"></div> -->
-        <current-div v-for="forecast in forecasts.slice(0, 1)" v-bind:forecast="forecast" v-bind:moment="moment" v-bind:key="forecast.id"></current-div>
+        <current-div class="big" v-for="forecast in forecasts.slice(0, 1)" v-bind:forecast="forecast" v-bind:moment="moment" v-bind:key="forecast.id"></current-div>
         <forecast-div v-for="forecast in forecasts.slice(1)" v-bind:forecast="forecast" v-bind:moment="moment" v-bind:key="forecast.id"></forecast-div>
         <!-- <div v-for="forecast in forecasts" class="outer-container-div">
             <img src='http://openweathermap.org/img/wn/{{forecast.icon}}@2x.png'>

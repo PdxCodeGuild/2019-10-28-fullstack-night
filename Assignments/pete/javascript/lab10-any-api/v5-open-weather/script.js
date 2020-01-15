@@ -1,19 +1,38 @@
 //vue component forecastDiv
 let forecastDiv = {
-    props: ['forecast', 'moment'],
+    props: ['forecast', 'moment', 'timeZone'],
     template: `<div class="outer-container">
         <img :src="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'">
 
         <div class="inner-container">
-            <div class="datetime">datetime: {{forecast.dt}}</div>
-            <div class="dt-text">dt-text: {{moment(forecast.dt_txt.toLocaleString()).calendar()}}</div>
-            <div class="temp">temp: {{Math.round(forecast.main.temp)}}°F</div>
-            <div class="feels-like">feels-like: {{ Math.round(forecast.main.feels_like)}}°F</div>
-            <div class="humidity">humidity: {{ forecast.main.humidity}}%</div>
-            <div class="description">description: {{ forecast.weather[0].description}}</div>
-            <div class="wind">wind speed: {{Math.round(forecast.wind.speed)}}</div>
+            <div class="dt-text">{{localTime}}</div>
+            <div class="temp">Temperature: {{Math.round(forecast.main.temp)}}°F</div>
+            <div class="feels-like">Feels Like: {{Math.round(forecast.main.feels_like)}}°F</div>
+            <div class="humidity">Humidity: {{forecast.main.humidity}}%</div>
+            <div class="description">Description: {{forecast.weather[0].description}}</div>
+            <div class="wind">{{windInfo}}</div>
         </div>
         </div>`,
+    computed: {
+        localTime: function() {
+            return moment(this.forecast.dt_txt.toLocaleString()).add(vm.timeZone, 'seconds').calendar()
+        },
+        windInfo: function() {
+            let windSpeed = this.forecast.wind.speed
+            windSpeed = Math.round(windSpeed)
+            let windDirDeg = this.forecast.wind.deg
+            let windDir
+            if (windDirDeg <= 22.5 || windDirDeg > 337.5) {windDir = 'N'}
+            else if (windDirDeg > 22.5 && windDirDeg <= 67.5) {windDir = 'NE'}
+            else if (windDirDeg > 67.5 && windDirDeg <= 112.5) {windDir = 'E'}
+            else if (windDirDeg > 112.5 && windDirDeg <= 157.5) {windDir = 'SE'}
+            else if (windDirDeg > 157.5 && windDirDeg <= 202.5) {windDir = 'S'}
+            else if (windDirDeg > 202.5 && windDirDeg <= 147.5) {windDir = 'SW'}
+            else if (windDirDeg > 147.5 && windDirDeg <= 292.5) {windDir = 'W'}
+            else if (windDirDeg > 292.5 && windDirDeg <= 337.5) {windDir = 'NW'}
+            return `Wind: ${windSpeed}mph ${windDir}`
+        },
+    }
     // methods: {
     //     firstOneIsDifferent: function() {
 
@@ -29,18 +48,35 @@ let forecastDiv = {
 let currentDiv = {
     props: ['forecast', 'moment', 'city'],
     template: `<div class="outer-container">
-        <div class="dt-text">{{forecast.name}} Current:</div>
+       
         <img :src="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'">
 
         <div class="inner-container">
-            <div class="datetime">datetime: {{forecast.dt}}</div>
-            <div class="temp">temp: {{Math.round(forecast.main.temp)}}°F</div>
-            <div class="feels-like">feels-like: {{ Math.round(forecast.main.feels_like)}}°F</div>
-            <div class="humidity">humidity: {{ forecast.main.humidity}}%</div>
-            <div class="description">description: {{ forecast.weather[0].description}}</div>
-            <div class="wind">wind speed: {{Math.round(forecast.wind.speed)}}</div>
+        <div class="dt-text">{{forecast.name}} Current:</div>
+            <div class="temp">Temperature: {{Math.round(forecast.main.temp)}}°F</div>
+            <div class="feels-like">Feels Like: {{ Math.round(forecast.main.feels_like)}}°F</div>
+            <div class="humidity">Humidity: {{ forecast.main.humidity}}%</div>
+            <div class="description">Description: {{ forecast.weather[0].description}}</div>
+            <div class="wind">{{windInfo}}</div>
         </div>
         </div>`,
+    computed: {
+        windInfo: function() {
+            let windSpeed = this.forecast.wind.speed
+            windSpeed = Math.round(windSpeed)
+            let windDirDeg = this.forecast.wind.deg
+            let windDir
+            if (windDirDeg <= 22.5 || windDirDeg > 337.5) {windDir = 'N'}
+            else if (windDirDeg > 22.5 && windDirDeg <= 67.5) {windDir = 'NE'}
+            else if (windDirDeg > 67.5 && windDirDeg <= 112.5) {windDir = 'E'}
+            else if (windDirDeg > 112.5 && windDirDeg <= 157.5) {windDir = 'SE'}
+            else if (windDirDeg > 157.5 && windDirDeg <= 202.5) {windDir = 'S'}
+            else if (windDirDeg > 202.5 && windDirDeg <= 147.5) {windDir = 'SW'}
+            else if (windDirDeg > 147.5 && windDirDeg <= 292.5) {windDir = 'W'}
+            else if (windDirDeg > 292.5 && windDirDeg <= 337.5) {windDir = 'NW'}
+            return `Wind: ${windSpeed}mph ${windDir}`
+        },
+    }
 }
 //vue stuff
 var vm = new Vue({
