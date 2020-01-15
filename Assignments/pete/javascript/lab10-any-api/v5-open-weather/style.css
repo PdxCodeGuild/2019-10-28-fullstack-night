@@ -19,6 +19,9 @@ main:nth-child(3) {
 .outer-container {
     display: flex;
     flex-direction: row;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 20px;
 }
 
 img {

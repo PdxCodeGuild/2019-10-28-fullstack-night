@@ -29,7 +29,7 @@ let forecastDiv = {
 let currentDiv = {
     props: ['forecast', 'moment', 'city'],
     template: `<div class="outer-container">
-        <div class="dt-text">City{{this.city}} Now:</div>
+        <div class="dt-text">{{forecast.name}} Current:</div>
         <img :src="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'">
 
         <div class="inner-container">
@@ -78,7 +78,7 @@ input.addEventListener('keydown', function(e) {
             console.log('current weather', response)
             let forecast = response.data
             vm.city = forecast.name
-            cityName.innerText = `${vm.city} Current:`
+            // cityName.innerText = `${vm.city} Current:`
             vm.timeZone = forecast.timezone
             forecast.id = 0
             vm.forecasts.push(forecast)
