@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quote API using Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <span>{input}</span>
+        <span>{input}</span>
+        <span>{input}</span>
+    </div>
+
+
+    <script>
+        var app = new Vue ({
+            el: '#app',
+            data: {
+                author: [],
+                quote: [],        
+            },
+            method: {
+                getQuote: function() {
+                    axios({
+                        method: "get",
+                        url: "",
+                    }).then(function(results)
+                        {
+                            console.log(results)
+                        }
+                    );
+                }
+            },
+        })
+    </script>
+    
+</body>
+</html>

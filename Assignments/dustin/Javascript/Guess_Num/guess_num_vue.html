@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guess The Number</title>
+    <style>
+        .correct { margin: 20px; /*style of correct guesses */
+                    border: 3px solid green;
+        }
+        .incorrect { margin: 20px; /*style of incorrect guesses */
+                    border: 3px solid red;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <button v-for='num in nums' v-on:click='guessNum(num)'>{{num}}</button>
+    <div v-for="guess in guesses" v-bind:class="[guess===randNum?'correct':'incorrect']">Guess: {{guess}}
+
+    </div></div>
+    <script>
+        let highestNum = 10;
+        var app = new Vue({
+            el: "#app",
+            data: {
+                guesses: [],
+                nums: [...Array(highestNum).keys()].map(x=>x+1),
+                randNum: Math.floor(Math.random()*highestNum)+1,
+            },
+            methods: {
+                guessNum: function(num) {
+                    this.guesses.push(num);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

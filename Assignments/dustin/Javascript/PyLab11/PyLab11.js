@@ -18,4 +18,4 @@ window.onload = function() {
 function showAnswer() {
     document.getElementById("textbox").innerHTML = answerDiv.innerText + "=" + eval(answerDiv.innerText);
     }
-    
+}

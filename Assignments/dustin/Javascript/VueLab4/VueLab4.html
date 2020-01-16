@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-Do List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <button v-on:click='newItem()'>Add</button>
+        <label><h2>To-Do:</h2></label>
+        <div v-for="item in items"> ->
+            {{item}} <button id="removeItem" v-on:click="removeItem(item)">Remove</button>
+
+        </div>
+        <label><h2>Completed:</h2></label>
+        <div v-for="item in completed">Completed:
+            {{item}}
+
+        </div>
+    </div>
+    <script>
+        let itemCounter = 0;
+        var app = new Vue({
+        el: "#app",
+        data: {
+            items: [],
+            completed: [],
+        },
+        methods: {
+            newItem: function(item) {
+                userIn = prompt("What do you want to add?: ");
+                completedItem = userIn;
+                this.items.push(userIn);
+                //this.completed.push(userIn);
+                itemCounter++;
+                
+            },
+            removeItem: function(item) {
+                this.completed.push(item);
+                this.items.splice(this.items.indexOf(item), 1);
+            },
+        },
+    });
+    
+    </script>
+    
+</body>
+</html>

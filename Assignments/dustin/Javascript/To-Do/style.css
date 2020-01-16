@@ -1,0 +1,11 @@
+.listItem {
+    background-color: whitesmoke;
+}
+
+ul {
+    list-style: none;
+}
+
+completed ul {
+    text-decoration: line-through;
+}

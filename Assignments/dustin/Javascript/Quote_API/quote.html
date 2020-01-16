@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="getQuote"></div>
+    <script>
+        let quoteSpot = document.querySelector("#getQuote");
+        let url = "https://favqs.com/api/qotd";
+        axios.get(url).then(function(response) {
+            console.log(response);
+            quoteSpot.innerText = response.data.quote.body + "\n\n" + response.data.quote.author;
+        })
+    </script>
+    
+</body>
+</html>
