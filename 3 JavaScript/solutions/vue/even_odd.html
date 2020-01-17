@@ -27,26 +27,32 @@
 
 	</head>
 	<body>
-							<!--  -->
 		<main id="app">
 			<div id="history" class="top">{{cleanHistory}}</div >
 			<div id="output" class="top">{{output}}</div >
 			<div id="button-holder">
 				<calc-button
-					v-for="item in buttonChars" <!-- for loop over app.buttonChars --> 
-					v-bind:button-text="item" <!-- give the value of 'item to the component's prop -->
-					v-on:sendbutton="receiveButton"> <!-- when the component emits the event, run the receiveButton method -->
+					v-for="item in buttonChars"
+					v-bind:button-text="item" 
+					v-on:sendbutton="receiveButton"> 
+					 <!-- for loop over app.buttonChars --> 
+					<!-- give the value of 'item to the component's prop -->
+					<!-- when the component emits the event, run the receiveButton method -->
 				</calc-button>
+
 
 			</div>
 		</main >
 		<script>
 			var calcButton = {
 				props: ['buttonText'], // this is like a parameter
+				//template: `<div
+				//			class='calc-button'
+				//			v-on:click="$emit('sendbutton', $event.target.innerText)">
+				//			{{buttonText}}</div>`,
 				template: `<div
 							class='calc-button'
 							v-on:click="$emit('sendbutton', buttonText)">
-							<!-- when clicked on, emit the event 'sendbutton' for the element to receive -->
 							{{buttonText}}</div>`,
 			}
 			var app = new Vue({
