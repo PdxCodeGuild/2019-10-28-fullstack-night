@@ -2,7 +2,7 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 /* main:first-child {
@@ -22,8 +22,12 @@ main:nth-child(3) {
     flex-direction: row;
     border: 1px solid black;
     padding: 5px;
-    margin: 20px;
-    width: 25vw;
+    margin: 20px 5vw;
+    width: 20vw;
+}
+
+.outer-container:hover {
+    background-image: url("refried-beans.gif");
 }
 
 .special-container {
@@ -35,6 +39,6 @@ img {
     size: auto;
 }
 
-/* .big {
-    display: block;
-} */
+.big {
+    width: 25vw;
+}
