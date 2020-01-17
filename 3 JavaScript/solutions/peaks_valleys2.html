@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+	.mountain > span > span {
+		width: 1em;
+		display: inline-block;
+	}
+	.noselect {
+	  -webkit-touch-callout: none; /* iOS Safari */
+	    -webkit-user-select: none; /* Safari */
+	     -khtml-user-select: none; /* Konqueror HTML */
+	       -moz-user-select: none; /* Old versions of Firefox */
+	        -ms-user-select: none; /* Internet Explorer/Edge */
+	            user-select: none; /* Non-prefixed version, currently
+	                                  supported by Chrome, Opera and Firefox */
+	}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div id="top">
+			<div class="noselect" id="button-container">
+				<div v-on:click="numAppend(1)">▲</div>
+				<div>{{this.numActive}}</div>
+				<div v-on:click="numAppend(-1)">▼</div>
+			</div>
+			<div id="nums">{{numsFormatted}}</div>
+		</div>
+		<div class="mountain" v-for="i in maxHeight">
+			<span v-for="j in numArr.length">
+					<span v-if="numArr[j-1] > maxHeight - i">
+▪ 
+					</span>
+					<span v-else>▫</span>
+			</span>
+		</div>
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				numArr: [0],
+				numActive: 0,
+				maxHeight: 10,
+			},
+			methods: {
+				numAppend: function(change) {
+					let nextNum = this.numActive + change;
+					if (nextNum >= 0 && nextNum <= 10) {
+						this.numActive= nextNum;
+						this.numArr.push(nextNum);
+					}
+				}
+			},
+			computed: {
+				numsFormatted: function() {
+					return this.numArr.join(', ')
+				},
+			},
+		});
+	</script>
+</body>
+</html>
