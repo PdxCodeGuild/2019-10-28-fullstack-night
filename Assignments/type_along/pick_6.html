@@ -20,11 +20,15 @@
 </head>
 <body>
 	<div id="app">
+		<div class="flex-container" id="button-div">
+			<div class="btn" v-on:click="buyTicket">Buy a ticket</div>
+			<div class="btn" v-on:click="genWin">Generate a winner</div>
+		</div>
 		<div class="flex-container" id="ticket-holder">
 			<div>
 				<div v-for="ticket in tickets">
 					<span v-for="i in ticket.length"
-							v-bind:class="ticket[i-1]===winningTicket[i-1]?'green':'red'"
+							v-bind:class="!winningTicket.length?'':ticket[i-1]===winningTicket[i-1]?'green':'red'"
 						>{{ticket[i-1]}}</span>
 				</div>
 			</div>
@@ -44,6 +48,18 @@
 					[...Array(6).keys()].map(x=>x*2),
 				],
 				winningTicket: [...Array(6).keys()],
+			},
+			methods: {
+					buyTicket: function() {
+						let newTicket = [...Array(6)];
+						newTicket = newTicket.map((el)=>(Math.floor(Math.random()*100)));
+						this.tickets.push(newTicket);
+					},
+					genWin: function() {
+						let newTicket = [...Array(6)];
+						newTicket = newTicket.map((el)=>(Math.floor(Math.random()*100)));
+						this.winningTicket= newTicket;
+					},
 			},
 		});
 	</script>
