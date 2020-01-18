@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		.flex-container {
+			display: flex;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="flex-container" id="ticket-holder">
+			<div>
+				<div v-for="ticket in tickets">
+					{{ticket}}
+				</div>
+			</div>
+			<div>
+				<div v-for="ticket in tickets">
+					{{winningTicket}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				tickets: [
+					[...Array(6).keys()],
+					[...Array(6).keys()].map(x=>x*2),
+				],
+				winningTicket: [],
+			},
+		});
+	</script>
+    
+</body>
+</html>
