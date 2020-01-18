@@ -18,7 +18,7 @@
     <div id="vm">
         <nav>
             <div id="input-div">
-                <input v-model="search" type="text" placeholder="Weather for which city?">
+                <input v-model="search" type="text" placeholder="Weather for which city?" value="seattle">
             </div>
             
             <current-div v-for="forecast in forecasts.slice(0, 1)" v-bind:forecast="forecast" v-bind:moment="moment" v-bind:key="forecast.id"></current-div>

@@ -1,0 +1,23 @@
+body * {
+    font-family: 'IM Fell Great Primer SC', serif;
+    /* background: grey; */
+}
+
+main {
+    background-image: url("numbers.jpeg");
+    background-size: contain;
+    color: white;
+    border-radius: 5px;
+}
+
+li span{
+    background: rgba(0, 0, 0, 0.50);
+}
+
+#input {
+    width: 22.5vw;
+}
+
+/* input, button, input span {
+    padding: 20px;
+} */

@@ -47,7 +47,7 @@ let forecastDiv = {
 }
 let currentDiv = {
     props: ['forecast', 'moment', 'city'],
-    template: `<div class="big outer-container">
+    template: `<div class="special-container"><div class="big outer-container">
         <img :src="'http://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png'">
     
         <div class="inner-container">
@@ -57,6 +57,7 @@ let currentDiv = {
             <div class="humidity">Humidity: {{ forecast.main.humidity}}%</div>
             <div class="description">Description: {{ forecast.weather[0].description}}</div>
             <div class="wind">{{windInfo}}</div>
+        </div>
         </div>
         </div>`,
     computed: {
