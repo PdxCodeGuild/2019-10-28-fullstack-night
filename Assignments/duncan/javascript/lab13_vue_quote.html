@@ -46,7 +46,7 @@
                     let searchText = document.querySelector("#user_search")
                     let search_url = "https://favqs.com/api/quotes?type=tag&filter="+searchText.value;
                     axios.get(search_url, {
-                        headers: {Authorization: 'Token token="b6600469a610d97e72471800d9e911f6"'}
+                        headers: {Authorization: 'Token token="..."'}
                     })
                     .then((response) => {
                         console.log(response);
