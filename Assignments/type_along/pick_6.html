@@ -10,6 +10,12 @@
 		.flex-container {
 			display: flex;
 		}
+		.green {
+			background-color: lightgreen;
+		}
+		.red {
+			background-color: pink;
+		}
 	</style>
 </head>
 <body>
@@ -17,7 +23,9 @@
 		<div class="flex-container" id="ticket-holder">
 			<div>
 				<div v-for="ticket in tickets">
-					{{ticket}}
+					<span v-for="i in ticket.length"
+							v-bind:class="ticket[i-1]===winningTicket[i-1]?'green':'red'"
+						>{{ticket[i-1]}}</span>
 				</div>
 			</div>
 			<div>
@@ -35,7 +43,7 @@
 					[...Array(6).keys()],
 					[...Array(6).keys()].map(x=>x*2),
 				],
-				winningTicket: [],
+				winningTicket: [...Array(6).keys()],
 			},
 		});
 	</script>
