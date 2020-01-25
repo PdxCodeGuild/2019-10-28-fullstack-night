@@ -1,7 +1,4 @@
 from django.db import models
-from django.utils import timezone
-
-import datetime
 
 class TodoItem(models.Model):
     """
@@ -13,4 +10,4 @@ class TodoItem(models.Model):
     completed_bool = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Task: {self.text}, Created: {self.created_date}, Completed: {self.completed_bool} on {self.completed_date}"
+        return f"\nText: {self.text}\nCreated Date: {self.created_date}\nCompleted Date: {self.completed_date}\nCompleted Bool: {self.completed_bool}"
