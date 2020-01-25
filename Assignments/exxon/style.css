@@ -1,0 +1,24 @@
+
+
+
+#CityState{
+    font-size: 32px;
+    color: darkorange;
+}
+
+#CondTemp{
+    font-size: 25px;
+    color: darkorange;
+}
+
+
+#weatherIcon{
+    font-size: 75px;
+    color: darkorange;
+}
+
+
+.DarkWeatherInfo{
+    background-image: url("code_wall.jpg");
+    background-size: cover;
+}
