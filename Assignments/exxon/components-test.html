@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> components test </title>
+        <link rel="stylesheet" href="weather-icons.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    </head>
+    <body>
+
+        <div id="app">
+
+            
+
+            <!-- <items-all
+            v-for="item in items" :id="item"
+            v-bind:key="item"
+            v-bind:items="item" 
+            ></items-all> -->
+
+<!-- 
+            <change-red
+            v-bind:items="items" 
+            ></change-red>  -->
+
+            <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp' :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
+
+            <!-- <change-green></change-green> -->
+
+
+            <!-- <dark-weatherinfo :location-cond-temp='locationCondTemp' :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo> -->
+
+
+
+
+
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="components-test.js"></script> 
+
+
+
+    </body>
+</html>
