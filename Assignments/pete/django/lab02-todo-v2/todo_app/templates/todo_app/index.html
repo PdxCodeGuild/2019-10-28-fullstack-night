@@ -1,12 +1,14 @@
 <!--The user should be presented with an input field and a button (in a form). When the clicks the button, it should save the data to the server and show the newly-added item in the list.-->
 
 <h1>Todo List:</h1>
-
-<ul>
-{% for todo in todos %}
-    <li>{{ todo.text }}  {% if todo.completed_bool == True %} ✓ {% endif %}</li>
-{% endfor %}
-</ul>
+<form action="/complete/" method="POST">
+{% csrf_token %}
+    <ul>
+    {% for todo in todos %}
+        <li>{{ todo.text }}  {% if todo.completed_bool %} ✓ {% else %} <button name="{{ todo.pk }}" type="submit">Complete</button> {% endif %}</li>
+    {% endfor %}
+    </ul>
+</form>
 
 <form action="/" method="POST">
 {% csrf_token %}
