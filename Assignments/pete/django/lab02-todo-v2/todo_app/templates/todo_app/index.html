@@ -1,17 +1,28 @@
 <!--The user should be presented with an input field and a button (in a form). When the clicks the button, it should save the data to the server and show the newly-added item in the list.-->
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'todo_app/style.css' %}">
 
 <h1>Todo List:</h1>
-<form action="/complete/" method="POST">
-{% csrf_token %}
-    <ul>
-    {% for todo in todos %}
-        <li>{{ todo.text }}  {% if todo.completed_bool %} ✓ {% else %} <button name="{{ todo.pk }}" type="submit">Complete</button> {% endif %}</li>
-    {% endfor %}
-    </ul>
-</form>
 
 <form action="/" method="POST">
 {% csrf_token %}
-    <input type="text" name="text" placeholder="New Todo!">
     <button type="submit">Add Todo!</button>
+    <input type="text" name="text" placeholder="New Todo!">
+</form>
+
+<form action="/complete/" method="POST">
+{% csrf_token %}
+    <ol>
+    {% for todo in todos %}
+        <li>{{ todo.text }}
+        {% if todo.completed_bool %} ✓
+        <div>Todo Created: {{ todo.created_date }}  Todo Completed: {{ todo.completed_date }}</div>
+        {% else %}
+        <button name="id" value="{{ todo.pk }}" type="submit">Complete</button>
+        <div>Todo Created: {{ todo.created_date }}</div>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ol>
 </form>

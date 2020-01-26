@@ -10,4 +10,4 @@ class TodoItem(models.Model):
     completed_bool = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"\nText: {self.text}\nCreated Date: {self.created_date}\nCompleted Date: {self.completed_date}\nCompleted Bool: {self.completed_bool}"
+        return f"{self.pk}\nText: {self.text}\nCreated Date: {self.created_date}\nCompleted Date: {self.completed_date}\nCompleted Bool: {self.completed_bool}\n"
