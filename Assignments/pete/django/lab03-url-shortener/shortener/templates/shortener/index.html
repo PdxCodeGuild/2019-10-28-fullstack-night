@@ -1,0 +1,17 @@
+<!-- one view that returns a page for entering in a url to be shortened, and possibly a list of entries (localhost/urlshorten/index/) -->
+<h1>So, you're thinking about shortening a url:</h1>
+<form action="/shorten/" method="POST">
+{% csrf_token %}
+    <input type="text" name="long-url" placeholder="Copy and paste your long url here.">
+    <button type="submit">Shorten!</button>
+</form>
+
+{% if urls %}
+<ul>
+{% for url in urls %}
+    <li>Short url: <a href="{% url 'shortener:redirect_url' pk=url.pk %}">{{ url.short_url }}</a>
+        <div>Long url:  {{ url.long_url }}</div>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
