@@ -1,0 +1,7 @@
+<h1>VVelcome to the Library</h1>
+
+<ul>
+{% for book in books %}
+<li><h3><a href="{% url 'library:checkout_history' title=book.title %}">{{ book.title }}</a></h3>by {{ book.author }}, {{ book.publication_date.year }}</li>
+{% endfor %}
+</ul>
