@@ -35,5 +35,6 @@ def redirect_url(request, pk):
     a third view that performs the redirecting (localhost/redirect/pEc4vt), you should use redirect instead of HttpResponseRedirect.
     """
     data_set = Url.objects.get(pk=pk)
-    return redirect(data_set.long_url())
+    return redirect(data_set.long_url)
+    #above I had return redirect(data_set.long_url())
 

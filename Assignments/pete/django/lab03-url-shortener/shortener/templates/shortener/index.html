@@ -1,4 +1,10 @@
 <!-- one view that returns a page for entering in a url to be shortened, and possibly a list of entries (localhost/urlshorten/index/) -->
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'shortener/style.css' %}">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+
 <h1>So, you're thinking about shortening a url:</h1>
 <form action="/shorten/" method="POST">
 {% csrf_token %}
@@ -9,8 +15,10 @@
 {% if urls %}
 <ul>
 {% for url in urls %}
+    <!-- <li>Short url: <a href="#">{{ url.short_url }}</a> -->
     <li>Short url: <a href="{% url 'shortener:redirect_url' pk=url.pk %}">{{ url.short_url }}</a>
-        <div>Long url:  {{ url.long_url }}</div>
+
+        <div>Long url:  <a href="{{ url.long_url }}">{{ url.long_url }}</a></div>
     </li>
 {% endfor %}
 </ul>
