@@ -21,7 +21,6 @@ def checkout_book(request, title):
         Checkout(checked_out=True, user=user, book=book).save()
         book.save()
         return HttpResponseRedirect(reverse('library:checkout_history', args=[title]))
-    # return render(request, 'library/confirm.html', {})
 
 def return_book(request, title):
     if request.method == 'POST':
@@ -31,20 +30,30 @@ def return_book(request, title):
         Checkout(checked_out=False, user=user, book=book).save()
         book.save()
         return HttpResponseRedirect(reverse('library:checkout_history', args=[title]))
-    # return render(request, 'library/checkokut-history.html', {'checkouts': book.checkouts.all(), 'book': book})
 
-def choose_author(request, author):
+def choose_author(request):
     if request.method == 'POST':
         if request.POST['author'] == 'new':
-            #go about adding new author
-            # return render(request, 'library/new-author.html')
-            new_author(request)
+            return new_author(request)
         else:
-            old_author(request, author)
-            # return render(request, 'library/old-author.html', {'author': Author.objects.get(name=request.POST['author'])})
+            return old_author(request)
 
 def new_author(request):
     return render(request, 'library/new-author.html')
 
-def old_author(request, author):
+def old_author(request):
+    author = request.POST['author']
     return render(request, 'library/old-author.html', {'author': Author.objects.get(name=author)})
+
+def old_author_donate(request):
+    if request.method == 'POST':
+        author = Author.objects.get(name=request.POST['author'])
+        Book(title=request.POST['title'], publication_date=request.POST['date'], author=author).save()
+        return render(request, 'library/index.html', {'books': Book.objects.all()})
+
+def new_author_donate(request):
+    if request.method == 'POST':
+        author = Author(name=request.POST['author'])
+        author.save()
+        Book(title=request.POST['title'], publication_date=request.POST['date'], author=author).save()
+        return render(request, 'library/index.html', {'books': Book.objects.all()})

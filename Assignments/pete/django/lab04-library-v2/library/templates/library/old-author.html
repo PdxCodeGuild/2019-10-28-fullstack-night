@@ -1,2 +1,9 @@
-<h1>Old Author</h1>
-{{ author.name }}
+<h1>Donate Book by {{ author.name }}</h1>
+
+<form action="/old-author-donate/" method="POST">
+{% csrf_token %}
+    <input type="hidden" name="author" value="{{ author.name }}">
+    <span>Book Title:</span><input type="text" name="title">
+    <span>Publication Date:</span><input type="date" name="date">
+    <button type="submit">Donate Book</button>
+</form>

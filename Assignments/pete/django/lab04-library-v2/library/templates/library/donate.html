@@ -2,7 +2,7 @@
 
 <h4>Choose Author:</h4>
 
-<form action="/choose_author/" method="POST">
+<form action="/choose-author/" method="POST">
 {% csrf_token %}
     <select name="author">
     {% for author in authors %}

@@ -1,1 +1,9 @@
-<h1>New Author</h1>
+<h1>Donate Book by New Author</h1>
+
+<form action="/new-author-donate/" method="POST">
+{% csrf_token %}
+    <span>Author:</span><input type="text" name="author">
+    <span>Book Title:</span><input type="text" name="title">
+    <span>Publication Date:</span><input type="date" name="date">
+    <button type="submit">Donate Book</button>
+</form>
