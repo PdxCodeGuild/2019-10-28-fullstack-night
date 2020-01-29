@@ -8,7 +8,7 @@
     <button type="submit">Check Out</button>
 </form>
 {% else %}
-<form action="/return/" method="POST">
+<form action="/return/{{book.title}}" method="POST">
 {% csrf_token %}
     <input type="text" name="user" placeholder="Please enter your name here.">
     <button type="submit">Return</button>

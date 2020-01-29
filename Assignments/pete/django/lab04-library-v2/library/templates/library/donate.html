@@ -2,6 +2,13 @@
 
 <h4>Choose Author:</h4>
 
-<form action="/select_author/">
-
+<form action="/choose_author/" method="POST">
+{% csrf_token %}
+    <select name="author">
+    {% for author in authors %}
+        <option value="{{ author.name }}">{{ author.name }}</option>
+    {% endfor %}
+        <option value="new">New Author</option>
+    </select>
+    <button type="submit">Next</button>
 </form>
