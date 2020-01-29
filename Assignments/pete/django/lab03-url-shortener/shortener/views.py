@@ -27,7 +27,7 @@ def shorten(request):
         in_url = request.POST['long-url']
         out_url = ''.join([choice(ascii_letters + '1234567890') for i in range(6)])
         Url(long_url=in_url, short_url=out_url).save()
-        # HttpResponseRedirect(reverse('shortener:index')) ##what does reverse do, exactly?
+        return HttpResponseRedirect(reverse('shortener:index')) ##what does reverse do, exactly?
     return render(request, 'shortener/index.html', {'urls': Url.objects.all()})
 
 def redirect_url(request, pk):

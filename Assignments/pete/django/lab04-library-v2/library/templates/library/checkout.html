@@ -1,8 +1,0 @@
-<h1>{{ book.title }} by {{ book.author }}, {{ book.publication_date.year }}</h1>
-<h2>Checkout History:</h2>
-
-<ul>
-{% for checkout in checkouts %}
-    <li>{% if checkout.checkedout %}Checked Out: {% else %}Returned: {% endif %} {{ checkout.timestamp }} by {{ checkout.user }}</li>
-{% endfor %}
-</ul>

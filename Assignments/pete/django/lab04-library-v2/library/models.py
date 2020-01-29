@@ -14,15 +14,15 @@ class Book(models.Model):
     title = models.CharField(max_length=140)
     publication_date = models.DateField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return f"Title: {self.title}; Publication Date: {self.publication_date}; Author: {self.author}"
 
 
-
 class Checkout(models.Model):
 # book: the book that the user checked out or checked in
-    book = models.ForeignKey(Book, on_delete=models.PROTECT)
+    book = models.ForeignKey(Book, related_name='checkouts', on_delete=models.PROTECT)
 # user: a text field containing the name of the user that checked out or checked in the book
     user = models.CharField(max_length=140)
 # checkout: a boolean indicating whether the book was checked out or checked in
@@ -32,3 +32,4 @@ class Checkout(models.Model):
 
     def __str__(self):
         return f"Book: {self.book}; User: {self.user}; Status: " + ("Checked Out" if self.checked_out else "Available") + "; " + ("Checked Out" if self.checked_out else "Returned") + f": {self.timestamp}"
+

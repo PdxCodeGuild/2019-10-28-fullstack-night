@@ -1,0 +1,23 @@
+<h1>{{ book.title }} by {{ book.author }}, {{ book.publication_date.year }}</h1>
+<h2>Checkout History:</h2>
+
+{% if book.available %}
+<form action="/checkout/{{book.title}}" method="POST">
+{% csrf_token %}
+    <input type="text" name="user" placeholder="Please enter your name here.">
+    <button type="submit">Check Out</button>
+</form>
+{% else %}
+<form action="/return/" method="POST">
+{% csrf_token %}
+    <input type="text" name="user" placeholder="Please enter your name here.">
+    <button type="submit">Return</button>
+</form>
+{% endif %}
+
+
+<ul>
+{% for checkout in checkouts %}
+    <li>{% if checkout.checked_out %}Checked Out: {% else %}Returned: {% endif %} {{ checkout.timestamp }} by {{ checkout.user }}</li>
+{% endfor %}
+</ul>
