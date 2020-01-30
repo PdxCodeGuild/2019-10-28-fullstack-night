@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo List:</h1>
+    <div id="app">
+        <ol>
+            <div v-for="task in tasks" v-bind:key="task.id">
+                <li>
+                    {{task.text}}
+                    <div>Created on: {{task.created}}</div>
+                    <div v-if="task.completed-bool">
+                        Completed on: {{task.completed}}
+                    </div>
+                    <div v-else>
+                        Not Completed
+                    </div>
+                </li>
+            </div>
+        </ol>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                tasks: [],
+            },
+            created: function() {
+                axios({
+                    method: 'get',
+                    url: 'http://127.0.0.1:8000/',
+                }).then((res) => {
+                    this.tasks = res.data['tasks'];
+                });
+            },
+        })
+    </script>
+
+</body>
+</html>
