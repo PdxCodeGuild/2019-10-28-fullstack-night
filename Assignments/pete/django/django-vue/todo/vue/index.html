@@ -6,21 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <title>Document</title>
 </head>
 <body>
     <h1>Todo List:</h1>
     <div id="app">
+        <span>Add Task: </span><input v-model="newTaskText"> <button v-on:click="addTask(newTaskText)">Go!</button>
         <ol>
             <div v-for="task in tasks" v-bind:key="task.id">
                 <li>
                     {{task.text}}
-                    <div>Created on: {{task.created}}</div>
-                    <div v-if="task.completed-bool">
-                        Completed on: {{task.completed}}
+                    <div>Created on: {{formatDate(task.created)}}</div>
+                    <div v-if="task.completedBool">
+                        Completed on: {{formatDate(task.completed)}}
                     </div>
                     <div v-else>
-                        Not Completed
+                        <button v-on:click="completeTask(task.id)">Complete Task</button>
                     </div>
                 </li>
             </div>
@@ -32,8 +34,9 @@
             el: '#app',
             data: {
                 tasks: [],
+                newTaskText: '',
             },
-            created: function() {
+            created: function(){
                 axios({
                     method: 'get',
                     url: 'http://127.0.0.1:8000/',
@@ -41,6 +44,31 @@
                     this.tasks = res.data['tasks'];
                 });
             },
+            methods: {
+                addTask: function(newTaskText){
+                    axios({
+                        method: 'post',
+                        url: 'http://127.0.0.1:8000/new-task/',
+                        data: {'text': newTaskText}
+                    }).then((res) => {
+                        this.tasks = res.data['tasks'];
+                    });
+                },
+                completeTask: function(id){
+                    axios({
+                        method: 'post',
+                        url: 'http://127.0.0.1:8000/complete-task/',
+                        data: {'id': id}
+                    }).then((res) => {
+                        this.tasks = res.data['tasks'];
+                    });
+                },
+                formatDate: function(date) {
+                    return moment(date).format('LLLL')
+                },
+            },
+            // computed: {
+            // }
         })
     </script>
 
