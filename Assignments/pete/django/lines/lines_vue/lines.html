@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        canvas {
+            outline: 2px solid black;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <canvas id="cnv" width="1000" height="500" v-draw-lines="lineArr" @mousedown="startLine" @mouseup="endLine" @mousemove="moveLine"></canvas>
+        <button v-on:click="saveLines">Save</button>
+        <span v-for="collection in collections" v-bind:key="collection.id">
+            <button v-on:click="getCollection(collection.id)">{{ collection.name }}</button>
+        </span>
+    </div>
+    <script>
+        var app = new Vue({
+
+            el: '#app',
+
+            data: {
+                lineArr: [],
+                lineArrNew: [],
+                drawingNow: false,
+                lineStart: null,
+                lineEnd: null,
+            },
+
+            directives: {
+
+                drawLines: function (el, binding) {
+                    // console.log(binding)
+                    let ctx = el.getContext('2d');
+                    ctx.clearRect(0, 0, 1000, 500);
+                    for(let i=0; i<binding.value.length; i++) {
+                        ctx.beginPath();
+                        ctx.moveTo(...binding.value[i].start);
+                        ctx.lineTo(...binding.value[i].end);
+                        ctx.stroke();   
+                    }
+                },
+            },
+
+            methods: {
+
+                getLines: function () {
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:8000',
+                        data: {
+                            lines: this.lineArrNew,
+                        }
+                    }).then((response) => {
+                        this.lineArr = response.data.lines;
+                    })
+                },
+
+                startLine: function(e) {
+                    console.log(e);
+                    this.drawingNow = true;
+                    this.lineStart = [e.offsetX, e.offsetY];
+                },
+
+                endLine: function(e) {
+                    if (this.drawingNow) {
+                        this.drawingNow = false;
+                        this.lineEnd = [e.offsetX, e.offsetY];
+                        this.lineArr.push({
+                            start: this.lineStart,
+                            end: this.lineEnd
+                        });
+                        this.getLines();
+                        this.lineArrNew = [];
+                    }
+                },
+
+                moveLine: function(e) {
+                    if (this.drawingNow) {
+                        this.lineArr.push({
+                            start: this.lineStart,
+                            end: [e.offsetX, e.offsetY],
+                        });
+                        this.lineArrNew.push({
+                            start: this.lineStart,
+                            end: [e.offsetX, e.offsetY],
+                        });
+                        console.log(this.lineArrNew.length);
+                    };
+                },
+
+                saveLines: function(lineArr) {
+                    let collectionName = prompt("Save Collection As:")
+                }
+            },
+            mounted: function () {
+                this.getLines();
+            },
+            // watch: {
+                // lineArr: function() {
+                //     console.log(this.lineArr);
+                // }
+            // }
+        });
+    </script>
+</body>
+
+</html>
