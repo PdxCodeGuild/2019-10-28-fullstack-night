@@ -1,0 +1,15 @@
+<h1>Saved Meals</h1>
+
+<ul>
+{% for meal in meals %}
+    <li>
+        <h3>{{ meal.name }}</h3>
+        <ul>
+            <li>Calories: {{ meal.kcal }}</li>
+            <li>Fat: {{ meal.fat }}g</li>
+            <li>Carbohydrates: {{ meal.carbs }}g</li>
+            <li>Protein: {{ meal.protein }}g</li>
+        </ul>
+    </li>
+{% endfor %}
+</ul>

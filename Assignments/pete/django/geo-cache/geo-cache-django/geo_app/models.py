@@ -6,4 +6,4 @@ class GeoCache(models.Model):
     name = models.CharField(max_length=140)
 
     def __str__(self):
-        return f"Name: {self.name}; Latitude: {self.lat}; Longitude: {self.lng}"
+        return f"Name: {self.name}; Latitude: {self.lat}; Longitude: {self.lng}"    

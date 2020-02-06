@@ -1,0 +1,7 @@
+<h1>VVell Haha That Sure Was A Blog</h1>
+
+{% for post in posts %}
+    <h3>{{ post.title }} by {{ post.author }}</h3>
+    <h4>Published: {{ post.pub_date.date }}</h4>
+    <p>{{ post.body }}</p>
+{% endfor %}
