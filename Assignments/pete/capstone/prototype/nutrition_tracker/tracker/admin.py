@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Meal, DiaryDay, DiaryEntry
 
-# Register your models here.
+admin.site.register(Meal)
+admin.site.register(DiaryDay)
+admin.site.register(DiaryEntry)

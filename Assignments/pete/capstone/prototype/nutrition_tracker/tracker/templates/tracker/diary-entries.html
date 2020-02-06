@@ -1,0 +1,17 @@
+<h1>Diary Entries</h1>
+
+<ul>
+{% for entry in entries %}
+    <li>
+        <h3>{{ entry.meal.name }}</h3>
+        <ul>
+            <li>Date: {{ entry.date }}</li>
+            <li>Time: {{ entry.time }}</li>
+            <li>Calories: {{ entry.meal.kcal }}</li>
+            <li>Fat: {{ entry.meal.fat }}g</li>
+            <li>Carbohydrates: {{ entry.meal.carbs }}g</li>
+            <li>Protein: {{ entry.meal.protein }}g</li>
+        </ul>
+    </li>
+{% endfor %}
+</ul>
