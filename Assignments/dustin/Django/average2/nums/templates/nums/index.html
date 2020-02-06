@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+</head>
+<body>
+    <h1>Numbers</h1>
+    {% for group in groups %}
+    <h4>{{group}}</h4>
+    <ul>
+        {% for num in group.number_set.all %}
+        <li>{{num}}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+    
+</body>
+</html>

@@ -8,9 +8,11 @@
 </head>
 <body>
     <div id="app">
-        <span>{input}</span>
-        <span>{input}</span>
-        <span>{input}</span>
+
+        <div>Author: {{author[0]}}</div>
+        <div>Quote: {{quote[0]}}</div>
+        
+        <div id="button-container"><button v-on:click="getQuote(q)">Get Quote</button></div>
     </div>
 
 
@@ -19,16 +21,20 @@
             el: '#app',
             data: {
                 author: [],
-                quote: [],        
+                quote: [],
             },
-            method: {
-                getQuote: function() {
+            methods: {
+                getQuote: function(q) {
                     axios({
                         method: "get",
-                        url: "",
-                    }).then(function(results)
+                        url: "https://favqs.com/api/qotd",
+                    }).then((results)=>
                         {
-                            console.log(results)
+                            console.log(results);
+                            this.quote.pop();
+                            this.author.pop();
+                            this.quote.push(results.data.quote.body);
+                            this.author.push(results.data.quote.author);
                         }
                     );
                 }

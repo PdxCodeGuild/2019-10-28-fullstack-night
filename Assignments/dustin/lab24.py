@@ -46,10 +46,6 @@ with open('ankeny.rain.txt', 'r') as rain_data:
                     counter[year] += int(parsed[1])
                 
                     
-                
-
-                
-
                 if int(parsed[1]) > current_high:
                     current_high = int(parsed[1])
                     date_store = parsed[0]

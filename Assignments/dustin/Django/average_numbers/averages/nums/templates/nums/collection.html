@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <h1>{{collection}}</h1>
+    <ul>
+        {% for num in collection.number_set.all %}
+            <li>{{num}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

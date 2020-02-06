@@ -6,6 +6,17 @@ div {
     display: flex;
 }
 
-* {
-    outline: 1px solid red;
+button {
+    width: 80px;
 }
+textarea {
+    background-color: lightsteelblue;
+    resize: none;
+    width: 150px;
+    height: 60px;
+    text-align: center;
+    word-wrap: break-word;
+}
+/* {
+    outline: 1px solid lightgray;
+}*/

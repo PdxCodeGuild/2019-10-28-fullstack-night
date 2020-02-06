@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
+
+    <style>
+        canvas {
+            outline: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <canvas id="cnv" width="1000" height="500" v-draw-lines="lineArr" @mousedown="startLine" @mouseup="endLine" @mousemove="moveLine"></canvas>
+    </div>
+
+    <script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            lineArr: [{start: [5,5], end: [105, 105]}],
+            lineArrNew: [],
+            drawingNow: false,
+            lineStart: null,
+            lineEnd: null,
+        },
+        directives: {
+            drawLines: function(el, binding) {
+                let ctx = el.getContext('2d');
+                for (let i=0; i<binding.value.length; i++) {
+                ctx.beginPath();
+                ctx.moveTo(...binding.value[i].start);
+                ctx.lineTo(...binding.value[i].end);
+                ctx.stroke();
+                };
+            },
+
+        },
+        methods: {
+            getLines: function() {
+                this.lineArr = [
+                    {start: [5,5], end: [105, 105]},
+                    {start: [200, 105], end: [300, 0]},
+                ]
+            },
+            startLine: function(e) {
+                console.log(e);
+                this.drawingNow = true;
+                this.lineStart = [e.offsetX, e.offsetY]
+            },
+            endLine: function(e) {
+                if (this.drawingNow) {
+                    this.drawingNow = false;
+                    this.lineEnd = [e.offsetX, e.offsetY];
+                    this.lineArr.push({
+                        start: this.lineStart,
+                        end: this.lineEnd,
+                    });
+                    this.lineArrNew = [];
+                }
+            },
+            moveLine: function(e) {
+                if (this.drawingNow) {
+                    this.lineArr.push({
+                        start: this.lineStart,
+                        end: [e.offsetX, e.offsetY],
+                    });
+                    this.lineArrNew.push({
+                        start: this.lineStart,
+                        end: [e.offsetX, e.offsetY],
+                    });
+                    console.log(this.lineArrNew.length);
+                }
+            },
+        },
+        mounted: function() {
+            this.getLines();
+        },
+        /*watch: {
+            lineArr: function() {
+                console.log(this.lineArr);
+            }
+        }*/
+    });      
+    </script>
+</body>
+</html>

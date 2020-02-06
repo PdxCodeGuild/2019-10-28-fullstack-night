@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pick 6 in Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
+    <style>
+        .flex-container {
+            display: flex;
+        }
+        .green {
+            background-color: lightgreen;
+        }
+        .red {
+            background-color: pink;
+        }
+        .btn {
+            padding: 5px;
+            outline: 1px dotted black;
+            margin: 10px;
+            -moz-user-select: none; 
+            -webkit-user-select: none; 
+            -ms-user-select:none; 
+            user-select:none;
+            -o-user-select:none; 
+        }
+        .btn:hover {
+            outline: 3px solid black;
+        }
+        .ticket-div {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .ticket {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+        }
+        .number {
+            display: inline-block;
+            width: 2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="flex-container" id="buttonDiv">
+            <div class="btn" v-on:click="buyTicket">Buy a ticket</div>
+            <div class="btn" v-on:click="genWin">Generate a winner</div>
+        </div>
+        <div class="flex-container" id="ticket-holder">
+            <div class="ticket-div">
+                <div class="ticket" v-for="ticket in tickets">
+                    <span class="number" v-for="i in ticket.length" v-bind:class="!winningTicket.length?'':ticket[i-1]===winningTicket[i-1]?'green':'red'">
+                            {{ticket[i-1]}}
+                    </span>
+                </div>
+            </div>
+            <div class="ticket-div">
+                <div class="ticket" v-for="ticket in tickets">
+                    <span class="number" v-for="i in winningTicket.length">
+                        {{winningTicket[i-1]}}
+                    </span>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            tickets: [
+                [...Array(6).keys()],
+                [...Array(6).keys()].map(x=>x*2),
+            ],
+            winningTicket: [...Array(6).keys()],
+        },
+        methods: {
+            buyTicket: function() {
+                let newTicket = [...Array(6)];
+                newTicket = newTicket.map((el)=>(Math.floor(Math.random()*5)));
+                this.tickets.push(newTicket);
+            },
+
+            genWin: function() {
+                let newTicket = [...Array(6)];
+                newTicket = newTicket.map((el)=>(Math.floor(Math.random()*5)));
+                this.winningTicket = newTicket;
+            },
+        }
+    })
+        
+    </script>
+    
+</body>
+</html>

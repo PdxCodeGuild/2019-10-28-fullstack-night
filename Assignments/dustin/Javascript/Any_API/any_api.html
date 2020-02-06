@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.min.js"></script>
+</head>
+<body>
+    <div id="popAPI">
+        <div>Year: <input id="yearSearch" type="text" ><button onclick="search()">Search</button></div>
+        <div id="output"></div>
+    </div>
+    <script>
+        let data = document.querySelector("#popAPI");
+        let year = document.querySelector("#yearSearch");
+        let output = document.querySelector("#output");
+        let url = "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
+
+        
+
+        let search = function() {
+            axios.get(url).then(function(response) {
+                console.log(response);
+                console.log(year.value)
+                //console.log(response.data.data.length)
+                for (let i=0; i<response.data.data.length; i++) {
+                    //console.log(response.data.data[i])
+                    console.log(response.data.data[i].Year)
+                    if (year.value===response.data.data[i].Year) {
+                        output.innerHTML = "Population: "+ response.data.data[i].Population;
+                        break;
+                    }
+                    else {
+                        output.innerHTML = "No data for that year.";
+                    }
+                }
+                
+            })
+        }
+
+    </script>
+
+    
+</body>
+</html>

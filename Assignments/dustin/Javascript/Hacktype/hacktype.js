@@ -21,5 +21,5 @@ window.onload = function() {
 
     } 
     
-    //let testText = "This is randomly generated text.";
+    
 }
