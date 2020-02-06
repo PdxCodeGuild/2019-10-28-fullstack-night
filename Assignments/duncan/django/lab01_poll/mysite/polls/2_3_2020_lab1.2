@@ -1,0 +1,21 @@
+def change_to_int(in_fun):
+    def out_fun(in_str):
+        try:
+            out_num = int(in_str)
+        except ValueError:
+            print('bad input)
+            return in_fun(0)
+        if out_num in range(0, 101):
+            reurn in_num(out_num)
+        return in_fun(0)
+    return out_fun
+
+def change_to_letter(in_num):
+    grade_list = (['F'] * 6) + list('DCBAA')
+    return grade_list[in_num//10]
+
+change_to_letter = change_to_int(change_to_letter)
+
+for one_val in ['50', '60', '65', '75', '89', '90', '100']:
+    print(change_to_letter(one_val))
+
