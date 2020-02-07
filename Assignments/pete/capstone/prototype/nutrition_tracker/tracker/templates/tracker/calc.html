@@ -1,0 +1,51 @@
+<h1>VVelcome to the IYIacro Calculator</h1>
+<h2>Step One: Calculate Basal Metabolic Rate</h2>
+<div>First we're going to calculate your Basal Metabloic Rate, or BMR.  Your BMR is the rate at which your body burns calories simply to keep everything running.</div>
+
+<form action="/calculate-macros/" method="POST">
+{% csrf_token %}
+    <ol>
+        <li>
+            <div>Enter your name:</div>
+            <input type="text" name="name">
+        </li>
+        <li>
+            <div>Choose your measurement system:</div>
+            <input type="radio" name="measurement" value="imperial" checked>Imperial
+            <input type="radio" name="measurement" value="metric">Metric
+        </li>
+        <li>
+            <div>Enter your weight:</div>
+            <input type="number" name="weight">
+        </li>
+        <li>
+            <div>Enter your body fat percentage:</div>
+            <!-- Future me: allow to calc bfp percentage here -->
+            <input type="number" name="bfp">
+        </li>
+    </ol>
+
+    <h1>Your Basal Metabolic Rate is: </h1>
+    <h2>Step Two: Set Fitness Goals</h2>
+    <div>Next we're going to get a feel for your current activity level and set your fitness goals.</div>
+
+    <ol>
+        <!-- Future me: phrase this all yourself -->
+        <li>
+            <div>Choose your current activity level:</div>
+            <select name="act_lvl">
+                <option value="1.2">Sedentary (little or no exercise)</option>
+                <option value="1.375">Lightly active (training/sports 2-3 days a week)</option>
+                <option value="1.55">Moderately active (training/sports 4-5 days a week)</option>
+                <option value="1.725">Very active (training/sports 6-7 days a week)</option>
+                <option value="1.9">Extremely active(twice per day, extra heavy workouts)</option>
+            </select>
+        </li>
+        <li>
+            <div>Choose your fitness goal:</div>
+            <input type="radio" name="goal" value="loss">Fat Loss
+            <input type="radio" name="goal" value="gain">Muscle Gain
+        </li>
+    </ol>
+    <button type="submit">Calculate my Macros!</button>
+</form>

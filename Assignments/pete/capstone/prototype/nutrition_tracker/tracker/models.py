@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Meal(models.Model):
     name = models.CharField(max_length=140)#name of food
@@ -27,3 +28,25 @@ class DiaryEntry(models.Model):
     time = models.TimeField(auto_now=True)#the time of the entry
     def __str__(self):
         return f"{self.date} {self.time} {self.meal}"
+
+class UserProfile(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=140)
+    meas_sys = models.BooleanField()#true for imperial false for metric
+    weight = models.IntegerField()
+    bfp = models.IntegerField()#body fat percentage
+    act_lvl = models.FloatField()
+    goal = models.BooleanField()#true for fat loss false for muscle gain
+
+    lbm = models.IntegerField()
+    bmr = models.IntegerField()
+    
+    protein = models.IntegerField()
+
+    train_kcal = models.IntegerField()
+    train_fat = models.IntegerField()
+    train_carb = models.IntegerField()
+    
+    rest_kcal = models.IntegerField()
+    rest_fat = models.IntegerField()
+    rest_carb = models.IntegerField()

@@ -1,0 +1,6 @@
+<h1>Days</h1>
+<ul>
+{% for day in days %}
+    <li><a href="{% url 'tracker:diary-day' day.id %}"><button>{{ day.date }}</button></a></li>
+{% endfor %}
+</ul>

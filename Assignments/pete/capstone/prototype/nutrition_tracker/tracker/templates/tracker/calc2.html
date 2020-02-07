@@ -1,0 +1,25 @@
+<h1>Your Basal Metabolic Rate is: </h1>
+<h2>Step Two: Set Fitness Goals</h2>
+<div>Next we're going to get a feel for your current activity level and set your fitness goals.</div>
+
+<form action="/tracker/goals/" method="POST">
+{% csrf_token %}
+    <ol>
+        <!-- Future me: phrase this all yourself -->
+        <li>
+            <div>Choose your current activity level:</div>
+            <select>
+                <option value="1.2">Sedentary (little or no exercise)</option>
+                <option value="1.375">Lightly active (training/sports 2-3 days a week)</option>
+                <option value="1.55">Moderately active (training/sports 4-5 days a week)</option>
+                <option value="1.725">Very active (training/sports 6-7 days a week)</option>
+                <option value="1.9">Extremely active(twice per day, extra heavy workouts)</option>
+            </select>
+        </li>
+        <li>
+            <div>Choose your fitness goal:</div>
+            <input type="radio" name="goal" value="loss">Fat Loss
+            <input type="radio" name="goal" value="gain">Muscle Gain
+        </li>
+    </ol>
+</form>

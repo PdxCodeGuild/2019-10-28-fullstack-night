@@ -1,0 +1,28 @@
+<h1>VVelcome to the IYIacro Calculator</h1>
+<h2>Step One: Calculate Basal Metabolic Rate</h2>
+<div>First we're going to calculate your Basal Metabloic Rate, or BMR.  Your BMR is the rate at which your body burns calories simply to keep everything running.</div>
+
+<form action="/tracker/bmr/" method="POST">
+{% csrf_token %}
+    <ol>
+        <li>
+            <div>Enter your name:</div>
+            <input type="text" name="name">
+        </li>
+        <li>
+            <div>Choose your measurement system:</div>
+            <input type="radio" name="measurement" value="imperial" checked>Imperial
+            <input type="radio" name="measurement" value="metric">Metric
+        </li>
+        <li>
+            <div>Enter your weight:</div>
+            <input type="number" name="weight">
+        </li>
+        <li>
+            <div>Enter your body fat percentage:</div>
+            <!-- Future me: allow to calc bfp percentage here -->
+            <input type="number" name="bfp">
+        </li>
+    </ol>
+    <button type="submit">Calculate my BMR!</button>
+</form>
