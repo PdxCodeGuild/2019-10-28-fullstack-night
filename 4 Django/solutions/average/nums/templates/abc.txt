@@ -1,0 +1,6 @@
+hello!
+<ol>
+{% for animal in animal_list %}
+	<li>{{animal}}</li>	
+{% endfor %}
+</ol>

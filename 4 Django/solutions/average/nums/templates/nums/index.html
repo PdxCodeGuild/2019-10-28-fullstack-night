@@ -1,0 +1,14 @@
+<h1>Numbers!</h1>
+{% for collection in collections %}
+<a href="{% url 'nums:collection' pk=2 %}"><h4>{{collection.name}}</h4></a>
+	<ul>
+		{% for num in collection.number_set.all %}
+		<li>{{num.number}}</li>
+		{% endfor %}
+	</ul>
+{% endfor %}
+<form action='/' method='POST'>
+	{% csrf_token %}
+	<input type='text' name='name' placeholder='new collection'>
+	<button type='submit'>add collection</button>
+</form>

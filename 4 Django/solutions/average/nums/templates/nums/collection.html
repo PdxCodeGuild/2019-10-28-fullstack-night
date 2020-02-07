@@ -1,0 +1,7 @@
+<h1>{{collection}}</h1>
+<ul>
+	{% for num in collection.number_set.all %}
+		<li>{{num}}</li>
+	{% endfor %}
+</ul>
+
