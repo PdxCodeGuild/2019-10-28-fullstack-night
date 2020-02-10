@@ -1,0 +1,9 @@
+<h1>|_ 0 G | |\|</h1>
+
+<form action="{% url 'use:execute_login' %}" method="POST">
+{% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <button type="submit">Login</button>
+</form>

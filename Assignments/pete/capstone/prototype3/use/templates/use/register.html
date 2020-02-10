@@ -1,0 +1,10 @@
+<h1>R E G | 5 -|- E R</h1>
+
+<form action="{% url 'use:execute_register' %}" method="POST">
+{% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <input type="text" name="username" placeholder="username">
+    <input type="text" name="email" placeholder="email">
+    <input type="password" name="password" placeholder="password">
+    <button type="submit">Register</button>
+</form>

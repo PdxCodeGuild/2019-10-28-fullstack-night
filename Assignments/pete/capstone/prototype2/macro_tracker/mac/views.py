@@ -3,43 +3,23 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-import math
-
-from .models import Meal, DiaryDay, DiaryEntry, UserProfile
+from .models import Macros
 
 def index(request):
-    return render(request, 'tracker/index.html')
+    return render(request, 'mac/index.html')
 
-def meals(request):
-    return render(request, 'tracker/meals.html', {'meals': Meal.objects.all()})
-
-def entries(request):
-    return render(request, 'tracker/diary-entries.html', {'entries': DiaryEntry.objects.all()})
-
-def day(request, pk):
-    date = DiaryDay.objects.get(pk=pk)
-    entries = date.diaryentry_set.all()
-    totals = date.total()
-    return render(request, 'tracker/day.html', {'entries': entries, 'totals': totals})
-
-def days(request):
-    return render(request, 'tracker/days.html', {'days': DiaryDay.objects.all()})
-
-
-'''The user shouldn't need to create an account to calculate macros, so none of the calc-related views will be under the @login_required decorator.'''
 def calc(request):
-    return render(request, 'tracker/calc.html')
+    return render(request, 'mac/calc.html')
 
-def calculate(request):
+def calc_macros(request):
     data = request.POST
-    name = data['name']
-    meas_sys = data['measurement']
+    meas_sys = data['meas']
     weight_in = int(data['weight'])
     bfp = int(data['bfp'])#body fat percentage
     act_lvl = float(data['act_lvl'])
     goal = data['goal']
 
-    if meas_sys == 'imperial':
+    if meas_sys == 'lbs':
         weight = round(weight_in * .45)
         meas_sys_bool = True
     else:
@@ -79,7 +59,10 @@ def calculate(request):
     train_carb = round((tdci - (protein * 4) - (train_fat * 9)) / 4)
     rest_carb = round((rdci - (protein * 4) - (rest_fat * 9)) / 4)
 
-    new_user = UserProfile(name=name, meas_sys=meas_sys_bool, weight=weight_in, bfp=bfp, act_lvl=act_lvl, goal=goal_bool, lbm=lbm, bmr=bmr, protein=protein, train_kcal=tdci, rest_kcal=rdci, train_fat=train_fat, rest_fat=rest_fat, train_carb=train_carb, rest_carb=rest_carb)
-    new_user.save()
+    macros = Macros(meas_sys=meas_sys_bool, weight=weight_in, bfp=bfp, act_lvl=act_lvl, goal=goal_bool, lbm=lbm, bmr=bmr, protein=protein, train_kcal=tdci, rest_kcal=rdci, train_fat=train_fat, rest_fat=rest_fat, train_carb=train_carb, rest_carb=rest_carb)
+    macros.save()
 
-    return render(request, 'tracker/macros.html', {'user': UserProfile.objects.get(pk=new_user.pk)})
+    return render(request, 'mac/macros.html', {'macros': Macros.objects.get(pk=macros.pk)})
+
+def create_account_form(request,pk):
+    return render(request, 'user/create-account.html', {'macros': Macros.objects.get(pk=pk)})
