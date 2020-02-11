@@ -7,8 +7,11 @@
     </li>
 {% for day in days %}
     <li>
-        <a href="{% url 'trak:day' pk=day.pk %}">
+        <!-- DAY 2!!! -->
+        <a href="{% url 'trak:day2' pk=day.pk %}">
+        <!-- DAY 2!!! -->
             <button>{{day.date}}: {{day.type}}</button>
         </a>
     </li>
+{% endfor %}
 </ul>

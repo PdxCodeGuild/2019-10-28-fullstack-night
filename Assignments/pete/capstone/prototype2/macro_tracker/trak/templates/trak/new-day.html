@@ -1,0 +1,7 @@
+<h1>Add a new day</h1>
+
+<form action="{% url 'trak:add_new_day' %}" method="POST">
+{$ csrf_token %}
+    <input type="date" name="date">
+    <button type="submit">Go!</button>
+</form>
