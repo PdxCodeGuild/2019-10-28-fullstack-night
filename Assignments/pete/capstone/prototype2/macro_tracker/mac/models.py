@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
 class Macros(models.Model):
-    # name = models.CharField(max_length=140)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE, related_name='macros')
     meas_sys = models.BooleanField()#true for imperial false for metric
     weight = models.IntegerField()
     bfp = models.IntegerField()#body fat percentage

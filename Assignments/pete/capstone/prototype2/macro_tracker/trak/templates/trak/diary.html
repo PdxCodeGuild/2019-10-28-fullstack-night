@@ -1,0 +1,23 @@
+<h1>|-| 3 |_ |_ 0 ___ F R | 3 |\| D 5</h1>
+
+<form action="{% url 'trak:update_diary' %}" method="POST">
+{% csrf_token %}
+    <ul>
+        <li>New Day?        
+            <input name="new-day" type="radio" value="True" checked>Yes
+            <input name="new-day" type="radio" value="">No
+        </li>
+        <li>Day Type?
+            <input name="day-type" type="radio" value="train" checked>Training
+            <input name="day-type" type="radio" value="rest">Rest
+        </li>
+        <li>
+            <select name="meal">
+            {% for meal in meals %}
+                <option value="{{meal.pk}}">{{ meal.name }}</option>
+            {% endfor %}
+            </select>
+        </li>
+    </ul>
+    <button type="submit">Oh yeah let's add it to the tracker!</button>
+</form>

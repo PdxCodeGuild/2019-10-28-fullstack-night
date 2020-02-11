@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mac.urls')),
     path('user/', include('user.urls')),
+    path('trak/', include('trak.urls')),
 ]

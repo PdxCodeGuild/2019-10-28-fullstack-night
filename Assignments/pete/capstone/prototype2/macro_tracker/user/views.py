@@ -1,20 +1,25 @@
 from django.shortcuts import render, reverse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 # from django.apps import apps
 from mac.models import Macros
-from .models import UserProfile, UserMacros
+from .models import UserProfile #, UserMacros
 # from ../mac/models import Macros
 
 def create_account(request, pk):
+    macros = Macros.objects.get(pk=pk)
     username = request.POST['username']
     email = request.POST['email']
     password = request.POST['password']
     user = User.objects.create_user(username, email, password)
-    UserProfile(user=User.objects.get(pk=user.pk)).save()
-    UserMacros(user_profile=Macros.objects.get(pk=pk)).save()
+    macros.user = user
+    macros.save()
     login(request, user)
-    return render(request, 'trak/index.html')
+    user_profile = UserProfile(user=User.objects.get(pk=user.pk))
+    user_profile.save()
+    return HttpResponseRedirect(reverse('trak:index'))
+
 
 
 def create_account_form(request, pk):
