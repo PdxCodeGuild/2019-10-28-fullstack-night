@@ -3,6 +3,7 @@
 <!-- Goal -->
 <h3>Goal</h3>
 {% if day.training %}
+<h4>Training Day Macros</h4>
 <ul>
     <li>{{ user.macros.train_kcal }} kcal</li>
     <li>{{ user.macros.train_fat }} g</li>
@@ -10,10 +11,11 @@
     <li>{{ user.macros.protein }} g</li>
 </ul>
 {% else %}
+<h4>Rest Day Macros</h4>
 <ul>
     <li>{{ user.macros.rest_kcal }} kcal</li>
     <li>{{ user.macros.rest_fat }} g</li>
-    <li>{{ user.macros.rest_carbs }} g</li>
+    <li>{{ user.macros.rest_carb }} g</li>
     <li>{{ user.macros.protein }} g</li>
 </ul>
 {% endif %}

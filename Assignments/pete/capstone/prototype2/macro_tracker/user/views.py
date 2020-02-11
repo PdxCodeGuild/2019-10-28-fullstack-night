@@ -24,3 +24,13 @@ def create_account(request, pk):
 
 def create_account_form(request, pk):
     return render(request, 'user/create-account.html', {'macros': Macros.objects.get(pk=pk)})
+
+def login_form(request):
+    return render(request, 'user/login-account.html')
+
+def login_account(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    login(request, user)
+    return HttpResponseRedirect(reverse('trak:index'))
