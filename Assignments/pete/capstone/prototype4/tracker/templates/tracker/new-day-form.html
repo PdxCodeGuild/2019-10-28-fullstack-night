@@ -1,0 +1,9 @@
+<h1>tracker/new-day-form.html</h1>
+<h2>Add a day to your Macro Diary!</h2>
+<form action="{% url 'tracker:new_day' %}" method="POST">
+{% csrf_token %}
+    <input type="date" name="date">
+    <input type="radio" name="day-type" value="train" checked>Training
+    <input type="radio" name="day-type" value="rest">Rest
+    <button type="submit">Add to Diary!</button>
+</form>

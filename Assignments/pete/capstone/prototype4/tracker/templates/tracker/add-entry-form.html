@@ -1,0 +1,28 @@
+<h1>tracker/add-entry-form.html</h1>
+<h2>Add an Entry to Your Food Diary for {{ day.date }}!</h2>
+<form action="/" method="POST">
+{% csrf_token %}
+<ol>
+    <li>
+        <span>Name:</span>
+        <input type="text" name="name">
+    </li>
+    <li>
+        <span>Kilocalories:</span>
+        <input type="number" name="kcal">
+    </li>
+    <li>
+        <span>Grams of Fat:</span>
+        <input type="number" name="fat">
+    </li>
+    <li>
+        <span>Grams of Carbohydrates:</span>
+        <input type="number" name="carb">
+    </li>
+    <li>
+        <span>Grams of Protein:</span>
+        <input type="number" name="protein">
+    </li>
+</ol>
+<button type="submit">Track It!</button>
+</form>
