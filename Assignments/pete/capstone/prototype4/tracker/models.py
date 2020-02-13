@@ -6,21 +6,49 @@ class Meal(models.Model):
     name = models.CharField(max_length=140)#name of food
     kcal = models.IntegerField()#kilocalories
     fat = models.IntegerField()#g of fat
-    carbs = models.IntegerField()#g of carbs
+    carb = models.IntegerField()#g of carb
     protein = models.IntegerField()#g of protein
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meal')
     def __str__(self):
-        return f"{self.name} ({self.kcal}/{self.fat}/{self.carbs}/{self.protein})"
+        return f"{self.name} ({self.kcal}/{self.fat}/{self.carb}/{self.protein})"
 
 class DiaryDay(models.Model):
     date = models.DateField()#date of each diary
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='diary_day')
     training = models.BooleanField()#true for training day false for rest day
+
     def total(self):
-        total_dict = {'kcal': 0, 'fat': 0, 'carbs': 0, 'protein': 0}
+        total_dict = {'kcal': 0, 'fat': 0, 'carb': 0, 'protein': 0}
         for entry in self.diary_entry.all():
             for key in total_dict.keys():
                 total_dict[key] += getattr(entry.meal, key)
         return total_dict
+    
+    def offset(self, training_bool):
+        total_dict = self.total()
+
+        if training_bool:
+            macros_dict = {
+                'kcal': self.user.macros.train_kcal,
+                'fat': self.user.macros.train_fat,
+                'carb': self.user.macros.train_carb,
+                'protein': self.user.macros.protein
+            }
+
+        else:
+            macros_dict = {
+                'kcal': self.user.macros.rest_kcal,
+                'fat': self.user.macros.rest_fat,
+                'carb': self.user.macros.rest_carb,
+                'protein': self.user.macros.protein
+            }
+
+        offset_dict = {}
+        for key in total_dict.keys():
+            offset_dict[key] = total_dict[key] - macros_dict[key]
+        
+        return offset_dict
+    
     def __str__(self):
         return str(self.date)
 

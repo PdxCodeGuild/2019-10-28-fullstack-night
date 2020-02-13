@@ -1,6 +1,20 @@
 <h1>tracker/add-entry-form.html</h1>
 <h2>Add an Entry to Your Food Diary for {{ day.date }}!</h2>
-<form action="/" method="POST">
+
+
+<h3>Select a Saved Meal:</h3>
+<form action="{% url 'tracker:add_saved_entry' pk=day.pk %}" method="POST">
+{% csrf_token %}
+    <select name="meal">
+    {% for meal in user.meal.all %}
+        <option value={{meal.pk}}>{{ meal }}</option>
+    {% endfor %}
+    </select>
+    <button type="submit">Track it!</button>
+</form>
+
+<h3>Or, Add a New Meal to Your Diary:</h3>
+<form action="{% url 'tracker:add_new_entry' pk=day.pk %}" method="POST">
 {% csrf_token %}
 <ol>
     <li>
@@ -23,6 +37,11 @@
         <span>Grams of Protein:</span>
         <input type="number" name="protein">
     </li>
+    <li>
+        <label>Save for Future Use:</label>
+        <input type="checkbox" name="save" value="save">
+    </li>
 </ol>
 <button type="submit">Track It!</button>
+
 </form>

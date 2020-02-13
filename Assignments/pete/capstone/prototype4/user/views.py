@@ -34,3 +34,7 @@ def login_account(request):
     user = authenticate(request, username=username, password=password)
     login(request, user)
     return HttpResponseRedirect(reverse('home:home'))
+
+def log_out(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home:index'))

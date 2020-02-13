@@ -6,35 +6,61 @@
         <h3>Goals for {% if day.training %} Training {% else %} Rest {% endif %} Day</h3>
         <ul>
             {% if day.training %}
-            <li>{{ macros.train_kcal }} kcal</li>
-            <li>{{ macros.train_carb }} g</li>
-            <li>{{ macros.train_fat }} g</li>
+            <li>{{ macros.train_kcal }} Kcal</li>
+            <li>{{ macros.train_fat }} g Fat</li>
+            <li>{{ macros.train_carb }} g Carbs</li>
             {% else %}
-            <li>{{ macros.rest_kcal }} kcal</li>
-            <li>{{ macros.rest_carb }} g</li>
-            <li>{{ macros.rest_fat }} g</li>
+            <li>{{ macros.rest_kcal }} Kcal</li>
+            <li>{{ macros.rest_fat }} g Fat</li>
+            <li>{{ macros.rest_carb }} g Carbs</li>
             {% endif %}
-            <li>{{ macros.protein }} g</li>
+            <li>{{ macros.protein }} g Protein</li>
         </ul>
     </li>
     <li>
         <h3>Entries:</h3>
-        {% for entry in day.diary_entry.all %}
         <ul>
+        {% for entry in day.diary_entry.all %}
             <li>{{ entry.meal.name }}</li>
-            <li>{{ entry.meal.kcal }} kcal</li>
-            <li>{{ entry.meal.carb }} g</li>
-            <li>{{ entry.meal.fat }} g</li>
-            <li>{{ entry.meal.protein }} g</li>
-        </ul>
+            <ul>
+                <li>{{ entry.meal.kcal }} Kcal</li>
+                <li>{{ entry.meal.fat }} g Fat</li>
+                <li>{{ entry.meal.carb }} g Carbs</li>
+                <li>{{ entry.meal.protein }} g Protein</li>
+            </ul>
         {% endfor %}
+        </ul>
     </li>
     <!-- {% if day.diary_entry.all %}
     <li>
 
     </li>
     {% endif %} -->
+    {% if totals %}
+    <li>
+        <h3>Totals</h3>
+        <ul>
+            <li>{{ totals.kcal }} Kcal</li>
+            <li>{{ totals.fat }} g Fat</li>
+            <li>{{ totals.carb }} g Carbs</li>
+            <li>{{ totals.protein }} g Protein</li>
+        </ul>
+    </li>
+
+    <li>
+        <h3>Offset</h3>
+        <ul>
+            <li>{{ offset.kcal }} Kcal</li>
+            <li>{{ offset.fat }} g Fat</li>
+            <li>{{ offset.carb }} g Carbs</li>
+            <li>{{ offset.protein }} g Protein</li>
+        </ul>
+    </li>
+
+    {% endif %}
     <li>I'm going to put totals down here once I've figured out how.</li>
 </ul>
 
 <a href="{% url 'tracker:add_entry_form' pk=day.pk %}"><button>Add Entry!</button></a>
+
+<a href="{% url 'home:home' %}"><button>Home</button></a>
