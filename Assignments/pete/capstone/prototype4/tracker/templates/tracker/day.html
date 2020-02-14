@@ -31,11 +31,7 @@
         {% endfor %}
         </ul>
     </li>
-    <!-- {% if day.diary_entry.all %}
-    <li>
 
-    </li>
-    {% endif %} -->
     {% if totals %}
     <li>
         <h3>Totals</h3>
@@ -51,14 +47,16 @@
         <h3>Offset</h3>
         <ul>
             <li>{{ offset.kcal }} Kcal</li>
+                <div>You are {{ over_under.kcal }} on Kcal</div>
             <li>{{ offset.fat }} g Fat</li>
+                <div>You are {{ over_under.fat }} on Fat</div>
             <li>{{ offset.carb }} g Carbs</li>
+                <div>You are {{ over_under.carb }} on Carbs</div>
             <li>{{ offset.protein }} g Protein</li>
+                <div>You are {{ over_under.protein }} on Protein</div>
         </ul>
     </li>
-
     {% endif %}
-    <li>I'm going to put totals down here once I've figured out how.</li>
 </ul>
 
 <a href="{% url 'tracker:add_entry_form' pk=day.pk %}"><button>Add Entry!</button></a>
