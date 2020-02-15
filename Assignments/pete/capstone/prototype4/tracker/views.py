@@ -31,7 +31,7 @@ def get_day(request, pk):
 @login_required
 def add_entry_form(request, pk):
     day = DiaryDay.objects.get(pk=pk)
-    return render(request, 'tracker/add-entry-form.html', {'day': day})
+    return render(request, 'tracker/add-entry-form.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
 
 '''
 Below I learned how to user HttpResponseRedirect() w/ reverse() so compare the commented out functions to the ones below them.

@@ -6,10 +6,18 @@
 <form action="{% url 'tracker:add_saved_entry' pk=day.pk %}" method="POST">
 {% csrf_token %}
     <select name="meal">
+
     {% for meal in user.meal.all %}
-        <option value={{meal.pk}}>{{ meal }}</option>
+        <option value={{meal.pk}}>{{ meal }}*</option>
     {% endfor %}
+
+    {% for meal in general_meals %}
+        <option value={{meal.pk}}>{{ meal }}**</option>
+    {% endfor %}
+    
     </select>
+    <div>*: Your Saved Meal</div>
+    <div>**: General Meal</div>
     <button type="submit">Track it!</button>
 </form>
 
@@ -23,25 +31,62 @@
     </li>
     <li>
         <span>Kilocalories:</span>
-        <input type="number" name="kcal">
+        <input id="kcal" type="number" name="kcal">
     </li>
     <li>
         <span>Grams of Fat:</span>
-        <input type="number" name="fat">
+        <input id="fat" type="number" name="fat">
     </li>
     <li>
         <span>Grams of Carbohydrates:</span>
-        <input type="number" name="carb">
+        <input id="carb" type="number" name="carb">
     </li>
     <li>
         <span>Grams of Protein:</span>
-        <input type="number" name="protein">
+        <input id="protein" type="number" name="protein">
     </li>
     <li>
         <label>Save for Future Use:</label>
         <input type="checkbox" name="save" value="save">
     </li>
 </ol>
-<button type="submit">Track It!</button>
+<button id="submit" type="submit">Track It!</button>
 
 </form>
+
+<script>
+    let kcalField = document.querySelector('#kcal');
+    let fatField = document.querySelector('#fat');
+    let carbField = document.querySelector('#carb');
+    let proteinField = document.querySelector('#protein');
+    let submitButton = document.querySelector('#submit');
+
+    submitButton.addEventListener('click', function(e) {
+        let macrosAdded = (fatField.value * 9) + (carbField.value * 4) + (proteinField.value * 4)
+        // console.log(macrosAdded)
+        // console.log(kcalField.value)
+        if (kcalField.value > macrosAdded * 1.05 || kcalField.value < macrosAdded * 0.95) {
+            e.preventDefault();
+            alert("🤔 Something doesn't add up.  Double-check those values. 🤔")
+        }
+    })
+    // let kcalVal = kcalField.value
+    // let fatVal = fatField.value
+    // let carbVal = carbField.value
+    // let proteinVal = proteinField.value
+
+    // let inputArr = [kcalField, fatField, carbField, proteinField]
+    // let valArr = [kcalVal, fatVal, carbVal, proteinVal]
+
+    // for(let i=0; i<inputArr.length; i++) {
+    //     inputArr[i].addEventListener('change', (event) => {
+    //         valArr[i] = inputArr[i].value
+    //     })
+    // }
+    // kcalField.addEventListener('change', (event) => {
+    //     console.log('change')
+    //     console.log(kcalField.value)
+    //     console.log(kcalVal)
+    // })
+    // let kcalVal = kcalField.value;
+</script>
