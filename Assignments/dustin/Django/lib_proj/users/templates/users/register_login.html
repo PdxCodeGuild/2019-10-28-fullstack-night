@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<body>
+    <h1>Register</h1>
+        <form action="{% url 'users:register_user' %}" method='POST'>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{next}}">
+            <input type="text" name="username" placeholder="username">
+            <input type="text" name="email" placeholder="email">
+            <input type="password" name="password" placeholder="password">
+            <button type="submit">Register</button>
+        </form>
+    <h1>Login</h1>
+    <form action="{% url 'users:login_user' %}" method='POST'>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{next}}">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>

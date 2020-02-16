@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Numbers!</h1>
+    {% for group in groups %}
+    <a href="{% url 'nums:group' pk=group.pk %}">
+        <h4>{{group.name}}</h4>
+    </a>
+    <ul>
+        {% for num in group.nums.all %}
+        <li>{{ num.val }}</li>
+        {% endfor %}
+    </ul>
+    {% empty %}
+    No numbers yet.
+    {% endfor %}
+    <form action='/nums/' method='POST'>
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="New Group">
+        <button type="submit">Add group</button>
+    </form>
+    <a href="{% url 'users:logout_user' %}">Logout</a>
+    
+</body>
+</html>

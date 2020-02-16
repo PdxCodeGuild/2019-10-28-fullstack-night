@@ -4,7 +4,23 @@ from .models import LinkStart
 from string import ascii_letters
 import random
 
-def random_gen(request):
+def index(request):
+    if request.method=="POST":
+        data = request.POST
+        longURL = LinkStart(url_in=data['url_in'], code=random_gen())
+        longURL.save()
+        print(longURL.url_in)
+    context = {}
+    return render(request, "urlshort/index.html", context)
+    #return HttpResponse("Hi.")
+
+def redir(request, user_url):
+    longURL = LinkStart.objects.get(code=user_url)
+    print(longURL.url_in)
+    return HttpResponseRedirect("http://" + longURL.url_in)
+
+
+def random_gen():
     output = ''
     outputList = []
     option_list = list(ascii_letters)
@@ -14,34 +30,9 @@ def random_gen(request):
         randomSelect = str(option_list[random.randint(0, len(option_list)-1)])
         outputList.append(randomSelect)
         output = output + outputList[i]
-    
+    print(output)
     return output
-
-        
-def pullBaseURL(request):
-    data = request.POST
-    slashCount = 0
-    baseURL = ""
-    baseList = []
-    for i, val in enumerate(data):
-        if val == "/":
-            slashCount += 1
-            if slashCount == 3:
-                break
-        baseList.append(val)
-        baseURL = baseURL + baseList[i]
-    return baseURL
-
-def shortenedURL(request):
-    data = request.POST
-    newURL = data["baseURL"] + "/" + data["output"]
-    return newURL
-
-
-
-        
-    
-    
+  
 
 def shorten(request):
     pass

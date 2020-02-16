@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="{% url 'urlshort:index' %}" method="POST">
+    {% csrf_token %}
+        <input type="text" name="url_in" placeholder="Please put your full URL here.">
+        <button type="submit">Shorten!</button>
+    </form>
+    
+</body>
+</html>

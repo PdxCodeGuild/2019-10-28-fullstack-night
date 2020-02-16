@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Library</h1>
+    <br>
+    <h3>Please search for a book by title or author below.</h3>
+    <form action="{% url 'lib:search' %}" method='GET'>
+
+        <select name="search_choice" id="search_choice">
+            <option value="Book">Book</option>
+            <option value="Author">Author</option>
+        </select>
+        <input type="text" name="user_input" placeholder="Search Here">
+        <button type="submit">Search!</button>
+    </form>
+
+    <ul>
+    {% for result in results %}
+        <li><a href="{% url 'lib:author_detail' result.pk %}">
+            {{result}}
+        </a></li>
+    {% endfor %}
+    </ul>
+
+
+    
+</body>
+</html>
