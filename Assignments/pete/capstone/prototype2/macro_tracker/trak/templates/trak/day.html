@@ -1,0 +1,43 @@
+<h1>\/\/ |-| /-\ -|- __ /-\ |\| __ E /-\ -|- Y __ |} /-\ Y</h1>
+<h2>{{ day.date }}</h2>
+<!-- Goal -->
+<h3>Goal</h3>
+{% if day.training %}
+<h4>Training Day Macros</h4>
+<ul>
+    <li>{{ user.macros.train_kcal }} kcal</li>
+    <li>{{ user.macros.train_fat }} g</li>
+    <li>{{ user.macros.train_carb }} g</li>
+    <li>{{ user.macros.protein }} g</li>
+</ul>
+{% else %}
+<h4>Rest Day Macros</h4>
+<ul>
+    <li>{{ user.macros.rest_kcal }} kcal</li>
+    <li>{{ user.macros.rest_fat }} g</li>
+    <li>{{ user.macros.rest_carb }} g</li>
+    <li>{{ user.macros.protein }} g</li>
+</ul>
+{% endif %}
+<!-- Entries -->
+<h3>Entries</h3>
+<ul>
+{% for entry in entries %}
+    <li>{{ entry.meal.name }}
+        <ul>
+            <li>{{ entry.meal.kcal }} kcal</li>
+            <li>{{ entry.meal.fat }} g</li>
+            <li>{{ entry.meal.carbs }} g</li>
+            <li>{{ entry.meal.protein }} g</li>
+        </ul>
+    </li>
+{% endfor %}
+</ul>
+<!-- Total -->
+<h3>Total</h3>
+<ul>
+    <li>{{ totals.kcal }} kcal</li>
+    <li>{{ totals.fat }} g</li>
+    <li>{{ totals.carbs }} g</li>
+    <li>{{ totals.protein }} g</li>
+</ul>

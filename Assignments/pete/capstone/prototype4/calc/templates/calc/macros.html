@@ -1,0 +1,31 @@
+<h1>calc/macros.html</h1>
+<h2>Your Macros:</h2>
+<ul>
+    <li>
+        <h4>Training Day:</h4>
+        <div>On days you work out, you eat high carbs, high protein, and low fat.</div>
+        <br/>
+        <ul>
+            <li>Calories: {{ macros.train_kcal }}</li>
+            <li>Fat: {{ macros.train_fat }}g</li>
+            <li>Carbohydrates: {{ macros.train_carb }}g</li>
+            <li>Protein: {{ macros.protein }}g</li>
+        </ul>
+    </li>
+    <li>
+        <h4>Rest Day:</h4>
+        <div>On days you don't work out, you eat high fat, high protein, and low carbs.</div>
+        <br/>
+        <ul>
+            <li>Calories: {{ macros.rest_kcal }}</li>
+            <li>Fat: {{ macros.rest_fat }}g</li>
+            <li>Carbohydrates: {{ macros.rest_carb }}g</li>
+            <li>Protein: {{ macros.protein }}g</li>
+        </ul>
+    </li>
+</ul>
+
+<form action="{% url 'user:create_account_form' pk=macros.pk%}" method="POST">
+{% csrf_token %}
+    <button type="submit">Create Account</button>
+</form>

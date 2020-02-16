@@ -1,0 +1,10 @@
+<h1>user/create-account-form.html</h1>
+<h2>Sign Up:</h2>
+<form action="{% url 'user:create_account' pk=macros.pk %}" method="POST">
+{% csrf_token %}    
+    <input type="hidden" name="next" value="{{ next }}">
+    <input type="text" name="username" placeholder="username">
+    <input type="text" name="email" placeholder="email">
+    <input type="password" name="password" placeholder="password">
+    <button type="submit">Register</button>
+</form>

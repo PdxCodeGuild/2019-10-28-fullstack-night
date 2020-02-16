@@ -1,0 +1,17 @@
+<h1>Your Days:</h1>
+<ul>
+    <li>
+        <a href="{% url 'trak:new_day' %}">
+            <button>New Day</button>
+        </a>
+    </li>
+{% for day in days %}
+    <li>
+        <!-- DAY 2!!! -->
+        <a href="{% url 'trak:day2' pk=day.pk %}">
+        <!-- DAY 2!!! -->
+            <button>{{day.date}}: {{day.type}}</button>
+        </a>
+    </li>
+{% endfor %}
+</ul>

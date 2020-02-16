@@ -1,0 +1,38 @@
+<h1>calc/calc-form.html</h1>
+<h2>Fill Out this Form to Calculate Your Macros</h2>
+
+    <form action="{% url 'calc:calc_macros' %}" method="POST">
+    {% csrf_token %}
+        <ul>
+            <li>
+                <span>Enter your weight:</span>
+                <input type="number" name="weight">
+                <input type="radio" name="meas" value="lbs" checked>lbs
+                <input type="radio" name="meas" value="kg">kg
+            </li>
+    
+            <li>
+                <span>Enter your body fat percentage:</span>
+                <input type="number" name="bfp">%
+                <button type="reset">I don't know my bfp...</button>
+            </li>
+    
+            <li>
+                <span>Select your activity level:</span>
+                <select name="act_lvl">
+                    <option value="1.2">Sedentary (little or no exercise)</option>
+                    <option value="1.375">Lightly active (training/sports 2-3 days a week)</option>
+                    <option value="1.55">Moderately active (training/sports 4-5 days a week)</option>
+                    <option value="1.725">Very active (training/sports 6-7 days a week)</option>
+                    <option value="1.9">Extremely active(twice per day, extra heavy workouts)</option>
+                </select>
+            </li>
+    
+            <li>
+                <span>Select your fitness goal:</span>
+                <input type="radio" name="goal" value="loss">Fat Loss
+                <input type="radio" name="goal" value="gain">Muscle Gain
+            </li>
+        </ul>
+        <button type="submit">Calculate my Macros!</button>
+    </form>
