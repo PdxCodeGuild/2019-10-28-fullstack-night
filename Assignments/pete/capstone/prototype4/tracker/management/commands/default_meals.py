@@ -10,12 +10,17 @@ def get_meals(meals_json):
 
 class Command(BaseCommand):
 
-    def add_arguments(self, parser):
-        parser.add_argument('--add', type=list, help="List like this: [name, kcal, fat, carb, protein]")
+    # def add_arguments(self, parser):
+    #     parser.add_argument('--add', type=str, help="Args: <name> <kcal> <fat> <carb> <protein>")
+
+    #     parser.add_argument('integers', nargs=4)
+
+    #     # args = parser.parse_args()
+
 
     def handle(self, *args, **options):
-        add = options['add']
-
+        # add = options['add']
+        # integers = options['integers']
         with open('tracker/management/commands/default_meals.json') as f:
             meals = json.loads(f.read())
         
@@ -31,17 +36,19 @@ class Command(BaseCommand):
             )
             # print(meal)
 
-        if options['add']:
-            Meal.object.get_or_create(
-                name = add[0],
-                kcal = add[1],
-                fat = add[2],
-                carb = add[3],
-                protein = add[4],
-                general = True,
-            )
+        # if options['add']:
+        #     Meal.objects.get_or_create(
+        #         name = add,
+        #         kcal = integers[0],
+        #         fat = integers[1],
+        #         carb = integers[2],
+        #         protein = integers[3],
+        #         general = True,
+        #     )
 
         for meal in Meal.objects.filter(general=True):
             print(meal)
         
         print(args)
+        # print(add)
+        # print(integers)
