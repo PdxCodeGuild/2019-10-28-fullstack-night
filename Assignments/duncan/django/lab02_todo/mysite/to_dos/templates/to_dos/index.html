@@ -1,0 +1,27 @@
+<h1>To Dos!</h1>
+<form method="POST" action="{% url 'to_dos:index' %}">
+    {% csrf_token %}
+    <input type='text' name='name_chore' placeholder='new task'>
+    <button type='submit'>add task</button>
+</form>
+<h4>Incomplete Tasks:</h4>
+{% for thing in task_incomplete%}
+    <li>{{thing.chore_name}}</li>
+{%endfor%}
+</br>
+<form method="POST" action="{% url 'to_dos:complete' %}">
+    {% csrf_token %}
+    <label for="task">Complete a task:</label>
+    <select name="task" id="task">
+        {% for task in task_incomplete %}
+            <option value="{{task.id}}">{{task.chore_name}}</option>
+        {% endfor %}
+    </select>
+    <button type='submit'>complete task</button>
+</form>
+<h4>Completed Tasks:</h4>
+{% for thing in task_complete%}
+    <li>{{thing.chore_name}}</li>
+{%endfor%}
+
+<!-- CREATE A DROPDOWN WITH THE TASK NAMES Note "name_chore" is the key of the dictionary that the dropdown with create -->
