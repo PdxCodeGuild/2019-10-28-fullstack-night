@@ -1,5 +1,7 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from .models import Macros
 
@@ -58,3 +60,7 @@ def calc_macros(request):
     macros.save()
 
     return render(request, 'calc/macros.html', {'macros': Macros.objects.get(pk=macros.pk)})
+
+@login_required
+def view_macros(request):
+    return render(request, 'calc/macros.html', {'macros': Macros.objects.get(user=request.user)})

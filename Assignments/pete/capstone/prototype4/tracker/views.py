@@ -89,3 +89,16 @@ def add_saved_entry(request, pk):
     meal = Meal.objects.get(pk=request.POST['meal'])
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
+
+@login_required
+def suggestion(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    suggestions = day.suggestion(day.training)
+    return render(request, 'tracker/suggestion.html', {'day': day, 'suggestions': suggestions})
+
+@login_required
+def add_suggested_entry(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    meal = Meal.objects.get(pk=request.POST['meal'])
+    DiaryEntry(meal=meal, date=day).save()
+    return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))

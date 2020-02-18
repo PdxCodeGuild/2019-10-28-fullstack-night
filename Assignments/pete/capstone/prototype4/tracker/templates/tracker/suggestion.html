@@ -1,2 +1,19 @@
 <h1>tracker/suggestion.html</h1>
-<h2>Here Are Some Suggested Meals to Keep You in Your {% if day.training %} Training {% else %} Rest {% endif %} Day Macros</h2>
+<h2>Here Are Some Suggested Meals to Keep You in Your {% if day.training %} Training {% else %} Rest {% endif %} Day Macros:</h2>
+<ul>
+{% for suggestion in suggestions %}
+<form action="{% url 'tracker:add_suggested_entry' pk=day.pk %}" method="POST">
+{% csrf_token %}
+    <li>{{ suggestion.name }}
+    <ul>
+        <li>{{ suggestion.kcal }} kcal</li>
+        <li>{{ suggestion.fat }} g fat</li>
+        <li>{{ suggestion.carb }} g carb</li>
+        <li>{{ suggestion.protein }} g protein</li>
+    </ul>
+    <input type="hidden" name="meal" value={{suggestion.pk}}>
+    <button type="submit">Track It!</button>
+    </li>
+</form>
+{% endfor %}
+</ul>

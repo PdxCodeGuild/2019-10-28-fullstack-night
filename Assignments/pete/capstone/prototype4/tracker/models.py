@@ -80,6 +80,14 @@ class DiaryDay(models.Model):
                 over_under_dict[key] = 'in Goal Range'
         return over_under_dict
 
+    def suggestion(self, training_bool):
+        offset_dict = self.offset(training_bool)
+        over_under_dict = self.over_under(training_bool)
+        
+        if over_under_dict['kcal'] != 'Under':
+            return None
+        
+        return Meal.objects.filter(general=True).filter(kcal__lte=(offset_dict['kcal']*-1)).filter(fat__lte=(offset_dict['fat']*-1)).filter(carb__lte=(offset_dict['carb']*-1)).filter(protein__lte=(offset_dict['protein']*-1))
 
     def __str__(self):
         return str(self.date)

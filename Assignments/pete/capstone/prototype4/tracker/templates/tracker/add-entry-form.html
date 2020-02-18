@@ -55,7 +55,7 @@
 </form>
 
 <h3>😮Wow New Feature Suggest a Meal to Fit into Your Macros!😮</h3>
-<a href="#"><button>Suggest!</button></a>
+<a href="{% url 'tracker:suggestion' pk=day.pk %}"><button>Suggest!</button></a>
 
 <script>
     let kcalField = document.querySelector('#kcal');
