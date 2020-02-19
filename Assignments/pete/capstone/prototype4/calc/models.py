@@ -4,12 +4,13 @@ from django.contrib.auth.models import User
 
 
 class Macros(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE, related_name='macros')
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='macros')
     meas_sys = models.BooleanField()#true for imperial false for metric
     weight = models.IntegerField()
     bfp = models.IntegerField()#body fat percentage
     act_lvl = models.FloatField()
     goal = models.BooleanField()#true for fat loss false for muscle gain
+    active = models.BooleanField(default=True)
 
     lbm = models.IntegerField()
     bmr = models.IntegerField()

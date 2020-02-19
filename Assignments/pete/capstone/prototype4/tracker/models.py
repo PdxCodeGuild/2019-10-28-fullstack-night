@@ -19,55 +19,72 @@ class DiaryDay(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='diary_day')
     training = models.BooleanField()#true for training day false for rest day
 
+    def macros(self):
+        if self.training:
+            return {
+                'kcal': self.user.macros.get(active=True).train_kcal,
+                'fat': self.user.macros.get(active=True).train_fat,
+                'carb': self.user.macros.get(active=True).train_carb,
+                'protein': self.user.macros.get(active=True).protein
+            }
+        return {
+            'kcal': self.user.macros.get(active=True).rest_kcal,
+            'fat': self.user.macros.get(active=True).rest_fat,
+            'carb': self.user.macros.get(active=True).rest_carb,
+            'protein': self.user.macros.get(active=True).protein
+        }
+
+
     def total(self):
         total_dict = {'kcal': 0, 'fat': 0, 'carb': 0, 'protein': 0}
+        print(self.diary_entry.all())
         for entry in self.diary_entry.all():
             for key in total_dict.keys():
-                total_dict[key] += getattr(entry.meal, key)
+                    total_dict[key] += getattr(entry.meal, key)
         return total_dict
     
-    def offset(self, training_bool):
+    def offset(self):#removed training_bool
         total_dict = self.total()
+        macros_dict = self.macros()
+        # if training_bool:
+        #     macros_dict = {
+        #         'kcal': self.user.macros.get(active=True).train_kcal,
+        #         'fat': self.user.macros.get(active=True).train_fat,
+        #         'carb': self.user.macros.get(active=True).train_carb,
+        #         'protein': self.user.macros.get(active=True).protein
+        #     }
 
-        if training_bool:
-            macros_dict = {
-                'kcal': self.user.macros.train_kcal,
-                'fat': self.user.macros.train_fat,
-                'carb': self.user.macros.train_carb,
-                'protein': self.user.macros.protein
-            }
-
-        else:
-            macros_dict = {
-                'kcal': self.user.macros.rest_kcal,
-                'fat': self.user.macros.rest_fat,
-                'carb': self.user.macros.rest_carb,
-                'protein': self.user.macros.protein
-            }
+        # else:
+        #     macros_dict = {
+        #         'kcal': self.user.macros.get(active=True).rest_kcal,
+        #         'fat': self.user.macros.get(active=True).rest_fat,
+        #         'carb': self.user.macros.get(active=True).rest_carb,
+        #         'protein': self.user.macros.get(active=True).protein
+        #     }
 
         offset_dict = {}
         for key in total_dict.keys():
             offset_dict[key] = total_dict[key] - macros_dict[key]
         return offset_dict
 
-    def over_under(self, training_bool):
+    def over_under(self):#removed training_bool
         total_dict = self.total()
+        macros_dict = self.macros()
+        # if training_bool:
+        #     macros_dict = {
+        #         'kcal': self.user.macros.get(active=True).train_kcal,
+        #         'fat': self.user.macros.get(active=True).train_fat,
+        #         'carb': self.user.macros.get(active=True).train_carb,
+        #         'protein': self.user.macros.get(active=True).protein
+        #     }
 
-        if training_bool:
-            macros_dict = {
-                'kcal': self.user.macros.train_kcal,
-                'fat': self.user.macros.train_fat,
-                'carb': self.user.macros.train_carb,
-                'protein': self.user.macros.protein
-            }
-
-        else:
-            macros_dict = {
-                'kcal': self.user.macros.rest_kcal,
-                'fat': self.user.macros.rest_fat,
-                'carb': self.user.macros.rest_carb,
-                'protein': self.user.macros.protein
-            }
+        # else:
+        #     macros_dict = {
+        #         'kcal': self.user.macros.get(active=True).rest_kcal,
+        #         'fat': self.user.macros.get(active=True).rest_fat,
+        #         'carb': self.user.macros.get(active=True).rest_carb,
+        #         'protein': self.user.macros.get(active=True).protein
+        #     }
 
         
         over_under_dict = {}
@@ -80,9 +97,9 @@ class DiaryDay(models.Model):
                 over_under_dict[key] = 'in Goal Range'
         return over_under_dict
 
-    def suggestion(self, training_bool):
-        offset_dict = self.offset(training_bool)
-        over_under_dict = self.over_under(training_bool)
+    def suggestion(self):#removed training_bool
+        offset_dict = self.offset()
+        over_under_dict = self.over_under()
         
         if over_under_dict['kcal'] != 'Under':
             return None

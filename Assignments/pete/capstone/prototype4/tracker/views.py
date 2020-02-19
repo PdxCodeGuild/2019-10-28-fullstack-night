@@ -24,8 +24,8 @@ def new_day(request):
 def get_day(request, pk):
     day = DiaryDay.objects.get(pk=pk)
     totals = day.total()
-    offset = day.offset(day.training)
-    over_under = day.over_under(day.training)
+    offset = day.offset()
+    over_under = day.over_under()
     return render(request, 'tracker/day.html', {'day': day, 'macros': request.user.macros, 'totals': totals, 'offset': offset, 'over_under': over_under})
 
 @login_required
@@ -73,16 +73,6 @@ def add_new_entry(request, pk):
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
 
-# @login_required
-# def add_saved_entry(request, pk):
-#     day = DiaryDay.objects.get(pk=pk)
-#     meal = Meal.objects.get(pk=request.POST['meal'])
-#     DiaryEntry(meal=meal, date=day).save()
-#     totals = day.total()
-#     offset = day.offset(day.training)
-#     over_under = day.over_under(day.training)
-#     return render(request, 'tracker/day.html', {'day': day, 'macros': request.user.macros, 'totals': totals, 'offset': offset, 'over_under': over_under})
-
 @login_required
 def add_saved_entry(request, pk):
     day = DiaryDay.objects.get(pk=pk)
@@ -93,7 +83,7 @@ def add_saved_entry(request, pk):
 @login_required
 def suggestion(request, pk):
     day = DiaryDay.objects.get(pk=pk)
-    suggestions = day.suggestion(day.training)
+    suggestions = day.suggestion()# removed day.training
     return render(request, 'tracker/suggestion.html', {'day': day, 'suggestions': suggestions})
 
 @login_required

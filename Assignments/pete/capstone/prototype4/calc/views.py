@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -64,3 +64,7 @@ def calc_macros(request):
 @login_required
 def view_macros(request):
     return render(request, 'calc/macros.html', {'macros': Macros.objects.get(user=request.user)})
+
+@login_required
+def re_calc(request):
+    return render(request, 'calc/calc-form.html')
