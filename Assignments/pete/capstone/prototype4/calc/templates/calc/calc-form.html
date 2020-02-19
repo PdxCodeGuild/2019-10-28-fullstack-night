@@ -1,5 +1,10 @@
+{% block template_name %}
 <h1>calc/calc-form.html</h1>
+{% endblock %}
+
+{% block header %}
 <h2>Fill Out this Form to Calculate Your Macros</h2>
+{% endblock %}
 
     <form action="{% url 'calc:calc_macros' %}" method="POST">
     {% csrf_token %}
@@ -34,5 +39,9 @@
                 <input type="radio" name="goal" value="gain">Muscle Gain
             </li>
         </ul>
+
+        {% block button %}
         <button type="submit">Calculate my Macros!</button>
+        {% endblock %}
+        
     </form>

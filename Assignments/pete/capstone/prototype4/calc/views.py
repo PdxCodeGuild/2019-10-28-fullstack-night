@@ -58,7 +58,13 @@ def calc_macros(request):
 
     macros = Macros(meas_sys=meas_sys_bool, weight=weight_in, bfp=bfp, act_lvl=act_lvl, goal=goal_bool, lbm=lbm, bmr=bmr, protein=protein, train_kcal=tdci, rest_kcal=rdci, train_fat=train_fat, rest_fat=rest_fat, train_carb=train_carb, rest_carb=rest_carb)
     macros.save()
-
+    
+    if request.user.is_authenticated:
+        old_macros = request.user.macros
+        old_macros.update(active=False)
+        macros.user = request.user
+        macros.active = True
+        
     return render(request, 'calc/macros.html', {'macros': Macros.objects.get(pk=macros.pk)})
 
 @login_required
@@ -67,4 +73,4 @@ def view_macros(request):
 
 @login_required
 def re_calc(request):
-    return render(request, 'calc/calc-form.html')
+    return render(request, 'calc/re-calc.html')
