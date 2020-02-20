@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'home/js/base.js' %}" defer></script>
+    <title>M A C R O _ T R A C K E R</title>
+</head>
+<body>
+    {% csrf_token %}
+    {{ user|json_script:"user" }}
+    <nav>
+        <a href="#"><button id="home">HOME</button></a>
+        <a href="#"><button id="calc">Calculator</button></a>
+        <a href="#"><button id="tracker">Tracker</button></a>
+        <a href="#"><button class="user" id="logout">Logout</button></a>
+        <a href="#"><button class="guest" id="login">Login</button></a>
+    </nav>
+    
+    <div id="padding"></div>
+
+    <nav class="subnav" id="home-nav">
+        <a href="#"><button id="profile">Profile</button></a>
+        <a href="#"><button id="history">History</button></a>
+        <a href="#"><button id="faq1">FAQ</button></a>
+    </nav>
+    
+    <nav class="subnav" id="calc-nav">
+        <a href="#"><button id="calc-new">Calculate New Macros</button></a>
+        <a href="#"><button id="mac-hist">Macros History</button></a>
+        <a href="#"><button id="faq2">FAQ</button></a>
+    </nav>
+    
+    <nav class="subnav" id="tracker-nav">
+        <a href="#"><button id="new-day">New Day</button></a>
+        <a href="#"><button id="new-entry">New Entry</button></a>
+        <a href="#"><button id="calendar">Calendar</button></a>
+        <a href="#"><button id="faq3">FAQ</button></a>
+    </nav>
+
+    {% block body %}
+    <div class="container guest">
+        <a href="#"><button>Get Started</button></a>
+    </div>
+    {% endblock %}
+    
+</body>
+</html>

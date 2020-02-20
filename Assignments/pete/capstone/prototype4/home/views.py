@@ -11,4 +11,6 @@ def home(request):
     return render(request, 'home/home.html', {'user': request.user})
 
 def base(request):
-    return render(request, 'home/base.html')
+    if request.user.is_authenticated:
+        return render(request, 'home/base.html')
+    return HttpResponse('not user')
