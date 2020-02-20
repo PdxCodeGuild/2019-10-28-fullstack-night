@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Macros
 
+def home(request):
+    return render(request, 'calc/home.html')
+
 def calc_form(request):
     return render(request, 'calc/calc-form.html')
 
@@ -64,12 +67,13 @@ def calc_macros(request):
         old_macros.update(active=False)
         macros.user = request.user
         macros.active = True
+        macros.save()
         
     return render(request, 'calc/macros.html', {'macros': Macros.objects.get(pk=macros.pk)})
 
 @login_required
 def view_macros(request):
-    return render(request, 'calc/macros.html', {'macros': Macros.objects.get(user=request.user)})
+    return render(request, 'calc/macros.html', {'macros': Macros.objects.get(user=request.user, active=True)})
 
 @login_required
 def re_calc(request):

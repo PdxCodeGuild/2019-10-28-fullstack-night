@@ -1,3 +1,6 @@
+{% extends "home/base.html" %}
+
+{% block subnav %}
 <h1>tracker/index.html</h1>
 
 <a href="{% url 'tracker:new_day_form' %}"><button>Add a New Day to Your Diary</button></a>
@@ -6,3 +9,4 @@
 {% for day in user.diary_day.all %}
 <a href="{% url 'tracker:get_day' pk=day.pk %}"><button>{{ day.date }}  {% if day.training %}Training{% else %} Rest {% endif %}</button></a>
 {% endfor %}
+{% endblock %}

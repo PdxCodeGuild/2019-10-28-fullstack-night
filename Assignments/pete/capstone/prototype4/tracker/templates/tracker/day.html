@@ -5,15 +5,9 @@
     <li>
         <h3>Goals for {% if day.training %} Training {% else %} Rest {% endif %} Day</h3>
         <ul>
-            {% if day.training %}
-            <li>{{ macros.train_kcal }} Kcal</li>
-            <li>{{ macros.train_fat }} g Fat</li>
-            <li>{{ macros.train_carb }} g Carbs</li>
-            {% else %}
-            <li>{{ macros.rest_kcal }} Kcal</li>
-            <li>{{ macros.rest_fat }} g Fat</li>
-            <li>{{ macros.rest_carb }} g Carbs</li>
-            {% endif %}
+            <li>{{ macros.kcal }} kcal</li>
+            <li>{{ macros.fat }} g Fat</li>
+            <li>{{ macros.carb }} g Carbs</li>
             <li>{{ macros.protein }} g Protein</li>
         </ul>
     </li>

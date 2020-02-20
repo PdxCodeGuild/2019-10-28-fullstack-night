@@ -8,7 +8,6 @@ class Meal(models.Model):
     fat = models.IntegerField()#g of fat
     carb = models.IntegerField()#g of carb
     protein = models.IntegerField()#g of protein
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meal')
     user = models.ManyToManyField(User, related_name='meal')
     general = models.BooleanField(default=False)#boolean as to whether a meal is available to all users
     def __str__(self):
@@ -46,21 +45,6 @@ class DiaryDay(models.Model):
     def offset(self):#removed training_bool
         total_dict = self.total()
         macros_dict = self.macros()
-        # if training_bool:
-        #     macros_dict = {
-        #         'kcal': self.user.macros.get(active=True).train_kcal,
-        #         'fat': self.user.macros.get(active=True).train_fat,
-        #         'carb': self.user.macros.get(active=True).train_carb,
-        #         'protein': self.user.macros.get(active=True).protein
-        #     }
-
-        # else:
-        #     macros_dict = {
-        #         'kcal': self.user.macros.get(active=True).rest_kcal,
-        #         'fat': self.user.macros.get(active=True).rest_fat,
-        #         'carb': self.user.macros.get(active=True).rest_carb,
-        #         'protein': self.user.macros.get(active=True).protein
-        #     }
 
         offset_dict = {}
         for key in total_dict.keys():
@@ -70,22 +54,6 @@ class DiaryDay(models.Model):
     def over_under(self):#removed training_bool
         total_dict = self.total()
         macros_dict = self.macros()
-        # if training_bool:
-        #     macros_dict = {
-        #         'kcal': self.user.macros.get(active=True).train_kcal,
-        #         'fat': self.user.macros.get(active=True).train_fat,
-        #         'carb': self.user.macros.get(active=True).train_carb,
-        #         'protein': self.user.macros.get(active=True).protein
-        #     }
-
-        # else:
-        #     macros_dict = {
-        #         'kcal': self.user.macros.get(active=True).rest_kcal,
-        #         'fat': self.user.macros.get(active=True).rest_fat,
-        #         'carb': self.user.macros.get(active=True).rest_carb,
-        #         'protein': self.user.macros.get(active=True).protein
-        #     }
-
         
         over_under_dict = {}
         for key in total_dict.keys():
@@ -113,6 +81,5 @@ class DiaryEntry(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.PROTECT, related_name='diary_entry')#each entry is linked to a saved meal
     date = models.ForeignKey(DiaryDay, on_delete=models.PROTECT, related_name='diary_entry')
     time = models.TimeField(auto_now=True)#the time of the entry
-    #add ForeignKey to user soon
     def __str__(self):
         return f"{self.date} {self.time} {self.meal}"

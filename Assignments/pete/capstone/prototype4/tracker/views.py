@@ -18,7 +18,8 @@ def new_day(request):
     date = request.POST['date']
     day = DiaryDay(user=request.user, training=training, date=date)
     day.save()
-    return render(request, 'tracker/day.html', {'day': day, 'macros': request.user.macros})
+    # macros_dict = day.macros()
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros()})
 
 @login_required
 def get_day(request, pk):
@@ -26,7 +27,7 @@ def get_day(request, pk):
     totals = day.total()
     offset = day.offset()
     over_under = day.over_under()
-    return render(request, 'tracker/day.html', {'day': day, 'macros': request.user.macros, 'totals': totals, 'offset': offset, 'over_under': over_under})
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under})
 
 @login_required
 def add_entry_form(request, pk):
@@ -51,7 +52,7 @@ Below I learned how to user HttpResponseRedirect() w/ reverse() so compare the c
 #     totals = day.total()
 #     offset = day.offset(day.training)
 #     over_under = day.over_under(day.training)
-#     return render(request, 'tracker/day.html', {'day': day, 'macros': request.user.macros, 'totals': totals, 'offset': offset, 'over_under': over_under})
+#     return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under})
 
 @login_required
 def add_new_entry(request, pk):

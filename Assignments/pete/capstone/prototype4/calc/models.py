@@ -26,4 +26,4 @@ class Macros(models.Model):
     rest_carb = models.IntegerField()
 
     def __str__(self):
-        return f"Training Day({self.train_kcal}/{self.train_fat}/{self.train_carb}/{self.protein}); Rest Day({self.rest_kcal}/{self.rest_fat}/{self.rest_carb}/{self.protein})"
+        return f"Training Day({self.train_kcal}/{self.train_fat}/{self.train_carb}/{self.protein}); Rest Day({self.rest_kcal}/{self.rest_fat}/{self.rest_carb}/{self.protein}); User: {self.user}; Active: {self.active}"

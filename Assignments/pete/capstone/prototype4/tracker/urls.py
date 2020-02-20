@@ -14,4 +14,5 @@ urlpatterns = [
     path('add-saved-entry/<int:pk>/', views.add_saved_entry, name='add_saved_entry'), #pk for DiaryDay
     path('suggestion/<int:pk>/', views.suggestion, name='suggestion'),
     path('add-suggested-entry/<int:pk>/', views.add_suggested_entry, name='add_suggested_entry'),
+    # path('home/', views.home, )
 ]

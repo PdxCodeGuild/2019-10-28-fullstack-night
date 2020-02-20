@@ -1,0 +1,25 @@
+nav {
+    height: 15vh;
+    background-color: greenyellow;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.subnav {
+    display: none;
+}
+
+nav * {
+    font-family: 'Odibee Sans', cursive;
+    font-size: 3rem;
+}
+
+#padding {
+    background-color: hotpink;
+    height: 3vh;
+}
+
+button:hover {
+    color: hotpink;
+}
