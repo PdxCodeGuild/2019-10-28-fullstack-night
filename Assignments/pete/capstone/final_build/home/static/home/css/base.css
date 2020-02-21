@@ -23,3 +23,25 @@ nav * {
 button:hover {
     color: hotpink;
 }
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container.home {
+    border: 2px solid blue;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}
