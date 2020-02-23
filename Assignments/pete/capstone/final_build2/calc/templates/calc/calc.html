@@ -1,0 +1,52 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'calc/css/calc.css' %}">
+</head>
+{% endblock %}
+{% block main %}
+<main class="calc">
+<form action="#" method="POST">
+{% csrf_token %}
+
+    <div class="container form">
+        <span>Enter your weight:</span>
+        <div>
+            <input type="number" name="weight">
+            <input type="radio" name="meas" value="lbs" checked>lbs
+            <input type="radio" name="meas" value="kg">kg
+        </div>
+    </div>
+
+    <div class="container form">
+        <span>Enter your body fat percentage:</span>
+        <input type="number" name="bfp">%
+        <button type="reset">I don't know my bfp...</button>
+    </div>
+
+    <div class="container form">
+        <span>Select your activity level:</span>
+        <select name="act_lvl">
+            <option value="1.2">Sedentary (little or no exercise)</option>
+            <option value="1.375">Lightly active (training/sports 2-3 days a week)</option>
+            <option value="1.55">Moderately active (training/sports 4-5 days a week)</option>
+            <option value="1.725">Very active (training/sports 6-7 days a week)</option>
+            <option value="1.9">Extremely active(twice per day, extra heavy workouts)</option>
+        </select>
+    </div>
+
+    <div class="container form">
+        <span>Select your fitness goal:</span>
+        <div>
+            <input type="radio" name="goal" value="loss">Fat Loss
+            <input type="radio" name="goal" value="gain">Muscle Gain
+        </div>
+    </div>
+
+    <div class="container form submit">
+        <button id="submit" type="submit">Calculate my Macros!</button>
+    </div>
+    </form>
+</main>
+{% endblock %}

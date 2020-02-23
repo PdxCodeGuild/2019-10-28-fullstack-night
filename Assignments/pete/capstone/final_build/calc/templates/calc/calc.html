@@ -15,47 +15,73 @@
     <header>Let's Calculate Your Macros</header>
     <main>
 
-        <div id="calc-app">
+<div id="calc-app">
 
-            <div class="container calc">
-                <span>Enter your weight:</span>
-                <!-- Add JS to control min/max in number inputs -->
-                <input type="number" name="weight" min="0" max="500" v-model="weight">
-                <input type="radio" name="meas" v-model="measSys" value="lbs" checked>lbs
-                <input type="radio" name="meas" v-model="measSys" value="kg">kg
-            </div>
+    <div class="container calc" v-show="calcBool">
+        <span>Enter your weight:</span>
+        <!-- Add JS to control min/max in number inputs -->
+        <input type="number" name="weight" min="0" max="500" v-model="weight">
+        <input type="radio" name="meas" v-model="measSys" value="lbs" checked>lbs
+        <input type="radio" name="meas" v-model="measSys" value="kg">kg
+    </div>
 
-            <div class="container calc">
-                <span>Enter your body fat percentage:</span>
-                <!-- Add JS to allow for number between 1 and 100 -->
-                <input type="number" name="bfp" v-model="bfp">%
-                <button>I don't know my bfp...</button>
-            </div>
+    <div class="container calc" v-show="calcBool">
+        <span>Enter your body fat percentage:</span>
+        <!-- Add JS to allow for number between 1 and 100 -->
+        <input type="number" name="bfp" v-model="bfp">%
+        <button>I don't know my bfp...</button>
+    </div>
 
-            <div class="container calc">
-                <span>Select your activity level:</span>
-                <select name="act-lvl" v-model="actLvl">
-                    <option value="1.2">Sedentary (little or no exercise)</option>
-                    <option value="1.375">Lightly active (training/sports 2-3 days a week)</option>
-                    <option value="1.55">Moderately active (training/sports 4-5 days a week)</option>
-                    <option value="1.725">Very active (training/sports 6-7 days a week)</option>
-                    <option value="1.9">Extremely active(twice per day, extra heavy workouts)</option>
-                </select>
-            </div>
+    <div class="container calc" v-show="calcBool">
+        <span>Select your activity level:</span>
+        <select name="act-lvl" v-model="actLvl">
+            <option value="1.2">Sedentary (little or no exercise)</option>
+            <option value="1.375">Lightly active (training/sports 2-3 days a week)</option>
+            <option value="1.55">Moderately active (training/sports 4-5 days a week)</option>
+            <option value="1.725">Very active (training/sports 6-7 days a week)</option>
+            <option value="1.9">Extremely active(twice per day, extra heavy workouts)</option>
+        </select>
+    </div>
 
-            <div class="container calc">
-                <span>Select your fitness goal:</span>
-                <input type="radio" name="goal" value="loss" v-model="goal">Fat Loss
-                <input type="radio" name="goal" value="gain" v-model="goal">Muscle Gain
-            </div>
+    <div class="container calc" v-show="calcBool">
+        <span>Select your fitness goal:</span>
+        <input type="radio" name="goal" value="loss" v-model="goal">Fat Loss
+        <input type="radio" name="goal" value="gain" v-model="goal">Muscle Gain
+    </div>
 
-            <div class="container calc">
-                <button v-on:click="calcMacros">Calculate my Macros!</button>    
-            </div>
+    <div class="container calc" v-show="calcBool">
+        <button v-on:click="calcMacros">Calculate my Macros!</button>    
+    </div>
 
+    <div class="container macros" v-show="macrosBool">
+        <div class="macros text">
+            <header>Training Day Macros:</header>
+            <ul>
+                <li>d( trainKcal )b Calories</li>
+                <li>d( trainFat )b grams of Fat</li>
+                <li>d( trainCarb )b grams of Carbohydrates</li>
+                <li>d( protein )b grams of Protein</li>
+            </ul>
         </div>
+        <!-- <canvas id="training-chart" width="500" height="500"></canvas> -->
+    </div>
 
-    </main>
+    <div class="container macros" v-show="macrosBool">
+        <div class="macros text">
+            <header>Rest Day Macros:</header>
+            <ul>
+                <li>d( restKcal )b Calories</li>
+                <li>d( restFat )b grams of Fat</li>
+                <li>d( restCarb )b grams of Carbohydrates</li>
+                <li>d( protein )b grams of Protein</li>
+            </ul>
+        </div>
+        <!-- <canvas id="rest-chart" width="500" height="500"></canvas> -->
+    </div>
+
+</div>
+
+</main>
     {% endblock %}
     
 </body>

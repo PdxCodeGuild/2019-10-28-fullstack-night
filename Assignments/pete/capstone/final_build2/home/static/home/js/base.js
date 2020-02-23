@@ -1,8 +1,4 @@
-// import { Bar } from 'vue-chartjs'
-
 var userBool = JSON.parse(document.querySelector("#user").textContent);
-var getStartedUrl = JSON.parse(document.querySelector("#get_started").textContent);
-var csrftoken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
 
 // main nav bar
 let homeButton = document.querySelector('#home');
@@ -12,10 +8,11 @@ let logoutButton = document.querySelector('#logout');
 buttonArr = [homeButton, calcButton, trackerButton, logoutButton];
 
 // sub nav bars
+let welcomeNav = document.querySelector('#welcome-nav');
 let homeNav = document.querySelector('#home-nav');
 let calcNav = document.querySelector('#calc-nav');
 let trackerNav = document.querySelector('#tracker-nav');
-let navArr = [homeNav, calcNav, trackerNav]
+let navArr = [homeNav, calcNav, trackerNav, welcomeNav]
 
 let userClassArr = document.querySelectorAll('.user');
 let guestClassArr = document.querySelectorAll('.guest');
@@ -39,13 +36,3 @@ for (let i=0; i<buttonArr.length-1; i++) {
         navArr[i].style.display = 'flex';
     }
 }
-
-var mainApp = new Vue({
-    el: '#main-app',
-    methods: {
-        getStarted: function() {
-            console.log('get started')
-            location.href = getStartedUrl
-        }
-    }
-})

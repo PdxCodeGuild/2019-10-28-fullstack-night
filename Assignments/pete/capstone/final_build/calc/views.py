@@ -60,4 +60,15 @@ def calc_macros(request):
     macros = Macros(meas_sys=meas_sys_bool, weight=weight_in, bfp=bfp, act_lvl=act_lvl, goal=goal_bool, lbm=lbm, bmr=bmr, protein=protein, train_kcal=tdci, rest_kcal=rdci, train_fat=train_fat, rest_fat=rest_fat, train_carb=train_carb, rest_carb=rest_carb)
     macros.save()
 
-    return JsonResponse({})
+    # macros_dict = macros.
+    
+    return JsonResponse({
+        'trainKcal': macros.train_kcal,
+        'trainFat': macros.train_fat,
+        'trainCarb': macros.train_carb,
+        'restKcal': macros.rest_kcal,
+        'restFat': macros.rest_fat,
+        'restCarb': macros.rest_carb,
+        'protein': macros.protein,
+        
+    })

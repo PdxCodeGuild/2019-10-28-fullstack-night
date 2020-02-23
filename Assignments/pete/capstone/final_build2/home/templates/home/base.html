@@ -9,20 +9,14 @@
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
-
     <script src="{% static 'home/js/base.js' %}" defer></script>
-    
+    {% block head %}
+    {% endblock %}
     <title>M A C R O _ T R A C K E R</title>
 </head>
 <body>
-    {% csrf_token %}
     {{ user_bool|json_script:"user" }}
-    {{ get_started|json_script:"get_started" }}
+
     <nav>
         <a href="#"><button id="home">HOME</button></a>
         <a href="#"><button id="calc">Calculator</button></a>
@@ -32,6 +26,10 @@
     </nav>
     
     <div id="padding"></div>
+
+    <nav class="subnav" id="welcome-nav">
+        <header>Welcome to Macro Tracker</header>
+    </nav>
 
     <nav class="subnav" id="home-nav">
         <a href="#"><button id="profile">Profile</button></a>
@@ -51,16 +49,11 @@
         <a href="#"><button id="calendar">Calendar</button></a>
         <a href="#"><button id="faq3">FAQ</button></a>
     </nav>
-
-    <div id="main-app">
-        <main v-show="true">
-            <div class="container guest home">
-                <a href="#"><button v-on:click="getStarted">Get Started</button></a>
-            </div>
-        </main>
-    </div>
-    {% block body %}
+    {% block main %}
+    <main class="home">
+        <a href="{% url 'calc:calc' %}"><button>Get Started</button></a>
+        <a href="#"><button>What are Macros?</button></a>
+    </main>
     {% endblock %}
-    
 </body>
 </html>
