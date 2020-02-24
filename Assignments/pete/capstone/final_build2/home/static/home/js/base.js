@@ -4,6 +4,7 @@ var userBool = JSON.parse(document.querySelector("#user").textContent);
 let homeButton = document.querySelector('#home');
 let calcButton = document.querySelector('#calc');
 let trackerButton = document.querySelector('#tracker');
+let loginButton = document.querySelector('#login');
 let logoutButton = document.querySelector('#logout');
 buttonArr = [homeButton, calcButton, trackerButton, logoutButton];
 
@@ -14,17 +15,11 @@ let calcNav = document.querySelector('#calc-nav');
 let trackerNav = document.querySelector('#tracker-nav');
 let navArr = [homeNav, calcNav, trackerNav, welcomeNav]
 
-let userClassArr = document.querySelectorAll('.user');
-let guestClassArr = document.querySelectorAll('.guest');
 
 if (userBool===true) {
-    for(let i=0; i<guestClassArr.length; i++) {
-        guestClassArr[i].style.display = 'none';
-    }
+    loginButton.style.display = 'none';
 } else {
-    for(let i=0; i<userClassArr.length; i++) {
-        userClassArr[i].style.display = 'none';
-    }
+    logoutButton.style.display = 'none';
 }
 
 for (let i=0; i<buttonArr.length-1; i++) {

@@ -5,5 +5,7 @@ from . import views
 app_name = 'calc'
 
 urlpatterns = [
-    path('', views.calc, name='calc')
+    path('', views.calc, name='calc'),
+    path('calculate', views.calculate, name='calculate'),
+    path('macros/<int:pk>', views.macros, name='macros'),
 ]

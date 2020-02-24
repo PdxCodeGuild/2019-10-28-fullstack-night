@@ -2,12 +2,12 @@
 {% load static %}
 {% block head %}
 <head>
-<link rel="stylesheet" type="text/css" href="{% static 'calc/css/calc.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'calc/css/calc.css' %}">
 </head>
 {% endblock %}
 {% block main %}
 <main class="calc">
-<form action="#" method="POST">
+<form action="{% url 'calc:calculate' %}" method="POST">
 {% csrf_token %}
 
     <div class="container form">

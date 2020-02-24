@@ -25,5 +25,17 @@ class Macros(models.Model):
     rest_fat = models.IntegerField()
     rest_carb = models.IntegerField()
 
+    def macros_dict(self):
+        macros_dict = {
+            'train_kcal': self.train_kcal,
+            'train_fat': self.train_fat,
+            'train_carb': self.train_carb,
+            'rest_kcal': self.rest_kcal,
+            'rest_fat': self.rest_fat,
+            'rest_carb': self.rest_carb,
+            'protein': self.protein,
+        }
+        return macros_dict
+
     def __str__(self):
         return f"Training Day({self.train_kcal}/{self.train_fat}/{self.train_carb}/{self.protein}); Rest Day({self.rest_kcal}/{self.rest_fat}/{self.rest_carb}/{self.protein}); User: {self.user}; Active: {self.active}"

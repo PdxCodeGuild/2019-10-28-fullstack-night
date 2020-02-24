@@ -40,7 +40,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 67vh;
+    min-height: 67vh;
     background-color: hotpink;
 }
 

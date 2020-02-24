@@ -1,0 +1,25 @@
+main.macros {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+header {
+    font-size: 2rem;
+}
+
+.macros.inner.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.macros.text.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+}
+
+.macros.outer.container {
+    margin: 5vh 0 5vh;
+}
