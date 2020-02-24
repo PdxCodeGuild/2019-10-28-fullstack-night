@@ -21,3 +21,17 @@ def register_new_user(request, pk):
     user_profile = UserProfile(user=User.objects.get(pk=user.pk))
     user_profile.save()
     return HttpResponseRedirect(reverse('home:home'))
+
+def log_out(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home:home'))
+
+def log_in_form(request):
+    return render(request, 'user/login-form.html')
+
+def log_in(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    login(request, user)
+    return HttpResponseRedirect(reverse('home:home'))
