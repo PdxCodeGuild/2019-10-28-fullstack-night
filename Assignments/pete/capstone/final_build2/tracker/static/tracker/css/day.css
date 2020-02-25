@@ -1,0 +1,55 @@
+main.day {
+    flex-direction: column;
+    height: auto;
+    padding-top: 5vh;
+    justify-content: flex-start;
+}
+
+header.small {
+    font-size: 1.5rem;
+}
+
+header.big {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.outer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 66vw;
+    justify-content: space-around;
+    border: 2px solid black;
+}
+
+.middle {
+    width: 32vw;
+    display: flex;
+    flex-direction: column;
+    border: 2px dotted black;
+    margin-top: 2vh;
+    justify-content: space-between;
+    height: 20vh;
+}
+
+.middle header {
+    border-bottom: 2px solid black;
+}
+
+.goal {
+    display: flex;
+    justify-content: space-between;
+    width: 11vw;
+    font-size: 1.25rem;
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+    width: 17vw;
+    font-size: 1.125rem;
+}
+
+main.day button {
+    font-size: 1.5rem;
+}

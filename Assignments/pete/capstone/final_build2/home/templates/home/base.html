@@ -20,7 +20,7 @@
     <nav>
         <a href="#"><button id="home">HOME</button></a>
         <a href="#"><button id="calc">Calculator</button></a>
-        <a href="#"><button id="tracker">Tracker</button></a>
+        <a href="{% url 'tracker:tracker' %}"><button id="tracker">Tracker</button></a>
         <a href="{% url 'user:log_out' %}"><button class="user" id="logout">Logout</button></a>
         <a href="{% url 'user:log_in_form' %}"><button class="guest" id="login">Login</button></a>
     </nav>

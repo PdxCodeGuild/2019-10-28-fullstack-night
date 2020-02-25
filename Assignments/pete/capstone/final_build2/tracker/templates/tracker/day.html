@@ -1,0 +1,64 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/day.css' %}">
+    <script src="{% static 'tracker/js/day.js' %}" defer></script>
+</head>
+{% endblock %}
+
+{% block main %}
+<main class="day">
+    <header class="big">{{ day.date }} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}</header>
+    <div class="day outer container">
+
+        <div class="day middle container">
+            <header class="small">Goals</header>
+            <div class="goal container"><span>Calories:</span><span>{{ macros.kcal }} kcal</span></div>
+            <div class="goal container"><span>Fat:</span><span>{{ macros.fat }} g</span></div>
+            <div class="goal container"><span>Carbohydrates:</span><span>{{ macros.carb }} g</span></div>
+            <div class="goal container"><span>Protein:</span><span>{{ macros.protein }} g</span></div>
+        </div>
+
+        
+        <div class="day middle container">
+            <header class="small">Progress</header>
+            <div class="progress container">
+                <span>Calories: {{ totals.kcal }}/{{ macros.kcal }} kcal</span>
+                <span>You are {{ over_under.kcal }} on Kcal</span>
+            </div>
+            
+            <div class="progress container">
+                <span>Fat: {{ totals.fat }}/{{ macros.fat }} g</span>
+                <span>You are {{ over_under.fat }} on Fat</span>
+            </div>
+
+            <div class="progress container">
+                <span>Carbs: {{ totals.carb }}/{{ macros.carb }} g</span>
+                <span>You are {{ over_under.carb }} on Carbs</span>
+            </div>
+
+            <div class="progress container">
+                <span>Protein {{ totals.protein }}/{{ macros.protein }} g</span>
+                <span>You are {{ over_under.protein }} on Protein</span>
+            </div>
+        </div>
+        
+        <div class="day middle container">
+            <header class="small">Entries:</header>
+
+            {% for entry in day.diary_entry.all %}
+                <div>{{ entry.meal.name }}</div>
+                <div>{{ entry.meal.kcal }} Kcal</div>
+                <div>{{ entry.meal.fat }} g Fat</div>
+                <div>{{ entry.meal.carb }} g Carbs</div>
+                <div>{{ entry.meal.protein }} g Protein</div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <a href="#"><button>Add Entry!</button></a>
+    
+</main>
+{% endblock %}

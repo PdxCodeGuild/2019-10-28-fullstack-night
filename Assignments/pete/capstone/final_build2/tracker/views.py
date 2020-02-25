@@ -1,7 +1,26 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, reverse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 
-def index(request):
-    return HttpResponse('tracker')
+@login_required
+def tracker(request):
+    return render(request, 'tracker/tracker.html')
+
+@login_required
+def add_day(request):
+    training = request.POST['day-type'] == 'train'
+    date = request.POST['date']
+    day = DiaryDay(user=request.user, training=training, date=date)
+    day.save()
+    return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
+    # return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros()})
+
+@login_required
+def get_day(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under})

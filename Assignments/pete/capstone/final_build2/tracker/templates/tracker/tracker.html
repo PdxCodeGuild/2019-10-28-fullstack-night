@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/tracker.css' %}">
+    <script src="{% static 'tracker/js/tracker.js' %}" defer></script>
+</head>
+{% endblock %}
+
+{% block main %}
+<main class="tracker">
+    <form action="{% url 'tracker:add_day' %}" method="POST">
+        {% csrf_token %}
+            <input type="date" name="date">
+            <input type="radio" name="day-type" value="train" checked>Training
+            <input type="radio" name="day-type" value="rest">Rest
+            <button type="submit">Add to Diary!</button>
+    </form>
+</main>
+{% endblock %}
