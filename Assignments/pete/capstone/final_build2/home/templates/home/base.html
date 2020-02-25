@@ -18,11 +18,11 @@
     {{ user_bool|json_script:"user" }}
 
     <nav>
-        <a href="#"><button id="home">HOME</button></a>
-        <a href="#"><button id="calc">Calculator</button></a>
-        <a href="{% url 'tracker:tracker' %}"><button id="tracker">Tracker</button></a>
-        <a href="{% url 'user:log_out' %}"><button class="user" id="logout">Logout</button></a>
-        <a href="{% url 'user:log_in_form' %}"><button class="guest" id="login">Login</button></a>
+        <a id="a-home" href="#"><button>HOME</button></a>
+        <a id="a-calc" href="#"><button>Calculator</button></a>
+        <a id="a-tracker" href="{% url 'tracker:tracker' %}"><button>Tracker</button></a>
+        <a id="a-logout" href="{% url 'user:log_out' %}"><button>Logout</button></a>
+        <a id="a-login" href="{% url 'user:log_in_form' %}"><button>Login</button></a>
     </nav>
     
     <div id="padding"></div>

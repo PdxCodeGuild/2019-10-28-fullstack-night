@@ -6,7 +6,9 @@ from .models import *
 
 @login_required
 def tracker(request):
-    return render(request, 'tracker/tracker.html')
+    days = DiaryDay.objects.order_by('-date')
+    days_json = [day.date for day in days]
+    return render(request, 'tracker/tracker.html', {'days': days, 'days_json': days_json})
 
 @login_required
 def add_day(request):

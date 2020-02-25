@@ -1,4 +1,10 @@
 main.tracker {
     font-size: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
+.tracker.container {
+    display: flex;
+    flex-direction: column;
+}

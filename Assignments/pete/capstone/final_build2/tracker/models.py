@@ -74,6 +74,12 @@ class DiaryDay(models.Model):
         
         return Meal.objects.filter(general=True).filter(kcal__lte=(offset_dict['kcal']*-1)).filter(fat__lte=(offset_dict['fat']*-1)).filter(carb__lte=(offset_dict['carb']*-1)).filter(protein__lte=(offset_dict['protein']*-1))
 
+    def sorted(self):
+        '''
+        Here I want to create a method that sorts by date.
+        '''
+        pass
+
     def __str__(self):
         return str(self.date)
 

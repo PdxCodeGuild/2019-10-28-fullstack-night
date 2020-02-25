@@ -1,12 +1,12 @@
 var userBool = JSON.parse(document.querySelector("#user").textContent);
 
 // main nav bar
-let homeButton = document.querySelector('#home');
-let calcButton = document.querySelector('#calc');
-let trackerButton = document.querySelector('#tracker');
-let loginButton = document.querySelector('#login');
-let logoutButton = document.querySelector('#logout');
-buttonArr = [homeButton, calcButton, trackerButton, logoutButton];
+let homeAnchor = document.querySelector('#a-home');
+let calcAnchor = document.querySelector('#a-calc');
+let trackerAnchor = document.querySelector('#a-tracker');
+let loginAnchor = document.querySelector('#a-login');
+let logoutAnchor = document.querySelector('#a-logout');
+anchorArr = [homeAnchor, calcAnchor, trackerAnchor, logoutAnchor];
 
 // sub nav bars
 let welcomeNav = document.querySelector('#welcome-nav');
@@ -17,13 +17,13 @@ let navArr = [homeNav, calcNav, trackerNav, welcomeNav]
 
 
 if (userBool===true) {
-    loginButton.style.display = 'none';
+    loginAnchor.style.display = 'none';
 } else {
-    logoutButton.style.display = 'none';
+    logoutAnchor.style.display = 'none';
 }
 
-for (let i=0; i<buttonArr.length-1; i++) {
-    buttonArr[i].onclick = function() {
+for (let i=0; i<anchorArr.length-1; i++) {
+    anchorArr[i].onclick = function() {
         console.log('hey')
         for (let j=0; j<navArr.length; j++) {
             navArr[j].style.display = 'none';
