@@ -12,6 +12,10 @@ def macros(request, pk):
     macros_dict = macros.macros_dict()
     return render(request, 'calc/macros.html', {'macros': macros, 'macros_dict': macros_dict})
 
+def macros_redirect(request):
+    macros = request.user.macros.get(active=True)
+    return HttpResponseRedirect(reverse('calc:macros', kwargs={'pk': macros.pk}))
+
 def calculate(request):
     data = request.POST
     meas_sys = data['meas']

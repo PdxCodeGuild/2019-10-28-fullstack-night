@@ -58,11 +58,7 @@
 
     </div>
     
-    <div class="macros container">
-        <form action="{% url 'user:register_form' pk=macros.pk %}" method="POST">
-        {% csrf_token %}
-            <button type="submit">Create Account</button>
-        </form>
-    </div>
+    <a href="{% url 'user:register_form' pk=macros.pk %}" class="macros" id="create-account"><button type="submit">Create Account</button></a>
+    <a href="#" class="macros" id="recalc-button"><button>ReCalculate Macros</button></a>
 </main>
 {% endblock %}

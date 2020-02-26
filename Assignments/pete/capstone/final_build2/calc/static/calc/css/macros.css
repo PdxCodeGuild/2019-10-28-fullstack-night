@@ -23,3 +23,7 @@ header {
 .macros.outer.container {
     margin: 5vh 0 5vh;
 }
+
+button {
+    font-size: 2rem;
+}

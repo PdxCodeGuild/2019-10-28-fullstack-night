@@ -25,4 +25,35 @@ def get_day(request, pk):
     totals = day.total()
     offset = day.offset()
     over_under = day.over_under()
-    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under})
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+
+@login_required
+def entry(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
+
+@login_required
+def add_entry(request, pk):
+
+    day = DiaryDay.objects.get(pk=pk)
+    name = request.POST['name']
+    kcal = request.POST['kcal']
+    fat = request.POST['fat']
+    carb = request.POST['carb']
+    protein = request.POST['protein']
+    meal = Meal(name=name, kcal=kcal, fat=fat, carb=carb, protein=protein)
+    meal.save()
+
+    if request.POST.get('save', None):
+        meal.user.add(request.user)
+
+    DiaryEntry(meal=meal, date=day).save()
+    return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
+
+@login_required
+def saved_entry(request, pk):
+
+    day = DiaryDay.objects.get(pk=pk)
+    meal = Meal.objects.get(pk=request.POST['meal'])
+    DiaryEntry(meal=meal, date=day).save()
+    return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))

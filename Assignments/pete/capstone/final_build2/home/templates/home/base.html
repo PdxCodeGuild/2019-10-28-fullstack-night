@@ -19,7 +19,7 @@
 
     <nav>
         <a id="a-home" href="#"><button>HOME</button></a>
-        <a id="a-calc" href="#"><button>Calculator</button></a>
+        <a id="a-calc" href="{% url 'calc:macros_redirect' %}"><button>Calculator</button></a>
         <a id="a-tracker" href="{% url 'tracker:tracker' %}"><button>Tracker</button></a>
         <a id="a-logout" href="{% url 'user:log_out' %}"><button>Logout</button></a>
         <a id="a-login" href="{% url 'user:log_in_form' %}"><button>Login</button></a>

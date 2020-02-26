@@ -45,20 +45,23 @@
             </div>
         </div>
         
-        <div class="day middle container">
+        <div class="day entry container outer">
             <header class="small">Entries:</header>
-
-            {% for entry in day.diary_entry.all %}
-                <div>{{ entry.meal.name }}</div>
-                <div>{{ entry.meal.kcal }} Kcal</div>
-                <div>{{ entry.meal.fat }} g Fat</div>
-                <div>{{ entry.meal.carb }} g Carbs</div>
-                <div>{{ entry.meal.protein }} g Protein</div>
-            {% endfor %}
+            <div class="entries">
+                {% for entry in day.diary_entry.all %}
+                <div class="entry container">
+                    <div>{{ entry.meal.name }}</div>
+                    <div>{{ entry.meal.kcal }} Kcal</div>
+                    <div>{{ entry.meal.fat }} g Fat</div>
+                    <div>{{ entry.meal.carb }} g Carbs</div>
+                    <div>{{ entry.meal.protein }} g Protein</div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
     </div>
-    <a href="#"><button>Add Entry!</button></a>
+    <a href="{% url 'tracker:entry' pk=day.pk %}"><button>Add Entry!</button></a>
     
 </main>
 {% endblock %}
