@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 
 
 def register_login(request):
-    next_place = request.GET.get('next', reverse('lib_app:index'))
+    next_place = request.GET.get('next', reverse('lib:index'))
     context = {
         'next' : next_place,
     }
@@ -17,14 +17,14 @@ def register_user(request):
     password = request.POST['password']
     user = User.objects.create_user(username, email, password)
     login(request, user)
-    return HttpResponseRedirect(reverse('lib_app:index'))
+    return HttpResponseRedirect(reverse('lib:index'))
 
 def login_user(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
     login(request, user)
-    return HttpResponseRedirect(reverse('lib_app:index'))
+    return HttpResponseRedirect(reverse('lib:index'))
 
 def logout_user(request):
     logout(request)

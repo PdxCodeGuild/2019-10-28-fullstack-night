@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Checkout Status</h1>
+    {% for stat in status %}
+    <ul>
+        <li>{{stat}} | User: {{stat.user}} | Checked Out?: {{stat.status}} | Time Checked Out: {{stat.time_out}} | {{stat.time_in}}</li>
+    </ul>
+    {% endfor %}
+
+</body>
+</html>

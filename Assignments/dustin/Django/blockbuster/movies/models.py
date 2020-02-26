@@ -5,6 +5,7 @@ class Movie(models.Model):
     title = models.CharField(max_length = 32)
     genre = models.ManyToManyField('Genre')
     rental_price_cents = models.IntegerField()
+    image = models.ImageField(upload_to='pics/', null=True, blank=True)
 
     def __str__(self):
         return self.title

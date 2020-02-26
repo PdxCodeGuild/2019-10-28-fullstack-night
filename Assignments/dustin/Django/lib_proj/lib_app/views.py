@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Book, Author
+from .models import Book, Author, CheckoutStatus
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -8,11 +8,24 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'lib_app/index.html', {})
 
+def checkout_history(request):
+    data = CheckoutStatus.objects.all()
+    return render(request, 'lib_app/checkout_status.html', {'status': data})
+
 def author_detail(request, pk):
     #data = request.GET(pk=pk)
     author = Author.objects.get(pk=pk)
     print(author)
     return render(request, 'lib_app/author_detail.html', {'author': author})
+
+def checkout_book(request, pk):
+    book = Book.objects.get(pk=pk)
+    data = book.author
+    book.checked_out = True
+    book.save()
+    status = CheckoutStatus(book=book, status=book.checked_out, user=request.user)
+    status.save()
+    return HttpResponseRedirect(reverse('lib:author_detail', kwargs={'pk': data.pk}))
 
 def search(request):
     data = request.GET

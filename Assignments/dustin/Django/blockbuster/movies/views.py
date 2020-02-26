@@ -14,6 +14,7 @@ def new_movie(request):
     new_movie = Movie(
         title=request.POST['title'],
         rental_price_cents=500,
+        image=request.FILES['movie_image']
         )
     new_movie.save()
     for genre in request.POST.getlist('genres'):

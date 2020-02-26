@@ -11,7 +11,7 @@
 		<li><a href="{% url 'movies:movie_detail' movie.pk %}">{{ movie.title }}</a></li>
 	{% endfor %}
 	</ul>
-	<form method="POST" action="{% url 'movies:new_movie' %}">
+	<form method="POST" action="{% url 'movies:new_movie' %}"" enctype="multipart/form-data">
 		{% csrf_token %}
 		<input type="text" name="title" placeholder="movie title">
 		<label for="genres">Choose a genres:</label>
@@ -20,6 +20,8 @@
 			<option value="{{genre.pk}}">{{genre.text}}</option>
 			{% endfor %}
 		</select>
+		<label for="movie_image">Select an image:</label>
+		<input type="file" name="movie_image" id="movie_image">
 		<button type="submit">Register New Movie</button>
 	</form>
 

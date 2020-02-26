@@ -21,9 +21,17 @@
 
     <ul>
     {% for result in results %}
-        <li><a href="{% url 'lib:author_detail' result.pk %}">
+        <li><a href="{% url 'lib:author_detail' result.author.pk %}">
             {{result}}
-        </a></li>
+        </a>
+        {% if search_choice == "Book" %}
+            {% if result.checked_out == True %}:
+                Checked Out!
+            {% else %}
+                Available!
+            {% endif %}
+        {% endif %}
+        </li>
     {% endfor %}
     </ul>
 

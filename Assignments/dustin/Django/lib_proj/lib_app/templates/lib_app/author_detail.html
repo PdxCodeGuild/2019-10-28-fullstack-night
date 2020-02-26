@@ -7,9 +7,20 @@
 </head>
 <body>
     <h1>{{author.name}}</h1>
+    
+    
     <ul>
     {% for book in author.book_set.all %}
-        <li>{{book}}</li>
+        <li>
+            {% if book.checked_out == True %}
+                {{book}} - Checked Out!
+            {% else %}
+                {{book}}  - Available! <form action="{% url 'lib:checkout' book.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Check Out!</button>
+                </form>
+            {% endif %}
+        </li>
     {% endfor %}
     </ul>
 
