@@ -1,0 +1,23 @@
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+	</head>
+	<body>
+<input type='text' id="typing">
+<div id="autocomplete">
+<script>
+	typingBox = document.querySelector("#typing");
+	autoCompleteDiv = document.querySelector("#autocomplete");
+	typingBox.oninput = function() {
+		axios({
+			method: "post",
+			url: "/autocomplete/",
+			data: {
+				"typed": typingBox.value,
+			},
+		}).then((response) => {
+			console.log(response);
+			autoCompleteDiv.innerText = response.data.animals;
+		});
+	}
+</script>
+	</body>
