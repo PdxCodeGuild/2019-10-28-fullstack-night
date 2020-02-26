@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style>
+	.draggable {
+            user-select: none;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: rosybrown; /* best color */
+	}
+	#app {
+		width: 100vw;
+		height: 100vh;
+	}
+</style>
+</head>
+<body>
+	<div id="app" v-on:mousemove="dragDiv">
+		<div id="draggable" class="draggable" v-on:mousedown="chooseDiv" v-on:mouseup="releaseDiv">
+			drag me
+		</div>
+	</div>
+	<script>
+		console.log('hi')
+		var app = new Vue({
+			el: "#app",
+			data: {
+				activeDiv: null,
+			},
+			methods: {
+				chooseDiv: function(e) {
+					this.activeDiv = e.target;
+					console.log('choose')
+				},
+				releaseDiv: function() {
+					this.activeDiv = null;
+					console.log('release')
+				},
+				dragDiv: function(e) {
+					console.log('drag')
+					if (this.activeDiv !== null) {
+						this.activeDiv.style.position = "absolute";
+				                this.activeDiv.style.top = `${e.y - 50}px`;
+				                this.activeDiv.style.left = `${e.x - 50}px`;
+					}
+				},
+			
+			},
+
+
+		})
+	</script>
+</body>
+</html>
+
