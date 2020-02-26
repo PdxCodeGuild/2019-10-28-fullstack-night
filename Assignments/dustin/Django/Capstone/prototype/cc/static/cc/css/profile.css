@@ -8,7 +8,8 @@ body {
     margin: 0px 0px;
 }
 mydiv {
-    margin: auto 8%;
+    margin: auto;
+    min-width: 600px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -53,7 +54,7 @@ usertitle {
 artdiv {
     padding: 5px;
     width: 100%;
-    height: 70vh;
+    height: 100%;
     background-color: #104f55;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -67,34 +68,40 @@ div#box1 {
     margin: 5px;
     display: grid;
     grid-column: 1 / span 2;
-    grid-row: 1;
+    grid-row: 1 / span 1;
 }
 
 #box1flex {
     width: 100%;
     height: 100%;
+    max-height: inherit;
+    padding: 5px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     
 }
 
     #useridphoto {
-        max-width: 29%;
-        max-height: 50%;
+        max-width: 100%;
+        width: 100%;
+        /* max-height: 50%; */
+        height: min-content;
+        display: block;
         overflow: none;
+        text-align: center;
         /* flex-basis: auto; */
     }
 
     #uidcontainer {
         width: 100%;
         height: 100%;
-        
+        display: block;
     }
 
     #useridphoto img {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 300px;
+        max-height: 300px;
         border: solid 2px black;
         border-radius: 12px;
         
@@ -102,8 +109,7 @@ div#box1 {
     }
 
     #userinfo {
-        width: 68%;
-        height: 50%;
+        width: 100%;
     }
     #userinterests {
         width: 100%;
@@ -119,6 +125,40 @@ div#box2 {
     grid-column: 3 / span 2;
     grid-row: 1;
 }
+
+#box2flex {
+    width: 100%;
+    height: 100%;
+    max-height: inherit;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+}
+    #featuredwork {
+        max-width: 100%;
+        width: 100%;
+        /* max-height: 50%; */
+        height: min-content;
+        display: block;
+        overflow: none;
+        text-align: center;
+        /* flex-basis: auto; */
+    }
+
+        #fwcontainer {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+            #featuredwork img {
+                max-width: 600px;
+                max-height: 600px;
+                border: solid 2px black;
+                border-radius: 12px;
+            }
 
 div#box3 {
     padding: 5px;
