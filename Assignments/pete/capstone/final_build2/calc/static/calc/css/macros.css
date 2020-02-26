@@ -28,6 +28,6 @@ button.macros {
     font-size: 2rem;
 }
 
-* {
+body {
     box-sizing: border-box;
 }
