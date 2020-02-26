@@ -14,16 +14,15 @@ header.big {
     text-decoration: underline;
 }
 
-.outer {
+#outer-day {
     display: flex;
     flex-wrap: wrap;
     width: 66vw;
-    /* height: 100vh; */
     justify-content: space-around;
     border: 2px solid black;
 }
 
-.middle {
+.middle-day {
     width: 32vw;
     display: flex;
     flex-direction: column;
@@ -31,7 +30,6 @@ header.big {
     margin-top: 2vh;
     justify-content: space-between;
     min-height: 20vh;
-    height: auto;
 }
 
 header.small {
@@ -39,17 +37,17 @@ header.small {
 }
 
 
-.goal {
+.goal-div {
     display: flex;
     justify-content: space-between;
     width: 50%;
     font-size: 1.25rem;
 }
 
-.progress {
+.prog-div {
     display: flex;
     justify-content: space-between;
-    width: 17vw;
+    min-width: 17vw;
     font-size: 1.125rem;
 }
 
@@ -57,7 +55,7 @@ main.day button {
     font-size: 1.5rem;
 }
 
-.entries {
+#inner-entry {
     display: flex;
     flex-direction: row;
     height: 17.5vh;
@@ -66,21 +64,21 @@ main.day button {
 }
 
 .entry {
-    height: 95%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 0 0.5vw;
 }
 
-.entry.container.outer {
+#outer-entry {
     min-width: 32vw;
     max-width: 64vw;
     width: auto;
     display: flex;
     flex-direction: column;
     border: 2px dotted black;
-    margin-top: 2vh;
+    margin: 2vh 0;
     justify-content: space-between;
     height: 20vh;
 }

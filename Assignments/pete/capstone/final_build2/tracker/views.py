@@ -26,8 +26,8 @@ def get_day(request, pk):
     totals = day.total()
     offset = day.offset()
     over_under = day.over_under()
-    # return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
-    return render(request, 'tracker/day2.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    # return render(request, 'tracker/day2.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
 
 @login_required
 def entry(request, pk):

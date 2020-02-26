@@ -1,13 +1,13 @@
-let macrosCreateAccount = document.querySelector('#create-account.macros');
-let macrosReCalc = document.querySelector('#recalc-button.macros');
+// let macrosCreateAccount = document.querySelector('#create-account.macros');
+// let macrosReCalc = document.querySelector('#recalc-button.macros');
 
-macrosCreateAccount.style.display = 'none';
-macrosReCalc.style.display = 'none';
-if (userBool) {
-    macrosReCalc.style.display = 'block';
-} else {
-    macrosCreateAccount.style.display = 'block';
-}
+// macrosCreateAccount.style.display = 'none';
+// macrosReCalc.style.display = 'none';
+// if (userBool) {
+//     macrosReCalc.style.display = 'block';
+// } else {
+//     macrosCreateAccount.style.display = 'block';
+// }
 
 var macrosDict = JSON.parse(document.querySelector('#macros_dict').textContent);
 
