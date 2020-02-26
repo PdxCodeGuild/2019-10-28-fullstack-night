@@ -6,7 +6,8 @@ from .models import *
 
 @login_required
 def tracker(request):
-    days = DiaryDay.objects.order_by('-date')
+    days = DiaryDay.objects.filter(user=request.user).order_by('-date')
+    # days = DiaryDay.objects.order_by('-date')
     days_json = [day.date for day in days]
     return render(request, 'tracker/tracker.html', {'days': days, 'days_json': days_json})
 
@@ -25,7 +26,8 @@ def get_day(request, pk):
     totals = day.total()
     offset = day.offset()
     over_under = day.over_under()
-    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    # return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    return render(request, 'tracker/day2.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
 
 @login_required
 def entry(request, pk):
