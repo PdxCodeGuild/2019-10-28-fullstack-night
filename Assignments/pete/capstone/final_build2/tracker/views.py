@@ -27,8 +27,15 @@ def get_day(request, pk):
     offset = day.offset()
     over_under = day.over_under()
     return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
-    # return render(request, 'tracker/day2.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
-
+    
+@login_required
+def get_day_charts(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day-charts.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    
 @login_required
 def entry(request, pk):
     day = DiaryDay.objects.get(pk=pk)
