@@ -1,0 +1,9 @@
+{% load static %}
+<head>
+    <script src="{% static 'tracker/js/day-canvas.js' %}" defer></script>
+</head>
+<body>
+    {{ macros|json_script:"macros" }}
+    {{ totals|json_script:"totals" }}
+    <canvas width="600" height="300"></canvas>
+</body>

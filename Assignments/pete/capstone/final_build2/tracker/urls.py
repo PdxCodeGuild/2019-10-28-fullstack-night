@@ -11,4 +11,5 @@ urlpatterns = [
     path('entry/<int:pk>/', views.entry, name='entry'),
     path('add-entry/<int:pk>/', views.add_entry, name='add_entry'),
     path('saved-entry/<int:pk>/', views.saved_entry, name='saved_entry'),
+    path('day-canvas/<int:pk>/', views.day_canvas, name='day_canvas'),#test for self-made canvas graph in day
 ]

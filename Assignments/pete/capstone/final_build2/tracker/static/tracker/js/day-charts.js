@@ -22,29 +22,17 @@ var goalsChart = new Chart(ctxGoals, {
         }]
     },
     options: {
-        // onResize: function(chart, pos) {
-        //     console.log(chart, pos);
-        //     chart.width = 50;
-        // }
+
         responsive: false,
         legend: {
             display: false,
-            // position: 'right',
         }
     }
 })
 
-// var progressChart = new Chart(ctxProgress, {
-//     type: 'horizontalBar',
-//     data: {
-//         labels: ['KCal Goal', 'KCal Total', 'Fat Goal', 'Fat Total', 'Carb Goal', 'Carb Total', 'Protein Goal', 'Protein Total'],
-//         datasets: [{
-//             data: [macros.kcal/5, totals.kcal/5, macros.fat, totals.fat, macros.carb, totals.carb, macros.protein, totals.protein],
-//         }]
-//     }
-// })
 
-var progressChart2 = new Chart(ctxProgress, {
+
+var progressChart = new Chart(ctxProgress, {
     type: 'horizontalBar',
     data: {
         labels: ['KCAL', 'FAT', 'CARB', 'PROTEIN'],
@@ -58,6 +46,7 @@ var progressChart2 = new Chart(ctxProgress, {
             xAxes: [{
                 ticks: {
                     beginAtZero: true,
+                    max: 1,
                 }
             }]
         }
