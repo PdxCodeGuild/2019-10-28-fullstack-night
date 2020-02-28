@@ -58,6 +58,7 @@ main.day button {
 #inner-entry {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     height: 17.5vh;
     flex-wrap: wrap;
     overflow-y: auto;
@@ -69,6 +70,10 @@ main.day button {
     flex-direction: column;
     justify-content: space-between;
     margin: 0 0.5vw;
+}
+
+div.name {
+    text-decoration: underline;
 }
 
 #outer-entry {

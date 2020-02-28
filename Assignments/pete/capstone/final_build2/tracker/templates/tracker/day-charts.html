@@ -11,6 +11,7 @@
 {% block main %}
 {{ macros|json_script:"macros" }}
 {{ totals|json_script:"totals" }}
+{{ over_under|json_script:"over_under" }}
 
 <main class="day">
     <header class="big">{{ day.date }} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}</header>

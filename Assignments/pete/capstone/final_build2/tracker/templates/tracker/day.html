@@ -52,7 +52,7 @@
             <div id="inner-entry">
                 {% for entry in day.diary_entry.all %}
                 <div class="entry">
-                    <div>{{ entry.meal.name }}</div>
+                    <div class="name">{{ entry.meal.name }}</div>
                     <div>{{ entry.meal.kcal }} Kcal</div>
                     <div>{{ entry.meal.fat }} g Fat</div>
                     <div>{{ entry.meal.carb }} g Carbs</div>

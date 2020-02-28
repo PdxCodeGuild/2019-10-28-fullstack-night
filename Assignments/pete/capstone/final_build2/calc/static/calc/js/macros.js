@@ -23,10 +23,10 @@ var trainingChart = new Chart(ctxTrain, {
     type: 'pie',
 
     data: {
-        labels: ['Fat', 'Carbs', 'Protein'],
+        labels: ['Fat (g)', 'Carbs (g)', 'Protein (g)'],
 
         datasets: [{
-            label: "g per day",
+            // label: "g per day",
             data: [macrosDict.train_fat, macrosDict.train_carb, macrosDict.protein],
             backgroundColor: [
                 'purple',
@@ -41,10 +41,10 @@ var restingChart = new Chart(ctxRest, {
     type: 'pie',
 
     data: {
-        labels: ['Fat', 'Carbs', 'Protein'],
+        labels: ['Fat (g)', 'Carbs (g)', 'Protein (g)'],
         
         datasets: [{
-            label: "g per day",
+            // label: "g per day",
             data: [macrosDict.rest_fat, macrosDict.rest_carb, macrosDict.protein],
             backgroundColor: [
                 'purple',
@@ -59,15 +59,23 @@ cnvT.addEventListener('click', function() {
     console.log(trainingChart)
     if (trainGram) {
         trainGram = false;
+
         trainingChart.data.datasets[0].data[0] *= 9;
         trainingChart.data.datasets[0].data[1] *= 4;
         trainingChart.data.datasets[0].data[2] *= 4;
+
+        trainingChart.data.labels = ['Fat (kcal)', 'Carbs (kcal)', 'Protein (kcal)'];
+
         trainingChart.update();
     } else {
         trainGram = true;
+
         trainingChart.data.datasets[0].data[0] /= 9;
         trainingChart.data.datasets[0].data[1] /= 4;
         trainingChart.data.datasets[0].data[2] /= 4;
+
+        trainingChart.data.labels = ['Fat (g)', 'Carbs (g)', 'Protein (g)'];
+
         trainingChart.update();
     }
 })
@@ -79,12 +87,18 @@ cnvR.addEventListener('click', function() {
         restingChart.data.datasets[0].data[0] *= 9;
         restingChart.data.datasets[0].data[1] *= 4;
         restingChart.data.datasets[0].data[2] *= 4;
+
+        restingChart.data.labels = ['Fat (kcal)', 'Carbs (kcal)', 'Protein (kcal)'];
+
         restingChart.update();
     } else {
         restGram = true;
         restingChart.data.datasets[0].data[0] /= 9;
         restingChart.data.datasets[0].data[1] /= 4;
         restingChart.data.datasets[0].data[2] /= 4;
+
+        restingChart.data.labels = ['Fat (g)', 'Carbs (g)', 'Protein (g)'];
+
         restingChart.update();
     }
 })

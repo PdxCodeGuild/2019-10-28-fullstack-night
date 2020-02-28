@@ -58,11 +58,11 @@ class DiaryDay(models.Model):
         over_under_dict = {}
         for key in total_dict.keys():
             if total_dict[key] > macros_dict[key] * 1.1:
-                over_under_dict[key] = 'Over'
+                over_under_dict[key] = 'over' #previously: 'Over'
             elif total_dict[key] < macros_dict[key] * 0.9:
-                over_under_dict[key] = 'Under'
+                over_under_dict[key] = 'under' #previously: 'Under'
             else:
-                over_under_dict[key] = 'in Goal Range'
+                over_under_dict[key] = 'goal' #previously: 'in Goal Range'
         return over_under_dict
 
     def suggestion(self):#removed training_bool
