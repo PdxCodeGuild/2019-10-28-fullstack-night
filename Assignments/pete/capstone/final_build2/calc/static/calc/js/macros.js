@@ -11,7 +11,13 @@
 
 var macrosDict = JSON.parse(document.querySelector('#macros_dict').textContent);
 
+let cnvT = document.querySelector('#training-chart');
+let trainGram = true;
+let cnvR = document.querySelector('#rest-chart');
+let restGram = true;
+
 var ctxTrain = document.querySelector('#training-chart').getContext('2d')
+var ctxRest = document.querySelector('#rest-chart').getContext('2d')
 
 var trainingChart = new Chart(ctxTrain, {
     type: 'pie',
@@ -31,8 +37,6 @@ var trainingChart = new Chart(ctxTrain, {
     }
 })
 
-var ctxRest = document.querySelector('#rest-chart').getContext('2d')
-
 var restingChart = new Chart(ctxRest, {
     type: 'pie',
 
@@ -51,4 +55,36 @@ var restingChart = new Chart(ctxRest, {
     }
 })
 
-console.log(userBool)
+cnvT.addEventListener('click', function() {
+    console.log(trainingChart)
+    if (trainGram) {
+        trainGram = false;
+        trainingChart.data.datasets[0].data[0] *= 9;
+        trainingChart.data.datasets[0].data[1] *= 4;
+        trainingChart.data.datasets[0].data[2] *= 4;
+        trainingChart.update();
+    } else {
+        trainGram = true;
+        trainingChart.data.datasets[0].data[0] /= 9;
+        trainingChart.data.datasets[0].data[1] /= 4;
+        trainingChart.data.datasets[0].data[2] /= 4;
+        trainingChart.update();
+    }
+})
+
+cnvR.addEventListener('click', function() {
+    console.log(restingChart)
+    if (restGram) {
+        restGram = false;
+        restingChart.data.datasets[0].data[0] *= 9;
+        restingChart.data.datasets[0].data[1] *= 4;
+        restingChart.data.datasets[0].data[2] *= 4;
+        restingChart.update();
+    } else {
+        restGram = true;
+        restingChart.data.datasets[0].data[0] /= 9;
+        restingChart.data.datasets[0].data[1] /= 4;
+        restingChart.data.datasets[0].data[2] /= 4;
+        restingChart.update();
+    }
+})
