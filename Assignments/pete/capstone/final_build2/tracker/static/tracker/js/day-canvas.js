@@ -2,6 +2,8 @@ var macros = JSON.parse(document.querySelector('#macros').textContent);
 var totals = JSON.parse(document.querySelector('#totals').textContent);
 var feedback = JSON.parse(document.querySelector('#over_under').textContent);
 
+// var font = new FontFace("Odibee Sans", "url(https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap)");
+
 feedbackToColor = {
     'over': 'hsl(0, 100%, 50%, 0.5)', //red
     'under': 'hsl(240, 100%, 50%, 0.5)', //blue
@@ -17,13 +19,14 @@ let ctx = document.querySelector('canvas').getContext('2d');
 let w = 600;
 let h = 300;
 
+// font.load.then(
 function mainLoop() {
     ctx.fillStyle = 'hsl(0,0%,50%)';
     // ctx.fillStyle = 'hsl(0,0%,100%)';
     // ctx.fillStyle = 'hsla(0, 0%, 0%)';
     // ctx.fillStyle = 'hotpink';
     ctx.fillRect(0, 0, w, h);
-    ctx.font = '20px Arial';
+    ctx.font = 'Odibee Sans';
 
     for (let i=0; i<keys.length; i++) {
         let key = keys[i];
@@ -42,7 +45,7 @@ function mainLoop() {
         ctx.fillStyle = 'hsla(0, 0%, 0%, 0.5)'
         ctx.fillRect(0, yPos[i], t, 55);
         ctx.beginPath();
-        ctx.arc(t, yPos[i] + 27.5, 30, 1.5*Math.PI, 0.5*Math.PI);
+        ctx.arc(t, yPos[i] + 27.5, 27.5, 1.5*Math.PI, 0.5*Math.PI);
         ctx.fill();
 
         //filled bar
@@ -51,17 +54,18 @@ function mainLoop() {
             ctx.fillRect(0, yPos[i], prog*t, 55);
         } else {
             ctx.fillRect(0, yPos[i], t, 55);
-            let grdr = ctx.createRadialGradient(t, yPos[i] + 27.5, 0, t, yPos[i] + 27.5, 30);
+            let grdr = ctx.createRadialGradient(t, yPos[i] + 27.5, 0, t, yPos[i] + 27.5, 17.5);
             grdr.addColorStop(0, 'hsla(0, 0%, 50%');
             grdr.addColorStop(1, feedbackToColor[feedback[key]]);
+            ctx.fillStyle = grdr;
             ctx.beginPath();
-            ctx.arc(t, yPos[i] + 27.5, 30, 1.5*Math.PI, 0.5*Math.PI);
+            ctx.arc(t, yPos[i] + 27.5, 27.5, 1.5*Math.PI, 0.5*Math.PI);
             ctx.fill();
         }
         
         ctx.fillStyle = 'black';
         ctx.fillText(key, t*1.1, yPos[i] + 20);
-        ctx.fillText(`${total} / ${goal}`, t*1.1, yPos[i] + 45);
+        ctx.fillText(`TEST ${total} / ${goal}`, t*1.1, yPos[i] + 45);
 
         // ctx.fillText(`G: ${goal} ${key}`, t, yPos[i] + 20);
         // ctx.fillText(`P: ${total} ${key}`, prog*t, yPos[i] + 45);
