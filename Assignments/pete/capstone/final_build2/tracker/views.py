@@ -45,6 +45,11 @@ def day_canvas(request, pk):
     return render(request, 'tracker/day-canvas.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
     return HttpResponse('canvas')
 
+@login_required
+def nutritionix(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    return render(request, 'tracker/nutritionix.html')
+
 """
 REDIRECT VIEWS
 """

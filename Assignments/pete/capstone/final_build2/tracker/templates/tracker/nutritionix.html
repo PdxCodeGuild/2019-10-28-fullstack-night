@@ -1,0 +1,20 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+<script src="{% static 'tracker/js/nutritionix.js' %}" defer></script>
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/nutritionix.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock %}
+
+{% block main %}
+<main class="nutritionix">
+    <div id="app">
+        <input v-model="query">
+        <button v-on:click="axiosCall" v-on:click="totalsAdd">Add</button>
+        <div v-for='foodItem in foodItems'>
+            <food-item v-bind:food="foodItem"></food-item>
+        </div>
+        <totals-div v-if="foodItems" v-bind:totals='totalsObj'></totals-div>
+    </div>
+</main>
+{% endblock %}
