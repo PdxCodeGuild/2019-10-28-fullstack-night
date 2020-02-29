@@ -25,7 +25,7 @@
                 <header class="small">Calories</header>
                 <div class="inner-container" id="kcal-inner">
                     <food-kcal v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-kcal>
-                    <total-kcal v-if='foodItems.length>1'></total-kcal>
+                    <total-kcal v-if="foodItems.length>1" v-bind:totals-obj="totalsObj"></total-kcal>
                 </div>
             </div>
 
@@ -34,6 +34,7 @@
                 <header class="small">Fat (g)</header>
                 <div class="inner-container" id="fat-inner">
                     <food-fat v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-fat>
+                    <total-fat v-if="foodItems.length>1" v-bind:totals-obj="totalsObj"></total-fat>
                 </div>
             </div>
             
@@ -41,6 +42,7 @@
                 <header class="small">Carbs (g)</header>
                 <div class="inner-container" id="carb-inner">
                     <food-carb v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-carb>
+                    <total-carb v-if="foodItems.length>1" v-bind:totals-obj="totalsObj"></total-carb>
                 </div>
             </div>
             
@@ -48,11 +50,12 @@
                 <header class="small">Protein (g)</header>
                 <div class="inner-container" id="protein-inner">
                     <food-protein v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-protein>
+                    <total-protein v-if="foodItems.length>1" v-bind:totals-obj="totalsObj"></total-protein>
                 </div>
             </div>
 
         </div>
-        <totals-div v-if="foodItems.length" v-bind:totals='totalsObj'></totals-div>
+        <!-- <totals-div v-if="foodItems.length" v-bind:totals='totalsObj'></totals-div> -->
     </div>
 </main>
 {% endblock %}

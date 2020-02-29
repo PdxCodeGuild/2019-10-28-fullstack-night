@@ -22,7 +22,7 @@ let foodKcal = {
 
 let totalKcal = {
     props: ['totalsObj'],
-    template: `<div>{{totalsObj.kcal}}</div>`
+    template: `<div>{{totalsObj.kcal}}</div>`,
 }
 
 let foodFat = {
@@ -35,6 +35,11 @@ let foodFat = {
     }
 }
 
+let totalFat = {
+    props: ['totalsObj'],
+    template: `<div>{{totalsObj.fat}}</div>`,
+}
+
 let foodCarb = {
     props: ['food'],
     template: `<div>{{carbRound}}</div>`,
@@ -44,6 +49,12 @@ let foodCarb = {
         }
     }
 }
+
+let totalCarb = {
+    props: ['totalsObj'],
+    template: `<div>{{totalsObj.carb}}</div>`,
+}
+
 
 let foodProtein = {
     props: ['food'],
@@ -55,47 +66,76 @@ let foodProtein = {
     }
 }
 
-let totalsDiv = {
-    // props: ['totals'],
-    template: `<div>Totals: kcal: {{totals.nf_calories}} fat: {{totals.nf_total_fat}} carb: {{totals.nf_total_carbohydrate}} protein: {{totals.nf_protein}}</div>`,
-    computed: {
-        totals: function() {
-            totalObj = {'nf_calories': 0, 'nf_total_fat': 0, 'nf_total_carbohydrate': 0, 'nf_protein': 0};
-            for (let i=0; i<app.foodItems.length; i++) {
-                totalObj.nf_calories += app.foodItems[i].nf_calories
-                totalObj.nf_total_fat += app.foodItems[i].nf_total_fat
-                totalObj.nf_total_carbohydrate += app.foodItems[i].nf_total_carbohydrate
-                totalObj.nf_protein += app.foodItems[i].nf_protein
-            }
-            return totalObj
-        }
-    }
+let totalProtein = {
+    props: ['totalsObj'],
+    template: `<div>{{totalsObj.protein}}</div>`,
 }
+
+
+// let totalsDiv = {
+//     // props: ['totals'],
+//     template: `<div>Totals: kcal: {{totals.nf_calories}} fat: {{totals.nf_total_fat}} carb: {{totals.nf_total_carbohydrate}} protein: {{totals.nf_protein}}</div>`,
+//     computed: {
+//         totals: function() {
+//             totalsObj = {'nf_calories': 0, 'nf_total_fat': 0, 'nf_total_carbohydrate': 0, 'nf_protein': 0};
+//             for (let i=0; i<this.foodItems.length; i++) {
+//                 totalsObj.nf_calories += this.foodItems[i].nf_calories
+//                 totalsObj.nf_total_fat += this.foodItems[i].nf_total_fat
+//                 totalsObj.nf_total_carbohydrate += this.foodItems[i].nf_total_carbohydrate
+//                 totalsObj.nf_protein += this.foodItems[i].nf_protein
+//             }
+//             return totalsObj
+//         }
+//     }
+// }
 
 var app = new Vue({
     el: '#app',
     data: {
         query: 'apple',
-        foodItems: [],
-        totalsObj: {
-            'kcal': 0,
-            'fat': 0,
-            'carb': 0,
-            'protein': 0,
-        },
+        foodItems: [
+            {
+                'serving_qty': '1',
+                'serving_unit': 'test',
+                'food_name': 'food',
+                'nf_calories': 123,
+                'nf_total_fat': 123,
+                'nf_total_carbohydrate': 123,
+                'nf_protein': 123,
+            },
+            {
+                'serving_qty': '2',
+                'serving_unit': 'test',
+                'food_name': 'food',
+                'nf_calories': 123,
+                'nf_total_fat': 123,
+                'nf_total_carbohydrate': 123,
+                'nf_protein': 123,
+            },
+
+        ],
+        // totalsObj: {
+        //     'kcal': 0,
+        //     'fat': 0,
+        //     'carb': 0,
+        //     'protein': 0,
+        // },
     },
     components: {
         foodItem,
-        totalsDiv,
         foodName,
         foodKcal,
         foodFat,
         foodCarb,
         foodProtein,
+        // totalsDiv,
         totalKcal,
+        totalFat,
+        totalCarb,
+        totalProtein,
     },
     methods: {
-
+        
         axiosCall: function() {
             axios({
                 method: 'post',
@@ -116,18 +156,19 @@ var app = new Vue({
             })
             // this.totalsAdd();
         },
+    },
         
     computed: {
         totalsObj: function() {
             totalsObj = {'kcal': 0, 'fat': 0, 'carb': 0, 'protein': 0};
-            for (let i=0; i<app.foodItems.length; i++) {
-                totalObj.kcal += app.foodItems[i].nf_calories
-                totalObj.fat += app.foodItems[i].nf_total_fat
-                totalObj.carb += app.foodItems[i].nf_total_carbohydrate
-                totalObj.protein += app.foodItems[i].nf_protein
+            for (let i=0; i<this.foodItems.length; i++) {
+                totalsObj.kcal += this.foodItems[i].nf_calories
+                totalsObj.fat += this.foodItems[i].nf_total_fat
+                totalsObj.carb += this.foodItems[i].nf_total_carbohydrate
+                totalsObj.protein += this.foodItems[i].nf_protein
             }
-            for (let property in totalObj) {
-                totalObj[property] = Math.round(totalObj[property])
+            for (let property in totalsObj) {
+                totalsObj[property] = Math.round(totalsObj[property])
             }
             return totalsObj
         }
@@ -141,5 +182,4 @@ var app = new Vue({
         //         }
         //     }
         // }
-    }
 })
