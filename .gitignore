@@ -5,6 +5,11 @@ db.sqlite3
 instructor_checklist.md
 .DS_Store
 secrets.*
+.jpg
+.jpeg
+.png
+.gif
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
