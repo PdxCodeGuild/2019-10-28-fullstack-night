@@ -1,0 +1,11 @@
+.outer-container {
+    display: flex;
+}
+
+header.small {
+    text-decoration: underline;
+}
+
+.middle-container {
+    margin: 0 1vw;
+}

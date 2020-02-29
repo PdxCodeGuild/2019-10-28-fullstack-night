@@ -1,4 +1,5 @@
-let input = document.querySelector('input')
+let search = document.querySelector('#search')
+let servings = document.querySelector('#servings')
 let div = document.querySelector('div')
 
 let url = 'https://trackapi.nutritionix.com/v2/natural/nutrients/'
@@ -11,10 +12,10 @@ function axiosGet(query) {
             'Content-Type': 'application/json',
             'x-app-id': '9d6f794a',
             'x-app-key': '0a43551440794adf00f2b58777f29d2e',
-            // 'x-remote-user-id': 'pjz987',
         },
         data: {
             'query': query,
+            'num_servings': servings.value,
         }
     }).then((response)=>{
         console.log(response);
@@ -34,8 +35,8 @@ function axiosGet(query) {
     })
 }
 
-input.addEventListener('keypress', function(e) {
+search.addEventListener('keypress', function(e) {
     if (e.which===13) {
-        axiosGet(input.value)
+        axiosGet(search.value)
     }
 })

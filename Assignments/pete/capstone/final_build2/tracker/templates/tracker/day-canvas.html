@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+    <script src="{% static 'tracker/js/day-canvas2.js' %}" defer></script>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/day-canvs.css' %}"> -->
+{% endblock %}
+<body>
+{% block main %}
+<main>
+    {{ macros|json_script:"macros" }}
+    {{ totals|json_script:"totals" }}
+    {{ over_under|json_script:"over_under" }}
+    <canvas width="600px" height="300px"></canvas>
+</main>
+{% endblock %}
+</body>

@@ -1,0 +1,58 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+<script src="{% static 'tracker/js/nutritionix.js' %}" defer></script>
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/nutritionix.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock %}
+
+{% block main %}
+<main class="nutritionix">
+    <div id="app">
+        <input v-model="query">
+        <button v-on:click="axiosCall" v-on:click="totalsAdd">Add</button>
+        <div v-show="foodItems.length" class="outer-container">
+
+            <div class="middle-container" id="name-outer">
+                <header class="small">Name</header>
+                <div class="inner-container" id="name-inner">
+                    <food-name v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-name>
+                    <div v-show="foodItems.length>1">Total</div>
+                </div>
+            </div>
+
+            <div class="middle-container" id="kcal-outer">
+                <header class="small">Calories</header>
+                <div class="inner-container" id="kcal-inner">
+                    <food-kcal v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-kcal>
+                    <total-kcal v-if='foodItems.length>1'></total-kcal>
+                </div>
+            </div>
+
+            
+            <div class="middle-container" id="fat-outer">
+                <header class="small">Fat (g)</header>
+                <div class="inner-container" id="fat-inner">
+                    <food-fat v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-fat>
+                </div>
+            </div>
+            
+            <div class="middle-container" id="carb-outer">
+                <header class="small">Carbs (g)</header>
+                <div class="inner-container" id="carb-inner">
+                    <food-carb v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-carb>
+                </div>
+            </div>
+            
+            <div class="middle-container" id="protein-outer">
+                <header class="small">Protein (g)</header>
+                <div class="inner-container" id="protein-inner">
+                    <food-protein v-for='foodItem in foodItems' v-bind:food="foodItem" v-bind:key="foodItem.id"></food-protein>
+                </div>
+            </div>
+
+        </div>
+        <totals-div v-if="foodItems.length" v-bind:totals='totalsObj'></totals-div>
+    </div>
+</main>
+{% endblock %}

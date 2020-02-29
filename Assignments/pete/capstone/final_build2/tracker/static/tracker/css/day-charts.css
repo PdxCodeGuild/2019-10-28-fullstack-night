@@ -17,31 +17,47 @@ header.big {
 #outer-day {
     display: flex;
     flex-wrap: wrap;
-    width: 66vw;
+    width: 90vw;
     justify-content: space-around;
     border: 2px solid black;
 }
 
 .middle-day {
-    width: 32vw;
+    width: 36vw;
     display: flex;
     flex-direction: column;
     border: 2px dotted black;
     margin-top: 2vh;
     justify-content: space-between;
-    min-height: 20vh;
+    min-height: 30vh;
 }
 
 header.small {
     border-bottom: 2px solid black;
 }
 
-
 .goal-div {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    /* width: 50%; */
     font-size: 1.25rem;
+}
+
+.goal-div span {
+    font-size: 1.125rem;
+}
+
+#goals-outer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#goals-inner {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .prog-div {
@@ -58,7 +74,6 @@ main.day button {
 #inner-entry {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     height: 17.5vh;
     flex-wrap: wrap;
     overflow-y: auto;
@@ -70,10 +85,6 @@ main.day button {
     flex-direction: column;
     justify-content: space-between;
     margin: 0 0.5vw;
-}
-
-div.name {
-    text-decoration: underline;
 }
 
 #outer-entry {
