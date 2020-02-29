@@ -14,7 +14,7 @@
         <div v-for='foodItem in foodItems'>
             <food-item v-bind:food="foodItem"></food-item>
         </div>
-        <totals-div v-if="foodItems" v-bind:totals='totalsObj'></totals-div>
+        <totals-div v-if="foodItems.length" v-bind:totals='totalsObj'></totals-div>
     </div>
 </main>
 {% endblock %}

@@ -6,15 +6,26 @@ let foodItem = {
 }
 
 let totalsDiv = {
-    props: ['totals'],
+    // props: ['totals'],
     template: `<div>Totals: kcal: {{totals.nf_calories}} fat: {{totals.nf_total_fat}} carb: {{totals.nf_total_carbohydrate}} protein: {{totals.nf_protein}}</div>`,
-    // computed: totals
+    computed: {
+        totals: function() {
+            totalObj = {'nf_calories': 0, 'nf_total_fat': 0, 'nf_total_carbohydrate': 0, 'nf_protein': 0};
+            for (let i=0; i<app.foodItems.length; i++) {
+                totalObj.nf_calories += app.foodItems[i].nf_calories
+                totalObj.nf_total_fat += app.foodItems[i].nf_total_fat
+                totalObj.nf_total_carbohydrate += app.foodItems[i].nf_total_carbohydrate
+                totalObj.nf_protein += app.foodItems[i].nf_protein
+            }
+            return totalObj
+        }
+    }
 }
 
 var app = new Vue({
     el: '#app',
     data: {
-        query: '',
+        query: 'apple',
         foodItems: [],
         totalsObj: {'nf_calories': 0, 'nf_total_fat': 0, 'nf_total_carbohydrate': 0, 'nf_protein': 0},
     },
@@ -24,6 +35,7 @@ var app = new Vue({
     },
     methods: {
         axiosCall: function() {
+            // this.totalsAdd();
             axios({
                 method: 'post',
                 url: url,
@@ -43,6 +55,7 @@ var app = new Vue({
                 // app.foodItems = response.data.foods;
                 // console.log(app.foodItems)
             })
+            this.totalsAdd();
         },
         totalsAdd: function() {
             let keys = Object.keys(app.totalsObj)
@@ -51,7 +64,7 @@ var app = new Vue({
                     app.totalsObj[keys[j]] += app.foodItems[i][keys[j]];
                 }
             }
-            console.log(app.totalsObj)
+            // console.log(app.totalsObj)
         }
     }
 })
