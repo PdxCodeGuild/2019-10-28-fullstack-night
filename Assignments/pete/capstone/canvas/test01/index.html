@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Canvas Test</title>
 </head>
 <body>
     <div id="app">
 
-        <div>
+        <div class="inputs">
             <label>Goal Kcal</label><input type="number" v-model="goalKcal">
             <label>Goal Fat</label><input type="number" v-model="goalFat">
             <label>Goal Carb</label><input type="number" v-model="goalCarb">
             <label>Goal Protein</label><input type="number" v-model="goalProtein">
         </div>
 
-        <div>
-            <label> Kcal</label><input type="number" v-model="Kcal">
-            <label> Fat</label><input type="number" v-model="Fat">
-            <label> Carb</label><input type="number" v-model="Carb">
-            <label> Protein</label><input type="number" v-model="Protein">
+        <div class="inputs">
+            <label> Kcal</label><input type="number" v-model="kcal">
+            <label> Fat</label><input type="number" v-model="fat">
+            <label> Carb</label><input type="number" v-model="carb">
+            <label> Protein</label><input type="number" v-model="protein">
         </div>
 
-        <canvas width="500" height="300"></canvas>
+        <canvas id="cnv" width="500" height="300" v-load-canvas="progressObj"></canvas>
     </div>
 </body>
 </html>
