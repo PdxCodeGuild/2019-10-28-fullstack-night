@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script2.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Canvas Test</title>
+</head>
+<body>
+    <div id="app">
+
+        <div class="inputs">
+            <label>Goal Kcal</label><input class="goal" class="input" type="number" value="0" id="goalKcal">
+            <label>Goal Fat</label><input class="goal" class="input" type="number" value="0" id="goalFat">
+            <label>Goal Carb</label><input class="goal" class="input" type="number" value="0" id="goalCarb">
+            <label>Goal Protein</label><input class="goal" class="input" type="number" value="0" id="goalProtein">
+        </div>
+
+        <div class="inputs">
+            <label>Kcal</label><input class="current" class="input" type="number" value="0" id="kcal">
+            <label>Fat</label><input class="current" class="input" type="number" value="0" id="fat">
+            <label>Carb</label><input class="current" class="input" type="number" value="0" id="carb">
+            <label>Protein</label><input class="current" class="input" type="number" value="0" id="protein">
+        </div>
+
+        <canvas id="cnv" width="500" height="300"></canvas>
+    </div>
+</body>
+</html>

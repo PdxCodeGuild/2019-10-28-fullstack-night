@@ -87,4 +87,4 @@ function mainLoop() {
     requestAnimationFrame(mainLoop)
 }
 
-mainLoop()
+mainLoop();
