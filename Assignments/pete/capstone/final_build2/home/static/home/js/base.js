@@ -15,13 +15,6 @@ let calcNav = document.querySelector('#calc-nav');
 let trackerNav = document.querySelector('#tracker-nav');
 let navArr = [homeNav, calcNav, trackerNav, welcomeNav]
 
-
-// if (userBool===true) {
-//     loginAnchor.style.display = 'none';
-// } else {
-//     logoutAnchor.style.display = 'none';
-// }
-
 for (let i=0; i<anchorArr.length-1; i++) {
     anchorArr[i].onclick = function() {
         console.log('hey')

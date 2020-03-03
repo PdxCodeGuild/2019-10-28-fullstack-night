@@ -73,7 +73,7 @@ function mainLoop() {
         ctx.lineTo(0, yPos[i] + 55);
         ctx.stroke();
 
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'Odibee Sans';
         ctx.fillText(key, t*1.1, yPos[i] + 10);
         ctx.fillText(`${total} / ${goal}`, t*1.1, yPos[i] + 30);
         ctx.fillText(feedback[key], t*1.1, yPos[i] + 50);

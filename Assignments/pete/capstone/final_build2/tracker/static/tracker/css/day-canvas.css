@@ -3,4 +3,6 @@ canvas {
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+    font-family: 'Odibee Sans', cursive;
+
 }
