@@ -13,8 +13,6 @@ function fix_dpi() {
     cnv.setAttribute('width', style_width * dpi);
 }
 
-
-
 feedbackToColor = {
     'over': 'hsl(0, 100%, 50%)', //red
     'under': 'hsl(240, 100%, 50%)', //blue
