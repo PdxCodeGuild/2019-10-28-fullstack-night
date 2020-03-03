@@ -1,0 +1,70 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/entry.css' %}">
+    <script src="{% static 'tracker/js/entry.js' %}" defer></script>
+</head>
+{% endblock %}
+
+{% block main %}
+<main class="entry">
+    <header class="big">{{ day.date }} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}</header>
+
+    <div class="entry outer container">
+
+        <form class="entry middle container" action="{% url 'tracker:saved_entry' pk=day.pk %}" method="POST">
+            {% csrf_token %}
+            <header class="small">Select a Saved Entry:</header>
+            <select name="meal">
+
+            {% for meal in user.meal.all %}
+                <option value={{meal.pk}}>{{ meal }}*</option>
+            {% endfor %}
+
+            {% for meal in general_meals %}
+                <option value={{meal.pk}}>{{ meal }}**</option>
+            {% endfor %}
+            
+            </select>
+            <div>*: Your Saved Meal</div>
+            <div>**: General Meal</div>
+            <button type="submit">Track it!</button>
+        </form>
+
+        <div id="or"><div>OR:</div></div>
+
+        <form class="entry middle container" action="{% url 'tracker:add_entry' pk=day.pk %}" method="POST">
+            {% csrf_token %}
+            <header class="small">Add a New Entry:</header>
+            <div>
+                <span>Name:</span>
+                <input class="input" type="text" name="name">
+            </div>
+            <div>
+                <span>Kilocalories:</span>
+                <input class="input" id="kcal" type="number" name="kcal">
+            </div>
+            <div>
+                <span>Grams of Fat:</span>
+                <input class="input" id="fat" type="number" name="fat">
+            </div>
+            <div>
+                <span>Grams of Carbohydrates:</span>
+                <input class="input" id="carb" type="number" name="carb">
+            </div>
+            <div>
+                <span>Grams of Protein:</span>
+                <input class="input" id="protein" type="number" name="protein">
+            </div>
+            <div id="save">
+                <label>Save for Future Use:</label>
+                <input type="checkbox" name="save" value="save">
+            </div>
+            <button id="submit" type="submit">Track It!</button>
+        </form>
+
+    </div>
+</main>
+{% endblock %}

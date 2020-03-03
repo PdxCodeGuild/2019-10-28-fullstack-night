@@ -1,0 +1,33 @@
+main.macros {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.macros-outer {
+    margin: 5vh 0 5vh;
+}
+
+.macros-outer header {
+    font-size: 2rem;
+}
+
+.macros-inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.macros-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+}
+
+button.macros {
+    font-size: 2rem;
+}
+
+body {
+    box-sizing: border-box;
+}

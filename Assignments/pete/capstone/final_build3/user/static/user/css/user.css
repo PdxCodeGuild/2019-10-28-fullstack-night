@@ -1,0 +1,10 @@
+main.user {
+   color: greenyellow;
+   display: flex;
+   flex-direction: column;
+   font-size: 1.5rem;
+}
+
+main.user header {
+    font-size: 2.5rem;
+}

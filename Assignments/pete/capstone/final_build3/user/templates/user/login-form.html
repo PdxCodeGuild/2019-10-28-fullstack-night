@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'user/css/user.css' %}">
+</head>
+{% endblock %}
+
+{% block main %}
+<main class="user">
+    <header>Log In: </header>
+    <form action="{% url 'user:log_in' %}" method="POST">
+    {% csrf_token %}    
+        <input type="hidden" name="next" value="{{ next }}">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <button type="submit">Login</button>
+    </form>
+</main>
+{% endblock %}

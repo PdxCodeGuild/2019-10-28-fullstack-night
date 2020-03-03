@@ -1,0 +1,28 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/tracker.css' %}">
+    <script src="{% static 'tracker/js/tracker.js' %}" defer></script>
+</head>
+{% endblock %}
+
+{% block main %}
+{{ days_json|json_script:"days_json" }}
+<main class="tracker">
+    <form action="{% url 'tracker:add_day' %}" method="POST">
+        {% csrf_token %}
+            <input id="date-picker" type="date" name="date">
+            <input type="radio" name="day-type" value="train" checked>Training
+            <input type="radio" name="day-type" value="rest">Rest
+            <button id="date-submit" type="submit">Add to Diary!</button>
+    </form>
+    <div class="tracker container">
+        {% for day in days %}
+        <a href="{% url 'tracker:get_day' pk=day.pk %}"><button>{{ day.date }}  {% if day.training %}Training{% else %} Rest {% endif %}</button></a>
+        {% endfor %}
+
+    </div>
+</main>
+{% endblock %}
