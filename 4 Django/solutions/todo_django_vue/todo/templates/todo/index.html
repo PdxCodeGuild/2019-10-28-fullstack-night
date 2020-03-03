@@ -1,0 +1,16 @@
+{% load static %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'todo/css/index.css' %}">
+</head>
+
+<ul>
+	{% for todo in todos %}
+		<li>{{todo}}</li>
+	{% endfor %}
+</ul>
+
+<form action={% url 'todo:index' %} method="post">
+	{% csrf_token %}
+	<input type='text' name='text'>
+	<button type='submit'>Add todo</button>
+</form>
