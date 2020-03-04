@@ -13,3 +13,18 @@ for (let i=0; i<monthLength; i++) {
     dayArr[dayCounter].innerText = i+1;
     dayCounter ++;
 }
+
+// let changeCal = false
+// function al() {
+//     if (changeCal) {
+//         for (let i=0; i<7;i++) {
+//             dayArr.slice(dayArr.length-7)[i].style.display = changeCal?'none':'block';
+//             document.querySelector("#calendar-container").style.gridTemplate = `7% repeat(${rows}, 1fr) / repeat(7, 1fr)`
+//         }
+//     }
+// }
+
+var app = new Vue({
+    el: '#app',
+    
+})

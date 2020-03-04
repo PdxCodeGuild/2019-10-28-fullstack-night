@@ -26,6 +26,15 @@ def get_day(request, pk):
     offset = day.offset()
     over_under = day.over_under()
     return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+
+@login_required
+def get_day2(request, date):
+    day, created = DiaryDay.objects.get_or_create(date=date, user=request.user, training=True)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+
     
 @login_required
 def get_day_charts(request, pk):
@@ -53,19 +62,6 @@ def day_canvas(request, pk):
 def nutritionix(request, pk):
     day = DiaryDay.objects.get(pk=pk)
     return render(request, 'tracker/nutritionix.html')
-
-# @login_required
-# def calendar_month(request):
-#     date_time = datetime.date.today()
-#     month_start, month_length = calendar.monthrange(date_time.year, date_time.month)
-#     month_str = datetime.date.today().strftime('%B')
-    
-#     year = datetime.date.today().year
-#     print('*'*70)
-#     print(month_start)
-#     print(month_length)
-#     print('*'*70)
-#     return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date_time, 'month_start': month_start, 'month_length': month_length})
 
 @login_required
 def calendar_month(request, date):#date is datetime... just need month and year
