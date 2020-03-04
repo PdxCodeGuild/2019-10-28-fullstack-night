@@ -8,8 +8,7 @@ pylint = "*"
 
 [packages]
 django = "==2.2.9"
-django-autocmplete-light = "*"
-django-autocomplete-light = "*"
+python-dateutil = "*"
 
 [requires]
 python_version = "3.6"

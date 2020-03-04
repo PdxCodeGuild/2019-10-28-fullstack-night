@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 
 from .models import *
 
+import datetime
+import calendar
+from dateutil.relativedelta import *
+
 """
 RENDER VIEWS
 """
@@ -50,17 +54,58 @@ def nutritionix(request, pk):
     day = DiaryDay.objects.get(pk=pk)
     return render(request, 'tracker/nutritionix.html')
 
+# @login_required
+# def calendar_month(request):
+#     date_time = datetime.date.today()
+#     month_start, month_length = calendar.monthrange(date_time.year, date_time.month)
+#     month_str = datetime.date.today().strftime('%B')
+    
+#     year = datetime.date.today().year
+#     print('*'*70)
+#     print(month_start)
+#     print(month_length)
+#     print('*'*70)
+#     return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date_time, 'month_start': month_start, 'month_length': month_length})
+
 @login_required
-def calendar(request):
-    return render(request, 'tracker/calendar.html')
+def calendar_month(request, date):#date is datetime... just need month and year
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    month_str = date.strftime('%B')
+    month_start, month_length = calendar.monthrange(date.year, date.month)
+    year = date.year
+    date_str = date.strftime('%Y-%m-%d')
+    diary_days = DiaryDay.objects.filter(date__month=date.month, user=request.user)
+    print(diary_days)
+    return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days})
+
 """
 REDIRECT VIEWS
 """
+@login_required
+def calendar_last(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    last_date = date + relativedelta(months=-1)
+    return HttpResponseRedirect(reverse('tracker:calendar', kwargs={'date': last_date.strftime('%Y-%m-%d')}))
+
+@login_required
+def calendar_next(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    next_date = date + relativedelta(months=+1)
+    return HttpResponseRedirect(reverse('tracker:calendar', kwargs={'date': next_date.strftime('%Y-%m-%d')}))
+
+
+@login_required
+def calendar_now(request):
+    today = datetime.date.today()
+    return HttpResponseRedirect(reverse('tracker:calendar', kwargs={'date': today}))
 
 @login_required
 def add_day(request):
     training = request.POST['day-type'] == 'train'
     date = request.POST['date']
+    print('*'*70)
+    print(date)
+    print('*'*70)
     day = DiaryDay(user=request.user, training=training, date=date)
     day.save()
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
