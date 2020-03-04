@@ -80,6 +80,20 @@ class DiaryDay(models.Model):
         '''
         pass
 
+    def calendar_dict(self):
+        calendar_dict = {
+            'train': self.training,
+            'year': str(self.date.year),
+            'month': str(self.date.month).zfill(2),
+            'day': str(self.date.day).zfill(2),
+        }
+        return calendar_dict
+
+    # def calendar_month_dict(self):
+    #     calendar_month_dict = {
+    #         'year': str(self.date.year),
+    #     }
+
     def __str__(self):
         return str(self.date)
 

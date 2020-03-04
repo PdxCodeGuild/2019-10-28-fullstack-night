@@ -37,6 +37,10 @@
     background-color: hotpink;
 }
 
+.upper-day {
+    border-bottom: 2px solid black;
+}
+
 .subnav header {
     text-decoration: underline;
 }

@@ -18,6 +18,7 @@
     {{ date_time|json_script:"date_time" }}
     {{ month_start|json_script:"month_start" }}
     {{ month_length|json_script:"month_length" }}
+    {{ logged_days|json_script:"logged_days" }}
     <div id="app">
         <div id="calendar-container">
             <div class="day-name">Sun</div>
@@ -28,23 +29,11 @@
             <div class="day-name">Fri</div>
             <div class="day-name">Sat</div>
 
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-
-            <div class="day"></div>
+            <!-- <pre-month-day v-for="day in preMonth"></div>
+            <post-month-day v-for="day in postMonth"></div> -->
+            <month-day v-for="day in monthDays" v-bind:day="day" v-bind:key="day.id"></month-day>
+                
+            <!-- <div class="day"></div>
             <div class="day"></div>
             <div class="day"></div>
             <div class="day"></div>
@@ -75,6 +64,22 @@
             <div class="day"></div>
             <div class="day"></div>
             <div class="day"></div>
+
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div> -->
         </div>
     </div>
     {% comment %}

@@ -71,8 +71,10 @@ def calendar_month(request, date):#date is datetime... just need month and year
     year = date.year
     date_str = date.strftime('%Y-%m-%d')
     diary_days = DiaryDay.objects.filter(date__month=date.month, user=request.user)
+    logged_days = [day.calendar_dict() for day in diary_days]
+    # month_dict = 
     print(diary_days)
-    return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days})
+    return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days})
 
 """
 REDIRECT VIEWS
