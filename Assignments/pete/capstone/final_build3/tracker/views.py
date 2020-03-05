@@ -12,20 +12,9 @@ from dateutil.relativedelta import *
 RENDER VIEWS
 """
 
-@login_required
-def tracker(request):
-    days = DiaryDay.objects.filter(user=request.user).order_by('-date')
-    # days = DiaryDay.objects.order_by('-date')
-    days_json = [day.date for day in days]
-    return render(request, 'tracker/tracker.html', {'days': days, 'days_json': days_json})
-
-@login_required
-def get_day(request, pk):
-    day = DiaryDay.objects.get(pk=pk)
-    totals = day.total()
-    offset = day.offset()
-    over_under = day.over_under()
-    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+"""
+NEW
+"""
 
 @login_required
 def get_day2(request, date):
@@ -33,35 +22,7 @@ def get_day2(request, date):
     totals = day.total()
     offset = day.offset()
     over_under = day.over_under()
-    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
-
-    
-@login_required
-def get_day_charts(request, pk):
-    day = DiaryDay.objects.get(pk=pk)
-    totals = day.total()
-    offset = day.offset()
-    over_under = day.over_under()
-    return render(request, 'tracker/day-charts.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
-    
-@login_required
-def entry(request, pk):
-    day = DiaryDay.objects.get(pk=pk)
-    return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
-
-@login_required
-def day_canvas(request, pk):
-    day = DiaryDay.objects.get(pk=pk)
-    totals = day.total()
-    offset = day.offset()
-    over_under = day.over_under()
-    return render(request, 'tracker/day-canvas.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
-    return HttpResponse('canvas')
-
-@login_required
-def nutritionix(request, pk):
-    day = DiaryDay.objects.get(pk=pk)
-    return render(request, 'tracker/nutritionix.html')
+    return render(request, 'tracker/day-vue.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})##### works on both day.html and day-vue.html
 
 @login_required
 def calendar_month(request, date):#date is datetime... just need month and year
@@ -82,6 +43,56 @@ def calendar_month(request, date):#date is datetime... just need month and year
     return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days, 'day2': reverse('tracker:day2', kwargs={'date': '$'}), 'year_month': year_month})
 
 """
+OLD
+"""
+
+@login_required
+def tracker(request):
+    days = DiaryDay.objects.filter(user=request.user).order_by('-date')
+    # days = DiaryDay.objects.order_by('-date')
+    days_json = [day.date for day in days]
+    return render(request, 'tracker/tracker.html', {'days': days, 'days_json': days_json})
+
+@login_required
+def get_day(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    
+@login_required
+def entry(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
+
+"""
+WORKS IN PROGRESS
+"""
+
+@login_required
+def get_day_charts(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day-charts.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+
+@login_required
+def day_canvas(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day-canvas.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    return HttpResponse('canvas')
+
+@login_required
+def nutritionix(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    return render(request, 'tracker/nutritionix.html')
+
+"""
 REDIRECT VIEWS
 """
 @login_required
@@ -95,7 +106,6 @@ def calendar_next(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     next_date = date + relativedelta(months=+1)
     return HttpResponseRedirect(reverse('tracker:calendar', kwargs={'date': next_date.strftime('%Y-%m-%d')}))
-
 
 @login_required
 def calendar_now(request):

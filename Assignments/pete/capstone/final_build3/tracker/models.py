@@ -26,6 +26,13 @@ class DiaryDay(models.Model):
                 'carb': self.user.macros.get(active=True).train_carb,
                 'protein': self.user.macros.get(active=True).protein
             }
+        if self.training == None:
+            return {
+                'kcal': '',
+                'fat': '',
+                'carb': '',
+                'protein': '',
+            }
         return {
             'kcal': self.user.macros.get(active=True).rest_kcal,
             'fat': self.user.macros.get(active=True).rest_fat,
@@ -43,6 +50,14 @@ class DiaryDay(models.Model):
         return total_dict
     
     def offset(self):#removed training_bool
+        """
+        added below
+        """
+        if self.training == None:
+            return None
+        """
+        added above
+        """
         total_dict = self.total()
         macros_dict = self.macros()
 
@@ -52,6 +67,15 @@ class DiaryDay(models.Model):
         return offset_dict
 
     def over_under(self):#removed training_bool
+        """
+        added below
+        """
+        if self.training == None:
+            return None
+        """
+        added above
+        """
+
         total_dict = self.total()
         macros_dict = self.macros()
         

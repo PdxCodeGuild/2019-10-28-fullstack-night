@@ -1,0 +1,19 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/day.cs' %}">
+<script src="{% static 'tracker/js/day-vue.js' %}" defer></script>
+{% endblock %}
+
+{% block subnav %}
+<nav class="subnav">
+    <header class="day">{{ day.date }} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}</header>
+</nav>
+{% endblock %}
+
+{% block main %}
+<main class="day">
+    <div id="app"></div>
+</main>
+{% endblock %}

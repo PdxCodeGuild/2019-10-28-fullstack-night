@@ -7,7 +7,7 @@ app_name = 'tracker'
 urlpatterns = [
     path('', views.tracker, name='tracker'),
 
-    path('add-day/', views.add_day, name='add_day'),
+    path('add-day/', views.add_day, name='add_day'),#
     path('day/<int:pk>/', views.get_day, name='get_day'),# change views.get_day <-> views.get_day_charts
     path('day2/<str:date>/', views.get_day2, name='day2'),
     path('day-canvas/<int:pk>/', views.day_canvas, name='day_canvas'),#test for self-made canvas graph in day
