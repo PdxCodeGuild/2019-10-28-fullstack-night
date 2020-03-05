@@ -18,7 +18,7 @@
 
 {% block main %}
 <main class="day">
-    <header class="big">{{ day.date }} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}</header>
+    <header class="big">{{ day.date }} || {% if day.training %}Training Day{% elif day.training is None %}Day{% else %}Rest Day{% endif %}</header>
     <div id="outer-day">
 
         <div class="middle-day">

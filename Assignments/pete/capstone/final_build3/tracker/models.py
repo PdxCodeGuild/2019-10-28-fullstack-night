@@ -16,7 +16,7 @@ class Meal(models.Model):
 class DiaryDay(models.Model):
     date = models.DateField()#date of each diary
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='diary_day')
-    training = models.BooleanField()#true for training day false for rest day
+    training = models.BooleanField(null=True)#true for training day false for rest day
 
     def macros(self):
         if self.training:

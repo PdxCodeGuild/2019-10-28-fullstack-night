@@ -29,7 +29,7 @@ def get_day(request, pk):
 
 @login_required
 def get_day2(request, date):
-    day, created = DiaryDay.objects.get_or_create(date=date, user=request.user, training=True)
+    day, created = DiaryDay.objects.get_or_create(date=date, user=request.user)
     totals = day.total()
     offset = day.offset()
     over_under = day.over_under()
@@ -66,6 +66,11 @@ def nutritionix(request, pk):
 @login_required
 def calendar_month(request, date):#date is datetime... just need month and year
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    print('*'*70)
+    print(date.month)
+    print(date.year)
+    print('*'*70)
+    year_month = f"{str(date.year)}-{str(date.month).zfill(2)}-"
     month_str = date.strftime('%B')
     month_start, month_length = calendar.monthrange(date.year, date.month)
     year = date.year
@@ -74,7 +79,7 @@ def calendar_month(request, date):#date is datetime... just need month and year
     logged_days = [day.calendar_dict() for day in diary_days]
     # month_dict = 
     print(diary_days)
-    return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days})
+    return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days, 'day2': reverse('tracker:day2', kwargs={'date': '$'}), 'year_month': year_month})
 
 """
 REDIRECT VIEWS
