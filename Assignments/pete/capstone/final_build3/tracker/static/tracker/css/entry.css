@@ -52,3 +52,17 @@ header.big {
 .input {
     width: 15vw;
 }
+
+.subnav header {
+    text-decoration: underline;
+}
+
+.subnav header a {
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+}
+
+.subnav header a:hover {
+    color: hotpink;
+}

@@ -17,7 +17,7 @@ RENDER VIEWS
 NEW
 """
 
-@login_required
+@login_required #TO BE RENAMED "get_day()"
 def get_day3(request, date):
     # print('*'*70)
     # print(request.user.diary_day.get(date=date))
@@ -36,7 +36,7 @@ def get_day3(request, date):
     except ObjectDoesNotExist:
         return render(request, 'tracker/day-vue.html', {'date_str': date_str, 'date_link': date_link})
 
-@login_required
+@login_required #TO BE DELETED?
 def get_day2(request, date):
     day, created = DiaryDay.objects.get_or_create(date=date, user=request.user)
     totals = day.total()
@@ -44,7 +44,7 @@ def get_day2(request, date):
     over_under = day.over_under()
     return render(request, 'tracker/day-vue.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})##### works on both day.html and day-vue.html
 
-@login_required
+@login_required # TO BE RENAMED "tracker()"?
 def calendar_month(request, date):#date is datetime... just need month and year
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     print('*'*70)
@@ -62,18 +62,25 @@ def calendar_month(request, date):#date is datetime... just need month and year
     print(diary_days)
     return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days, 'day2': reverse('tracker:day3', kwargs={'date': '$'}), 'year_month': year_month})# changed 'tracker:day2' to 'tracker:day3'
 
+@login_required
+def entry2(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    date_str = date.strftime('%B %d, %Y')
+    return render(request, 'tracker/entry2.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d')})
+
 """
 OLD
 """
 
-@login_required
+@login_required #TO BE DELETED?
 def tracker(request):
     days = DiaryDay.objects.filter(user=request.user).order_by('-date')
     # days = DiaryDay.objects.order_by('-date')
     days_json = [day.date for day in days]
     return render(request, 'tracker/tracker.html', {'days': days, 'days_json': days_json})
 
-@login_required
+@login_required #TO BE DELETED?
 def get_day(request, pk):
     day = DiaryDay.objects.get(pk=pk)
     totals = day.total()
@@ -81,17 +88,11 @@ def get_day(request, pk):
     over_under = day.over_under()
     return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
     
-@login_required
+@login_required #TO BE DELETED?
 def entry(request, pk):
     day = DiaryDay.objects.get(pk=pk)
     return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
 
-@login_required
-def entry2(request, date):
-    date = datetime.datetime.strptime(date, '%Y-%m-%d')
-    day = DiaryDay.objects.get(user=request.user, date=date)
-    date_str = date.strftime('%Y-%m-%d')
-    return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
 """
 WORKS IN PROGRESS
 """
@@ -151,7 +152,7 @@ def calendar_now(request):
     today = datetime.date.today()
     return HttpResponseRedirect(reverse('tracker:calendar', kwargs={'date': today}))
 
-@login_required
+@login_required # TO BE DELETED?
 def add_day(request):
     training = request.POST['day-type'] == 'train'
     date = request.POST['date']
@@ -163,7 +164,7 @@ def add_day(request):
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
     # return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros()})
 
-@login_required
+@login_required # TO BE RENAMED "add_day()"
 def add_day2(request, date, training_bool):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     day = DiaryDay(user=request.user, training=training_bool, date=date)
@@ -181,7 +182,7 @@ def change_day(request, date):
     day.save()
     return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': date.strftime('%Y-%m-%d')}))
 
-@login_required
+@login_required # TO BE UPDATED
 def add_entry(request, pk):
 
     day = DiaryDay.objects.get(pk=pk)
@@ -199,7 +200,7 @@ def add_entry(request, pk):
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
 
-@login_required
+@login_required # TO BE UPDATED
 def saved_entry(request, pk):
 
     day = DiaryDay.objects.get(pk=pk)
