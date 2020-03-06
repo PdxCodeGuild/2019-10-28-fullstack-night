@@ -66,3 +66,16 @@ header.big {
 .subnav header a:hover {
     color: hotpink;
 }
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+header.small {
+    text-decoration: underline;
+}
+
+.middle-container {
+    margin: 0 1vw;
+}

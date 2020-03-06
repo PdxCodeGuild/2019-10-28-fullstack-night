@@ -71,24 +71,6 @@ let totalProtein = {
     template: `<div>{{totalsObj.protein}}</div>`,
 }
 
-
-// let totalsDiv = {
-//     // props: ['totals'],
-//     template: `<div>Totals: kcal: {{totals.nf_calories}} fat: {{totals.nf_total_fat}} carb: {{totals.nf_total_carbohydrate}} protein: {{totals.nf_protein}}</div>`,
-//     computed: {
-//         totals: function() {
-//             totalsObj = {'nf_calories': 0, 'nf_total_fat': 0, 'nf_total_carbohydrate': 0, 'nf_protein': 0};
-//             for (let i=0; i<this.foodItems.length; i++) {
-//                 totalsObj.nf_calories += this.foodItems[i].nf_calories
-//                 totalsObj.nf_total_fat += this.foodItems[i].nf_total_fat
-//                 totalsObj.nf_total_carbohydrate += this.foodItems[i].nf_total_carbohydrate
-//                 totalsObj.nf_protein += this.foodItems[i].nf_protein
-//             }
-//             return totalsObj
-//         }
-//     }
-// }
-
 var app = new Vue({
     el: '#app',
     data: {

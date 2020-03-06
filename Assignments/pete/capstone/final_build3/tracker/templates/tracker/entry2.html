@@ -13,49 +13,57 @@
 {% endblock %}
 
 {% block main %}
-<div id="app">
 <main class="entry">
 
     <div class="entry outer container">
 
-        <div class="entry middle container">
+        <div id="nutritionix" class="entry middle container">
             <header class="small">Use Nutritionix to Track an Entry:</header>
+
+            <query-div v-model="query"></query-div>
+
+            <name-div :food-items="foodItems">
+                <food-name v-for="foodItem in foodItems" :food="foodItem" :key="foodItem.id"></food-name>
+            </name-div>
+
+            <kcal-div :food-items="foodItems">
+                <food-kcal v-for="foodItem in foodItems" :food="foodItem" :key="foodItem.id"></food-kcal>
+                <total-kcal v-bind:totals-obj="totalsObj"></total-kcal>
+            </kcal-div>
             <button>Track it!</button>
         </div>
 
         <div id="or"><div>OR:</div></div>
 
-        <form class="entry middle container" action="{% url 'tracker:add_entry' pk=day.pk %}" method="POST">
-            {% csrf_token %}
+        <div id="custom" class="entry middle container">
             <header class="small">Add a New Entry:</header>
             <div>
                 <span>Name:</span>
-                <input class="input" type="text" name="name">
+                <input class="input" type="text" v-model="name">
             </div>
             <div>
                 <span>Kilocalories:</span>
-                <input class="input" id="kcal" type="number" name="kcal">
+                <input class="input" id="kcal" type="number" v-model="kcal">
             </div>
             <div>
                 <span>Grams of Fat:</span>
-                <input class="input" id="fat" type="number" name="fat">
+                <input class="input" id="fat" type="number" v-model="fat">
             </div>
             <div>
                 <span>Grams of Carbohydrates:</span>
-                <input class="input" id="carb" type="number" name="carb">
+                <input class="input" id="carb" type="number" v-model="carb">
             </div>
             <div>
                 <span>Grams of Protein:</span>
-                <input class="input" id="protein" type="number" name="protein">
+                <input class="input" id="protein" type="number" v-model="protein">
             </div>
             <div id="save">
                 <label>Save for Future Use:</label>
-                <input type="checkbox" name="save" value="save">
+                <input type="checkbox" v-model="save" value="save">
             </div>
             <button id="submit" type="submit">Track It!</button>
-        </form>
+        </div>
 
     </div>
 </main>
-</div>
 {% endblock %}
