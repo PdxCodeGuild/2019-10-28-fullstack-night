@@ -32,6 +32,7 @@ nav * {
 
 button:hover {
     color: hotpink;
+    cursor: pointer;
 }
 
 /* HOME */
@@ -63,6 +64,10 @@ main button:hover {
 header.big {
     font-size: 2rem;
     text-decoration: underline;
+}
+
+button {
+    transition: 0.5s;
 }
 
 /* GENERAL STUFF */

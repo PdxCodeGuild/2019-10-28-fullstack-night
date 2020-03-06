@@ -1,6 +1,7 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import *
 
@@ -15,6 +16,25 @@ RENDER VIEWS
 """
 NEW
 """
+
+@login_required
+def get_day3(request, date):
+    # print('*'*70)
+    # print(request.user.diary_day.get(date=date))
+    # print('*'*70)
+
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    date_str = date.strftime("%B %d, %Y")
+    date_link = date.strftime('%Y-%m-%d')
+    try: 
+        day = request.user.diary_day.get(date=date)
+        totals = day.total()
+        offset = day.offset()
+        over_under = day.over_under()
+        return render(request, 'tracker/day-vue.html', {'date_str': date_str, 'date_link': date_link, 'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+
+    except ObjectDoesNotExist:
+        return render(request, 'tracker/day-vue.html', {'date_str': date_str, 'date_link': date_link})
 
 @login_required
 def get_day2(request, date):
@@ -40,7 +60,7 @@ def calendar_month(request, date):#date is datetime... just need month and year
     logged_days = [day.calendar_dict() for day in diary_days]
     # month_dict = 
     print(diary_days)
-    return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days, 'day2': reverse('tracker:day2', kwargs={'date': '$'}), 'year_month': year_month})
+    return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days, 'day2': reverse('tracker:day3', kwargs={'date': '$'}), 'year_month': year_month})# changed 'tracker:day2' to 'tracker:day3'
 
 """
 OLD
@@ -66,6 +86,12 @@ def entry(request, pk):
     day = DiaryDay.objects.get(pk=pk)
     return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
 
+@login_required
+def entry2(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    date_str = date.strftime('%Y-%m-%d')
+    return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
 """
 WORKS IN PROGRESS
 """
@@ -95,6 +121,19 @@ def nutritionix(request, pk):
 """
 REDIRECT VIEWS
 """
+
+@login_required
+def day_last(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    last_date = date + relativedelta(days=-1)
+    return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': last_date.strftime('%Y-%m-%d')}))
+
+@login_required
+def day_next(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    next_date = date + relativedelta(days=+1)
+    return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': next_date.strftime('%Y-%m-%d')}))
+
 @login_required
 def calendar_last(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
@@ -123,6 +162,24 @@ def add_day(request):
     day.save()
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
     # return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros()})
+
+@login_required
+def add_day2(request, date, training_bool):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay(user=request.user, training=training_bool, date=date)
+    day.save()
+    return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': date.strftime('%Y-%m-%d')}))
+
+@login_required
+def change_day(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    if day.training:
+        day.training = False
+    else:
+        day.training = True
+    day.save()
+    return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': date.strftime('%Y-%m-%d')}))
 
 @login_required
 def add_entry(request, pk):

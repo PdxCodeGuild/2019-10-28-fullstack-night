@@ -2,18 +2,79 @@
 {% load static %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/day.cs' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/day.css' %}">
 <script src="{% static 'tracker/js/day-vue.js' %}" defer></script>
 {% endblock %}
 
 {% block subnav %}
 <nav class="subnav">
-    <header class="day">{{ day.date }} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}</header>
+    <header class="day"><a href="{% url 'tracker:day_last' date=date_link %}"><</a>{{ date_str }}{% if day %} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}{% endif %}<a href="{% url 'tracker:day_next' date=date_link %}">></a></header>
 </nav>
 {% endblock %}
 
 {% block main %}
+<div id="app">
 <main class="day">
-    <div id="app"></div>
+    {% if not day %}
+    <div id="button-container">
+        <a href="{% url 'tracker:add_day2' date=date_link training_bool=1 %}"><button>Training Day</button></a> OR <a href="{% url 'tracker:add_day2' date=date_link training_bool=0 %}"><button>Rest Day</button></a>
+    </div>
+    {% else %}
+
+<div id="outer-day">
+    
+    <div class="middle-day">
+        <header class="small">Goals</header>
+        <div class="goal-div"><span>Calories:</span><span>{{ macros.kcal }} kcal</span></div>
+        <div class="goal-div"><span>Fat:</span><span>{{ macros.fat }} g</span></div>
+        <div class="goal-div"><span>Carbohydrates:</span><span>{{ macros.carb }} g</span></div>
+        <div class="goal-div"><span>Protein:</span><span>{{ macros.protein }} g</span></div>
+    </div>
+    
+    
+    <div class="middle-day">
+        <header class="small">Progress</header>
+        <div class="prog-div">
+            <span>Calories: {{ totals.kcal }}/{{ macros.kcal }} kcal</span>
+            <span>You are {{ over_under.kcal }} on Kcal</span>
+        </div>
+        
+        <div class="prog-div">
+            <span>Fat: {{ totals.fat }}/{{ macros.fat }} g</span>
+            <span>You are {{ over_under.fat }} on Fat</span>
+        </div>
+        
+        <div class="prog-div">
+            <span>Carbs: {{ totals.carb }}/{{ macros.carb }} g</span>
+            <span>You are {{ over_under.carb }} on Carbs</span>
+        </div>
+        
+        <div class="prog-div">
+            <span>Protein {{ totals.protein }}/{{ macros.protein }} g</span>
+            <span>You are {{ over_under.protein }} on Protein</span>
+        </div>
+        </div>
+        
+        <div id="outer-entry">
+            <header class="small">Entries:</header>
+            <div id="inner-entry">
+                {% for entry in day.diary_entry.all %}
+                <div class="entry">
+                    <div class="name">{{ entry.meal.name }}</div>
+                    <div>{{ entry.meal.kcal }} Kcal</div>
+                    <div>{{ entry.meal.fat }} g Fat</div>
+                    <div>{{ entry.meal.carb }} g Carbs</div>
+                    <div>{{ entry.meal.protein }} g Protein</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+    </div>
+
+    <a href="{% url 'tracker:entry2' date=date_link %}"><button>Add Entry!</button></a>
+    
 </main>
+</div>
 {% endblock %}
