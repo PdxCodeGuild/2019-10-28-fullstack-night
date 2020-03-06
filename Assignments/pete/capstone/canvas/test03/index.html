@@ -9,23 +9,26 @@
     <title>Canvas Test</title>
 </head>
 <body>
-    <div id="app">
+    
+    <div id="outer">
+        <div id="inner">
+            <div class="inputs">
+                <label>Goal Kcal</label><input class="goal" class="input" type="number" value="100" id="goalKcal">
+                <label>Goal Fat</label><input class="goal" class="input" type="number" value="100" id="goalFat">
+                <label>Goal Carb</label><input class="goal" class="input" type="number" value="100" id="goalCarb">
+                <label>Goal Protein</label><input class="goal" class="input" type="number" value="100" id="goalProtein">
+            </div>
 
-        <div class="inputs">
-            <label>Goal Kcal</label><input class="goal" class="input" type="number" value="0" id="goalKcal">
-            <label>Goal Fat</label><input class="goal" class="input" type="number" value="0" id="goalFat">
-            <label>Goal Carb</label><input class="goal" class="input" type="number" value="0" id="goalCarb">
-            <label>Goal Protein</label><input class="goal" class="input" type="number" value="0" id="goalProtein">
+            <div class="inputs">
+                <label>Kcal</label><input class="current" class="input" type="number" value="50" id="kcal">
+                <label>Fat</label><input class="current" class="input" type="number" value="50" id="fat">
+                <label>Carb</label><input class="current" class="input" type="number" value="50" id="carb">
+                <label>Protein</label><input class="current" class="input" type="number" value="50" id="protein">
+            </div>
         </div>
-
-        <div class="inputs">
-            <label>Kcal</label><input class="current" class="input" type="number" value="0" id="kcal">
-            <label>Fat</label><input class="current" class="input" type="number" value="0" id="fat">
-            <label>Carb</label><input class="current" class="input" type="number" value="0" id="carb">
-            <label>Protein</label><input class="current" class="input" type="number" value="0" id="protein">
-        </div>
+        <button>Draw Graph</button>
+    </div>
 
         <canvas id="cnv" width="500" height="300"></canvas>
-    </div>
 </body>
 </html>

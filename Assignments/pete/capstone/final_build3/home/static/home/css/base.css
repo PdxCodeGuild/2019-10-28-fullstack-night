@@ -1,0 +1,85 @@
+/* BASE TEMPLATE */
+
+nav {
+    height: 15vh;
+    background-color: greenyellow;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.subnav {
+    height: 10vh;
+}
+
+#welcome-nav {
+    display: flex;
+}
+
+nav * {
+    font-family: 'Odibee Sans', cursive;
+    font-size: 3rem;
+}
+
+* {
+    font-family: 'Odibee Sans', cursive;
+}
+
+#padding {
+    background-color: hotpink;
+    height: 3vh;
+}
+
+button:hover {
+    color: hotpink;
+    cursor: pointer;
+}
+
+/* HOME */
+
+* {
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 72vh;
+    background-color: hotpink;
+}
+
+.home {
+    font-size: 3rem;
+}
+
+main button:hover {
+    color: greenyellow;
+}
+
+.container.home {
+    border: 2px solid blue;
+}
+
+header.big {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+button {
+    transition: 0.5s;
+}
+
+/* GENERAL STUFF */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}

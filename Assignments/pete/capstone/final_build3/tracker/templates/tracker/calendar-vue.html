@@ -1,0 +1,72 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/calendar.css' %}">
+    <script src="{% static 'tracker/js/calendar-vue.js' %}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+{% endblock %}
+{% block subnav %}
+<div id="app">
+<nav class="subnav">
+    <header>Month</header>
+</nav>
+{% endblock %}
+{% block main %}
+<main>
+    
+    <div id="calendar-container">
+        <div class="day-name">Sun</div>
+        <div class="day-name">Mon</div>
+        <div class="day-name">Tue</div>
+        <div class="day-name">Wed</div>
+        <div class="day-name">Thu</div>
+        <div class="day-name">Fri</div>
+        <div class="day-name">Sat</div>
+
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+        <div class="day"></div>
+
+    </div>
+</main>
+</div>
+{% endblock %}

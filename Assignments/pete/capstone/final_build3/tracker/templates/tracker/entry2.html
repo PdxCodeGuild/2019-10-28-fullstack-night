@@ -1,0 +1,61 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/entry.css' %}">
+<script src="{% static 'tracker/js/entry.js' %}" defer></script>
+{% endblock %}
+
+{% block subnav %}
+<nav class="subnav">
+    <header class="day"><a href="{% url 'tracker:day_last' date=date_link %}"><</a>{{ date_str }}{% if day %} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}{% endif %}<a href="{% url 'tracker:day_next' date=date_link %}">></a></header>
+</nav>
+{% endblock %}
+
+{% block main %}
+<div id="app">
+<main class="entry">
+
+    <div class="entry outer container">
+
+        <div class="entry middle container">
+            <header class="small">Use Nutritionix to Track an Entry:</header>
+            <button>Track it!</button>
+        </div>
+
+        <div id="or"><div>OR:</div></div>
+
+        <form class="entry middle container" action="{% url 'tracker:add_entry' pk=day.pk %}" method="POST">
+            {% csrf_token %}
+            <header class="small">Add a New Entry:</header>
+            <div>
+                <span>Name:</span>
+                <input class="input" type="text" name="name">
+            </div>
+            <div>
+                <span>Kilocalories:</span>
+                <input class="input" id="kcal" type="number" name="kcal">
+            </div>
+            <div>
+                <span>Grams of Fat:</span>
+                <input class="input" id="fat" type="number" name="fat">
+            </div>
+            <div>
+                <span>Grams of Carbohydrates:</span>
+                <input class="input" id="carb" type="number" name="carb">
+            </div>
+            <div>
+                <span>Grams of Protein:</span>
+                <input class="input" id="protein" type="number" name="protein">
+            </div>
+            <div id="save">
+                <label>Save for Future Use:</label>
+                <input type="checkbox" name="save" value="save">
+            </div>
+            <button id="submit" type="submit">Track It!</button>
+        </form>
+
+    </div>
+</main>
+</div>
+{% endblock %}

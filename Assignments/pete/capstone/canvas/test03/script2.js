@@ -1,48 +1,38 @@
-let progress = {
-    goalKcal: document.querySelector('#goalKcal').value,
-    goalFat: document.querySelector('#goalFat').value,
-    goalCarb: document.querySelector('#goalCarb').value,
-    goalProtein: document.querySelector('#goalProtein').value,
-    
+let goals = {
+    kcal: document.querySelector('#goalKcal').value,
+    fat: document.querySelector('#goalFat').value,
+    carb: document.querySelector('#goalCarb').value,
+    protein: document.querySelector('#goalProtein').value,
+}
+
+let goalsArr = document.querySelectorAll('.goal');
+for (let i=0; i<goalsArr.length; i++) {
+    let goal = goalsArr[i];
+    goal.addEventListener('change', function() {
+        goals[goal['id']] = goal.value;
+    })
+};
+
+let currents = {
     kcal: document.querySelector('#kcal').value,
     fat: document.querySelector('#fat').value,
     carb: document.querySelector('#carb').value,
     protein: document.querySelector('#protein').value,
 };
 
-let goals = {
-    goalKcal: document.querySelector('#goalKcal').value,
-    goalFat: document.querySelector('#goalFat').value,
-    goalCarb: document.querySelector('#goalCarb').value,
-    goalProtein: document.querySelector('#goalProtein').value,
+let currentArr = document.querySelectorAll('.current');
+for (let i=0; i<currentArr.length; i++) {
+    let current = currentArr[i];
+    current.addEventListener('change', function() {
+        currents[current['id']] = current.value;
+    })
 }
 
-let goalsArr = document.querySelectorAll('.goal');
-for (let i=0; i<goalsArr.length; i++) {
-    let goal = goalsArr[i];
-    goals[goal['id']] = goal.value;
-}
-
-let current = {
-    goalKcal: document.querySelector('#goalKcal').value,
-    goalFat: document.querySelector('#goalFat').value,
-    goalCarb: document.querySelector('#goalCarb').value,
-    goalProtein: document.querySelector('#goalProtein').value,
-}
-
-let goalsArr = document.querySelectorAll('.goal');
-for (let i=0; i<goalsArr.length; i++) {
-    let goal = goalsArr[i];
-    goals[goal['id']] = goal.value;
-}
-
-let inputArr = document.querySelectorAll('.input')
-for (let i=0; i<inputArr.length; i++){
-    inputArr[i].addEventListener('change', function() {
-        console.log(inputArr[i]['id']);
-        let input = inputArr[i];
-        progress[input['id']] = input.value;
-    });
+let countUp = {
+    kcal: 0,
+    fat: 0,
+    carb: 0,
+    protein: 0,
 };
 
 let ctx = document.querySelector('#cnv').getContext('2d');
@@ -68,20 +58,13 @@ keyToColor = {
 }
 
 let keys = Object.keys(keyToColor);
-
+console.log(keys)
 function drawGraph() {
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = 'hotpink';
     ctx.fillRect(0, 0, w, h);
 
-    for (let i=0; i<keys.length; i++) {
-        //empty bars
-        ctx.fillStyle = 'hsla(0, 0%, 0%, 0.25)';
-        ctx.fillRect(0, yPos[i]+ h/30, w, barH);
-
-    }
-
-    //target
+    //target range
     ctx.strokeStyle = 'black'
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -90,5 +73,72 @@ function drawGraph() {
     ctx.moveTo(t*1.1, 0);
     ctx.lineTo(t*1.1, h);
     ctx.stroke();
+
+    for (let i=0; i<keys.length; i++) {
+        let y = yPos[i]
+        let key = keys[i];
+        let goal = goals[key]
+        let current = currents[key]
+        let counter = countUp[key]
+        let prog = counter/goal
+
+        //empty bars
+        ctx.fillStyle = 'hsla(0, 0%, 0%, 0.25)';
+        ctx.fillRect(0, y + h/35, w, barH);
+
+        //filled bars
+        ctx.fillStyle = keyToColor[key];
+        ctx.fillRect(0, y + h/35, prog*t, barH);
+
+        //arc
+        ctx.beginPath();
+        ctx.arc(prog*t - 0.5, y + h/35 + 0.5*barH, 0.5*barH, 1.5*Math.PI, 0.5*Math.PI);// had to subtract 1 from the startingx... not sure why...
+        ctx.fill();
+
+        //outline
+        ctx.beginPath();
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 2;
+        ctx.moveTo(0, y + h/35);
+        ctx.lineTo(prog*t, y + h/35);
+        ctx.arc(prog*t - 0.5, y + h/35 + 0.5*barH, 0.5*barH, 1.5*Math.PI, 0.5*Math.PI);
+        ctx.lineTo(0, y + h/35 + barH);
+        ctx.stroke();
+        
+        //text
+        ctx.fillStyle = 'black';
+        ctx.fillText(counter, t*prog, y + 0.75*barH)
+    }
+
+    //target line
+    ctx.strokeStyle = 'hsla(0, 0%, 0%, 0.5)'
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(t, 0);
+    ctx.lineTo(t, h);
+    ctx.stroke();
+
+    if (countUp.kcal < currents.kcal) {
+        countUp.kcal ++
+        requestAnimationFrame(drawGraph);
+    } else if (countUp.fat < currents.fat) {
+        countUp.fat ++
+        requestAnimationFrame(drawGraph);
+    }  else if (countUp.carb < currents.carb) {
+        countUp.carb ++
+        requestAnimationFrame(drawGraph);
+    }  else if (countUp.protein < currents.protein) {
+        countUp.protein ++
+        requestAnimationFrame(drawGraph); 
+    } else {
+        console.log('meep')
+        // return;
+    }
 }
 drawGraph();
+
+let drawButton = document.querySelector('button')
+drawButton.addEventListener('click', function() {
+    drawGraph();
+    console.log('test');
+});

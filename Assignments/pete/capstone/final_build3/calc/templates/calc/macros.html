@@ -1,0 +1,72 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'calc/css/macros.css' %}">
+    <script src="{% static 'calc/js/macros.js' %}" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+{% endblock %}
+{% block subnav %}
+<nav class="subnav">
+    <header>Your Macros</header>
+</nav>
+{% endblock %}
+{% block main %}
+{{ macros_dict|json_script:"macros_dict"}}
+<main class="macros">
+
+    <div class="macros-outer">
+
+        <header>
+            <div>Training Day:</div>
+            <div>On days you work out, you eat high carbs, high protein, and low fat.</div>
+        </header>
+
+        <div class="macros-inner">
+            <div class="macros-text">
+                <div>Calories: {{ macros.train_kcal }}</div>
+                <div>Fat: {{ macros.train_fat }}g</div>
+                <div>Carbohydrates: {{ macros.train_carb }}g</div>
+                <div>Protein: {{ macros.protein }}g</div>
+            </div>
+
+            <div class="macros chart container">
+                <!-- <div>Chart goes here</div> -->
+                <canvas id="training-chart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="macros-outer">
+
+        <header>
+            <div>Rest Day:</div>
+            <div>On days you don't work out, you eat high fat, high protein, and low carbs.</div>
+        </header>
+
+        <div class="macros-inner">
+            <div class="macros-text">
+                <div>Calories: {{ macros.rest_kcal }}</div>
+                <div>Fat: {{ macros.rest_fat }}g</div>
+                <div>Carbohydrates: {{ macros.rest_carb }}g</div>
+                <div>Protein: {{ macros.protein }}g</div>
+            </div>
+
+            <div class="macros chart container">
+                <!-- <div>Chart goes here</div> -->
+                <canvas id="rest-chart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+    </div>
+    
+    {% if user.is_authenticated %}
+    <a href="#" class="macros" id="recalc-button"><button class="macros">ReCalculate Macros</button></a>
+    {% else %}
+    <a href="{% url 'user:register_form' pk=macros.pk %}" class="macros" id="create-account"><button class="macros" type="submit">Create Account</button></a>
+    {% endif %}
+</main>
+{% endblock %}

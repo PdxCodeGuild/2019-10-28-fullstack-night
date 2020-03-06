@@ -1,9 +1,12 @@
 .inputs {
     display: flex;
-    /* justify-content: space-around; */
 }
 
 .inputs label {
     width: 9vw;
     text-align: right;
+}
+
+#outer {
+    display: flex;
 }
