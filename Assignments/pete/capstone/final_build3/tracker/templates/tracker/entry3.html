@@ -3,7 +3,7 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/entry.css' %}">
-<script src="{% static 'tracker/js/entry.js' %}" defer></script>
+<script src="{% static 'tracker/js/entry3.js' %}" defer></script>
 {% endblock %}
 
 {% block subnav %}
@@ -22,30 +22,10 @@
 
             <query-div v-model="query" v-on:axios-call-event="axiosCall"></query-div>
             <div id="entries-container">
-                <name-div :food-items="foodItems">
-                    <food-name v-for="foodItem in foodItems" :food="foodItem" :key="foodItem.id"></food-name>
-                </name-div>
-
-                <kcal-div :food-items="foodItems">
-                    <food-kcal v-for="foodItem in foodItems" :food="foodItem" :key="foodItem.id"></food-kcal>
-                    <total-kcal v-bind:totals-obj="totalsObj"></total-kcal>
-                </kcal-div>
-
-                <fat-div :food-items="foodItems">
-                    <food-fat v-for="foodItem in foodItems" :food="foodItem" :key="foodItem.id"></food-fat>
-                    <total-fat v-bind:totals-obj="totalsObj"></total-fat>
-                </fat-div>
-
-                <carb-div :food-items="foodItems">
-                    <food-carb v-for="foodItem in foodItems" :food="foodItem" :key="foodItem.id"></food-carb>
-                    <total-carb v-bind:totals-obj="totalsObj"></total-carb>
-                </carb-div>
-
-                <protein-div :food-items="foodItems">
-                    <food-protein v-for="foodItem in foodItems" :food="foodItem" :key="foodItem.id"></food-protein>
-                    <total-protein v-bind:totals-obj="totalsObj"></total-protein>
-                </protein-div>
-
+                <header-div v-for="header in headers" :key='header.id' :header="header"></header-div>
+                <food-val-div v-for="foodVal in foodVals" :food-val="foodVal" :key="foodVal.id">
+                </food-val-div>
+                <total-div v-for="total in totals" :total="total" :key="total.id"></total-div>
             </div>
             <button>Track it!</button>
         </div>

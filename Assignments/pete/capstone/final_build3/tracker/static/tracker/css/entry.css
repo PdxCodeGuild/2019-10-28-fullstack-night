@@ -13,7 +13,7 @@ main.entry {
 .entry.middle.container {
     display: flex;
     flex-direction: column;
-    width: 33vw;
+    width: 40vw;
     height: 40vh;
     justify-content: space-between;
     border: 2px dotted black;
@@ -41,7 +41,7 @@ main.entry {
 }
 
 header.small {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     text-decoration: underline;
 }
 
@@ -78,4 +78,31 @@ header.small {
 
 .middle-container {
     margin: 0 1vw;
+}
+
+#entries-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 25vh;
+    overflow-y: auto;
+}
+
+.middle-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25rem;
+}
+
+.inner-container div {
+    height: min-content;
+    overflow-x: hidden;
+}
+
+.total {
+    border-top: 2px solid black;
 }

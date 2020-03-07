@@ -69,6 +69,13 @@ def entry2(request, date):
     date_str = date.strftime('%B %d, %Y')
     return render(request, 'tracker/entry2.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d')})
 
+@login_required
+def entry3(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    date_str = date.strftime('%B %d, %Y')
+    return render(request, 'tracker/entry3.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d')})
+
 """
 OLD
 """
