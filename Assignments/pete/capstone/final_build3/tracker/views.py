@@ -74,7 +74,7 @@ def entry3(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     day = DiaryDay.objects.get(user=request.user, date=date)
     date_str = date.strftime('%B %d, %Y')
-    return render(request, 'tracker/entry3.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d')})
+    return render(request, 'tracker/entry3.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d'), 'track_custom': reverse('tracker:track_custom', kwargs={'date': '$'},)})
 
 """
 OLD
@@ -206,6 +206,11 @@ def add_entry(request, pk):
 
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
+
+@login_required
+def track_custom(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
 
 @login_required # TO BE UPDATED
 def saved_entry(request, pk):

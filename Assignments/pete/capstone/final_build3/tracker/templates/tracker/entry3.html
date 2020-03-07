@@ -13,6 +13,9 @@
 {% endblock %}
 
 {% block main %}
+{% csrf_token %}
+{{ date_link|json_script:"date_link" }}
+{{ track_custom|json_script:"track_custom" }}
 <main class="entry">
 
     <div class="entry outer container">
@@ -22,44 +25,33 @@
 
             <query-div v-model="query" v-on:axios-call-event="axiosCall"></query-div>
             <div id="entries-container">
-                <header-div v-for="header in headers" :key='header.id' :header="header"></header-div>
-                <food-val-div v-for="foodVal in foodVals" :food-val="foodVal" :key="foodVal.id">
+                <header-div v-for="header in headers" :key='header.id' :header="header" v-show="foodItems.length"></header-div>
+                <food-val-div v-for="foodVal in foodVals" :food-val="foodVal" :key="foodVal.id" v-show="foodItems.length">
                 </food-val-div>
-                <total-div v-for="total in totals" :total="total" :key="total.id"></total-div>
+                <total-div v-for="total in totals" :total="total" :key="total.id" v-show="foodItems.length>1"></total-div>
             </div>
-            <button>Track it!</button>
+            <button @click="trackIt">Track it!</button>
         </div>
 
         <div id="or"><div>OR:</div></div>
 
         
         <div id="custom" class="entry middle container">
-            <header class="small">Add a New Entry:</header>
-            <div>
-                <span>Name:</span>
-                <input class="input" type="text" v-model="name">
-            </div>
-            <div>
-                <span>Kilocalories:</span>
-                <input class="input" id="kcal" type="number" v-model="kcal">
-            </div>
-            <div>
-                <span>Grams of Fat:</span>
-                <input class="input" id="fat" type="number" v-model="fat">
-            </div>
-            <div>
-                <span>Grams of Carbohydrates:</span>
-                <input class="input" id="carb" type="number" v-model="carb">
-            </div>
-            <div>
-                <span>Grams of Protein:</span>
-                <input class="input" id="protein" type="number" v-model="protein">
-            </div>
-            <div id="save">
-                <label>Save for Future Use:</label>
-                <input type="checkbox" v-model="save" value="save">
-            </div>
-            <button id="submit" type="submit">Track It!</button>
+
+            <header class="small">Add a Custom Entry:</header>
+            
+            <custom-name v-model="name"></custom-name>
+
+            <custom-kcal v-model="kcal"></custom-kcal>
+
+            <custom-fat v-model="fat"></custom-fat>
+            
+            <custom-carb v-model="carb"></custom-carb>
+            
+            <custom-protein v-model="protein"></custom-protein>
+
+            <button @click="trackIt">Track It!</button>
+
         </div>
 
     </div>

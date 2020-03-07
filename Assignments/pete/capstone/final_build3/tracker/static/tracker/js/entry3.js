@@ -1,5 +1,8 @@
-let url = 'https://trackapi.nutritionix.com/v2/natural/nutrients/'
+var csrftoken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
+var dateLink = JSON.parse(document.querySelector('#date_link').textContent);
+var trackCustom = JSON.parse(document.querySelector('#track_custom').textContent);
 
+let url = 'https://trackapi.nutritionix.com/v2/natural/nutrients/'
 
 var queryDiv = {
     props: ['query'],
@@ -29,13 +32,13 @@ var foodValDiv = {
 
 var totalDiv = {
     props: ['total'],
-    template: `<div>{{ totalComputed }}</div>`,
+    template: `<div class="total">{{ totalComputed }}</div>`,
     computed: {
         totalComputed: function() {
-            if (typeof total === 'number') {
-                return Math.round(total)
+            if (typeof this.total === 'number') {
+                return Math.round(this.total)
             }
-            return total
+            return this.total
         }
     },
 
@@ -46,66 +49,18 @@ var nutritionix = new Vue({
     data: {
         headers: ['Name', 'Calories', 'Fat (g)', 'Carb (g)', 'Protein (g)'],
         query: '',
-        foodItems: [
-            {
-                'name': 'test name 1',
-                'kcal': 123,
-                'fat': 234,
-                'carb': 34.543,
-                'protein': 12.53,
-            },
-            {
-                'name': 'test name 1',
-                'kcal': 123,
-                'fat': 234,
-                'carb': 34.543,
-                'protein': 12.53,
-            },
-            {
-                'name': 'test name 1',
-                'kcal': 123,
-                'fat': 234,
-                'carb': 34.543,
-                'protein': 12.53,
-            },
-
-            {
-                'name': 'test name 1',
-                'kcal': 123,
-                'fat': 234,
-                'carb': 34.543,
-                'protein': 12.53,
-            },
-
-            {
-                'name': 'test name 1',
-                'kcal': 123,
-                'fat': 234,
-                'carb': 34.543,
-                'protein': 12.53,
-            },
-
-            {
-                'name': 'test name 1',
-                'kcal': 123,
-                'fat': 234,
-                'carb': 34.543,
-                'protein': 12.53,
-            },
-
-
-        ],
+        foodItems: [],
     },
 
     components: {
         'query-div': queryDiv,
         'header-div': headerDiv,
         'food-val-div': foodValDiv,
+        'total-div': totalDiv,
     },
 
     methods: {
         axiosCall: function() {
-            console.log('hey')
             axios({
                 method: 'post',
                 url: url,
@@ -126,10 +81,17 @@ var nutritionix = new Vue({
                     foodObj.kcal = food.nf_calories;
                     foodObj.fat = food.nf_total_fat;
                     foodObj.carb = food.nf_total_carbohydrate;
-                    foodObj.protein = food.protein
-                    this.foodItems.push(food)
+                    foodObj.protein = food.nf_protein;
+                    this.foodItems.push(foodObj)
                 }
             })
+            // I WANT TO CLEAR THE INPUT FIELD AT THE END OF THIS METHOD
+            // this.query = '';
+            // event.target.reset();
+        },
+
+        trackIt: function() {
+            console.log('track it')
         },
     },
         
@@ -142,39 +104,119 @@ var nutritionix = new Vue({
                 totalsObj.carb += this.foodItems[i].carb
                 totalsObj.protein += this.foodItems[i].protein
             }
-            for (let property in totalsObj) {
-                totalsObj[property] = Math.round(totalsObj[property])
-            }
             return totalsObj
         },
 
         totals: function() {
-            let totals = []
+            let totals = ['Total']
             let values = Object.values(this.totalsObj);
             for (let i=0; i<values.length; i++) {
                 totals.push(values[i]);
             }
+            return totals;
         },
+
         foodVals: function() {
             // outArr = []
             // this.foodItems.map((el)=>outArr.push(...Object.values(el).map((el)=>(typeof el === 'number' ? Math.round(el):el))))
             // return outArr
-            let foodVals = ['Total']
+            let foodVals = [];
             for (let i=0; i<this.foodItems.length; i++) {
                 let foodItem = this.foodItems[i];
                 let values = Object.values(foodItem)
+                console.log(values)
                 for (let j=0; j<values.length; j++) {
                     foodVals.push(values[j]);
                 }
             }
             return foodVals
-        }
+        },
     },
 })
 
-// var custom = new Vue({
-//     el: '#custom',
-//     data: {
+let customName = {
+    props: ['name'],
+    template: `<div>
+        <span>Name:</span>
+        <input class="custom" type="text" :name="name" @input="$emit('input', $event.target.value)">
+    </div>`
+};
 
-//     }
-// })
+let customKcal = {
+    props: ['kcal'],
+    template: `<div>
+        <span>Calories:</span>
+        <input class="custom" type="number" :kcal="kcal" @input="$emit('input', $event.target.value)">
+    </div>`
+};
+
+let customFat = {
+    props: ['fat'],
+    template: `<div>
+        <span>Grams of Fat</span>
+        <input class="custom" type="number" :fat="fat" @input="$emit('input', $event.target.value)">
+    </div>`
+};
+
+let customCarb = {
+    props: ['carb'],
+    template: `<div>
+        <span>Grams of Carbohydrates:</span>
+        <input class="custom" type="number" :carb="carb" @input="$emit('input', $event.target.value)">
+    </div>`
+};
+
+let customProtein = {
+    props: ['protein'],
+    template: `<div>
+        <span>Grams of Protein:</span>
+        <input class="custom" type="number" :protein="protein" @input="$emit('input', $event.target.value)">
+    </div>`
+};
+
+
+var custom = new Vue({
+    el: '#custom',
+    data: {
+        name: '',
+        kcal: '',
+        fat: '',
+        carb: '',
+        protein: '',
+    },
+    components: {
+        'custom-name': customName,
+        'custom-kcal': customKcal,
+        'custom-fat': customFat,
+        'custom-carb': customCarb,
+        'custom-protein': customProtein,
+    },
+    computed: {
+        trackCustomDate: function() {
+            return trackCustom.slice(0, trackCustom.length - 2) + dateLink
+        },
+    },
+    methods: {
+        trackIt: function() {
+            console.log('track it')
+            axios({
+                method: 'POST',
+                url: this.trackCustomDate,
+                data: {
+                    name: this.name,
+                    kcal: this.kcal,
+                    fat: this.fat,
+                    carb: this.carb,
+                    protein: this.protein,
+                },
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                },
+            }).then(
+                (response) => {
+                    console.log(response)
+                }
+            )
+        }
+    }
+})

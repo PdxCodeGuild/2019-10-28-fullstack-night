@@ -53,6 +53,10 @@ header.big {
     width: 15vw;
 }
 
+input.custom {
+    width: 15vw;
+}
+
 .subnav header {
     text-decoration: underline;
 }
@@ -81,10 +85,18 @@ header.small {
 }
 
 #entries-container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
     min-height: 25vh;
     overflow-y: auto;
+    border: 2px dotted black;
+    align-content: end;
+}
+
+#entries-container div {
+    display: block;
+    text-align: right;
+    width: 100%;
 }
 
 .middle-container {

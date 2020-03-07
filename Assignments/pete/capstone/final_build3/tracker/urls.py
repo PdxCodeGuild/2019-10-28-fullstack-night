@@ -20,9 +20,11 @@ urlpatterns = [
     path('entry/<int:pk>/', views.entry, name='entry'),
     path('entry2/<str:date>/', views.entry2, name='entry2'),
     path('entry3/<str:date>/', views.entry3, name='entry3'),
+
     path('add-entry/<int:pk>/', views.add_entry, name='add_entry'),
     path('saved-entry/<int:pk>/', views.saved_entry, name='saved_entry'),
     path('nutritionix/<int:pk>/', views.nutritionix, name='nutritionix'),
+    path('track_custom/<str:date>/', views.track_custom, name='track_custom'),
 
     path('calendar/<str:date>/', views.calendar_month, name='calendar'),
     path('calendar-now/', views.calendar_now, name='calendar_now'),

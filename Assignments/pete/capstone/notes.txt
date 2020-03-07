@@ -1,0 +1,1 @@
+Rename all tracker 'add_entry' views, urls, vue, js, etc.  to 'track_entry'
