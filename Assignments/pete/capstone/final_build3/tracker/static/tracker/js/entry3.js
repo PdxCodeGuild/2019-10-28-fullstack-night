@@ -1,6 +1,7 @@
 var csrftoken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
 var dateLink = JSON.parse(document.querySelector('#date_link').textContent);
 var trackCustom = JSON.parse(document.querySelector('#track_custom').textContent);
+var day3 = JSON.parse(document.querySelector('#day3').textContent);
 
 let url = 'https://trackapi.nutritionix.com/v2/natural/nutrients/'
 
@@ -19,30 +20,42 @@ var headerDiv = {
 
 var foodValDiv = {
     props: ['foodVal'],
-    template: `<div>{{foodValComputed}}</div>`,
+    template: `<div :class="nameOrNo">{{ foodValComputed }}</div>`,
     computed: {
         foodValComputed: function() {
             if (typeof this.foodVal === 'number') {
-                return Math.round(this.foodVal)
+                return Math.round(this.foodVal);
             }
-            return this.foodVal
-        }
-    }
-}
+            return this.foodVal;
+        },
+        nameOrNo: function() {
+            if (typeof this.foodVal === 'number') {
+                return '';
+            }
+            return 'name';
+        },
+    },
+};
 
 var totalDiv = {
     props: ['total'],
-    template: `<div class="total">{{ totalComputed }}</div>`,
+    template: `<div :class="nameOrNo" class="total">{{ totalComputed }}</div>`,
     computed: {
         totalComputed: function() {
             if (typeof this.total === 'number') {
-                return Math.round(this.total)
+                return Math.round(this.total);
             }
-            return this.total
-        }
+            return this.total;
+        },
+        nameOrNo: function() {
+            if (typeof this.total === 'number') {
+                return '';
+            };
+            return 'name';
+        },
     },
 
-}
+};
 
 var nutritionix = new Vue({
     el: '#nutritionix',
@@ -193,8 +206,11 @@ var custom = new Vue({
     },
     computed: {
         trackCustomDate: function() {
-            return trackCustom.slice(0, trackCustom.length - 2) + dateLink
+            return trackCustom.slice(0, trackCustom.length - 2) + dateLink + '/'
         },
+        day3Date: function() {
+            return day3.slice(0, day3.length - 2) + dateLink + '/'
+        }
     },
     methods: {
         trackIt: function() {
@@ -204,19 +220,16 @@ var custom = new Vue({
                 url: this.trackCustomDate,
                 data: {
                     name: this.name,
-                    kcal: this.kcal,
-                    fat: this.fat,
-                    carb: this.carb,
-                    protein: this.protein,
+                    kcal: parseInt(this.kcal),
+                    fat: parseInt(this.fat),
+                    carb: parseInt(this.carb),
+                    protein: parseInt(this.protein),
                 },
                 headers: {
                     'X-CSRFToken': csrftoken,
                 },
-            }).then(
-                (response) => {
-                    console.log(response)
-                }
-            )
+            })
+            window.location = this.day3Date
         }
     }
 })

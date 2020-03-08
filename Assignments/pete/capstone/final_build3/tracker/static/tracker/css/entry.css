@@ -95,8 +95,12 @@ header.small {
 
 #entries-container div {
     display: block;
-    text-align: right;
+    text-align: end;
     width: 100%;
+}
+
+#entries-container div.name {
+    text-align: start;
 }
 
 .middle-container {

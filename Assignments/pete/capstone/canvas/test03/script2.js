@@ -106,6 +106,7 @@ function drawGraph() {
         ctx.stroke();
         
         //text
+        ctx.font = '20px Odibee Sans'
         ctx.fillStyle = 'black';
         ctx.fillText(counter, t*prog, y + 0.75*barH)
     }

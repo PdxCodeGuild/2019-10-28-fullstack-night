@@ -25,6 +25,11 @@ nav * {
     font-family: 'Odibee Sans', cursive;
 }
 
+@font-face {
+    font-family: 'Odibee Sans', cursive;
+    src: url("https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap");
+}
+
 #padding {
     background-color: hotpink;
     height: 3vh;

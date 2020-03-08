@@ -8,6 +8,7 @@ from .models import *
 import datetime
 import calendar
 from dateutil.relativedelta import *
+import json
 
 """
 RENDER VIEWS
@@ -19,10 +20,6 @@ NEW
 
 @login_required #TO BE RENAMED "get_day()"
 def get_day3(request, date):
-    # print('*'*70)
-    # print(request.user.diary_day.get(date=date))
-    # print('*'*70)
-
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     date_str = date.strftime("%B %d, %Y")
     date_link = date.strftime('%Y-%m-%d')
@@ -35,14 +32,6 @@ def get_day3(request, date):
 
     except ObjectDoesNotExist:
         return render(request, 'tracker/day-vue.html', {'date_str': date_str, 'date_link': date_link})
-
-@login_required #TO BE DELETED?
-def get_day2(request, date):
-    day, created = DiaryDay.objects.get_or_create(date=date, user=request.user)
-    totals = day.total()
-    offset = day.offset()
-    over_under = day.over_under()
-    return render(request, 'tracker/day-vue.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})##### works on both day.html and day-vue.html
 
 @login_required # TO BE RENAMED "tracker()"?
 def calendar_month(request, date):#date is datetime... just need month and year
@@ -63,42 +52,11 @@ def calendar_month(request, date):#date is datetime... just need month and year
     return render(request, 'tracker/calendar.html', {'month_str': month_str, 'year': year, 'date_time': date, 'month_start': month_start, 'month_length': month_length, 'date_str': date_str, 'diary_days': diary_days, 'logged_days': logged_days, 'day2': reverse('tracker:day3', kwargs={'date': '$'}), 'year_month': year_month})# changed 'tracker:day2' to 'tracker:day3'
 
 @login_required
-def entry2(request, date):
-    date = datetime.datetime.strptime(date, '%Y-%m-%d')
-    day = DiaryDay.objects.get(user=request.user, date=date)
-    date_str = date.strftime('%B %d, %Y')
-    return render(request, 'tracker/entry2.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d')})
-
-@login_required
 def entry3(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     day = DiaryDay.objects.get(user=request.user, date=date)
     date_str = date.strftime('%B %d, %Y')
-    return render(request, 'tracker/entry3.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d'), 'track_custom': reverse('tracker:track_custom', kwargs={'date': '$'},)})
-
-"""
-OLD
-"""
-
-@login_required #TO BE DELETED?
-def tracker(request):
-    days = DiaryDay.objects.filter(user=request.user).order_by('-date')
-    # days = DiaryDay.objects.order_by('-date')
-    days_json = [day.date for day in days]
-    return render(request, 'tracker/tracker.html', {'days': days, 'days_json': days_json})
-
-@login_required #TO BE DELETED?
-def get_day(request, pk):
-    day = DiaryDay.objects.get(pk=pk)
-    totals = day.total()
-    offset = day.offset()
-    over_under = day.over_under()
-    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
-    
-@login_required #TO BE DELETED?
-def entry(request, pk):
-    day = DiaryDay.objects.get(pk=pk)
-    return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})
+    return render(request, 'tracker/entry3.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d'), 'track_custom': reverse('tracker:track_custom', kwargs={'date': '$'}), 'day3': reverse('tracker:day3', kwargs={'date': '$'})})
 
 """
 WORKS IN PROGRESS
@@ -211,7 +169,20 @@ def add_entry(request, pk):
 def track_custom(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     day = DiaryDay.objects.get(user=request.user, date=date)
+    data = json.loads(request.body)
 
+    meal = Meal(
+        name=data['name'],
+        kcal=data['kcal'],
+        fat=data['fat'],
+        carb=data['carb'],
+        protein=data['protein'],
+    )
+    meal.save()
+
+    DiaryEntry(meal=meal, date=day).save()
+    return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': date.strftime('%Y-%m-%d')}))
+    
 @login_required # TO BE UPDATED
 def saved_entry(request, pk):
 
@@ -219,3 +190,42 @@ def saved_entry(request, pk):
     meal = Meal.objects.get(pk=request.POST['meal'])
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:get_day', kwargs={'pk': day.pk}))
+
+"""
+OLD
+"""
+
+@login_required #TO BE DELETED?
+def get_day2(request, date):
+    day, created = DiaryDay.objects.get_or_create(date=date, user=request.user)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day-vue.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})##### works on both day.html and day-vue.html
+
+@login_required #TO BE DELETED?
+def entry2(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    date_str = date.strftime('%B %d, %Y')
+    return render(request, 'tracker/entry2.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d')})
+
+@login_required #TO BE DELETED?
+def tracker(request):
+    days = DiaryDay.objects.filter(user=request.user).order_by('-date')
+    # days = DiaryDay.objects.order_by('-date')
+    days_json = [day.date for day in days]
+    return render(request, 'tracker/tracker.html', {'days': days, 'days_json': days_json})
+
+@login_required #TO BE DELETED?
+def get_day(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    totals = day.total()
+    offset = day.offset()
+    over_under = day.over_under()
+    return render(request, 'tracker/day.html', {'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+    
+@login_required #TO BE DELETED?
+def entry(request, pk):
+    day = DiaryDay.objects.get(pk=pk)
+    return render(request, 'tracker/entry.html', {'day': day, 'general_meals': Meal.objects.filter(general=True)})

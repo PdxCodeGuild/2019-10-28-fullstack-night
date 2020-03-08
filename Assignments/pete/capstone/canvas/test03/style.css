@@ -10,3 +10,8 @@
 #outer {
     display: flex;
 }
+
+@font-face {
+    font-family: 'Odibee Sans', cursive;
+    src: url("https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap");
+}
