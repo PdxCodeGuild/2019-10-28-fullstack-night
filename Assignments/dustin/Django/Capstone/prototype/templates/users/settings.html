@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        Welcome to the Settings Page.
+    </div>
+
+    <div>
+
+    <form method="POST" action="{% url 'users:update_profile' %}"" enctype="multipart/form-data">
+		{% csrf_token %}
+        <p>Display name: <input type="text" name="name" placeholder="Name"></p>
+
+        <p>Location: <input type="text" name="location" placeholder="(ex: Portland, OR)"></p>
+
+        <p>Bio: <input type="textarea" name="bio" placeholder="About Me" width="400px" height="150px"></p>
+
+        <p>Other info: <input type="textarea" name="misc" placeholder="(ex: interests, inspirations, collaboration info)"></p>
+
+        <p><label for="theme">Choose a theme:</label>
+                <select name="theme" id="themes">
+                    {% for theme in themes %}
+                    <option value="{{theme.pk}}">{{theme.text}}</option>
+                    {% endfor %}
+                </select></p>
+
+        <p><label for="layout">Choose a layout:</label>
+                <select name="layout" id="layouts">
+                    {% for layout in layouts %}
+                    <option value="{{layout.pk}}">{{layout.text}}</option>
+                    {% endfor %}
+                </select></p>
+
+        <p><label for="medium">Choose your medium(s):</label>
+                <select name="medium" id="mediums" multiple>
+                    {% for medium in mediums %}
+                    <option value="{{medium.pk}}">{{medium.text}}</option>
+                    {% endfor %}
+                </select></p>
+                
+		<label for="profile_pic">Select an image:</label>
+		<p><input type="file" name="movie_image" id="profile_pic"></p>
+		<p><button type="submit">Update Profile</button></p>
+    </form>
+    </div>
+
+
+</body>
+</html>

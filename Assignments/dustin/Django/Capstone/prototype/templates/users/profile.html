@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    {% with 'cc/css/'|add:profile_css as profile_css_template %}
+      <link rel="stylesheet" href="{% static profile_css_template %}">
+    {% endwith %}
+    <link type="text/css" rel="stylesheet" href="{% static 'light/src/css/lightslider.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'light/src/js/lightslider.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $("#light-slider").lightSlider({
+              item: 4,
+              autoWidth: false,
+              adaptiveHeight: true,
+              thumbItem: 8,
+              loop: true,
+              pager: true,
+              gallery: true,
+              controls: true,
+          });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $("#light-slider2").lightSlider({
+              item: 4,
+              autoWidth: false,
+              adaptiveHeight: true,
+              thumbItem: 8,
+              loop: true,
+              pager: true,
+              gallery: true,
+              controls: true,
+          });
+        });
+    </script>
+</head>
+<body>
+    
+    <mydiv>
+        <div>
+            <menubar><img src="/media/images/CreativeCrossroadsGIFblue.gif" width="50%" height="50%">  </menubar>
+        </div>
+        <div>
+            <header>
+                This is filler text.  User and other miscellaneous information will go here.
+    
+            </header>
+        </div>
+
+        <usertitle>
+            User Title
+        </usertitle>
+
+        <artdiv>
+            <div id="box1">
+                <div id="box1flex">                    
+                    <div id="useridphoto">
+                            <div id="uidcontainer">
+                                    <img src="/media/images/Portrait_Test.jpg" alt="User Portrait">
+                            </div>
+                    </div>
+                    <div id="userinfo"> 
+                    {% if name %}
+                        Name: {{name}}<br>
+                    {% endif %}
+                    {% if medium %}
+                        Mediums: {{medium}}<br>
+                    {% endif %}
+                    {% if bio %}
+                        Bio: {{bio}}<br>
+                    {% endif %}
+                    </div>
+                    {% if location %}
+                        <div id="userinterests">Interests: {{location}}<br></div>
+                    {% endif %}
+                    {% if instagram %}
+                        <div id="userinspirations">Inspirations: <a href="{{instagram}}">{{instagram_username}}</a><br></div>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="box2">
+                <div id="box2flex"><h3>Featured Work</h3>
+                    <!-- <hr> -->
+                    <div id="featuredwork">
+                        <div id="fwcontainer">
+                            <img src="/media/images/IMG_3742.jpg" alt="Featured Work">
+                            <br><h4>Art Title</h4>
+                        </div>
+                    </div>
+                    <!-- <hr> -->
+                </div>
+            </div>
+            <div id="box3">
+                <div id="lslider" class='lSSlideOuter'>
+                    <h3>Artist Gallery</h3>
+                    <br>
+                    <ul id="light-slider">
+                        <li data-thumb="/media/images/IMG_3587.jpg">
+                            <img src="/media/images/IMG_3587.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_1336.jpg">
+                            <img src="/media/images/IMG_1336.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_2778.jpg">
+                            <img src="/media/images/IMG_2778.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_2679.jpg">
+                            <img src="/media/images/IMG_2679.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_3592.jpg">
+                            <img src="/media/images/IMG_3592.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                    </ul>
+
+                    <ul>
+                    {% for image in user_images %}
+                        <li data-thumb="{image}}""><a href={{image.page}}><img src="{{image}}"></a></li>
+                        <h4>{{image.title}}</h4>
+                    {% endfor %}
+                    </ul>
+                    
+                </div>
+
+            </div>
+            <div id="box4">
+                <div id="lslider2" class='lSSlideOuter'>
+                    <h3>Artist Favorites</h3>
+                    <br>
+                    <ul id="light-slider2">
+                        <li data-thumb="/media/images/IMG_3587.jpg">
+                            <img src="/media/images/IMG_3587.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_1336.jpg">
+                            <img src="/media/images/IMG_1336.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_2778.jpg">
+                            <img src="/media/images/IMG_2778.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_2679.jpg">
+                            <img src="/media/images/IMG_2679.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/IMG_3592.jpg">
+                            <img src="/media/images/IMG_3592.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                        <li data-thumb="/media/images/pike_place.jpg">
+                            <img src="/media/images/pike_place.jpg">
+                            <h4>Art Title</h4>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </artdiv>
+        <footer>
+            Test it! This doesn't make any sense. I hate CSS.
+        </footer>
+    </mydiv>
+
+    
+    
+</body>
+</html>
