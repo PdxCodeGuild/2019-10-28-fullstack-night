@@ -4,5 +4,4 @@ from . import views
 app_name = 'cc'
 urlpatterns = [
     path('', views.index, name='index'),
-    
 ]

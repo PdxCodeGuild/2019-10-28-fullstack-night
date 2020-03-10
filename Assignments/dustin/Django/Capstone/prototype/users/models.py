@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class Profile(models.Model):
-    email = models.EmailField(('email_address'), unique=True)
+    #email = models.EmailField(('email_address'), unique=True)
     is_anonymous = False
     is_authenticated = True
     
@@ -20,8 +20,9 @@ class Profile(models.Model):
     bio = models.TextField(null=True, blank=True)    
     mediums = models.ManyToManyField('Medium', blank=True)
     misc = models.CharField(max_length = 1000, null=True, blank=True)
-    theme = models.ForeignKey('Theme', on_delete=models.PROTECT, null=True, blank=True)
-    layout = models.ForeignKey('Layout', on_delete=models.PROTECT, null=True, blank=True)
+    theme = models.ForeignKey('Theme', on_delete=models.PROTECT, null=False, blank=True, default=1)
+    layout = models.ForeignKey('Layout', on_delete=models.PROTECT, null=False, blank=True, default=1)
+    #layout = models.ForeignKey('Layout', on_delete=models.PROTECT, null=False, blank=True, default=Layout.objects.get(text='Type 1').id)
     instagram = models.CharField(max_length = 150, null=True, blank=True)
     patreon = models.CharField(max_length = 150, null=True, blank=True)
     soundcloud = models.CharField(max_length = 150, null=True, blank=True)
@@ -32,13 +33,13 @@ class Profile(models.Model):
 
 
 class Theme(models.Model):
-    text = models.CharField(max_length = 150, default='Dark')
+    text = models.CharField(max_length = 150)
 
     def __str__(self):
         return self.text
 
 class Layout(models.Model):
-    text = models.CharField(max_length = 150, default='Type 1')
+    text = models.CharField(max_length = 150)
 
     def __str__(self):
         return self.text
