@@ -23,6 +23,7 @@
     {{ year_month|json_script:"year_month"}}
     <div id="app">
         <div id="calendar-container">
+            
             <div class="day-name">Sun</div>
             <div class="day-name">Mon</div>
             <div class="day-name">Tue</div>
@@ -36,54 +37,7 @@
             <month-day v-for="day in monthDays" v-bind:day="day" v-bind:key="day.id"></month-day>
             
             <post-month-day v-for="day in postMonthDays" v-bind:key="day.id"></post-month-day>
-                
-            <!-- <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
 
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div>
-            <div class="day"></div> -->
         </div>
     </div>
     {% comment %}

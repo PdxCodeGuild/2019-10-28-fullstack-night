@@ -28,10 +28,10 @@ def get_day3(request, date):
         totals = day.total()
         offset = day.offset()
         over_under = day.over_under()
-        return render(request, 'tracker/day-vue.html', {'date_str': date_str, 'date_link': date_link, 'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
+        return render(request, 'tracker/day3.html', {'date_str': date_str, 'date_link': date_link, 'day': day, 'macros': day.macros(), 'totals': totals, 'offset': offset, 'over_under': over_under, 'user': request.user})
 
     except ObjectDoesNotExist:
-        return render(request, 'tracker/day-vue.html', {'date_str': date_str, 'date_link': date_link})
+        return render(request, 'tracker/day3.html', {'date_str': date_str, 'date_link': date_link})
 
 @login_required # TO BE RENAMED "tracker()"?
 def calendar_month(request, date):#date is datetime... just need month and year

@@ -5,24 +5,6 @@ var loggedDays = JSON.parse(document.querySelector('#logged_days').textContent);
 var day2 = JSON.parse(document.querySelector('#day2').textContent);
 var yearMonth = JSON.parse(document.querySelector('#year_month').textContent);
 
-// if (monthStart===6) {
-//     var dayCounter = 0
-// } else {
-//     var dayCounter = monthStart + 1;
-// }
-
-// let dayArr = document.querySelectorAll('.day');
-
-// for (let i=0; i<monthLength; i++) {
-//     dayArr[dayCounter].innerText = i+1;
-//     for (let j=0; j<loggedDays.length; j++) {
-//         if (dayArr[dayCounter].innerText == parseInt(loggedDays[j].day)) {
-//             dayArr[dayCounter].style.color = 'red';
-//             console.log('red')
-//         }
-//     }
-//     dayCounter ++;
-// }
 var preMonthDay = {
     template: `<div class="day pre"></div>`,
 }

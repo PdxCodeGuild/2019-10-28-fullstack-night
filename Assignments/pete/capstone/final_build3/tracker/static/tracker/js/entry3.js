@@ -99,7 +99,7 @@ var nutritionix = new Vue({
                 }
             })
             // I WANT TO CLEAR THE INPUT FIELD AT THE END OF THIS METHOD
-            // this.query = '';
+            this.query = '';
             // event.target.reset();
         },
 
@@ -228,8 +228,10 @@ var custom = new Vue({
                 headers: {
                     'X-CSRFToken': csrftoken,
                 },
-            })
-            window.location = this.day3Date
+            }).then((response) => {
+                window.location = this.day3Date
+
+            });
         }
     }
 })

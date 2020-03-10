@@ -1,8 +1,8 @@
 main.day {
     flex-direction: column;
     height: auto;
-    padding-top: 5vh;
-    justify-content: flex-start;
+    /* padding-top: 5vh; */
+    justify-content: space-evenly;
 }
 
 .subnav header {
@@ -21,7 +21,7 @@ header.big {
 #outer-day {
     display: flex;
     flex-wrap: wrap;
-    height: 55vh;
+    height: 57.5vh;
     width: 80vw;
     justify-content: space-around;
     border: 2px solid black;
@@ -108,5 +108,21 @@ a:hover {
 }
 
 #button-container button{
+    font-size: 2.5rem;
+}
+
+canvas {
+    outline: 2px dotted black;
+}
+
+#goals-container, #prog-old {
+    display: none;
+}
+
+#progress-container {
+    border: 2px dotted black;
+}
+
+#add-button {
     font-size: 2.5rem;
 }
