@@ -2,7 +2,7 @@ var dateTime = JSON.parse(document.querySelector('#date_time').textContent);
 var monthStart = JSON.parse(document.querySelector('#month_start').textContent);
 var monthLength = JSON.parse(document.querySelector('#month_length').textContent);
 var loggedDays = JSON.parse(document.querySelector('#logged_days').textContent);
-var day2 = JSON.parse(document.querySelector('#day2').textContent);
+var day3 = JSON.parse(document.querySelector('#day3').textContent);
 var yearMonth = JSON.parse(document.querySelector('#year_month').textContent);
 
 var preMonthDay = {
@@ -42,7 +42,7 @@ var monthDay = {
         },
 
         href: function() {
-            return day2.slice(0, day2.length -2) + this.dateString
+            return day3.slice(0, day3.length -2) + this.dateString
         },
         
     },
