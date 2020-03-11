@@ -1,14 +1,15 @@
 var csrftoken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
 var dateLink = JSON.parse(document.querySelector('#date_link').textContent);
 var trackCustom = JSON.parse(document.querySelector('#track_custom').textContent);
+var trackNutritionix = JSON.parse(document.querySelector('#track_nutritionix').textContent);
 var day3 = JSON.parse(document.querySelector('#day3').textContent);
-
+console.log('abcde')
 let url = 'https://trackapi.nutritionix.com/v2/natural/nutrients/'
 
 var queryDiv = {
-    props: ['query'],
+    props: ['value'],
     template: `<div id="query-container">
-        <input :query="query" @input="$emit('input', $event.target.value)" @keyup.enter="$emit('axios-call-event', $event)">
+        <input :value="value" @input="$emit('input', $event.target.value)" @keyup.enter="$emit('axios-call-event', $event)">
         <button @click="$emit('axios-call-event', $event)">Add</button>
         </div>`,
 }
@@ -105,10 +106,28 @@ var nutritionix = new Vue({
 
         trackIt: function() {
             console.log('track it')
+            axios({
+                method: 'POST',
+                url: this.trackNutritionixDate,
+                data: this.foodItems,
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                },
+            }).then((response) => {
+                window.location = this.day3Date
+            })
         },
     },
         
     computed: {
+        day3Date: function() {
+            return day3.slice(0, day3.length - 2) + dateLink + '/';
+        },
+
+        trackNutritionixDate: function() {
+            return trackNutritionix.slice(0, trackNutritionix.length - 2) + dateLink + '/';
+        },
+
         totalsObj: function() {
             totalsObj = {'kcal': 0, 'fat': 0, 'carb': 0, 'protein': 0};
             for (let i=0; i<this.foodItems.length; i++) {
@@ -206,11 +225,11 @@ var custom = new Vue({
     },
     computed: {
         trackCustomDate: function() {
-            return trackCustom.slice(0, trackCustom.length - 2) + dateLink + '/'
+            return trackCustom.slice(0, trackCustom.length - 2) + dateLink + '/';
         },
         day3Date: function() {
-            return day3.slice(0, day3.length - 2) + dateLink + '/'
-        }
+            return day3.slice(0, day3.length - 2) + dateLink + '/';
+        },
     },
     methods: {
         trackIt: function() {

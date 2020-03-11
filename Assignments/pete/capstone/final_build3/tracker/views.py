@@ -56,7 +56,7 @@ def entry3(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     day = DiaryDay.objects.get(user=request.user, date=date)
     date_str = date.strftime('%B %d, %Y')
-    return render(request, 'tracker/entry3.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d'), 'track_custom': reverse('tracker:track_custom', kwargs={'date': '$'}), 'day3': reverse('tracker:day3', kwargs={'date': '$'})})
+    return render(request, 'tracker/entry3.html', {'day': day, 'general_meals': Meal.objects.filter(general=True), 'date_str': date_str, 'date_link': date.strftime('%Y-%m-%d'), 'track_custom': reverse('tracker:track_custom', kwargs={'date': '$'}), 'track_nutritionix': reverse('tracker:track_nutritionix', kwargs={'date': '$'}), 'day3': reverse('tracker:day3', kwargs={'date': '$'})})
 
 """
 WORKS IN PROGRESS
@@ -184,10 +184,20 @@ def track_custom(request, date):
     return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': date.strftime('%Y-%m-%d')}))
 
 @login_required
-def track_custom(request,date):
+def track_nutritionix(request,date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     day = DiaryDay.objects.get(user=request.user, date=date)
     data = json.loads(request.body)
+    for item in data:
+        meal = Meal(
+            name=item['name'],
+            kcal=item['kcal'],
+            fat=item['fat'],
+            carb=item['carb'],
+            protein=item['protein'],
+        )
+        meal.save()
+        DiaryEntry(meal=meal, date=day).save()
     return HttpResponse('hey')
 
 @login_required # TO BE UPDATED

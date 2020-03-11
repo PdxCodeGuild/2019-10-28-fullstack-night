@@ -74,6 +74,22 @@
             </div>
             {% endfor %}
         </div>
+        <div id="entries-grid">
+            <header class="smaller">Name</header>
+            <header class="smaller">Calories</header>
+            <header class="smaller">Fat (g)</header>
+            <header class="smaller">Carbs (g)</header>
+            <header class="smaller">Protein (g)</header>
+            
+            {% for entry in day.diary_entry.all %}
+            <div class="name">{{ entry.meal.name }}</div>
+            <div>{{ entry.meal.kcal }}</div>
+            <div>{{ entry.meal.fat }}</div>
+            <div>{{ entry.meal.carb }}</div>
+            <div>{{ entry.meal.protein }}</div>
+            {% endfor %}
+        </div>
+
     </div>
 </div>
 

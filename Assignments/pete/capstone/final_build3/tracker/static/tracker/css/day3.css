@@ -1,7 +1,6 @@
 main.day {
     flex-direction: column;
     height: auto;
-    /* padding-top: 5vh; */
     justify-content: space-evenly;
 }
 
@@ -21,8 +20,8 @@ header.big {
 #outer-day {
     display: flex;
     flex-wrap: wrap;
-    height: 57.5vh;
-    width: 80vw;
+    height: auto;
+    min-width: 80vw;
     justify-content: space-around;
     border: 2px solid black;
 }
@@ -76,9 +75,9 @@ main.day button {
     margin: 0 0.5vw;
 }
 
-div.name {
+/* div.name {
     text-decoration: underline;
-}
+} */
 
 #outer-entry {
     min-width: 32vw;
@@ -115,14 +114,37 @@ canvas {
     outline: 2px dotted black;
 }
 
-#goals-container, #prog-old {
+#goals-container, #prog-old, #inner-entry {
     display: none;
 }
 
-#progress-container {
+/* #progress-container {
     border: 2px dotted black;
-}
+} */
 
 #add-button {
     font-size: 2.5rem;
+}
+
+#entries-grid {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    column-gap: 1vw;
+    row-gap: 1vh;
+    overflow-y: auto;
+    font-size: 1.25rem;
+}
+
+header.smaller {
+    text-decoration: underline;
+}
+
+#entries-grid div {
+    display: block;
+    text-align: end;
+    width: 100%;
+}
+
+#entries-grid div.name {
+    text-align: start;
 }
