@@ -61,9 +61,13 @@ function drawGraph() {
         ctx.font = '2.5rem Odibee Sans';
         ////goal
         ctx.fillStyle = 'black';
+        let offsetGoal = goal < 10 ? 0
+            : goal < 100 ? 1
+            : goal < 1000 ? 2
+            : 3;
         ctx.fillText(
-            goal,
-            t,
+            '/' + goal,
+            w - barH*.75 - (w/30) * offsetGoal,
             y + .875*barH
         );
 
@@ -104,17 +108,17 @@ function drawGraph() {
         //text
         ////progress
         ctx.fillStyle = 'black';
-        let padding = counter < 10 ? '     '
-            : counter < 100 ? '  '
-            : counter < 1000 ? ''
-            : '';
-        let offset = counter < 10 ? 0
+        // let padding = counter < 10 ? '     '
+        //     : counter < 100 ? '  '
+        //     : counter < 1000 ? ''
+        //     : '';
+        let offsetProg = counter < 10 ? 0
             : counter < 100 ? 1
             : counter < 1000 ? 2
             : 3;
         ctx.fillText(
             counter,
-            t*prog - (w/30) * offset,
+            t*prog - (w/30) * offsetProg,
             y + .875*barH
         );
     };

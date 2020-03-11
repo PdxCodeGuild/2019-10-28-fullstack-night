@@ -182,7 +182,14 @@ def track_custom(request, date):
 
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': date.strftime('%Y-%m-%d')}))
-    
+
+@login_required
+def track_custom(request,date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    data = json.loads(request.body)
+    return HttpResponse('hey')
+
 @login_required # TO BE UPDATED
 def saved_entry(request, pk):
 

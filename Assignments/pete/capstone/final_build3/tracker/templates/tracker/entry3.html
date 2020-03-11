@@ -26,10 +26,13 @@
 
             <query-div v-model="query" v-on:axios-call-event="axiosCall"></query-div>
             <div id="entries-container">
+
                 <header-div v-for="header in headers" :key='header.id' :header="header" v-show="foodItems.length"></header-div>
-                <food-val-div v-for="foodVal in foodVals" :food-val="foodVal" :key="foodVal.id" v-show="foodItems.length">
-                </food-val-div>
+
+                <food-val-div v-for="foodVal in foodVals" :food-val="foodVal" :key="foodVal.id" v-show="foodItems.length"></food-val-div>
+
                 <total-div v-for="total in totals" :total="total" :key="total.id" v-show="foodItems.length>1"></total-div>
+                
             </div>
             <button @click="trackIt">Track it!</button>
         </div>

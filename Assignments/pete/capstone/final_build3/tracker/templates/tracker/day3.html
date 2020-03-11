@@ -75,11 +75,10 @@
             {% endfor %}
         </div>
     </div>
-    {% endif %}
-        
-    </div>
+</div>
 
-    <a href="{% url 'tracker:entry3' date=date_link %}"><button id="add-button">Add Entry!</button></a>
-    
+<a href="{% url 'tracker:entry3' date=date_link %}"><button id="add-button">Add Entry!</button></a>
+
+{% endif %}
 </main>
 {% endblock %}

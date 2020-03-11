@@ -24,7 +24,8 @@ urlpatterns = [
     path('add-entry/<int:pk>/', views.add_entry, name='add_entry'),
     path('saved-entry/<int:pk>/', views.saved_entry, name='saved_entry'),
     path('nutritionix/<int:pk>/', views.nutritionix, name='nutritionix'),
-    path('track_custom/<str:date>/', views.track_custom, name='track_custom'),
+    path('track-custom/<str:date>/', views.track_custom, name='track_custom'),
+    path('track-nutritionix/<str:date>/', views.track_nutritionix, name='track_nutritionix'),
 
     path('calendar/<str:date>/', views.calendar_month, name='calendar'),
     path('calendar-now/', views.calendar_now, name='calendar_now'),
