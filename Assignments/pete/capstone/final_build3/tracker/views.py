@@ -143,6 +143,7 @@ def track_custom(request, date):
         protein=data['protein'],
     )
     meal.save()
+    # meal.user.add(request.user) #THIS WILL ADD TO SAVED MEALS
 
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:day3', kwargs={'date': date.strftime('%Y-%m-%d')}))
@@ -161,12 +162,14 @@ def track_nutritionix(request,date):
             protein=item['protein'],
         )
         meal.save()
+        # meal.user.add(request.user) #THIS WILL ADD TO SAVED MEALS
+
         DiaryEntry(meal=meal, date=day).save()
     return HttpResponse('hey')
 
 
 """
-WORKS IN PROGRESS
+TESTS
 """
 
 @login_required

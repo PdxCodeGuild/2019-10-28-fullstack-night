@@ -14,13 +14,13 @@ let w = 700;
 let h = 350;
 
 let yPos = [
-    h/30,
-    h*(17/60),
-    h*(8/15),
-    h*(47/60),
+    h*.1,
+    h*.35,
+    h*.6,
+    h*.85,
 ];
 
-let barH = h*(11/60);
+let barH = h*(9/60);
 
 let t = w*.65;
 
@@ -31,13 +31,20 @@ let keyToColor = {
     'protein': 'red',
 }
 
+let keyToLabel = {
+    'kcal': 'CALORIES',
+    'fat': 'FAT',
+    'carb': 'CARBS',
+    'protein': 'PROTEIN',
+}
+
 let keys = Object.keys(keyToColor);
 
 function drawGraph() {
     ctx.clearRect(0, 0, w, h);
 
     //target range
-    ctx.strokeStyle = 'hsla(0, 0%, 0%, 0.5)';//changed
+    ctx.strokeStyle = 'hsla(0, 0%, 0%, 0.5)';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(t*.9 + 0.5*barH, 0);
@@ -50,36 +57,44 @@ function drawGraph() {
         let y = yPos[i];
         let key = keys[i];
         let goal = macros[key];
+        let label = keyToLabel[key];
         let counter = countUp[key];
         let prog = counter/goal;
 
         //empty bars
         ctx.fillStyle = 'hsla(0, 0%, 0%, 0.25)'
-        ctx.fillRect(0, y + h/35, w, barH);
+        ctx.fillRect(0, y, w, barH);
 
         //text
-        ctx.font = '2.5rem Odibee Sans';
         ////goal
+        ctx.font = '2.5rem Odibee Sans';
         ctx.fillStyle = 'black';
-        let offsetGoal = goal < 10 ? 0
-            : goal < 100 ? 1
-            : goal < 1000 ? 2
-            : 3;
+
+        ctx.textAlign = 'end';
         ctx.fillText(
             '/' + goal,
-            w - barH*.75 - (w/30) * offsetGoal,
-            y + .875*barH
+            w,
+            y + .775*barH
         );
+
+        ////label
+        ctx.font = 'italic 2rem Odibee Sans';
+        ctx.textAlign = 'start';
+        ctx.fillText(
+            label + ':',
+            0,
+            y - .1125*barH,
+        )
 
         //filled bars
         ctx.fillStyle = keyToColor[key];
-        ctx.fillRect(0, y + h/35, prog*t, barH);
+        ctx.fillRect(0, y, prog*t, barH);
 
         //arc
         ctx.beginPath();
         ctx.arc(
             prog*t -.5,
-            y + h/35 + 0.5*barH,
+            y + 0.5*barH,
             0.5*barH,
             1.5*Math.PI,
             0.5*Math.PI
@@ -93,33 +108,28 @@ function drawGraph() {
         ctx.strokeStyle = strokeColor;
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(0, y + h/35);
-        ctx.lineTo(prog*t, y + h/35);
+        ctx.moveTo(0, y);
+        ctx.lineTo(prog*t, y);
         ctx.arc(
             prog*t,
-            y + h/35 + 0.5*barH,
+            y + 0.5*barH,
             0.5*barH,
             1.5*Math.PI,
             0.5*Math.PI
         );
-        ctx.lineTo(0, y + h/35 + barH);
+        ctx.lineTo(0, y + barH);
         ctx.stroke();
 
         //text
         ////progress
+        ctx.font = '2.5rem Odibee Sans';
         ctx.fillStyle = 'black';
-        // let padding = counter < 10 ? '     '
-        //     : counter < 100 ? '  '
-        //     : counter < 1000 ? ''
-        //     : '';
-        let offsetProg = counter < 10 ? 0
-            : counter < 100 ? 1
-            : counter < 1000 ? 2
-            : 3;
+
+        ctx.textAlign = 'end';
         ctx.fillText(
             counter,
-            t*prog - (w/30) * offsetProg,
-            y + .875*barH
+            t*prog + .375*barH,
+            y + .775*barH
         );
     };
     //target line

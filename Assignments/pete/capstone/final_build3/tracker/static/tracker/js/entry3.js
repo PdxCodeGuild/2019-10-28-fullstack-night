@@ -11,8 +11,15 @@ var queryDiv = {
     template: `<div id="query-container">
         <input :value="value" @input="$emit('input', $event.target.value)" @keyup.enter="$emit('axios-call-event', $event)">
         <button @click="$emit('axios-call-event', $event)">Add</button>
-        </div>`,
+    </div>`,
 }
+
+// var recipeDiv = {
+//     props: ['value'],
+//     template: `<div id="recipe-container>
+//         <input type="checkbox"
+//     </div>`
+// }
 
 var headerDiv = {
     props: ['header'],
@@ -64,6 +71,7 @@ var nutritionix = new Vue({
         headers: ['Name', 'Calories', 'Fat (g)', 'Carb (g)', 'Protein (g)'],
         query: '',
         foodItems: [],
+        recipe: false,
     },
 
     components: {
