@@ -1,0 +1,16 @@
+.navbar-item img {
+    max-height: 75px !important ;
+}
+
+.navbar-burger{
+    margin-top: 4%;
+}
+
+.navbar-item, .navbar-link{
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.table-container{
+    margin-top:27%;
+}

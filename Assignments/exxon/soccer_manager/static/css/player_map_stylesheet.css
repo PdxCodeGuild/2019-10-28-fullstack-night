@@ -1,0 +1,43 @@
+
+
+.container{
+    padding: 0 !important;
+}
+
+/*  add .image img{ height: 100vh } too stretch soccer field image when in mobile mode but shrinks image when in desktop view? find work around maybe  */
+
+
+/* needed to center navbar weather info in desktop view */
+
+#weather_info_bar{
+    flex-grow: 1;
+    justify-content: center !important;
+}
+
+.text-area{
+    display: flex;
+    align-items: center;
+}
+
+.subtitle{
+    font-weight: bolder !important;
+    color: black !important;
+    user-select: none;
+}
+
+.navbar-item img {
+    max-height: 75px !important ;
+}
+
+.navbar-burger{
+    margin-top: 4%;
+}
+
+.navbar-item, .navbar-link{
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.image{
+    margin-top: 7%;
+}

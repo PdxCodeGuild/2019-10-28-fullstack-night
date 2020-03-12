@@ -1,0 +1,62 @@
+
+
+/* 
+#weather_info_bar{
+
+    margin:minmax(calc(100% - 50%));
+
+} */
+
+
+
+
+.card_container{
+    display: grid;
+    /*  minmax calculates size and centering of image container change with media query for bigger screens for more than one row  */
+	grid-template-columns: repeat(1, minmax(calc(100% - 9%),.1fr));
+    grid-gap: 0.5em;
+    margin-left: 8%;
+    margin-top: 17vh;
+    
+}
+
+.navbar-item img {
+    max-height: 75px !important ;
+}
+
+.navbar-burger{
+    margin-top: 4%;
+}
+
+.navbar-item, .navbar-link{
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+/*  header needs to be adjusted to make responsive at certain media Q's or else will hide under nav bar or player cards  */
+.card_header{
+
+    margin-bottom: 4%;
+}
+
+.fa-running{
+    margin-left: 10%;
+}
+
+
+.button.is-info{
+    margin-bottom: 5%;
+}
+
+#save_button{
+    margin-top: 1.5%;
+}
+
+.file-label{
+    margin-top: 1.5%;
+}
+
+#position_select{
+    margin-top: 1.5%;
+}
+

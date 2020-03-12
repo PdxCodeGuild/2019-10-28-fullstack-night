@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://use.fontawesome.com/releases/v5.11.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <title>Register</title>
+</head>
+<body>
+
+
+
+    <form method="POST">{% csrf_token %}
+        
+            <div class="grid_cont">
+
+
+                <section class="hero is-danger is-fullheight">
+                    <div class="hero-body">
+                        <div class="container">                              
+                                <div>
+                                    {% for message in messages %}
+                                    <h3> {{message}} </h3>
+                                    {% endfor %}
+                                </div>
+                            <div class="columns is-centered">
+                                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                                    <h1 class="title">Sign up</h1>
+                                    <div class="box is-success">
+
+                                        <label for="" class="label">First Name</label>
+                                        <div class="control has-icons-left">
+                                            <input type="text" class="input" name="first_name" id="inputFirst_name" placeholder="First Name" required >
+                                            <span class="icon is-small is-left">
+                                            <i class="fa fa-user"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="field">
+                                        </div>
+
+                                        <label for="" class="label">Last Name</label>
+                                        <div class="control has-icons-left">
+                                            <input type="text" class="input" name="last_name" id="inputLast_name" placeholder="Last Name" required >
+                                            <span class="icon is-small is-left">
+                                            <i class="fa fa-user"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="field">
+                                        </div>
+
+
+                                        <label for="" class="label">Username</label>
+                                        <div class="control has-icons-left">
+                                            <input type="text" class="input" name="username" id="inputEmail" placeholder="Username" required >
+                                            <span class="icon is-small is-left">
+                                            <i class="fa fa-user"></i>
+                                            </span>
+                                        </div>
+
+
+                                        <div class="field">
+                                        </div>
+
+                                        <label for="" class="label">Email</label>
+                                        <div class="control has-icons-left">
+                                            <input type="text" class="input" name="email" id="inputEmail" placeholder="Email" required >
+                                            <span class="icon is-small is-left">
+                                            <i class="fa fa-envelope"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="field">
+                                        </div>
+
+                                        <label for="" class="label">Password</label>
+                                        <div class="control has-icons-left">
+                                            <input type="password" class="input" name="password1" id="inputpass1" placeholder="Password" required >
+                                            <span class="icon is-small is-left">
+                                            <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="field">
+                                        </div>
+
+                                        <label for="" class="label">Confirm Password</label>
+                                        <div class="control has-icons-left">
+                                            <input type="password" class="input" name="password2" id="inputpass2" placeholder="Confirm Password" required >
+                                            <span class="icon is-small is-left">
+                                            <i class="fa fa-lock"></i>
+                                            </span>
+                                        </div>
+
+                                        <div class="field">
+                                        </div>
+
+                                        <div class="field">
+                                                <button class="button is-info" type="submit">
+                                                    Register
+                                                </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            </form>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+    
+</body>
+</html>

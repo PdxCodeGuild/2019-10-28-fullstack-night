@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{%static 'css/manager_stylesheet.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'weather-icons-master/css/weather-icons.min.css'%}">
+    <!-- <link rel="stylesheet" type="text/css" href="static/weather-icons-master/css/weather-icons.min.css"> -->
+    <script defer src="https://use.fontawesome.com/releases/v5.11.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-extensions@4.0.0/dist/css/bulma-extensions.min.css">
+    
+    <title>Manager View</title>
+</head>
+
+
+<body>
+    {% csrf_token %} 
+    {{user.id|json_script:"user-el"}}
+    <div id="app">
+
+
+
+      <nav class="navbar is-fixed-top is-info has-text-centered" role="navigation" aria-label="main navigation">
+
+        <div class="navbar-brand ">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="{% static 'img/sokly_200.png' %}" width="112" height="28">
+          </a>
+
+          <div class="navbar-item" id="weather_info_bar">
+              <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
+          </div>
+
+
+            <!-- <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>  -->
+
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu" v-on:click="showNav = !showNav" v-bind:class="{ 'is-active' : showNav }">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+
+        
+        <div id="navMenu" class="navbar-menu " v-bind:class="{ 'is-active' : showNav }">
+          <div class="navbar-end">
+
+              {% if user.is_authenticated %}
+              <a class="navbar-item">Welcome {{ user.username }}!</a>
+              <a  class="navbar-item" href="{% url 'login' %}">Logout</a>
+              {% else %}
+            
+              <p class="navbar-item">Welcome, visitor!</p>
+              <a class="navbar-item" href="{% url 'login' %}">Login</a>
+              <a class="navbar-item" href="{% url 'users:signup' %}">Sign Up</a></p>
+              {% endif %}
+          
+              <!-- <div class="navbar-item" id="weather_info_bar">
+                  <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
+          </div> -->
+
+            <a href="http://localhost:8000/manager"class="navbar-item">
+              Starter Line-up
+            </a>
+      
+            <a href="http://localhost:8000/player_map" class="navbar-item">
+              Player-Map
+            </a>
+
+            <a href="http://localhost:8000/roster_page" class="navbar-item">
+              Roster-Page
+            </a>
+
+          </div>
+      
+      </nav>   
+      
+
+      
+
+     <!-- login and logout buttons in navbar  -->
+          <!-- <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+
+      <!-- <div class="card_header">
+          <span class="tag is-info is-light is-large">
+              Players
+              <i class="fas fa-running"></i>
+          </span>
+      </div> -->
+      
+      <div class="card_container">
+        <div class="card_header">
+            <span class="tag is-info is-light is-large">
+                Starters
+                <i class="fas fa-running"></i>
+            </span>
+        </div>
+                  <!-- change to results in PlayerPics for all players -->
+        <div class='card' v-for="(result,index) in starters">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img v-bind:src=[[result.file]] alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content has-text-centered">
+                      <p class="title is-7 has-text-center">[[result.name]]</p>
+                      <p class="subtitle is-7 has-text-center">[[result.position]]</p>
+                      <p class="subtitle is-7 has-text-center">[[result.id]]</p>
+                    </div>
+                  </div>
+
+
+                  <div class="media">
+                    <div class="media-content has-text-centered" v-if='EditPlayer === result.id'>
+                      <input class="input is-small is-rounded"   v-model='result.name'/>
+
+              <!-- for loop to iterate over the player positions in the edit window  -->
+                      <div class="select is-small is-rounded" id="position_select">
+                          <select v-model="result.position">
+                            <option v-for="position in Positions">[[position]]</option>
+                          </select>
+                      </div>
+                <!--  edit button pop up options  -->
+                      <div class="file is-small is-centered has-name">
+                          <label class="file-label">
+                            <input class="file-input" type="file" id="Newfile" ref="Newfile"/>
+                            <span class="file-cta">
+                              <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                              </span>
+                              <span class="file-label">
+                                Choose…
+                              </span>
+                            </span>
+                            <label class="checkbox" >
+                                <input v-model="result.starter" type="checkbox" v-on:click="UpdateStartingStatus(result.id)">
+                                Starter
+                            </label>
+                          </label>
+                      </div>
+                      <!-- <input type="file" id="Newfile" ref="Newfile"/> -->
+                      <button class="button is-small is-link is-info" id="save_button" v-on:click="UpdatePlayer(result,$event)">Save</button>
+                    </div>
+                  </div>
+
+
+
+                    <div class="buttons has-addons is-centered">
+                        <button class="button is-small is-info is-success" v-on:click='editPlayer(result.id)'>Edit</button>
+                        <button class="button is-small is-danger is-danger" v-on:click="DeletePLayerPhoto(index,result)">Delete</button>
+
+                    </div>
+
+                </div>
+        </div>
+          <button class="button is-info modal-button" data-target="#myModal" aria-haspopup="true">Add New Player</button>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- add new player options pop up -->
+
+      <div class="modal" id="myModal">
+        <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box has-text-centered">
+              <label>File</label>
+                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" />
+                <input class="input is-small is-rounded" type="text" class="form-control" v-model="Newname" placeholder="Ex: Name">
+              
+                <div class="select is-small is-rounded">
+                    <select v-model="result.position">
+                      <option v-for="position in Positions">[[position]]</option>
+                    </select>
+                </div>
+                <label class="checkbox" >
+                    <input v-model="Starter" type="checkbox">
+                    Starter
+                </label>
+
+        <!--  button class "close-submit" closes the modal pop up when submit is clicked but makes submitfile() fail?? -->
+              <button class="button is-small is-link is-info" id="close-submit" v-on:click="submitFile()">Submit</button>
+            </div>
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="{%static 'js/player_call.js'%}"></script>
+    <script src="{%static 'js/bulma.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@4.0.0/dist/js/bulma-extensions.min.js"></script>
+
+
+</body>
+</html>

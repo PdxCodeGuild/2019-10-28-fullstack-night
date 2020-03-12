@@ -1,0 +1,95 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{%static 'css/player_map_stylesheet.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'weather-icons-master/css/weather-icons.min.css'%}">
+    <script defer src="https://use.fontawesome.com/releases/v5.11.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <title>Player Map</title>
+</head>
+
+        <body>
+                {% csrf_token %} 
+                <div id="app" v-on:mousemove="dragDiv" v-on:touchmove="dragDiv" v-on:mouseup="releaseDiv">
+
+
+
+                        <nav class="navbar is-fixed-top is-info has-text-centered" role="navigation" aria-label="main navigation">
+
+                                <div class="navbar-brand ">
+                                        <a class="navbar-item" href="https://bulma.io">
+                                        <img src="{% static 'img/sokly_200.png' %}" width="112" height="28">
+                                        </a>
+                        
+                                        <div class="navbar-item" id="weather_info_bar">
+                                        <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
+                                        </div>
+                        
+                        
+                                        <!-- <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>  -->
+                        
+                        
+                                        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu" v-on:click="showNav = !showNav" v-bind:class="{ 'is-active' : showNav }">
+                                        <span aria-hidden="true"></span>
+                                        <span aria-hidden="true"></span>
+                                        <span aria-hidden="true"></span>
+                                        </a>
+                                </div>
+                        
+                        
+                                
+                                <div id="navMenu" class="navbar-menu " v-bind:class="{ 'is-active' : showNav }">
+                                        <div class="navbar-end">
+                        
+                                        
+                                        <!-- <div class="navbar-item" id="weather_info_bar">
+                                                <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
+                                        </div> -->
+                        
+                                        <a href="http://localhost:8000/manager"class="navbar-item">
+                                        Starter Line-up
+                                        </a>
+                                
+                                        <a href="http://localhost:8000/player_map" class="navbar-item">
+                                        Player-Map
+                                        </a>
+                        
+                                        <a href="http://localhost:8000/roster_page" class="navbar-item">
+                                        Roster-Page
+                                        </a>
+                        
+                                        </div>
+                                        
+                        </nav> 
+
+
+
+
+                        <div class="container">
+                                <figure class="image " v-on:mouseup="releaseDiv" >
+                                        <img src="/static/img/big_rotated_soccer-removebg.png">
+                                        <div class="text-area is-overlay">
+                                                <div class="media-content has-text-centered " v-for="(result,index) in starters" v-bind:id="result.id">
+                                                        <div class="subtitle is-size-7" v-on:mousedown="chooseDiv" v-on:touchstart="chooseDiv">[[result.name]]</div>
+                                                </div>
+                                        </div>
+                                </figure>
+                        </div>
+
+                </div>
+
+
+
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="{%static 'js/player_call.js'%}"></script>
+
+        </body>
+</html>

@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.11.0/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    
+
+    <link rel="stylesheet" href="{%static 'css/login.css'%}">
+    
+  </head>
+
+
+  <body>
+              <!-- original login -->
+            <!-- <div class="grid_cont">
+              <div class="login">
+                <h1 class="login_header">Login</h1>
+
+                <form class="text_boxes" method="post">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit" class="btn btn-primary btn-block btn-large">Login</button>
+                </form>
+              </div>
+            </div> -->
+
+
+    <form method="POST">{% csrf_token %}
+        
+        
+
+            <section class="hero is-danger is-fullheight">
+              <div class="hero-body">
+                <div class="container">
+                    <div>
+                        {% for message in messages %}
+                        <h3> {{message}} </h3>
+                        {% endfor %}
+                    </div>
+                  <div class="columns is-centered">
+                    <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                      <div class="box is-success">
+                        <div class="field">
+                            <label for="" class="label">Username</label>
+                            <div class="control has-icons-left">
+                                <input type="username" class="input" name="username" id="inputEmail" placeholder="Username" required >
+                                <span class="icon is-small is-left">
+                                <i class="fa fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="" class="label">Password</label>
+                            <div class="control has-icons-left">
+                              <input type="password" class="input" name="password" id="inputPass" placeholder="Password" required>
+                              <span class="icon is-small is-left">
+                                  <i class="fa fa-lock"></i>
+                              </span>
+                            </div>
+                        
+                          <div class="field">
+                          </div>
+                          <div class="field">
+                              <button class="button is-info" type="submit">
+                                  Login
+                              </button>
+                          </div>
+                          <div class="has-text-centered">
+                              <a href="http://localhost:8000/user/signup"> Don't you have an account? Sign up now!</a>
+                          </div>
+                        <!-- </div>
+                          <button class="btn" type="submit">Sign in</button>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+        
+    </form> 
+
+    <!-- <form method="POST">{% csrf_token %}
+      <section class="hero is-primary is-fullheight">
+          <div class="hero-body">
+              <div class="container">
+                  <div class="columns is-centered">
+                      <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+
+                            <div class="field">
+                            <label for="" class="label">Username</label>
+                            <div class="control has-icons-left">
+                                <input type="username" class="form-control"  id="inputEmail" name="username" placeholder="Username" required >
+                                <span class="icon is-small is-left">
+                                <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div class="field">
+                            <label for="" class="label">Password</label>
+                            <div class="control has-icons-left">
+                                <input type="password" placeholder="*******" class="form-control"  required>
+                                <span class="icon is-small is-left">
+                                <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
+                            </div>
+                            <div class="field">
+                            </div>
+                            <div class="field">
+                            <button class="button is-success" type="submit">
+                                Login
+                            </button>
+                            </div>
+                            <div class="has-text-centered">
+                                <a href="signup"> Don't you have an account? Sign up now!</a>
+                            </div>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section> 
+    </form> -->
+
+
+
+<script src="{%static 'js/bulma.js'%}"></script>
+
+  </body>
+</html>
