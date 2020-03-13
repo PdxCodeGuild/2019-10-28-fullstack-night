@@ -5,7 +5,8 @@ from . import views
 app_name = 'tracker'
 
 urlpatterns = [
-    path('', views.tracker, name='tracker'),
+    # path('', views.tracker, name='tracker'),
+    path('', views.calendar_now, name='calendar_now'),
 
     path('add-day/', views.add_day, name='add_day'),
     path('add-day2/<str:date>/<int:training_bool>/', views.add_day2, name='add_day2'),
