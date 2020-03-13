@@ -58,6 +58,9 @@ DAY
 """
 
 @login_required #TO BE RENAMED "get_day()"
+# def get_day3(request, date, add_or_remove, entry_dict):
+# add_or_remove: 0 is no change, 1 is add, 2 is remove
+# entry_dict: stringfied dict of the added or removed entry
 def get_day3(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     date_str = date.strftime("%B %d, %Y")

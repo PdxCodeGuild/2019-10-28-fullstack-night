@@ -24,9 +24,8 @@
 
         <div id="nutritionix" class="entry middle container">
             <header class="small">Use Nutritionix to Track an Entry:</header>
-            <div id="inputs-container">
-                <query-div v-model:query="query" v-on:axios-call-event="axiosCall"></query-div>
-            </div>
+            <!-- <div id="inputs-container"></div> -->
+            <query-div v-model:query="query" v-on:axios-call-event="axiosCall"></query-div>
             <div id="entries-container">
 
                 <header-div v-for="header in headers" :key='header.id' :header="header" v-show="foodItems.length"></header-div>
@@ -36,14 +35,15 @@
                 <total-div v-for="total in totals" :total="total" :key="total.id" v-show="foodItems.length>1"></total-div>
 
             </div>
-            <div id="track-container">
-                <!-- <input type="number" v-model="portions" v-show="recipe">
+            <!-- <div id="track-container">
+                <input type="number" v-model="portions" v-show="recipe">
                 <input type="text" v-show="recipe" v-model="recipeName">
                 <label for="recipe">Recipe</label>
-                <input name="recipe" type="checkbox" v-model="recipe"> -->
-                <button @click="trackIt">Track it!</button>
-            </div>
+                <input name="recipe" type="checkbox" v-model="recipe">
+            </div> -->
+            <button @click="trackIt">Track it!</button>
         </div>
+        
 
         <div id="or"><div>OR:</div></div>
 
