@@ -1,0 +1,175 @@
+main.day {
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+}
+
+.subnav header {
+    text-decoration: underline;
+}
+
+header.small {
+    font-size: 1.5rem;
+}
+
+header.big {
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+#outer-day {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    min-width: 80vw;
+    justify-content: space-around;
+    border: 2px solid black;
+}
+
+.middle-day {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    border: 2px dotted black;
+    margin-top: 2vh;
+    justify-content: space-between;
+    min-height: 22.5vh;
+}
+
+header.small {
+    border-bottom: 2px solid black;
+}
+
+.goal-div {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    font-size: 1.25rem;
+}
+
+.prog-div {
+    display: flex;
+    justify-content: space-between;
+    min-width: 17vw;
+    font-size: 1.125rem;
+}
+
+main.day button {
+    font-size: 1.5rem;
+}
+
+#inner-entry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 17.5vh;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.entry {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 0.5vw;
+}
+
+/* div.name {
+    text-decoration: underline;
+} */
+
+#outer-entry {
+    min-width: 32vw;
+    max-width: 64vw;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    border: 2px dotted black;
+    margin: 2vh 0;
+    justify-content: space-between;
+    height: 22.5vh;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+a:hover {
+    color: hotpink;
+}
+
+#button-container {
+    font-size: 2rem;
+    margin-bottom: 5vh;
+}
+
+#button-container button{
+    font-size: 2.5rem;
+}
+
+canvas {
+    outline: 2px dotted black;
+}
+
+#goals-container, #prog-old, #inner-entry {
+    display: none;
+}
+
+/* #progress-container {
+    border: 2px dotted black;
+} */
+
+#add-button {
+    font-size: 2.5rem;
+}
+
+#entries-grid {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    column-gap: 1vw;
+    row-gap: 1vh;
+    overflow-y: auto;
+    font-size: 1.25rem;
+}
+
+header.smaller {
+    text-decoration: underline;
+}
+
+#entries-grid div {
+    display: block;
+    text-align: end;
+    width: 100%;
+}
+
+#entries-grid div.name {
+    text-align: start;
+}
+
+@media screen and (max-width: 700px) {
+    body {
+        width: auto;
+        height: auto;
+    }
+    main {
+        height: auto;
+    }
+    canvas {
+        display: none;
+    }
+    #goals-container, #prog-old, #outer-day {
+        display: block;
+    }
+    * {
+        font-size: 1rem;
+    }
+    header.day {
+        font-size: 1.5rem;
+    }
+    button {
+        font-size: 1.25rem;
+    }
+}

@@ -1,0 +1,155 @@
+main.entry {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
+#outer-container {
+    display: flex;
+    border: 2px dotted black;
+    padding: 1vh;
+    flex-wrap: wrap;
+}
+
+.middle-container {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    height: 40vh;
+    justify-content: space-between;
+    border: 2px dotted black;
+}
+
+.middle-container div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#save {
+    justify-content: flex-end;
+}
+
+#or {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin: 0 2.5vw;
+}
+
+#or div {
+    border-bottom: 2px solid black;
+}
+
+header.small {
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+
+header.big {
+    margin-bottom: 2rem;
+}
+
+.input {
+    width: 15vw;
+}
+
+input.custom {
+    width: 15vw;
+}
+
+.subnav header {
+    text-decoration: underline;
+}
+
+.subnav header a {
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+}
+
+.subnav header a:hover {
+    color: hotpink;
+}
+
+header.small {
+    text-decoration: underline;
+}
+
+
+#entries-container {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    min-height: 25vh;
+    overflow-y: auto;
+    border: 2px dotted black;
+    align-content: end;
+}
+
+#entries-container div {
+    display: block;
+    text-align: end;
+    width: 100%;
+}
+
+#entries-container div.name {
+    text-align: start;
+}
+
+.total {
+    border-top: 2px solid black;
+}
+
+
+.fade-enter-active {
+    transition: opacity .5s;
+}
+
+#query-container {
+    flex-wrap: wrap;
+}
+
+#query-input {
+    /* width: 100%; */
+}
+
+@media screen and (max-width: 700px) {
+    #outer-container {
+        display: block;
+        height: auto;
+    }
+    .middle-container {
+        width: auto;
+        height: auto;
+    }
+    #or {
+        flex-direction: row;
+        margin: 1vh 0;
+    }
+    input.custom {
+        width: 45%
+    }
+}
+/* .middle-container {
+    display: flex;
+    flex-direction: column;
+}
+ */
+/* 
+.outer-container {
+    display: flex;
+    flex-direction: column;
+} */
+/* .inner-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25rem;
+}
+
+.inner-container div {
+    height: min-content;
+    overflow-x: hidden;
+} */
+/* .middle-container {
+    margin: 0 1vw;
+} */

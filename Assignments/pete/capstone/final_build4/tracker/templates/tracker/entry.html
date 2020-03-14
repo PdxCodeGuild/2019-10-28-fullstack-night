@@ -1,0 +1,71 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'tracker/css/entry.css' %}">
+<script src="{% static 'tracker/js/entry.js' %}" defer></script>
+{% endblock %}
+
+{% block subnav %}
+<nav class="subnav">
+    <header class="day"><a href="{% url 'tracker:day_last' date=date_link %}"><</a>{{ date_str }}{% if day %} || {% if day.training %}Training Day{% else %}Rest Day{% endif %}{% endif %}<a href="{% url 'tracker:day_next' date=date_link %}">></a></header>
+</nav>
+{% endblock %}
+
+{% block main %}
+{% csrf_token %}
+{{ date_link|json_script:"date_link" }}
+{{ track_custom|json_script:"track_custom" }}
+{{ track_nutritionix|json_script:"track_nutritionix" }}
+{{ day|json_script:"day" }}
+<main class="entry">
+
+    <div id="outer-container">
+
+        <div id="nutritionix" class="middle-container">
+            <header class="small">Use Nutritionix to Track an Entry:</header>
+            <!-- <div id="inputs-container"></div> -->
+            <query-div v-model:query="query" v-on:axios-call-event="axiosCall"></query-div>
+            <div id="entries-container">
+
+                <header-div v-for="header in headers" :key='header.id' :header="header" v-show="foodItems.length"></header-div>
+
+                <food-val-div v-for="foodVal in foodVals" :food-val="foodVal" :key="foodVal.id" v-show="foodItems.length"></food-val-div>
+
+                <total-div v-for="total in totals" :total="total" :key="total.id" v-show="foodItems.length>1"></total-div>
+
+            </div>
+            <!-- <div id="track-container">
+                <input type="number" v-model="portions" v-show="recipe">
+                <input type="text" v-show="recipe" v-model="recipeName">
+                <label for="recipe">Recipe</label>
+                <input name="recipe" type="checkbox" v-model="recipe">
+            </div> -->
+            <button @click="trackIt">Track it!</button>
+        </div>
+        
+
+        <div id="or"><div>OR:</div></div>
+
+        
+        <div id="custom" class="middle-container">
+
+            <header class="small">Add a Custom Entry:</header>
+            
+            <custom-name v-model="name"></custom-name>
+
+            <custom-kcal v-model="kcal"></custom-kcal>
+
+            <custom-fat v-model="fat"></custom-fat>
+            
+            <custom-carb v-model="carb"></custom-carb>
+            
+            <custom-protein v-model="protein"></custom-protein>
+
+            <button @click="trackIt">Track It!</button>
+
+        </div>
+
+    </div>
+</main>
+{% endblock %}

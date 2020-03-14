@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
+
+    <script src="{% static 'home/js/base.js' %}" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    {% block head %}
+    {% endblock %}
+    <title>M A C R O _ T R A C K E R</title>
+</head>
+<body>
+    {{ user_bool|json_script:"user" }}
+
+    <nav>
+        <a id="a-home" href="#"><button>HOME</button></a>
+        <a id="a-calc" href="{% url 'calc:macros_redirect' %}"><button>Calculator</button></a>
+        <a id="a-tracker" href="{% url 'tracker:calendar_now' %}"><button>Tracker</button></a>
+        {% if user.is_authenticated %}
+        <a id="a-logout" href="{% url 'user:log_out' %}"><button>Logout</button></a>
+        {% else %}
+        <a id="a-login" href="{% url 'user:log_in_form' %}"><button>Login</button></a>
+        {% endif %}
+    </nav>
+    
+    <div id="padding"></div>
+    {% block subnav %}
+    <nav class="subnav" id="welcome-nav">
+        <header>Welcome to Macro Tracker</header>
+    </nav>
+
+    <!-- <nav class="subnav" id="home-nav">
+        <a href="#"><button id="profile">Profile</button></a>
+        <a href="#"><button id="history">History</button></a>
+        <a href="#"><button id="faq1">FAQ</button></a>
+    </nav>
+    
+    <nav class="subnav" id="calc-nav">
+        <a href="#"><button id="calc-new">Calculate New Macros</button></a>
+        <a href="#"><button id="mac-hist">Macros History</button></a>
+        <a href="#"><button id="faq2">FAQ</button></a>
+    </nav>
+    
+    <nav class="subnav" id="tracker-nav">
+        <a href="#"><button id="new-day">New Day</button></a>
+        <a href="#"><button id="new-entry">New Entry</button></a>
+        <a href="#"><button id="calendar">Calendar</button></a>
+        <a href="#"><button id="faq3">FAQ</button></a>
+    </nav> -->
+    {% endblock %}
+
+    {% block main %}
+    <main class="home">
+        <a href="{% url 'calc:calc' %}"><button>Get Started</button></a>
+        <a href="#"><button>What are Macros?</button></a>
+    </main>
+    {% endblock %}
+</body>
+</html>

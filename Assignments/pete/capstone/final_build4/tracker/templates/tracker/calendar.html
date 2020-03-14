@@ -1,0 +1,49 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'tracker/css/calendar.css' %}">
+    <script src="{% static 'tracker/js/calendar.js' %}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+{% endblock %}
+{% block subnav %}
+<nav class="subnav">
+    <header><a href="{% url 'tracker:calendar_last' date=date_str %}"><</a>{{ month_str }} || {{ year }}<a href="{% url 'tracker:calendar_next' date=date_str %}">></a></header>
+</nav>
+{% endblock %}
+{% block main %}
+<main>
+    {{ date_time|json_script:"date_time" }}
+    {{ month_start|json_script:"month_start" }}
+    {{ month_length|json_script:"month_length" }}
+    {{ logged_days|json_script:"logged_days" }}
+    {{ day|json_script:"day" }}
+    {{ year_month|json_script:"year_month"}}
+    <div id="app">
+        <div id="calendar-container">
+            
+            <div class="day-name">Sun</div>
+            <div class="day-name">Mon</div>
+            <div class="day-name">Tue</div>
+            <div class="day-name">Wed</div>
+            <div class="day-name">Thu</div>
+            <div class="day-name">Fri</div>
+            <div class="day-name">Sat</div>
+
+            <pre-month-day v-for="day in preMonthDays" v-bind:key="day.id"></pre-month-day>
+
+            <month-day v-for="day in monthDays" v-bind:day="day" v-bind:key="day.id"></month-day>
+            
+            <post-month-day v-for="day in postMonthDays" v-bind:key="day.id"></post-month-day>
+
+        </div>
+    </div>
+    {% comment %}
+    {% for diary_day in diary_days %}
+    <div>{{diary_day.date}}</div>
+    {% endfor %}
+    {% endcomment %}
+</main>
+{% endblock %}
