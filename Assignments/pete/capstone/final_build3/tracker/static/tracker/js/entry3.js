@@ -9,7 +9,7 @@ let url = 'https://trackapi.nutritionix.com/v2/natural/nutrients/'
 var queryDiv = {
     props: ['value'],
     template: `<div id="query-container">
-        <input :value="value" @input="$emit('input', $event.target.value)" @keyup.enter="$emit('axios-call-event', $event)">
+        <input id="query-input" :value="value" @input="$emit('input', $event.target.value)" @keyup.enter="$emit('axios-call-event', $event)">
         <button @click="$emit('axios-call-event', $event)">Add</button>
     </div>`,
 }

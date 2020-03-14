@@ -4,13 +4,14 @@ main.entry {
     font-size: 1.5rem;
 }
 
-.entry.outer.container {
+#outer-container {
     display: flex;
     border: 2px dotted black;
     padding: 1vh;
+    flex-wrap: wrap;
 }
 
-.entry.middle.container {
+.middle-container {
     display: flex;
     flex-direction: column;
     width: 40vw;
@@ -19,7 +20,7 @@ main.entry {
     border: 2px dotted black;
 }
 
-.entry.middle.container div {
+.middle-container div {
     display: flex;
     justify-content: space-between;
 }
@@ -71,18 +72,10 @@ input.custom {
     color: hotpink;
 }
 
-.outer-container {
-    display: flex;
-    flex-direction: column;
-}
-
 header.small {
     text-decoration: underline;
 }
 
-.middle-container {
-    margin: 0 1vw;
-}
 
 #entries-container {
     display: grid;
@@ -103,12 +96,51 @@ header.small {
     text-align: start;
 }
 
-.middle-container {
+.total {
+    border-top: 2px solid black;
+}
+
+
+.fade-enter-active {
+    transition: opacity .5s;
+}
+
+#query-container {
+    flex-wrap: wrap;
+}
+
+#query-input {
+    /* width: 100%; */
+}
+
+@media screen and (max-width: 700px) {
+    #outer-container {
+        display: block;
+        height: auto;
+    }
+    .middle-container {
+        width: auto;
+        height: auto;
+    }
+    #or {
+        flex-direction: row;
+        margin: 1vh 0;
+    }
+    input.custom {
+        width: 45%
+    }
+}
+/* .middle-container {
     display: flex;
     flex-direction: column;
 }
-
-.inner-container {
+ */
+/* 
+.outer-container {
+    display: flex;
+    flex-direction: column;
+} */
+/* .inner-container {
     display: flex;
     flex-direction: column;
     font-size: 1.25rem;
@@ -117,12 +149,7 @@ header.small {
 .inner-container div {
     height: min-content;
     overflow-x: hidden;
-}
-
-.total {
-    border-top: 2px solid black;
-}
-
-.fade-enter-active {
-    transition: opacity .5s;
-}
+} */
+/* .middle-container {
+    margin: 0 1vw;
+} */

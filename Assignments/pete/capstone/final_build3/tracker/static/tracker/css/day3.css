@@ -148,3 +148,28 @@ header.smaller {
 #entries-grid div.name {
     text-align: start;
 }
+
+@media screen and (max-width: 700px) {
+    body {
+        width: auto;
+        height: auto;
+    }
+    main {
+        height: auto;
+    }
+    canvas {
+        display: none;
+    }
+    #goals-container, #prog-old, #outer-day {
+        display: block;
+    }
+    * {
+        font-size: 1rem;
+    }
+    header.day {
+        font-size: 1.5rem;
+    }
+    button {
+        font-size: 1.25rem;
+    }
+}
