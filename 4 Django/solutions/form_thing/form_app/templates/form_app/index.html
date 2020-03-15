@@ -1,0 +1,13 @@
+<h1>Hi!</h1>
+<form method="POST" action="/">
+	{% csrf_token %}
+	<input type="hidden" name="hidden-input" value="1">
+	<input type="text" name="stuff" placeholder="type in me">
+	<button type="submit">Submit</button>
+</form>
+<form method="POST" action="/">
+	{% csrf_token %}
+	<input type="hidden" name="hidden-input" value="2">
+	<input type="text" name="stuff" placeholder="type in me">
+	<button type="submit">Submit</button>
+</form>
