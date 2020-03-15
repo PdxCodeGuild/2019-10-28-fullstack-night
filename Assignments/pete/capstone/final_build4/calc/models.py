@@ -25,6 +25,18 @@ class Macros(models.Model):
     rest_fat = models.IntegerField()
     rest_carb = models.IntegerField()
 
+    def faq_dict(self):
+        faq_dict = {
+            'lbm': self.lbm,
+            'bmr': self.bmr,
+            'act_lvl': self.act_lvl,
+            'goal': self.goal,
+
+            'tdee': round(self.bmr * self.act_lvl),
+            # 'tadci': 
+        }
+        return faq_dict
+    
     def macros_dict(self):
         macros_dict = {
             'train_kcal': self.train_kcal,

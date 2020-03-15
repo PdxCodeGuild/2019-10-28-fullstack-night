@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: red;
+}
+
+canvas {
+    outline: 2px solid black;
+}
+
+#app {
+    height: 25vh;
+    width: 25vw;
+    position: absolute;
+    left: 50%;
+    margin-left: -12.25vw;
+    top: 50%;
+    margin-top: -12.25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.component-fade-enter-active, .component-fade-leave-active {
+    transition: opacity .3s ease;
+}
+
+.component-fade-enter, .component-fade-leave-to {
+    opacity: 0;
+}

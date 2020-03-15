@@ -10,7 +10,7 @@ def calc(request):
 def macros(request, pk):
     macros = Macros.objects.get(pk=pk)
     macros_dict = macros.macros_dict()
-    return render(request, 'calc/macros.html', {'macros': macros, 'macros_dict': macros_dict})
+    return render(request, 'calc/macros.html', {'macros': macros, 'macros_dict': macros_dict, 'faq_dict': macros.faq_dict()})
 
 def macros_redirect(request):
     macros = request.user.macros.get(active=True)

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <canvas width=500 height=500>
+
+    </canvas>
+    <div id="app">
+        <button v-on:click="backward"><</button>
+        <transition name="component-fade" mode="out-in">
+            <component v-bind:is="view[i]"></component>
+        </transition>
+        <button v-on:click="forward">></button>
+    </div>
+</body>
+</html>
