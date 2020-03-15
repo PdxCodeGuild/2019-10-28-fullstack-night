@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Art</title>
+    {% with 'cc/css/'|add:css_select as css_select_template %}
+      <link rel="stylesheet" href="{% static css_select_template %}">
+    {% endwith %}
+
+    <script src="{% static 'cc/js/submitart.js' %}" defer></script>
+
+    <script src="https://cdn.tiny.cloud/1/65swt83e2hue73atee8ca0za53571esn30vu7s7b1r35anva/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+</head>
+<body>
+    <mydiv>
+        <div>
+            <menubar>{% with 'media/'|add:banner_image as banner_image_file %}
+                <img src="{% static banner_image_file %}" width="50%" height="50%">
+            {% endwith %} </menubar>
+        </div>
+        <div>
+            <header>
+                This is filler text.  User and other miscellaneous information will go here.
+    
+            </header>
+        </div>
+
+        <arttitle>
+            Submit Art
+        </arttitle>
+
+        <artdiv>
+            <div id="innerartdiv">
+                <div id="choice_collection">
+                    Toggle button to switch between single art submission and art collection submission.
+
+                    
+                    <form action="">
+                        <input type="button" id="sinmultselect" value="Single" onclick="toggle(this);">
+                    </form>
+                    <br>
+                    
+                    <div id="single_art">
+                        Toggle button to select art medium.
+                        
+                        <form action="">
+                            <input type="button" id="1" value="Text" onclick="toggle1(this);">
+                        </form>
+                        <div id="imageupload1">
+                            <div>
+                                <label class="theLabels" for="add_art1">Select an image:</label>
+                                <input class="theInputs" type="file" name="add_art1" id="add_art1" accept="image/*" onchange="loadFile1(event)">
+                                </div>
+                                <div>
+                                    <br>Image Preview:<div><img id="output1" style="max-width:400px;max-height:400px;" /></div>
+                            </div>
+                        </div>
+                        <div id="textupload1">
+                            <div id="tinyTextDivContainer1">
+                                <div id="tinyTextDiv1">
+                                    
+                                    <br>
+                                    <textarea id="tinyText1" style="width:800px;" placeholder="Enter your text here.">
+                                        
+                                    </textarea>
+                                </div>
+                                </div>      
+                        </div>
+                    </div>
+                    <div id="collection_art">
+                        <div id="collection_interior">
+                            <div id="entryOne">
+                            Toggle button to select art medium.
+                        
+                            <form action="">
+                                <input type="button" id="2" value="Text" onclick="toggle2(this);">
+                            </form>
+                            <div id="imageupload2">
+                                <div>
+                                    <span class="theLabels" for="add_art2">Select an image:</span>
+                                    <input class="theInputs" type="file" name="add_art2" id="add_art2" accept="image/*" onchange="loadFile2(event)">
+                                    </div>
+                                    <div>
+                                        <br>Image Preview:<div><img id="output2" style="max-width:400px;max-height:400px;"></div>
+                                </div>
+                            </div>
+                            <div id="textupload2">
+                                <div id="tinyTextDivContainer2">
+                                    <div id="tinyTextDiv2">
+                                        <br>
+                                        <textarea id="tinyText2" style="width:800px;" placeholder="Enter your text here.">
+                                        </textarea>
+                                    </div>
+                                </div>      
+                            </div>
+                            <div class="addEntry">
+                                <form action="">
+                                    <input type="button" id="showEntry2" onclick="showEntryTwo(this)" value="Add Entry">
+                                    
+                                </form><br>
+                            </div>
+                            </div>
+                            <div id="entryTwo">
+                                Toggle button to select art medium.
+                                <form action="">
+                                    <input type="button" id="3" value="Text" onclick="toggle3(this);">
+                                </form>
+                                <div id="imageupload3">
+                                    <div>
+                                        <span class="theLabels" for="add_art3">Select an image:</span>
+                                        <input class="theInputs" type="file" name="add_art3" id="add_art3" accept="image/*" onchange="loadFile3(event)">
+                                        </div>
+                                        <div>
+                                            <br>Image Preview:<div><img id="output3" style="max-width:400px;max-height:400px;"></div>
+                                            
+                                    </div>
+                                </div>
+                                <div id="textupload3">
+                                    <div id="tinyTextDivContainer3">
+                                        <div id="tinyTextDiv3">
+                                            <br>
+                                            <textarea id="tinyText3" style="width:800px;" placeholder="Enter your text here.">
+                                            </textarea>
+
+                                        </div>
+                                    </div>      
+                                </div>
+                                <div class="addEntry">
+                                    <form action="">
+                                        <input type="button" id="showEntry3" onclick="showEntryThree(this)" value="Add Entry">
+                                        
+                                    </form><br>
+                                    
+                                </div>
+                            </div>
+                            <div id="entryThree">
+                                Toggle button to select art medium.
+                                
+                                <form action="">
+                                    <input type="button" id="4" value="Text" onclick="toggle4(this);">
+                                </form>
+                                <div id="imageupload4">
+                                    <div>
+                                        <span class="theLabels" for="add_art4">Select an image:</span>
+                                        <input class="theInputs" type="file" name="add_art4" id="add_art4" accept="image/*" onchange="loadFile4(event)">
+                                        </div>
+                                        <div>
+                                            <br>Image Preview:<div><img id="output4" style="max-width:400px;max-height:400px;"></div>
+                                            
+                                    </div>
+                                </div>
+                                <div id="textupload4">
+                                    <div id="tinyTextDivContainer4">
+                                        <div id="tinyTextDiv4">
+                                            <br>
+                                            <textarea id="tinyText4" style="width:800px;" placeholder="Enter your text here.">
+                                            </textarea>
+                                            
+                                        </div>
+                                    </div>      
+                                </div>
+                                <div class="addEntry">
+                                    <form action="">
+                                        <input type="button" id="showEntry4" onclick="showEntryFour(this)" value="Add Entry">
+                                        
+                                    </form><br>
+                                    
+                                </div>
+                            </div>
+                            <div id="entryFour">
+                                Toggle button to select art medium.
+                                
+                                <form action="">
+                                    <input type="button" id="5" value="Text" onclick="toggle5(this);">
+                                </form>
+                                <div id="imageupload5">
+                                    <div>
+                                        <span class="theLabels" for="add_art5">Select an image:</span>
+                                        <input class="theInputs" type="file" name="add_art5" id="add_art5" accept="image/*" onchange="loadFile5(event)">
+                                        </div>
+                                        <div>
+                                            <br>Image Preview:<div><img id="output5" style="max-width:400px;max-height:400px;"></div>
+                                            
+                                    </div>
+                                </div>
+                                <div id="textupload5">
+                                    <div id="tinyTextDivContainer5">
+                                        <div id="tinyTextDiv5">
+                                            <br>
+                                            <textarea id="tinyText5" style="width:800px;" placeholder="Enter your text here.">
+                                            </textarea>
+                                            
+                                        </div>
+                                    </div>      
+                                </div>
+                                <div class="addEntry">
+                                    <form action="">
+                                        <input type="button" id="showEntry5" onclick="showEntryFive(this)" value="Add Entry">
+                                        
+                                    </form>
+                                    <br>
+                                </div>
+                            </div>
+                            <div id="entryFive">
+                                Toggle button to select art medium.
+                                
+                                <form action="">
+                                    <input type="button" id="6" value="Text" onclick="toggle6(this);">
+                                </form>
+                                <div id="imageupload6">
+                                    <div>
+                                        <span class="theLabels" for="add_art6">Select an image:</span>
+                                        <input class="theInputs" type="file" name="add_art6" id="add_art6" accept="image/*" onchange="loadFile6(event)">
+                                        </div>
+                                        <div>
+                                            <br>Image Preview:<div><img id="output6" style="max-width:400px;max-height:400px;"></div>
+                                            
+                                    </div>
+                                </div>
+                                <div id="textupload6">
+                                    <div id="tinyTextDivContainer6">
+                                        <div id="tinyTextDiv6">
+                                            <br>
+                                            <textarea id="tinyText6" style="width:800px;" placeholder="Enter your text here.">
+                                            </textarea>
+                                            
+                                        </div>
+                                    </div>      
+                                </div>
+                                <div class="addEntry">
+                                    <form action="">
+                                        <input type="button" id="showEntry6" onclick="showEntrySix(this)" value="Add Entry">
+                                        
+                                    </form><br>
+                                    
+                                </div>
+                            </div>
+                            <div id="entrySix">
+                                Toggle button to select art medium.
+                                
+                                <form action="">
+                                    <input type="button" id="7" value="Text" onclick="toggle7(this);">
+                                </form>
+                                <div id="imageupload7">
+                                    <div>
+                                        <span class="theLabels" for="add_art7">Select an image:</span>
+                                        <input class="theInputs" type="file" name="add_art7" id="add_art7" accept="image/*" onchange="loadFile7(event)">
+                                        </div>
+                                        <div>
+                                            <br>Image Preview:<div><img id="output7" style="max-width:400px;max-height:400px;"></div>
+                                            
+                                    </div>
+                                </div>
+                                <div id="textupload7">
+                                    <div id="tinyTextDivContainer7">
+                                        <div id="tinyTextDiv7">
+                                            <br>
+                                            <textarea id="tinyText7" style="width:800px;" placeholder="Enter your text here.">
+                                            </textarea>
+                                            
+                                        </div><br>
+                                        Maximum entries reached.  Please create a new collection to add more entries.  
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </artdiv>
+        <footer>
+            Test it! This doesn't make any sense. I hate CSS.
+        </footer>
+    </mydiv>
+    
+</body>
+</html>

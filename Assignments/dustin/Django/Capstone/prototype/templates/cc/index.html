@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    {% with 'cc/css/'|add:css_select as css_select_template %}
+      <link rel="stylesheet" href="{% static css_select_template %}">
+    {% endwith %}
     <title>Index / Homepage</title>
     <style>
         body {
@@ -187,7 +190,9 @@
 <body>
     <mydiv>
     <div>
-        <menubar><img src="https://s5.gifyu.com/images/CreativeCrossroadsGIFgreen3.gif" width="50%" height="50%"></menubar>
+        <menubar>{% with 'media/'|add:banner_image as banner_image_file %}
+            <img src="{% static banner_image_file %}" width="50%" height="50%">
+        {% endwith %}  </menubar>
     </div>
     <div>
         <header>

@@ -63,7 +63,7 @@ usertitle {
     text-decoration: underline;
     background-color: #6f73d2;
     display: inline-block;
-    color: 593f62;
+    color: #593f62;
     font-size: 24px;
 }
 
@@ -76,7 +76,7 @@ artdiv {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto auto auto;
     /* text-align: center; */
-    color: 593f62;
+    color: #593f62;
     border-top: solid 2px black;
     border-bottom: solid 2px black;
 }

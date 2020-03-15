@@ -1,0 +1,119 @@
+
+* {
+    /* border: 2px lime dotted; */
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to right, black, darkgray, black);
+    padding: 8px;
+    margin: 0px 0px;
+    min-width: 45vw;
+}
+
+hr {
+    border: solid 1px black;
+    width: 100%;
+}
+
+button {
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+}
+
+h2, h3, h4, h5, h6 {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+mydiv {
+    margin: auto;
+    min-width: 40vw;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+}
+menubar {
+    padding: 5px;
+    width: 100%;
+    background-color: #104f55;
+    color: lime;
+    display:inline-block;
+    text-align:left;
+    vertical-align: bottom;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+header {
+    padding: 5px;
+    width: 100%;
+    height: 30px;
+    background-color:#011502;
+    color: lime;
+    display:inline-block;
+    text-align:center;
+    vertical-align: bottom;
+    border: solid 2px black;
+    /* border: solid 2px #9ec5ab; */
+}
+
+arttitle {
+    padding-left: 2%;
+    padding-right: 5px;
+    width: 100%;
+    height: 30px;
+    text-align: left;
+    text-decoration: underline;
+    background-color: #32746d;
+    display: inline-block;
+    color: lightgreen;
+    font-size: 24px;
+}
+
+    artdiv {
+        padding: 5px;
+        width: 100%;
+        height: 100%;
+        background-color: #c1b595;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        /* text-align: center; */
+        color: lightgreen;
+        border-top: solid 2px black;
+        border-bottom: solid 2px black;
+        text-align:center;
+    }
+
+    artdiv > * {
+        background-color: #104f55;
+        border-radius: 20px;
+        padding: 40px;
+    }
+
+
+    #tinyTextDiv {
+        margin: 0 auto;
+        width: min-content;
+    }
+
+    #tinyText {
+        
+    }
+
+    
+    footer {
+        padding: 5px;
+        width: 100%;
+        height: 60px;
+        background-color: #104f55;
+        color: lime;
+        display:inline-block;
+        text-align:center;
+        vertical-align: bottom;
+        border-top: solid 2px black;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }

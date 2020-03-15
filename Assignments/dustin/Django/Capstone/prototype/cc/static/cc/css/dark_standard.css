@@ -90,6 +90,22 @@ maindiv > * {
     padding: 4% 0;
 }
 
+    regdiv {
+        margin: 5px auto;
+        border-radius: 20px;
+        width: 100%;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    logindiv {
+        margin: 5px auto;
+        border-radius: 20px;
+        width: 100%;
+        grid-column: 1;
+        grid-row: 2;
+    }
+
 maindiv2 {
     padding: 5px;
     width: 100%;
@@ -121,21 +137,6 @@ maindiv2 > * {
         grid-row: 1;
     }
 
-    regdiv {
-        margin: 5px auto;
-        border-radius: 20px;
-        width: 100%;
-        grid-column: 1;
-        grid-row: 1;
-    }
-    
-    logindiv {
-        margin: 5px auto;
-        border-radius: 20px;
-        width: 100%;
-        grid-column: 1;
-        grid-row: 2;
-    }
 
     #formcon1, #formcon2 {
         width: 40%;

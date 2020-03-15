@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    {% with 'cc/css/'|add:profile_css as profile_css_template %}
-      <link rel="stylesheet" href="{% static profile_css_template %}">
+    {% with 'cc/css/'|add:css_select as css_select_template %}
+      <link rel="stylesheet" href="{% static css_select_template %}">
     {% endwith %}
 </head>
 <body>
@@ -26,7 +26,7 @@
         </div>
 
         <usertitle>
-            User Title
+            {% if initial.name is None %}User{% else %}{{initial.name}}{% endif %}
         </usertitle>
 
 <maindiv2>
@@ -36,23 +36,25 @@
         <form id="formC" method="POST" action="{% url 'users:update_profile' %}"" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="rows">
+            <input type="hidden" name='user' value="{{user.id}}">
             <div class="column">
                 <label class="theLabels">Name:</label>
-                <input class="theInputs" type="text" name="name" placeholder="Name">
+                <input class="theInputs" type="text" name="name" placeholder="Name" value="{% if initial.name is None %}{% else %}{{initial.name}}{% endif %}">
             </div>
 
             <div class="column">
                 <label  class="theLabels">Location:</label>
-                <input class="theInputs" type="text" name="location" placeholder="(ex: Portland, OR)">
+                <input class="theInputs" type="text" name="location" placeholder="(ex: Portland, OR)" value="{% if initial.location is None %}{% else %}{{initial.location}}{% endif %}">
             </div>
 
             <div class="column">
                 <label class="theLabels">Bio:</label>
-                <input class="theInputs" type="textarea" name="bio" placeholder="About Me" width="400px" height="150px">
+                <textarea class="theInputs"  rows="4" cols="100" name="bio" placeholder="About Me"  style="width: 60%; resize: vertical;">{{initial.bio}}</textarea>
             </div>
 
             <div class="column">
-                <label  class="theLabels">Other Info:</label>            <input class="theInputs" type="textarea" name="misc" placeholder="(ex: interests, inspirations, collaboration info)">
+                <label  class="theLabels">Other Info:</label>            
+                <textarea class="theInputs" rows="4" cols="100" name="misc" placeholder="(ex: interests, inspirations, collaboration info)" style="width:60%;resize:vertical;">{% if initial.misc is None %}{% else %}{{initial.misc}}{% endif %}</textarea>
             </div>
 
             <div class="column">
@@ -75,16 +77,16 @@
 
             <div class="column">
                 <label class="theLabels">Choose your medium(s):</label>
-                <select class="theInputs" name="medium" id="mediums" multiple>
+                <select class="theInputs" name="mediums" id="mediums" multiple>
                     {% for medium in mediums %}
-                        <option value="{{medium}}">{{medium.text}}</option>
+                        <option value="{{medium.id}}" {% if medium in instance.mediums.all %} selected {% endif %}>{{medium.text}}  {% if medium in instance.mediums.all %} ✓ {% endif %}</option>
                     {% endfor %}
                 </select>
             </div>
                 
 		    <div id="column">
                 <label class="theLabels" for="profile_pic">Select an image:</label>
-                <input class="theInputs" type="file" name="movie_image" id="profile_pic">
+                <input class="theInputs" type="file" name="profile_pic" id="profile_pic">
             </div>
             <button type="submit">Update Profile</button>
             </div>

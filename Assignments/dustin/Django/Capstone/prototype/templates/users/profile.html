@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    {% with 'cc/css/'|add:profile_css as profile_css_template %}
-      <link rel="stylesheet" href="{% static profile_css_template %}">
+    {% with 'cc/css/'|add:css_select as css_select_template %}
+      <link rel="stylesheet" href="{% static css_select_template %}">
     {% endwith %}
     <link type="text/css" rel="stylesheet" href="{% static 'light/src/css/lightslider.css' %}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
