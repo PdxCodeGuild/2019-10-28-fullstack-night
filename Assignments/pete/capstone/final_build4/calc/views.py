@@ -16,6 +16,15 @@ def macros_redirect(request):
     macros = request.user.macros.get(active=True)
     return HttpResponseRedirect(reverse('calc:macros', kwargs={'pk': macros.pk}))
 
+def faq(request, pk):
+    macros = Macros.objects.get(pk=pk)
+    context = {
+    'macros_dict': macros.macros_dict(),
+    'faq_dict': macros.faq_dict(),
+    'macros': macros,
+    }
+    return render(request, 'calc/faq.html', context)
+
 def calculate(request):
     data = request.POST
     meas_sys = data['meas']
@@ -64,7 +73,27 @@ def calculate(request):
     train_carb = round((tdci - (protein * 4) - (train_fat * 9)) / 4)
     rest_carb = round((rdci - (protein * 4) - (rest_fat * 9)) / 4)
 
-    macros = Macros(meas_sys=meas_sys_bool, weight=weight_in, bfp=bfp, act_lvl=act_lvl, goal=goal_bool, lbm=lbm, bmr=bmr, protein=protein, train_kcal=tdci, rest_kcal=rdci, train_fat=train_fat, rest_fat=rest_fat, train_carb=train_carb, rest_carb=rest_carb)
+    macros = Macros(
+        meas_sys=meas_sys_bool,
+        weight=weight_in,
+        bfp=bfp,
+        act_lvl=act_lvl,
+        goal=goal_bool,
+        lbm=lbm,
+        bmr=bmr,
+        protein=protein,
+        train_kcal=tdci,
+        rest_kcal=rdci,
+        train_fat=train_fat,
+        rest_fat=rest_fat,
+        train_carb=train_carb,
+        rest_carb=rest_carb,
+        #NEW
+        tdee=tdee,
+        tadci=tadci,
+        tdci=tdci,
+        rdci=rdci
+    )
     macros.save()
     
     if request.user.is_authenticated:
@@ -75,4 +104,3 @@ def calculate(request):
         macros.save()
         
     return HttpResponseRedirect(reverse('calc:macros', kwargs={'pk': macros.pk}))
-    # return HttpResponse(Macros.objects.get(pk=macros.pk))

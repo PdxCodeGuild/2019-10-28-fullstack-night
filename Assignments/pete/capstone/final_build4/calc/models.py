@@ -25,6 +25,13 @@ class Macros(models.Model):
     rest_fat = models.IntegerField()
     rest_carb = models.IntegerField()
 
+    #NEW
+    tdee = models.IntegerField()
+    tadci = models.IntegerField()
+    tdci = models.IntegerField()
+    rdci = models.IntegerField()
+
+
     def faq_dict(self):
         faq_dict = {
             'lbm': self.lbm,
@@ -32,8 +39,10 @@ class Macros(models.Model):
             'act_lvl': self.act_lvl,
             'goal': self.goal,
 
-            'tdee': round(self.bmr * self.act_lvl),
-            # 'tadci': 
+            'tdee': self.tdee,
+            'tadci': self.tadci,
+            'tdci': self.tdci,
+            'rdci': self.rdci,
         }
         return faq_dict
     

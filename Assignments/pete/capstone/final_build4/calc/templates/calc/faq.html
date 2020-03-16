@@ -1,0 +1,87 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'calc/css/faq.css' %}">
+<script src="{% static 'calc/js/faq.js' %}" defer></script>
+{% endblock %}
+{% block subnav %}
+<nav class="subnav">
+    <header>Frequently Asked Questions</header>
+</nav>
+{% endblock %}
+{% block main %}
+{{ macros_dict|json_script:"macros_dict"}}
+{{ faq_dict|json_script:"faq_dict" }}
+<main class="faq">
+    <div class="faq-container">
+        <header class="faq">What Are Macros?</header>
+        <ul>
+            <li class="faq">Macronutrients, or macros, are proteins, fats, and carbohydrates.  They make up the bulk of the nutrients from food and are meausured by the gram.</li>
+            <li class="faq">Proteins build and repair body tissue, help fight infection, and provide energy.  One gram of protein is roughly 4 calories.</li>
+            <li class="faq">Carbohydrates are the main energy source for the body.  One gram of carbohydrates is roughly 4 calories.</li>
+            <li class="faq">Fats provide energy and help the body absorb other nutrients.  One gram of fat is roughly 9 calories.</li>
+            <li class="faq">Micronutrients, on the other hand, are things like vitamins, minerals, and electrolytes.  They make up an essential but much smaller part of the diet and are measured by the milligram.</li>
+        </ul>
+    </div>
+    <div class="faq-container">
+        <header class="faq">How Does Macro-Tracking Work?</header>
+        <ul>
+            <li class="faq">Macronutrient goals are calculated for Training Days and Rest Days.</li>
+            <li class="faq">Training Days have a higher overall caloric and carbohydrate goal, and a lower fat goal.</li>
+            <li class="faq">Rest Days have a lower overall caloric and carboyhdrate goal, and a higher fat goal.</li>
+            <li class="faq">Both Training Days and Rest Days have a high protein goal.</li>
+        </ul>
+    </div>
+    <div class="faq-container">
+        <header class="faq">How Are My Macros Calculated?</header>
+        <ul>
+            <li class="faq">Your calculation found that you have a Basal Metabloic Rate of {{ macros.bmr }} calories per day.  This is the amount of energy you burn just to keep your body running.</li>
+            <li class="faq">But nobody burns calories at their Basal Metabolic Rate.  Based on your Activity Level, a Total Daily Energy Expenditure of {{ macros.tdee }} calories has been calculated.  This is the average energy your body uses each day.</li>
+            {% if macros.goal_bool %}
+            <li class="faq">Since your goal is Muscle Gain, you'll want to consume more nutrients than your body expends, so your Target Average Daily Calorie Intake will be {{ macros.tadci }}, a caloric surplus.</li>
+            {% else %}
+            <li class="faq">Since your goal is Fat Loss, you'll want to consume fewer nutrients than your body expends, so your Target Averave Daily Calorie Intake will be {{ macros.tadci }}, a caloric deficit.</li>
+            {% endif %}
+            <li class="faq">But you won't be eating the same amounts on Training and Rest Days.  You'll eat more ({{ macros.tdci }} calories) on your Training Days and less ({{ macros.rdci }} calories) on Rest Days.</li>
+            <li class="faq">You'll want to consume {{ macros.protein }} grams of protein on both Training and Rest Days.</li>
+            <li class="faq">But on Training Days you'll eat high carbs ({{ macros.train_carb }}g) and low fat ({{ macros.train_fat }}g).</li>
+            <li class="faq">And on Rest Days you'll eat high fat ({{ macros.rest_fat }}g) and low carbs ({{ macros.rest_carb }}g).</li>
+        </ul>
+    </div>
+    <div class="faq-container">
+        <header class="faq">What Kind of Training Should I Do?</header>
+        <ul>
+            <li class="faq">On Training Days, you will do a full-body strength workout.</li>
+            <li class="faq">This can be done with weightlifting (squats, deadlifts, bench press, etc.), bodyweight workouts (push-ups, split-squats, inverted body-weight rows, etc.) or any high-intensity strength training.</li>
+            <li class="faq">Other physical activity (sports, running, etc.) can be incorporated around your training schedule, as long as it doesn't interfere with your ability to work out on Training Days.</li>
+        </ul>
+    </div>
+    <div class="faq-container">
+        <header class="faq">How Often Should I Work Out?</header>
+        <ul>
+            <li class="faq">This plan is designed for 3 Training Days per Week. Here's a Monday-Wednesday-Friday Schedule:</li>
+        </ul>
+        <div id="grid">
+            <div class="day">Sun</div>
+            <div class="day">Mon</div>
+            <div class="day">Tue</div>
+            <div class="day">Wed</div>
+            <div class="day">Thu</div>
+            <div class="day">Fri</div>
+            <div class="day">Sat</div>
+            <div class="type">Rest Day</div>
+            <div class="type">Training Day</div>
+            <div class="type">Rest Day</div>
+            <div class="type">Training Day</div>
+            <div class="type">Rest Day</div>
+            <div class="type">Training Day</div>
+            <div class="type">Rest Day</div>
+        </div>
+        <ul>
+            <li class="faq">So your schedule should consist of a "Training Week" with three Training Days and two Rest Days and a "Rest Weekend" with two more Rest Days to recover.</li>
+            <li class="faq">Of course you may occasionally miss a Training Day upset your schedule.  This is fine so long as you keep as regular a schedule as possible and avoid back-to-back Training Days.</li>
+        </ul>
+    </div>
+
+</main>
+{% endblock %}

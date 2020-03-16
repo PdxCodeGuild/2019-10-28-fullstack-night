@@ -1,0 +1,51 @@
+main.faq {
+    display: block;
+    padding-top: 4vh;
+    height: auto;
+}
+
+header.faq {
+    background: hsla(0, 0%, 0%, 0.25);
+    font-size: 2.5rem;
+    /* margin-left: 2vw; */
+    /* margin: 0 2vw; */
+}
+
+.faq-container {
+    margin: 0 2vw;    
+}
+
+li.faq {
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin: 2vh 0;
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    background-color: hotpink;
+}
+
+#grid {
+    display: grid;
+    grid-template-rows: 33% 67%;
+    grid-template-columns: repeat(7, 1fr);
+    border: 2px solid black;
+    height: 15vh;
+    font-size: 1.5rem;
+}
+
+.day {
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    text-align: center;
+}
+
+.type {
+    border-right: 2px solid black;
+    text-align: center;
+    padding-top: 2.5vh;
+}
+
+#grid :nth-child(7n) {
+    border-right: none;
+}

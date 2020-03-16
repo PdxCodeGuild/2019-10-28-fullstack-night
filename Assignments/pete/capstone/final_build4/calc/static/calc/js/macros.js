@@ -10,6 +10,7 @@
 // }
 
 var macrosDict = JSON.parse(document.querySelector('#macros_dict').textContent);
+var faqObj = JSON.parse(document.querySelector('#faq_dict').textContent);
 
 let cnvT = document.querySelector('#training-chart');
 let trainGram = true;
