@@ -19,7 +19,6 @@
 
 <body>
     {% csrf_token %} 
-    {{user.id|json_script:"user-el"}}
     <div id="app">
 
 
@@ -152,11 +151,15 @@
                                 Choose…
                               </span>
                             </span>
-                            <label class="checkbox" >
-                                <input v-model="result.starter" type="checkbox" v-on:click="UpdateStartingStatus(result.id)">
-                                Starter
-                            </label>
                           </label>
+                      </div>
+                      <div class="media">
+                        <div class="media-content has-text-centered">
+                          <label class="checkbox" >
+                              <input v-model="result.starter" type="checkbox" v-on:click="UpdateStartingStatus(result)">
+                              Starter
+                          </label>
+                        </div> 
                       </div>
                       <!-- <input type="file" id="Newfile" ref="Newfile"/> -->
                       <button class="button is-small is-link is-info" id="save_button" v-on:click="UpdatePlayer(result,$event)">Save</button>
@@ -202,7 +205,7 @@
                     </select>
                 </div>
                 <label class="checkbox" >
-                    <input v-model="Starter" type="checkbox">
+                    <input v-model="result.starter" type="checkbox">
                     Starter
                 </label>
 

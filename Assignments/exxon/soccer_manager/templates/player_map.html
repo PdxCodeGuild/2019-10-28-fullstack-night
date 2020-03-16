@@ -68,19 +68,40 @@
                                         
                         </nav> 
 
-
-
-
-                        <div class="container">
-                                <figure class="image " v-on:mouseup="releaseDiv" >
-                                        <img src="/static/img/big_rotated_soccer-removebg.png">
-                                        <div class="text-area is-overlay">
-                                                <div class="media-content has-text-centered " v-for="(result,index) in starters" v-bind:id="result.id">
-                                                        <div class="subtitle is-size-7" v-on:mousedown="chooseDiv" v-on:touchstart="chooseDiv">[[result.name]]</div>
+                        <section class="section">
+                                <div class="container">
+                                        <div class="columns is-centered">
+                                                <div class="column is-half">
+                                                        <figure v-on:mouseup="releaseDiv" >
+                                                                <img src="/static/img/big_rotated_soccer-removebg.png">
+                                                                <div class="text-area is-overlay" style="display: block;">
+                                                                        <ul>
+                                                                                <div class="media-content " v-for="(result,index) in starters" v-bind:id="result.id">
+                                                                                        
+                                                                                        <li class="subtitle is-size-7" style="display: block;" v-on:mousedown="chooseDiv" v-on:touchstart="chooseDiv">[[result.name]]</li>  
+                                                                                </div>
+                                                                        </ul>
+                                                                </div>
+                                                        </figure>
                                                 </div>
                                         </div>
-                                </figure>
-                        </div>
+                                </div>
+                        </section>
+<!-- 
+                        <section class="hero">
+                                <div class="hero-body">
+
+                                        <figure class="image " v-on:mouseup="releaseDiv" >
+                                                <img src="/static/img/big_rotated_soccer-removebg.png">
+                                                <div class="text-area is-overlay">
+                                                        <div class="media-content has-text-centered " v-for="(result,index) in starters" v-bind:id="result.id">
+                                                                <div class="subtitle is-size-7" v-on:mousedown="chooseDiv" v-on:touchstart="chooseDiv">[[result.name]]</div>
+                                                        </div>
+                                                </div>
+                                        </figure>
+                                </div>
+                        </section> -->
+
 
                 </div>
 

@@ -28,8 +28,8 @@ let app = new Vue({
         file: '',
         result: {
             position: '',
+            starter: false
         },
-        Starter: [],
         EditPlayer: -1,
         Positions:['Goalkeeper', 'Right-Fullback','Left-Fullback','Center-Back','Sweeper','Defending-Midfielder','Right-Midfielder','Center-Midfielder','Striker','Attacking-Midfielder','Left-Midfielder'],
     },
@@ -56,7 +56,7 @@ let app = new Vue({
             // replace name field in file/image for the name that is typed in input field on html page 
             formData.append('name',this.Newname)
             formData.append('position', this.result.position)
-            formData.append('starter', this.Starter)
+            formData.append('starter', this.result.starter)
             console.log('>> formData >> ', formData);
             
 
@@ -102,7 +102,7 @@ let app = new Vue({
                 axios.get("https://ipapi.co/latlong")      
                     .then((response)=>{ this.locationLatLong = response.data
                         console.log(this.locationLatLong)                                   // <------ response that has lat/long for current ip address
-                        axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast//${this.locationLatLong}?units=us&exclude=minutely,hourly,daily,alerts,flags`)  
+                        axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/ee2b9f44555aefe31a9a72cae4f5999b/${this.locationLatLong}?units=us&exclude=minutely,hourly,daily,alerts,flags`)  
                             .then((response)=>{ this.locationCondTemp = response.data.currently.summary + ' ' + ' ' + (Math.floor(response.data.currently.temperature)) + "°F"
                                 console.log(this.locationCondTemp)  // <-- response that has  weather for vancouver  and icon and temp
                             })
@@ -120,7 +120,7 @@ let app = new Vue({
             axios.get("https://ipapi.co/latlong")      
                 .then((response)=>{ this.locationLatLong = response.data
                                         // <------ response that has lat/long for current ip address
-                    axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast//${this.locationLatLong}?units=us&exclude=minutely,hourly,daily,alerts,flags`)  
+                    axios.get(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/ee2b9f44555aefe31a9a72cae4f5999b/${this.locationLatLong}?units=us&exclude=minutely,hourly,daily,alerts,flags`)  
                         .then((response)=>{ this.locationIcon = response.data.currently.icon 
                             console.log(this.locationIcon)  // <-- response that has  weather for vancouver  and icon and temp
                         })
@@ -317,8 +317,8 @@ let app = new Vue({
                 document.querySelector("#app").append(this.activeDiv);
                 this.activeDiv.style.position = "absolute";
                     
-                this.activeDiv.style.top = `${e.pageY - (this.activeDiv.offsetHeight/5)}px`;
-                this.activeDiv.style.left = `${e.pageX - (this.activeDiv.offsetWidth/2)}px`;
+                this.activeDiv.style.top = `${e.clientY - (this.activeDiv.offsetHeight/5)}px`;
+                this.activeDiv.style.left = `${e.clientX - (this.activeDiv.offsetWidth/2)}px`;
                 console.log('choose')
                 }
             
@@ -335,7 +335,7 @@ let app = new Vue({
             if (this.activeDiv !== null){
                 // console.log(e.x, e.y)
                 console.log(e)
-
+                
                 if (e.type === "touchmove"){
                     this.activeDiv.style.position = "absolute";
                     this.activeDiv.style.left = `${e.touches[0].clientX - (this.activeDiv.offsetWidth/2)}px`;
@@ -350,20 +350,17 @@ let app = new Vue({
             }
         },
 
-        UpdateStartingStatus:function(id){
+        UpdateStartingStatus:function(result){
 
-
+            result.starter = !result.starter
             
-            console.log(this.Starter[id])
-            this.Starter[id] = !this.Starter[id];
-            console.log(this.Starter[id])
 
             let formData = new FormData();
 
             // grab the new file user is choosing for the edit and set it as var uploadedfile so i can pass it to form data as uploadedfile
 
 
-                formData.set('starter', this.Starter[id])
+                formData.set('starter', result.starter)
             
     
     
@@ -371,7 +368,7 @@ let app = new Vue({
                 axios({
                     
                     method: "patch",
-                    baseURL:`/photos/${id}/`,formData,
+                    baseURL:`/photos/${result.id}/`,formData,
                     headers: {
                         "X-CSRFToken": csrf_token,
                         // "Content-Type": "application/json",

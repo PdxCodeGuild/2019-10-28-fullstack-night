@@ -1,0 +1,31 @@
+
+
+.flex-container {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    
+    align-items: stretch;
+    align-content: stretch;
+    
+    
+};
+
+
+/* could not get search button to respond to anything?? */
+.search_area {
+
+    float: inline-start;
+    margin-right: 400px;
+};
+
+
+
+.p .text_area{
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right:200px;
+    
+}

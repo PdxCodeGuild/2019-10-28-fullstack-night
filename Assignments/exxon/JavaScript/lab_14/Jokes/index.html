@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Joke search </title>
+        <link rel="stylesheet" href="css/site.css">
+
+
+    </head>
+    <body>
+
+        <div id="app">
+            <div class= "input_choice">
+                <select v-model="type_input"> 
+                    <option disabled value="null">select category</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                    <option value="Dark">Dark</option>
+                    <option value="Any">Any</option>
+                </select>
+            </div>
+
+            <div class= user_pick_author>
+                <input type="text" v-model="type_input" v-on:keyup.enter="getJokes">
+  
+                <button v-on:click="getJokes">Get some</button>
+
+
+            </div>
+
+
+            <div v-for="(joke, index) in joke_results">
+                <p>{{ joke }}</p>
+                <p><em><a :href="joke.url">{{ joke.id }}</a></em></p>
+                
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="js/site.js"></script>
+        
+        
+        
+        
+    </body>
+</html>

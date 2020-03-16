@@ -1,0 +1,91 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+.flex-container{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: blueviolet;
+    background-size: cover;
+    height: 632px;
+    padding-right: 50px;
+    
+}
+
+
+.result-palindrome{
+    display: flex;
+    background-color: brown;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+#palindrome_word_display{
+    height: 25px;
+    width: 150px;
+    
+}
+
+
+#yes_no_text{
+    text-align: center;
+}
+
+
+
+#try_anagram{
+    margin-top: 25px;
+    align-self: center;
+    
+}
+
+
+#anagram_ask{
+    
+    
+    margin-top: 100px;
+}
+
+
+
+
+body{
+    margin:0;
+}
+
+
+
+.guess-palindrome{
+    display: flex;
+    background-color: aqua;
+    width: 300px;
+    align-items: center;
+    flex-direction: column;
+}
+
+#check_button{
+    margin-top: 15px;
+}
+
+
+.result-anagram{
+    display: flex;
+    background-color: coral;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+#anagram_word_display{
+    height: 25px;
+}
+
+#check_anagram_button{
+    margin-top: 15px;
+}

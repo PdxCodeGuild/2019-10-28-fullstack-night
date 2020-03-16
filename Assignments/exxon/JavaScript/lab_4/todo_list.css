@@ -1,0 +1,94 @@
+.completed{
+    text-decoration: line-through;
+}
+
+.v1 {
+    border-left: 3px solid black;
+    height: 605px;
+    position: absolute;
+    left: 30%;
+    margin-left: -3px;
+    top: 10;
+  }
+
+  .v2 {
+    border-left: 3px solid black;
+    height: 605px;
+    position: absolute;
+    left: 70%;
+    margin-left: -3px;
+    top: 10;
+  }
+
+
+
+
+
+.grid-container {
+    display: grid;
+    column-gap: 5px;
+    
+    border: 3px solid black;
+    grid-template-columns: auto;
+    grid-template-rows: 200px 200px 200px;
+    grid-template-areas: 
+      "header header header"
+      "main main main"
+      "footer footer footer";
+      
+  }
+
+
+  #completed_list{
+    grid-area: footer;
+    align-self: center;
+    justify-self: center;
+    padding-right: 100px;
+    
+    
+  }
+
+  #to-doform{
+      grid-area: main;
+      justify-self: start;
+      align-self: center;
+      padding-left: 7%;
+
+  }
+
+  #completed_list{
+      grid-area: main;
+      justify-self: end;
+      padding-right: 15%;
+  }
+
+  .header1{
+    grid-area:header;
+    justify-self: center;
+    align-self: center;
+    
+    
+      
+  }
+
+  #todolist{
+    grid-area: main;
+    align-self: center;
+    justify-self: center;
+    padding-right: 2%;
+  }
+
+  .header2{
+    grid-area:header;
+    justify-self: start;
+    align-self: center;
+    padding-left: 9%;
+  }
+
+  .header3{
+    grid-area:header;
+    justify-self: end;
+    align-self: center;
+    padding-right: 12%;
+  }
+

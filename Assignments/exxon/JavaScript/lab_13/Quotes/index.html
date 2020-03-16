@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Quotes search </title>
+        <link rel="stylesheet" href="css/site.css">
+
+
+    </head>
+    <body>
+
+        <div id="app">
+            <div class= "input_choice">
+                <select v-model="type_input"> 
+                    <option disabled value="null">Please select one</option>
+                    <option value="author">Author</option>
+                    <option value="tag">Tag</option>
+                    <option value="keyword">Keyword</option>
+                </select>
+            </div>
+
+            <div class= user_pick_author>
+                <input type="text" v-model="search_input" v-on:keyup.enter="getQuotes">
+  
+                <button v-on:click="getQuotes">Get some</button>
+
+
+            </div>
+
+
+            <div v-for="(quote, index) in quote_results">
+                <p>{{ quote.body }}</p>
+                <p><em><a :href="quote.url">{{ quote.author }}</a></em></p>
+                
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="Js/site.js"></script>
+        
+        
+        
+        
+    </body>
+</html>

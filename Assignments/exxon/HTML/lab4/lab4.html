@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html>
+
+
+    <head>
+        
+        <title> ORDER YOUR BURRITO </title>
+        
+        <link rel="stylesheet" href="styles4.css">
+
+
+
+
+
+
+
+    </head>
+
+
+
+
+    <body>
+
+        
+
+        <form action="http://webhook.site/844fb626-9428-4feb-98f1-a1fca2acf82b" method="post">
+
+            <div class="flex-container">
+
+
+                <fieldset>
+                    <div class="build-header">
+                        <legend style="font: bolder;">Start building your buritto here:</legend> 
+                    </div>
+
+
+
+                    
+                    
+                    <br>
+                    <br>
+                    <fieldset style="background-color:lightsalmon" id="tortilla"> 
+                        <legend><br>Pick your tortilla:</legend>
+                    
+                        <div class="tortilla-choose">
+                    
+                            <input type="radio" name="tortilla-type" value="Flour" > Flour 
+                            <input type="radio" name="tortilla-type" value="Spinach"> Spinach
+                            <input type="radio" name="tortilla-type" value="Corn"> Corn
+                    
+                        </div>
+                    
+                    </fieldset> 
+                    
+                    <fieldset style="background-color:lightsalmon" id="rice-choose">
+                        <legend><br>Pick your rice:</legend>
+                        <div class="Rice-choose">
+                            <input type="radio" name="rice-type" value="White (Basmati)" > White
+                            <input type="radio" name="rice-type" value="Brown"> Brown
+                        </div>
+                    </fieldset>
+                    
+                    
+                    <fieldset style="background-color:lightsalmon" id="beans-choose">
+                            <legend><br>Pick your beans:</legend>
+                            <div class="beans-choose">
+                                <input type="radio" name="beans-type" value="Pinto" > Pinto
+                                <input type="radio" name="beans-type" value="Black"> Black
+                            </div>
+                        </fieldset>
+                    
+
+                        <fieldset style="background-color:lightsalmon" id="meat-choose">
+                            <legend><br>Pick your meats:</legend>
+                            <div class="meat-choose">
+                                <input type="radio" name="meat-type" value="chicken" > Chicken
+                                <input type="radio" name="meat-type" value="carnitas"> Carnitas
+                                <input type="radio" name="meat-type" value="sofritas" > Sofritas
+                                <input type="radio" name="meat-type" value="none"> None
+                            </div>
+                                    
+
+                            
+                            
+                        </fieldset>    
+                        
+                        
+                        
+                        <fieldset style="background-color:lightsalmon" id="additional-choose">
+                                <legend><br>Additional Ingredients:</legend>
+                            <input type="checkbox" id="cheese-choose" name="cheese" value="cheese">
+                            <label for="cheese-choose">cheese</label>
+
+                            <input type="checkbox" id="jalapenos-choose" name="jalapenos" value="jalapenos">
+                            <label for="jalapenos-choose">jalapenos</label>
+
+                            <input type="checkbox" id="corn-choose" name="corn" value="corn">
+                            <label for="corn-choose">corn</label>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        </fieldset>
+                        <br>
+                        <br>
+
+
+
+                        <fieldset> 
+                                <legend  style="font-size: 21px;">Fill in your info for the order</legend>
+                                <br>
+
+                                <label style="background-color:lightsalmon" for="user">Name:</label>
+                                <input style="background-color:lightsalmon" type="text" name="user" id="input-user" placeholder="required" required pattern="[a-z]{1,16} [a-z]{1,16}" title="john doe"/>
+
+                                <label style="background-color:lightsalmon" for="user">Email address:</label>
+                                <input style="background-color:lightsalmon" type="text" name="user" id="input-user" placeholder="required" required pattern="\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b" title="john_doe@example.com "/>
+
+                                <label style="background-color:lightsalmon" for="user">Phone number:</label>
+                                <input style="background-color:lightsalmon" type="text" name="user" id="input-user" placeholder="required" required pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$" title="000-000-0000"/>
+
+                                <label style="background-color:lightsalmon" for="user">Date of Birth:</label>
+                                <input style="background-color:lightsalmon" type="text" name="user" id="input-user" placeholder="required" required pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[0-1])\/(1900|19\d{2}|200[0-3])$" title="00/00/0000"/>
+
+                                
+                                <label style="background-color:lightsalmon" for="user">Street:</label>
+                                <input style="background-color:lightsalmon" type="text" name="user" id="input-user" placeholder="required" required pattern="[a-z]{1-20}" title="123 Mulberry Ln"/> <br><br>
+
+                                <label style="background-color:lightsalmon" for="user">City, State, Zip:</label>
+                                <input style="background-color:lightsalmon" type="text" name="user" id="input-user" placeholder="required" required pattern="(.+?),?\s(\w+)\s?([-\d]+)" title="Portland, OR, 97201"/>
+
+                                
+                        </fieldset>
+                        <br>
+                        <br>
+
+                        <fieldset>
+                            <legend style="font: bolder;">Login here please</legend>
+
+                            <label style="background-color:lightsalmon" for="user">Username:</label>
+                            <input style="background-color:lightsalmon" type="text" name="user" id="input-user" placeholder="required" required pattern="[a-z]{0,16}" title="name must be between 4 and 16 characters, all lowercase"/>
+
+                            <label style="background-color:lightsalmon" for="user">Password:</label>
+                            <input style="background-color:lightsalmon" type="text" name="password" id="user-password" placeholder="required" required pattern="[a-z]{0,16}" title="name must be between 4 and 16 characters, all lowercase"/>
+
+                            
+
+
+
+
+
+                        </fieldset>
+                        
+                </fieldset>
+            </div>
+            <br>
+            <br>
+                <div class="flex-item1">
+                    <button type="submit">Submit</button>
+                </div>
+                
+        </form>
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+
+
+
+
+
+
+
+

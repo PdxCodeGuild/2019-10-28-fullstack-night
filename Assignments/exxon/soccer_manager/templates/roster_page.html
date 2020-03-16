@@ -19,55 +19,64 @@
     <div id="app">
 
 
+
+
+        <nav class="navbar is-fixed-top is-info has-text-centered" role="navigation" aria-label="main navigation">
+
+                <div class="navbar-brand ">
+                        <a class="navbar-item" href="https://bulma.io">
+                        <img src="{% static 'img/sokly_200.png' %}" width="112" height="28">
+                        </a>
+        
+                        <div class="navbar-item" id="weather_info_bar">
+                        <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
+                        </div>
+        
+        
+                        <!-- <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>  -->
+        
+        
+                        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu" v-on:click="showNav = !showNav" v-bind:class="{ 'is-active' : showNav }">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        </a>
+                </div>
+        
+        
+                
+                <div id="navMenu" class="navbar-menu " v-bind:class="{ 'is-active' : showNav }">
+                        <div class="navbar-end">
+        
+                        {% if user.is_authenticated %}
+                        <a class="navbar-item">Welcome {{ user.username }}!</a>
+                        <a  class="navbar-item" href="{% url 'login' %}">Logout</a>
+                        {% else %}
+                        
+                        <p class="navbar-item">Welcome, visitor!</p>
+                        <a class="navbar-item" href="{% url 'login' %}">Login</a>
+                        <a class="navbar-item" href="{% url 'users:signup' %}">Sign Up</a></p>
+                        {% endif %}
+                        <!-- <div class="navbar-item" id="weather_info_bar">
+                                <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
+                        </div> -->
+        
+                        <a href="http://localhost:8000/manager"class="navbar-item">
+                        Starter Line-up
+                        </a>
+                
+                        <a href="http://localhost:8000/player_map" class="navbar-item">
+                        Player-Map
+                        </a>
+        
+                        <a href="http://localhost:8000/roster_page" class="navbar-item">
+                        Roster-Page
+                        </a>
+        
+                        </div>
+                        
+        </nav> 
         <div class="table-container">
-
-            <nav class="navbar is-fixed-top is-info has-text-centered" role="navigation" aria-label="main navigation">
-
-                    <div class="navbar-brand ">
-                            <a class="navbar-item" href="https://bulma.io">
-                            <img src="{% static 'img/sokly_200.png' %}" width="112" height="28">
-                            </a>
-            
-                            <div class="navbar-item" id="weather_info_bar">
-                            <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
-                            </div>
-            
-            
-                            <!-- <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>  -->
-            
-            
-                            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu" v-on:click="showNav = !showNav" v-bind:class="{ 'is-active' : showNav }">
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                            </a>
-                    </div>
-            
-            
-                    
-                    <div id="navMenu" class="navbar-menu " v-bind:class="{ 'is-active' : showNav }">
-                            <div class="navbar-end">
-            
-                            
-                            <!-- <div class="navbar-item" id="weather_info_bar">
-                                    <dark-weatherinfo class="DarkWeatherInfo" :location-cond-temp='locationCondTemp'  :location-info='Locationinfo' :location-icon='locationIcon'></dark-weatherinfo>
-                            </div> -->
-            
-                            <a href="http://localhost:8000/manager"class="navbar-item">
-                            Starter Line-up
-                            </a>
-                    
-                            <a href="http://localhost:8000/player_map" class="navbar-item">
-                            Player-Map
-                            </a>
-            
-                            <a href="http://localhost:8000/roster_page" class="navbar-item">
-                            Roster-Page
-                            </a>
-            
-                            </div>
-                            
-            </nav> 
             <table class="table table is-bordered is-striped is-narrow is-hoverable">
                     <thead>
                     <tr>
@@ -123,9 +132,9 @@
                             </td>
                             <td>
                                 <div class="field">
-                             <!-- checkbox from bulma extensions cdn v-model takes player and checks if its true or false (in the starter dictionary in the VUE data)  -->
-                             <!-- v-model result.starter = binds the true/false boolean to the set data value and keeps switch either on or off -->
-                                    <input v-model="result.starter" :id="`in${result.id}`" class="switch is-small" type="checkbox" :name="`in${result.id}`" v-on:click="UpdateStartingStatus(result.id)">
+                            <!-- checkbox from bulma extensions cdn v-model takes player and checks if its true or false (in the starter dictionary in the VUE data)  -->
+                            <!-- v-model result.starter = binds the true/false boolean to the set data value and keeps switch either on or off -->
+                                    <input v-model="result.starter" :id="`in${result.id}`" class="switch is-small" type="checkbox" :name="`in${result.id}`" v-on:click="UpdateStartingStatus(result)">
                                     <label :for="`in${result.id}`"></label>
                                 </div>
                             </td>
@@ -139,6 +148,7 @@
                     </tbody>
             </table>
         </div>
+        
 
     </div>
 

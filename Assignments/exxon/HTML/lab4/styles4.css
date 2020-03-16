@@ -1,0 +1,44 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+
+.back{
+  background-color: brown;
+  width: 100%;
+}
+
+fieldset{
+  display: inline-block;
+}
+
+.flex-item1{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.flex-container{
+  background-image: url(burrito.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display:flex;
+  justify-content: center;
+  margin-top: 120px;
+  border-left: 300px;
+  border-right: 300px;
+  font-weight: bold;
+  
+
+}
+
+.build-header{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 25px;
+}

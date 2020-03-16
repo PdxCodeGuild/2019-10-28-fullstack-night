@@ -41,3 +41,24 @@
 .image{
     margin-top: 7%;
 }
+
+.is-overlay{
+    line-height: 2.5 !important;
+    top: 40% !important;
+    bottom: 50% !important;
+    left: 45% !important;
+    position: absolute !important;
+    right: 0 !important;
+}
+
+/* @media (min-width: 1025px) and (max-width: 1280px) {
+  
+    .image{
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    
+  } */

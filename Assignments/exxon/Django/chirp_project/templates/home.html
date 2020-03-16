@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in object_list %}
+        <div class="chirp-entry">
+            <p> {{ post.post_text }}</p>
+            <p> <strong><em>By: {{ post.author }} </em></strong> </p>
+            <p>Posted: {{ post.post_date }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %} 

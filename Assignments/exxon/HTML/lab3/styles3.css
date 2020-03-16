@@ -1,0 +1,1152 @@
+html {
+    box-sizing: border-box;
+
+}
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+
+}
+
+
+
+.cleaner-back{
+    grid-area: header / main-text /  footer;
+    background-image: url("janitor.png");
+    z-index: -10;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 35% 45%;
+    
+}
+
+
+.color-back{
+    grid-area: header / main-text / footer;
+    background-color: aquamarine;
+    z-index: -5;
+    background-repeat: no-repeat;
+    opacity: .15;
+    background-size: cover;
+}
+
+.nav-color{
+    
+    margin-bottom: 170px;
+    grid-area: header;
+    background-color:transparent;
+    grid-area: span;
+    z-index: -4;
+    opacity: .8;
+    
+
+
+
+}
+
+
+
+/* .text-back{
+
+    grid-area: main-text;
+    background-color: black;
+    z-index: -8;
+    opacity: .8;
+
+
+} */
+
+
+
+
+
+
+
+
+
+
+.container-grid{
+    display: grid;
+    z-index: 10;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 33.333vh 33.333vh 33.333vh;
+    grid-template-areas:
+        " header header header "
+        "main-text main-text main-text"
+        "footer footer footer";
+}
+
+.teal_logo_500{
+
+    grid-area: header;
+    justify-self: center;
+    height: 400px;
+    width: 400px;
+    margin-top: 25px;
+    opacity: .9;
+}
+
+
+
+.teal_logo{
+    grid-area: main-text;
+    grid-column-start: 2;
+    grid-column-end:3;
+    grid-row-start: 1;
+    grid-row-end:2;
+    padding-left: 2%;
+    padding-top: 2%;
+    height: 200px;
+    width: 200px;
+    justify-self: center;
+
+}
+
+.big_teal_logo{
+    grid-area: header main-text footer;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    align-self: center;
+    justify-self: center;
+    opacity: .5;
+}
+
+
+.footer{
+    grid-area: footer;
+    grid-area: span;
+    text-align: center;
+    align-self: end;
+    font-size: 85%;
+    color: black;
+    line-height: .5;
+    
+    
+}
+
+.f-container{
+    grid-area: header;
+    display: flex;
+    align-items: baseline;
+    justify-content: right;
+    padding: 5px;
+    
+
+}
+
+.home-bar{
+    font-family: 'Comfortaa', cursive;
+    margin: 7px;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+
+}
+
+.services-bar{
+    font-family: 'Comfortaa', cursive;
+    margin: 7px;
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+
+}
+
+.estimate-bar{
+    font-family: 'Comfortaa', cursive;
+    margin: 7px;
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+    position: sticky;
+}
+
+.main-text{
+    
+    font-family: 'Baloo Chettan', cursive;
+    font-size: 260%;
+    grid-area: footer;
+    align-self: end;
+    justify-self: center;
+    text-align: center;
+    color: black;
+    line-height: .5;
+    padding-right: 6.5%;
+    padding-left: 6.5%;
+
+    
+
+    
+    
+    
+    
+}
+
+
+.main-header{
+    font-family: 'Comfortaa', cursive;
+    grid-area: footer;
+    align-self:center;
+    justify-self: center;
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 2%;
+    color: black;
+    font-size: 160%;
+    margin-top: 80px;
+    font-weight: bolder;
+    
+    
+}
+
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+.services-bar a:hover{
+    color: teal;
+}
+
+.estimate-bar a:hover{
+    color: teal;
+}
+
+a:visited {
+    color: black;
+}
+
+
+.emails{
+    z-index: -8;
+}
+
+
+
+/*  second page - container css */
+
+.container2-grid{
+    display: grid;
+    grid-column-gap: 10px;
+    z-index: 10;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 33.333vh 33.333vh 33.333vh;
+    grid-template-areas:
+        " header header header "
+        "main-text main-text main-text"
+        "footer footer footer";
+}
+
+
+.secondpage-back{
+    grid-area: header / main-text /  footer;
+    background-color: black;
+    z-index: -10;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 35% 45%;
+    
+}
+
+.secondcolor-back{
+    grid-area: header / main-text / footer;
+    background-color: aquamarine;
+    z-index: -5;
+    background-repeat: no-repeat;
+    opacity: .15;
+    background-size: cover;
+}
+
+.second-main-header{
+    font-family: 'Comfortaa', cursive;
+    grid-area: main-text;
+    align-self:flex-start;
+    justify-self: center;
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 2%;
+    color: white;
+    font-size: 150%;
+    grid-column-gap: 10px;
+}
+
+
+.second-text-footer{
+    font-family: 'Comfortaa', cursive;
+    grid-area: footer;
+    align-self:center;
+    justify-self: center;
+    color: white;
+    font-size: 125%;
+
+
+}
+
+.second-title-header{
+    font-family: 'Comfortaa', cursive;
+    justify-self: center;
+    text-align: center;
+    align-self:center;
+    grid-area: header;
+    align-items: baseline;
+    justify-content: right;
+    padding: 5px;
+    color: white;
+    font-size: 170%;
+    
+
+}
+
+.second-services-text{
+    
+    font-family: 'Comfortaa', cursive;
+    font-size: 130%;
+    grid-area: main-text;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    color:white;
+    line-height: 0;
+    text-align: center;
+    border: 2px solid black;
+    margin-left: 5px;
+    z-index: 5;
+    
+
+}
+
+
+
+
+.second-facilities-text{
+    font-family: 'Comfortaa', cursive;
+    font-size: 130%;
+    grid-area: main-text;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    color: white;
+    line-height: 0;
+    text-align: center;
+    border: 2px solid black;
+    z-index: 5;
+
+}
+
+
+.second-areas-text{
+    
+    font-family: 'Comfortaa', cursive;
+    font-size: 130%;
+    grid-area: main-text;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    color:white;
+    line-height: 0;
+    text-align: center;
+    border: 2px solid black;
+    
+    margin-right: 5px;
+    z-index: 5;
+    
+
+}
+
+.services-list{
+    font-size: 13px;
+    text-align: initial;
+    padding-left: 25%;
+    
+}
+
+.areas-list{
+    font-size: 13px;
+    text-align: initial;
+    padding-left: 28%;
+    padding-bottom: 10px;
+}
+
+i{
+    font-size: 55px;
+    padding-top: 10px;
+}
+
+
+.faclilities-list{
+    font-size: 13px;
+    text-align: initial;
+    padding-left: 27%;
+}
+
+
+ /*  adding space between what we do title from lists  */
+p {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+ul {
+    
+    list-style: none;
+    padding-bottom: 10px;
+}
+
+ul li { 
+    padding: 9px 0px; 
+}
+
+.second-text-areas-back{
+    grid-area: main-text;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    background-color: black;
+    z-index: 0;
+    opacity: .5;
+
+
+}
+.second-text-services-back{
+    grid-area: main-text;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    background-color: black;
+    z-index: 0;
+    opacity: .5;
+}
+
+.second-text-facilities-back{
+    grid-area: main-text;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    background-color: black;
+    z-index: 0;
+    opacity: .5;
+}
+
+
+
+.container3-grid{
+    display: grid;
+    grid-template-columns: 20vw 60vw 20vw;
+    grid-template-rows: 15vh 50vh 20vh;
+}
+
+
+
+
+.thirdpage-back{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    background-color: black;
+    z-index: -10;
+
+}
+
+.thirdcolor-back{
+    
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    background-color: aquamarine;
+    z-index: -5;
+    opacity: .20;
+    
+}
+
+
+
+.third-contact-back{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self:center;
+    align-self:center;
+    width: 450px;
+    height: 400px;
+    background-color: black;
+    opacity: .4;
+}
+
+
+.contact-box-inputs{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    justify-self:center;
+    align-self:center;
+    border: 3px solid black;
+    width: 450px;
+    height: 400px;
+    justify-content: center;
+    align-content: center;
+    z-index: 1;
+    
+
+}
+
+
+.thirdpage-footer{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    text-align: center;
+    color:white;
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+
+.footer-number{
+    margin-top: 5px;
+}
+
+
+.footer-email{
+    margin-top: 5px;
+}
+
+
+
+
+
+.text_box{
+    width: 100%;
+    overflow: hidden;
+    font-size: 17px;
+    margin: 8px 0;
+    align-self: center;
+}
+
+.text_box input{
+    width: 200px;
+    height: 35px;
+    float: left;
+    text-align: left;
+    font-size: 13px;
+}
+
+
+
+
+.contact-box-header{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-self:center;
+    align-self: end;
+    color: white;
+}
+
+
+
+textarea{
+    width: 100%;
+    height: 50px;
+}
+
+
+
+.btn{
+    height: 25px;
+    cursor: pointer;
+    background-color: teal;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+body{
+    margin: 0;
+}
+
+
+
+
+/*  styling bid request form  */
+
+
+/* .contact-box-page{
+    display: flex;
+    height: 25%;
+    padding-bottom: 5%;
+}
+
+
+.bid-box{
+    width: 100px; 
+    height: 100px; 
+    margin: auto;
+} */
+
+
+
+@media (max-width:800px){
+
+
+    .teal_logo_500{
+
+        margin-top: 275px ;
+    }
+
+    .faclilities-list{
+        padding-left: 0;
+    }
+
+    .services-list{
+        padding-left: 0;
+    }
+
+    .areas-list{
+        padding-left: 0;
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:768px){
+
+    .teal_logo_500{
+
+        margin-top: 150px ;
+    }
+
+    .faclilities-list{
+        padding-left: 0;
+    }
+
+    .services-list{
+        padding-left: 0;
+    }
+
+    .areas-list{
+        padding-left: 0;
+    }
+
+
+}
+
+
+
+
+
+@media (max-width:615px){
+
+    .teal_logo_500{
+        height: 350px;
+        width: 350px;
+        margin-top: 75px;
+    }
+
+    .main-text{
+        padding: 0;
+    }
+
+    .areas-list{
+        padding-left: 0;
+        font-size: 12px;
+    }
+
+    .faclilities-list{
+        padding-left: 0;
+        font-size: 12px;
+    }
+
+    .services-list{
+        padding-left: 0;
+        font-size: 12px;
+    }
+
+    .second-services-text{
+        font-size: 100%;
+        margin-left: 0;
+    }
+
+    .second-facilities-text{
+        font-size: 100%;
+    }
+
+    .second-areas-text{
+        font-size: 100%;
+    }
+
+
+    .contact-box-header{
+        font-size: 95%;
+        margin-bottom: 25px;
+    }
+
+
+
+
+
+        /* * {
+        background: #000 !important;
+        color: #0f0 !important;
+        outline: solid #f00 1px !important;
+      } */
+
+
+}
+
+
+
+
+
+
+
+
+
+@media (max-width:375px){
+
+
+body{
+    margin: 0;
+}
+html{
+    height: 100%;
+}
+
+.teal_logo_500{
+
+    height: 300px;
+    width: 300px;
+    margin-top: 25%;
+}
+
+.contact-box-inputs {
+    width: 250px;
+}
+
+.third-contact-back{
+
+    width: 250px;
+
+}
+
+
+
+
+
+
+
+.second-facilities-text{
+
+    font-family: 'Comfortaa', cursive;
+    font-size: 115%;
+    grid-area: header;
+    color:white;
+    text-align: center;
+    z-index: 5;
+    margin-top: 25px;
+}
+
+.second-areas-text{
+    font-family: 'Comfortaa', cursive;
+    font-size: 115%;
+    grid-area: footer;
+    color:white;
+    line-height: 0;
+    text-align: center;
+    border: 2px solid black;
+    margin-right: 5px;
+    z-index: 5;
+    margin-top: 20px;
+
+
+}
+
+
+
+
+
+.second-services-text{
+    font-family: 'Comfortaa', cursive;
+    font-size: 115%;
+    grid-area: main-text;
+    color:white;
+    line-height: 0;
+    text-align: center;
+    margin-left: 5px;
+    z-index: 5;
+    margin-top: 20px;
+}
+
+
+.second-text-areas-back{
+    grid-area: header;
+    margin-top: 25px;
+}
+
+.second-text-services-back{
+    grid-area: main-text;
+    margin-top: 20px;
+}
+
+
+.second-text-facilities-back{
+    grid-area: footer;
+    margin-top: 20px;
+}
+
+
+.faclilities-list{
+    padding-left: 17%;
+}
+
+.services-list{
+    padding-left: 17%;
+}
+
+.areas-list{
+    padding-left: 22%;
+}
+
+
+
+
+.second-title-header{
+    align-self: start;
+    font-size: 100%;
+    margin-top: -21px;
+    word-spacing: 5px;
+}
+
+
+.second-text-footer{
+    display: none;
+}
+
+.fa-building{
+    font-size: 30px;
+}
+
+.fa-clipboard-list{
+    font-size: 30px;
+}
+
+.fa-map-marked-alt{
+    font-size: 30px;
+}
+
+
+/*  attributes cuasing page size issues below  */
+
+/* secondpage-back */
+/* secondcolor-back */
+
+/* .second-services-text     grid-column-end: 2 */
+
+/* .second-facilities-text   grid-column-end: 3 */
+
+/* .second-areas-text        grid-column-end: 5 */
+
+
+
+.contact-box-header{
+    font-size: 10px;
+    margin-bottom: 20%;
+    width: 250px;
+}
+
+.estimate-bar{
+    font-size: 15px;
+}
+
+.services-bar{
+    font-size: 15px;
+}
+
+.f-container{
+    justify-content: end;
+
+}
+
+
+.services-bar a:hover{
+    color: teal;
+}
+
+.estimate-bar a:hover{
+    color: teal;
+}
+
+
+
+
+
+.main-text{
+    font-size: 140%;
+    line-height: 1.5;
+}
+
+.main-header{
+    font-size: 115%;
+}
+
+.footer{
+    font-size: 75%;
+}
+
+
+
+.thirdpage-footer{
+    margin-top: 50px;
+    font-size: 16px;
+}
+
+
+.second-title-header{
+    display:none;
+}
+
+
+}
+
+
+@media (max-width:414px){
+
+
+
+    body{
+        margin: 0;
+    }
+    html{
+        height: 100%;
+    }
+    
+    .teal_logo_500{
+    
+        height: 300px;
+        width: 300px;
+        margin-top: 25%;
+    }
+    
+    .contact-box-inputs {
+        width: 250px;
+    }
+    
+    .third-contact-back{
+    
+        width: 250px;
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    .second-facilities-text{
+    
+        font-family: 'Comfortaa', cursive;
+        font-size: 115%;
+        grid-area: header;
+        color:white;
+        text-align: center;
+        z-index: 5;
+        margin-top: 25px;
+    }
+    
+    .second-areas-text{
+        font-family: 'Comfortaa', cursive;
+        font-size: 115%;
+        grid-area: footer;
+        color:white;
+        line-height: 0;
+        text-align: center;
+        border: 2px solid black;
+        margin-right: 5px;
+        z-index: 5;
+        margin-top: 20px;
+    
+    
+    }
+    
+    
+    
+    
+    
+    .second-services-text{
+        font-family: 'Comfortaa', cursive;
+        font-size: 115%;
+        grid-area: main-text;
+        color:white;
+        line-height: 0;
+        text-align: center;
+        margin-left: 5px;
+        z-index: 5;
+        margin-top: 20px;
+    }
+    
+    
+    .second-text-areas-back{
+        grid-area: header;
+        margin-top: 25px;
+    }
+    
+    .second-text-services-back{
+        grid-area: main-text;
+        margin-top: 20px;
+    }
+    
+    
+    .second-text-facilities-back{
+        grid-area: footer;
+        margin-top: 20px;
+    }
+    
+    
+    .faclilities-list{
+        padding-left: 17%;
+    }
+    
+    .services-list{
+        padding-left: 17%;
+    }
+    
+    .areas-list{
+        padding-left: 22%;
+    }
+    
+    
+    
+    
+    .second-title-header{
+        align-self: start;
+        font-size: 100%;
+        margin-top: -21px;
+        word-spacing: 5px;
+    }
+    
+    
+    .second-text-footer{
+        display: none;
+    }
+    
+    .fa-building{
+        font-size: 30px;
+    }
+    
+    .fa-clipboard-list{
+        font-size: 30px;
+    }
+    
+    .fa-map-marked-alt{
+        font-size: 30px;
+    }
+    
+    
+    /*  attributes cuasing page size issues below  */
+    
+    /* secondpage-back */
+    /* secondcolor-back */
+    
+    /* .second-services-text     grid-column-end: 2 */
+    
+    /* .second-facilities-text   grid-column-end: 3 */
+    
+    /* .second-areas-text        grid-column-end: 5 */
+    
+    
+    
+    .contact-box-header{
+        font-size: 10px;
+        margin-bottom: 20%;
+        width: 250px;
+    }
+    
+    .estimate-bar{
+        font-size: 15px;
+    }
+    
+    .services-bar{
+        font-size: 15px;
+    }
+    
+    .f-container{
+        justify-content: end;
+    
+    }
+    
+    
+    .services-bar a:hover{
+        color: teal;
+    }
+    
+    .estimate-bar a:hover{
+        color: teal;
+    }
+    
+    
+    
+    
+    
+    .main-text{
+        font-size: 140%;
+        line-height: 1.5;
+    }
+    
+    .main-header{
+        font-size: 115%;
+    }
+    
+    .footer{
+        font-size: 75%;
+    }
+    
+    
+    
+    .thirdpage-footer{
+        margin-top: 50px;
+        font-size: 16px;
+    }
+    
+    
+    .second-title-header{
+        display:none;
+    }
+    
+    
+
+
+    /* * {
+        background: #000 !important;
+        color: #0f0 !important;
+        outline: solid #f00 1px !important;
+      } */
+
+
+
+
+
+
+}
+
+
+

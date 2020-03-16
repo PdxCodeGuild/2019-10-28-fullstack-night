@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Todo List</title>
+   
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <div id="app">
+        {{ message }} <br>
+        <input type="text" placeholder="item needed" v-model="newTodo.text">
+        <input type="checkbox" v-model="isComplete">
+        <button v-on:click="addTodo"> Add This Item </button>
+
+        <ul v-if="todos">
+            <li v-for="todo, i in todos">
+                {{todo.text}}  
+                <button v-on:click="eraseTodo(i)">erase</button> 
+                <input type="checkbox" v-on:change="completeTask(todos)" v-bind:checked="todos.isComplete"/>
+            </li>
+
+
+        </ul>
+
+
+    </div>
+
+    <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+   
+    <script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+
+
+.grid-container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 33.333vh 33.333vh 33.333vh;
+    grid-template-areas: 
+      ". header . "
+      ". main ."
+      ". footer . ";
+  }
+
+
+
+
+.header {
+    grid-area: header; 
+    justify-self: center;
+    padding-top: 30px;
+}
+
+#solve_button{
+    grid-area: footer;
+    margin-top: 10px;
+    margin-bottom: 170px;
+    margin-left: 170px;
+    margin-right: 170px;
+    
+
+}
+
+.solution_space{
+    grid-area: footer;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+
+
+.first_num{
+    grid-area: main;
+    
+    justify-self: center;
+    box-align: start;
+    text-align: center;
+}
+
+.second_num{
+    grid-area: main;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
+
+.op{
+    grid-area: header;
+    padding-top: 50px;
+    justify-self: center;
+    text-align: center;
+}
+
+#user_op{
+    text-align:center;
+}

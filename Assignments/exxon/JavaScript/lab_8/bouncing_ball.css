@@ -1,0 +1,28 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+#my_canvas{
+
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index: 2;
+}
+
+#back{
+
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index: 1;
+}
+
+.brick{
+    left: 300px;
+    top: 200px;
+}

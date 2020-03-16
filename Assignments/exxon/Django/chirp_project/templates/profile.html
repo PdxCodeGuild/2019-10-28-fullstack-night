@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+<h1>{{ user.username }}</h1>
+
+{% block contents %}
+    {% for post in object.post_set.all %}
+            <div class="chirp-entry">
+                {{ post.username.profile.userName }}
+                {{ post.user }}
+                {{ post.post_date }}
+                {{ post.post_text }}
+        {% if user.is_authenticated %}
+            <p class="delete"><a href="{% url 'chirps:delete' chirp.pk %}"><i class="far fa-trash-alt"></i></a></p>
+        {% endif %}
+            </div>
+    <hr>
+    {% endfor %}
+{% endblock contents %} 

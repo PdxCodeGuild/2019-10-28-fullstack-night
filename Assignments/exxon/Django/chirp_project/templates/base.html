@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chirply</title>
+    <script src="https://kit.fontawesome.com/46755477df.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <header>
+        <div class="nav-left">
+            <h1><a href="{% url 'home' %}">Chirply</a></h1>
+        </div>
+                <div class="nav-right">
+            {% if user.is_authenticated %}
+                <h2>Welcome back, <a href="{% url 'accounts:profile' user.username %}">{{ user.username }}</a></h2>
+                <p><a href="{% url 'logout' %}"><button class='login-out-button'>Log Out</button></a></p>
+            {% else %}
+                <h2>You are not logged in</h2>
+                    <p><a href="{% url 'login' %}"><button class='login-out-button'>Log In</button></a></p>
+            {% endif %}
+        </div> 
+    </header>
+
+    <p><a href={% url 'post_new' %}><button class='login-out-button'>Add New Chirp</button></a></p>
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+</body>
+</html>

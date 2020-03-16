@@ -1,0 +1,48 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+.grid-container{
+    display: grid;
+    width: 100%;
+    height:100vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 33.33%;
+    grid-template-areas: 
+      "header"
+      "main"
+      "footer";
+}
+
+#text{
+    grid-area: main;
+    justify-self: center;
+    align-self: start;
+    font-size: 75px;
+    z-index: 10;
+
+}
+
+.num_bk{
+    grid-area: main;
+    background: salmon;
+    border-right-style: solid;
+    z-index: -10;
+    padding-right: 0px;
+    border-right-width: 5px;
+    margin-right: 500px;
+    margin-left: 500px;
+    border-left-width: 5px;
+    border-left-style: solid;
+    border-top-width: 5px;
+    border-top-style: solid;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    margin-bottom: 80px;
+    opacity: 0.8;
+    
+}

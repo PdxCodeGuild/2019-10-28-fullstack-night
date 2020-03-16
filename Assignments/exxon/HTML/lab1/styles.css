@@ -1,0 +1,102 @@
+/*p {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}*/
+
+a {color: #A67D02;}
+
+
+
+/*p,a {
+    text-align: center;
+   /* list-style:none;
+} */
+
+.section-container{
+position: absolute;
+top: 300px;
+text-align: center; 
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 150%;
+margin-left: -10px;
+margin-top:  5px;
+color: #291C00;
+
+
+
+
+
+
+}
+
+.welcome-msg{
+    color: black;
+    font-size: 250%;
+    font-family: 'Bangers', cursive;
+
+text-align: center;
+}
+
+ul{
+    padding-left:42%;
+    padding-right:42%;
+    text-align: justify; 
+    text-align-last: center;
+    list-style-image: url('orb-fire2.png');
+    
+}
+
+
+
+li{
+    font-family: 'Courier New', Courier, monospace
+}
+
+body {background-image: url("https://media.giphy.com/media/YCx4BIPGzlbMI/giphy.gif"); 
+background-size: 2000px 300px;
+background-repeat: no-repeat;
+background-position: center;
+background-position: top;
+
+}
+
+
+.description{
+    font-family: 'Courier New', Courier, monospace;
+    
+    
+}
+
+.welcome-msg,.section-container{
+    background: #F2B705;
+}
+
+img {
+    float: right;
+    border-radius: 50%;
+    border-color: black;
+}
+
+.list-description {
+    color: black;
+    padding-top: 5%
+}
+
+.quote-description {
+    color: black;
+    padding-top: 5%
+}
+
+.quote-words{
+    font-family: 'Courier New', Courier, monospace;
+    color: #291C00;
+    
+}
+
+.list-words{
+    color: #291C00;
+    text-align: justify; 
+    text-align-last: center;
+    
+}
+
+
