@@ -20,9 +20,10 @@ def calendar_month(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     month_start, month_length = calendar.monthrange(date.year, date.month)
     diary_days = DiaryDay.objects.filter(date__month=date.month, user=request.user)
+    diary_days_all = DiaryDay.objects.filter(user=request.user).order_by('-date')
 
     context = {
-        # 'diary_days': diary_days,
+        'diary_days_all': diary_days_all,
         'date_time': date,
         'month_str': date.strftime('%B'),
         'year': date.year,
@@ -57,10 +58,7 @@ def calendar_now(request):
 DAY
 """
 
-@login_required #TO BE RENAMED "get_day()"
-# def get_day(request, date, add_or_remove, entry_dict):
-# add_or_remove: 0 is no change, 1 is add, 2 is remove
-# entry_dict: stringfied dict of the added or removed entry
+@login_required
 def get_day(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     date_str = date.strftime("%B %d, %Y")

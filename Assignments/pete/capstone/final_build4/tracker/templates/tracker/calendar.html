@@ -10,7 +10,8 @@
 {% endblock %}
 {% block subnav %}
 <nav class="subnav">
-    <header><a href="{% url 'tracker:calendar_last' date=date_str %}"><</a>{{ month_str }} || {{ year }}<a href="{% url 'tracker:calendar_next' date=date_str %}">></a></header>
+    <header class="big-screen"><a href="{% url 'tracker:calendar_last' date=date_str %}"><</a>{{ month_str }} || {{ year }}<a href="{% url 'tracker:calendar_next' date=date_str %}">></a></header>
+    <header class="small-screen">Choose A Date</header>
 </nav>
 {% endblock %}
 {% block main %}
@@ -21,7 +22,7 @@
     {{ logged_days|json_script:"logged_days" }}
     {{ day|json_script:"day" }}
     {{ year_month|json_script:"year_month"}}
-    <div id="app">
+    <div class="big-screen" id="app">
         <div id="calendar-container">
             
             <div class="day-name">Sun</div>
@@ -40,10 +41,15 @@
 
         </div>
     </div>
-    {% comment %}
-    {% for diary_day in diary_days %}
-    <div>{{diary_day.date}}</div>
-    {% endfor %}
-    {% endcomment %}
+    <div class="small-screen">
+        <div id="date-picker-container">
+            <input type="date">
+        </div>
+        <div id="dates-container">
+        {% for day in diary_days_all %}
+            <a href="{% url 'tracker:day' date=day.date %}"><button class="date">{{ day.date }} {% if day.training %}Training{% else %}Rest{% endif %}</button></a>
+        {% endfor %}
+        </div>
+    </div>
 </main>
 {% endblock %}

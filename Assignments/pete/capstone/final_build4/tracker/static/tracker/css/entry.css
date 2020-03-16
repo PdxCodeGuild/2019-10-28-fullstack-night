@@ -130,26 +130,3 @@ header.small {
         width: 45%
     }
 }
-/* .middle-container {
-    display: flex;
-    flex-direction: column;
-}
- */
-/* 
-.outer-container {
-    display: flex;
-    flex-direction: column;
-} */
-/* .inner-container {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.25rem;
-}
-
-.inner-container div {
-    height: min-content;
-    overflow-x: hidden;
-} */
-/* .middle-container {
-    margin: 0 1vw;
-} */

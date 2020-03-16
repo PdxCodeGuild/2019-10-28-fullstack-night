@@ -65,3 +65,46 @@ a {
 a:hover {
     color: hotpink;
 }
+
+.small-screen {
+    display: none;
+}
+
+#date-picker-container {
+    display: flex;
+    justify-content: center;
+    padding: 2vw;
+}
+
+#date-picker-container input {
+    font-size: 1.5rem;
+}
+
+#dates-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 900px) {
+    .small-screen {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .big-screen {
+        display: none;
+    }
+    main {
+        display: block;
+    }
+    input {
+        text-align: center;
+    }
+    button.date {
+        font-size: 1.5rem;
+        width: 40vw;
+        min-width: 150px;
+        margin: 0.5vh;
+    }
+}
