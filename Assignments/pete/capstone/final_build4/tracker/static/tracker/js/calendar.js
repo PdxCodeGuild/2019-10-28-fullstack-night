@@ -88,3 +88,9 @@ var app = new Vue({
         },
     },
 })
+
+let datePicker = document.querySelector('#date-picker');
+datePicker.addEventListener('input', (e) => {
+    console.log(e.target.value);
+    window.location = day.slice(0, day.length - 2) + e.target.value;
+})

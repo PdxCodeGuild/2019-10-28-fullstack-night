@@ -20,8 +20,8 @@
 <body>
     {{ user_bool|json_script:"user" }}
 
-    <nav>
-        <a id="a-home" href="#"><button>HOME</button></a>
+    <nav class="supernav">
+        <!-- <a id="a-home" href="#"><button>HOME</button></a> -->
         <a id="a-calc" href="{% url 'calc:macros_redirect' %}"><button>Calculator</button></a>
         <a id="a-tracker" href="{% url 'tracker:calendar_now' %}"><button>Tracker</button></a>
         {% if user.is_authenticated %}
@@ -37,30 +37,12 @@
         <header>Welcome to Macro Tracker</header>
     </nav>
 
-    <!-- <nav class="subnav" id="home-nav">
-        <a href="#"><button id="profile">Profile</button></a>
-        <a href="#"><button id="history">History</button></a>
-        <a href="#"><button id="faq1">FAQ</button></a>
-    </nav>
-    
-    <nav class="subnav" id="calc-nav">
-        <a href="#"><button id="calc-new">Calculate New Macros</button></a>
-        <a href="#"><button id="mac-hist">Macros History</button></a>
-        <a href="#"><button id="faq2">FAQ</button></a>
-    </nav>
-    
-    <nav class="subnav" id="tracker-nav">
-        <a href="#"><button id="new-day">New Day</button></a>
-        <a href="#"><button id="new-entry">New Entry</button></a>
-        <a href="#"><button id="calendar">Calendar</button></a>
-        <a href="#"><button id="faq3">FAQ</button></a>
-    </nav> -->
     {% endblock %}
 
     {% block main %}
     <main class="home">
         <a href="{% url 'calc:calc' %}"><button>Get Started</button></a>
-        <a href="#"><button>What are Macros?</button></a>
+        <!-- <a href="#"><button>What are Macros?</button></a> -->
     </main>
     {% endblock %}
 </body>

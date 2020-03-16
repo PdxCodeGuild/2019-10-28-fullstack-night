@@ -12,6 +12,15 @@ nav {
     height: 10vh;
 }
 
+.supernav a button{
+    /* width: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0); */
+    /* position: absolute; */
+    width: 15vw;
+    min-width: 165px;
+}
+
 #welcome-nav {
     display: flex;
 }
@@ -90,6 +99,9 @@ button {
     }
     nav {
         height: 10vh;
+    }
+    .supernav a button {
+        min-width: 80px;
     }
 }
 
