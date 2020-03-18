@@ -71,8 +71,8 @@ arttitle {
         height: 100%;
         background-color: #d0f4ea;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows: auto auto auto auto;
         /* text-align: center; */
         color: #593f62;
         border-top: solid 2px black;
@@ -85,15 +85,16 @@ arttitle {
         
     }
 
-        #mainspace {
+        div#mainspace {
             padding: 0px;
             margin: 5px;
             border: solid 2px black;
             border-radius: 20px;
+            display: grid;
             grid-column: 1 / span 2;
             grid-row: 1 / span 3;
         }
-            #box-inside {
+            div#box-inside {
                 width: 100%;
                 height: 100%;
                 max-height: inherit;
@@ -101,9 +102,8 @@ arttitle {
                 display: flex;
                 flex-direction: column;
                 flex-wrap: wrap;
-                vertical-align: top;
         }
-            #mainpiece {
+            div#mainpiece {
                 max-width: 98%;
                 min-width: 98%;
                 /* max-height: 50%; */
@@ -116,7 +116,7 @@ arttitle {
                 /* flex-basis: auto; */
             }
 
-                #mscontainer {
+                div#mscontainer {
                     width: 100%;
                     height: 100%;
                     display: block;
@@ -124,30 +124,122 @@ arttitle {
                     padding-bottom: 6px;
                 }
 
-                    #mainspace img {
+                    div#mainspace img {
                         max-width: 98%;
                         max-height: 98%;
                         border: solid 2px black;
                         border-radius: 20px;
                     }
 
-        #associated {
+        div#associated {
+            padding: 5px;
             margin: 5px;
             border: solid 2px black;
             border-radius: 20px;
+            display: grid;
             grid-column: 3 / span 1;
             grid-row: 1 / span 3;
         }
 
-        #otherworks {
+        .lslider {
+            width: 100%;
+            text-align: center;
+            
+        }
+                
+            ul {
+                list-style: none outside none;
+                padding-left: 0;
+                margin-bottom:5px;
+                text-align: center;
+            }
+            li {
+                display: block;
+                float: right;
+                margin-right: 6px;
+                cursor:pointer;
+                width: 24%;
+            }
+            #associated img {
+                display: block;
+                height: auto;
+                max-width: 100%;
+                border-radius: 10px;
+                border: solid 2px black;
+            }
+
+            
+
+        div#otherworks {
             margin: 5px;
             border: solid 2px black;
             border-radius: 20px;
             grid-column: 4 / span 1;
             grid-row: 1 / span 3;
+            
+            
+        }
+        
+        div#owcontain {
+            margin: 3% auto;
+            display: grid;
+            grid-template-columns: 48% 48%;
+            grid-template-rows: auto auto auto;
+            justify-content: space-evenly;
         }
 
-        #description {
+        div#owcontain > * {
+            padding: 1px;
+            padding-top: 13px;
+            padding-bottom: 13px;
+            
+        }
+
+            div#owtopleft {
+                grid-column: 1 / span 1;
+                grid-row: 1 / span 1;
+                
+            }
+            
+            div#owtopright {
+                grid-column: 2 / span 1;
+                grid-row: 1 / span 1;
+                
+            }
+            
+            div#owmidleft {
+                grid-column: 1 / span 1;
+                grid-row: 2 / span 1;
+                
+            }
+            
+            div#owmidright {
+                grid-column: 2 / span 1;
+                grid-row: 2 / span 1;
+                
+            }
+            
+            div#owbotleft {
+                grid-column: 1 / span 1;
+                grid-row: 3 / span 1;
+                
+            }
+            
+            div#owbotright {
+                grid-column: 2 / span 1;
+                grid-row: 3 / span 1;
+                
+            }
+
+            #otherworks img {
+                display: block;
+                height: auto;
+                max-width: 100%;
+                border-radius: 10px;
+                border: solid 2px black;
+            }
+
+        div#description {
             margin: 5px;
             border: solid 2px black;
             border-radius: 20px;
@@ -157,19 +249,16 @@ arttitle {
 
         
 
-
-
-
-    footer {
-        padding: 5px;
-        width: 100%;
-        height: 60px;
-        background-color: #d9f0ff;
-        color: #593f62;
-        display:inline-block;
-        text-align:center;
-        vertical-align: bottom;
-        border-top: solid 2px black;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-    }
+        footer {
+            padding: 5px;
+            padding-top: 3vh;
+            width: 100%;
+            height: 60px;
+            background-color: #d9f0ff;
+            color: #593f62;
+            display:inline-block;
+            text-align:center;
+            vertical-align: middle;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }

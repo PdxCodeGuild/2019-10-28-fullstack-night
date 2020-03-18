@@ -4,10 +4,27 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"Art Title"</title>
+    <title>{{mainpic}}</title>
     {% with 'cc/css/'|add:css_select as css_select_template %}
       <link rel="stylesheet" href="{% static css_select_template %}">
     {% endwith %}
+    <link type="text/css" rel="stylesheet" href="{% static 'light/src/css/lightslider.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'light/src/js/lightslider.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $("#light-slider").lightSlider({
+              item: 1,
+              autoWidth: false,
+              adaptiveHeight: true,
+              thumbItem: 2,
+              loop: true,
+              pager: true,
+              gallery: true,
+              controls: true,
+          });
+        });
+    </script>
 
 </head>
 <body>
@@ -15,35 +32,63 @@
         <div>
             <menubar>{% with 'media/'|add:banner_image as banner_image_file %}
                 <img src="{% static banner_image_file %}" width="50%" height="50%">
-            {% endwith %}  </menubar>
+            {% endwith %}</menubar>
         </div>
         <div>
             <header>
-                This is filler text.  User and other miscellaneous information will go here.
+                {{user.username}} 
     
             </header>
         </div>
 
         <arttitle>
-            Art Title
+            {{mainpic}} by {{mainpic.user.profile}}
         </arttitle>
 
         <artdiv>
+            {% if mainpic.is_collectionpiece == 0 %}
+            <div id="mainspace" style="grid-column: 1 / span 3;">
+            {% else %}
             <div id="mainspace">
+            {% endif %}
                 <div id="box-inside">
                     <div id="mainpiece">
                         <div id="mscontainer">
-                            <img src="/media/images/IMG_3742.jpg" alt="Art Title">
+                            <img src="{{mainpic.present}}" alt="{{mainpic}}">
                         </div>
                     </div>
                 </div>
             </div>
 
+            {% if mainpic.is_collectionpiece == 1 %}
             <div id="associated">  
-                Associated works
+                <div id="lslider" class='lSSlideOuter'>
+                    <h3>Collection</h3>
+                    <br>
+
+                    <ul id="light-slider">
+                    {% for work in associated_works %}
+                        <li data-thumb="{{work.present}}""><a href="{% url 'cc:details' pk=work.pk is_collectionpiece=work.is_collectionpiece %}"><img src="{{work.present}}"></a><br></li>
+                        {% endfor %}
+                    <!-- {% for picture in pictures %}
+                        <li data-thumb="{{picture.present}}""><a href="{% url 'cc:details' pk=picture.pk is_collectionpiece=picture.is_collectionpiece %}"><img src="{{picture.present}}"></a><br></li>
+                        <!-- <h4>{{picture}}</h4> 
+                    {% endfor %} -->
+                    </ul>
+                    
+                </div>
             </div>
+            {% endif %}
             <div id="otherworks">
-                Other works by artist.
+                <h3>Other works by Artist</h3>
+                <div id="owcontain">
+                <div id="owtopleft"><a href="{% url 'cc:details' pk=pictures.0.pk is_collectionpiece=pictures.0.is_collectionpiece %}"><img src="{{pictures.0.present}}"></a></div>
+                <div id="owtopright"><a href="{% url 'cc:details' pk=pictures.1.pk is_collectionpiece=pictures.1.is_collectionpiece %}"><img src="{{pictures.1.present}}"></a></div>
+                <div id="owmidleft"><a href="{% url 'cc:details' pk=pictures.2.pk is_collectionpiece=pictures.2.is_collectionpiece %}"><img src="{{pictures.2.present}}"></a></div>
+                <div id="owmidright"><a href="{% url 'cc:details' pk=pictures.3.pk is_collectionpiece=pictures.3.is_collectionpiece %}"><img src="{{pictures.3.present}}"></a></div>
+                <div id="owbotleft"><a href="{% url 'cc:details' pk=pictures.4.pk is_collectionpiece=pictures.4.is_collectionpiece %}"><img src="{{pictures.4.present}}"></a></div>
+                <div id="owbotright"><a href="{% url 'cc:details' pk=pictures.5.pk is_collectionpiece=pictures.5.is_collectionpiece %}"><img src="{{pictures.5.present}}"></a></div>
+                </div>
             </div>
             <div id="description">
                 <h3>Description</h3>
@@ -53,7 +98,7 @@
             
         </artdiv>
         <footer>
-            Test it! This doesn't make any sense. I hate CSS.
+            <h3>| ©Creative Crossroads |</h3>
         </footer>
     </mydiv>
     

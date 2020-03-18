@@ -24,8 +24,7 @@
         </div>
         <div>
             <header>
-                This is filler text.  User and other miscellaneous information will go here.
-    
+                {{user.username}}
             </header>
         </div>
 
@@ -39,17 +38,19 @@
                     Toggle button to switch between single art submission and art collection submission.
 
                     
-                    <form action="">
                         <input type="button" id="sinmultselect" value="Single" onclick="toggle(this);">
-                    </form>
+                    
                     <br>
                     
                     <div id="single_art">
-                        Toggle button to select art medium.
                         
-                        <form action="">
+                        <form action="{% url 'cc:single_submission'%}" method="post"  enctype="multipart/form-data">
+                            {% csrf_token %}      
+                            <label class="theLabels" for="arttitle">Art Title or Name:</label>
+                            <input class="theInputs" type="text" name="arttitle" id="arttitle" placeholder="Title"><br><br>
+                            Toggle button to select art medium.
                             <input type="button" id="1" value="Text" onclick="toggle1(this);">
-                        </form>
+                        
                         <div id="imageupload1">
                             <div>
                                 <label class="theLabels" for="add_art1">Select an image:</label>
@@ -64,22 +65,28 @@
                                 <div id="tinyTextDiv1">
                                     
                                     <br>
-                                    <textarea id="tinyText1" style="width:800px;" placeholder="Enter your text here.">
+                                    <textarea id="tinyText1" name="tinyText1" style="width:800px;" placeholder="Enter your text here.">
                                         
                                     </textarea>
                                 </div>
                                 </div>      
                         </div>
+                        <button type="submit">Submit Art</button>
+                        </form>
                     </div>
                     <div id="collection_art">
                         <div id="collection_interior">
-                            <div id="entryOne">
+                            <form action="{% url 'cc:collection_submission' %}" method="post"  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <label class="theLabels" for="collectiontitle">Collection Title or Name:</label>
+                                <input class="theInputs" type="text" name="collectiontitle" id="collectiontitle" placeholder="Collection Title"><br><br>
                             Toggle button to select art medium.
+                            <div id="entryOne">
                         
-                            <form action="">
-                                <input type="button" id="2" value="Text" onclick="toggle2(this);">
-                            </form>
-                            <div id="imageupload2">
+                                <input type="button" id="2" value="Text" onclick="toggle2(this);"><br>
+                                
+
+                                <div id="imageupload2">
                                 <div>
                                     <span class="theLabels" for="add_art2">Select an image:</span>
                                     <input class="theInputs" type="file" name="add_art2" id="add_art2" accept="image/*" onchange="loadFile2(event)">
@@ -92,23 +99,23 @@
                                 <div id="tinyTextDivContainer2">
                                     <div id="tinyTextDiv2">
                                         <br>
-                                        <textarea id="tinyText2" style="width:800px;" placeholder="Enter your text here.">
+                                        <textarea id="tinyText2" name="tinyText2" style="width:800px;" placeholder="Enter your text here.">
                                         </textarea>
                                     </div>
                                 </div>      
                             </div>
                             <div class="addEntry">
-                                <form action="">
                                     <input type="button" id="showEntry2" onclick="showEntryTwo(this)" value="Add Entry">
                                     
-                                </form><br>
+
+                                <br>
                             </div>
                             </div>
                             <div id="entryTwo">
                                 Toggle button to select art medium.
-                                <form action="">
+
                                     <input type="button" id="3" value="Text" onclick="toggle3(this);">
-                                </form>
+
                                 <div id="imageupload3">
                                     <div>
                                         <span class="theLabels" for="add_art3">Select an image:</span>
@@ -123,26 +130,22 @@
                                     <div id="tinyTextDivContainer3">
                                         <div id="tinyTextDiv3">
                                             <br>
-                                            <textarea id="tinyText3" style="width:800px;" placeholder="Enter your text here.">
+                                            <textarea id="tinyText3" name="tinyText3" style="width:800px;" placeholder="Enter your text here.">
                                             </textarea>
 
                                         </div>
                                     </div>      
                                 </div>
                                 <div class="addEntry">
-                                    <form action="">
                                         <input type="button" id="showEntry3" onclick="showEntryThree(this)" value="Add Entry">
                                         
-                                    </form><br>
                                     
                                 </div>
                             </div>
                             <div id="entryThree">
                                 Toggle button to select art medium.
                                 
-                                <form action="">
                                     <input type="button" id="4" value="Text" onclick="toggle4(this);">
-                                </form>
                                 <div id="imageupload4">
                                     <div>
                                         <span class="theLabels" for="add_art4">Select an image:</span>
@@ -157,26 +160,22 @@
                                     <div id="tinyTextDivContainer4">
                                         <div id="tinyTextDiv4">
                                             <br>
-                                            <textarea id="tinyText4" style="width:800px;" placeholder="Enter your text here.">
+                                            <textarea id="tinyText4" name="tinyText4" style="width:800px;" placeholder="Enter your text here.">
                                             </textarea>
                                             
                                         </div>
                                     </div>      
                                 </div>
                                 <div class="addEntry">
-                                    <form action="">
                                         <input type="button" id="showEntry4" onclick="showEntryFour(this)" value="Add Entry">
                                         
-                                    </form><br>
                                     
                                 </div>
                             </div>
                             <div id="entryFour">
                                 Toggle button to select art medium.
                                 
-                                <form action="">
                                     <input type="button" id="5" value="Text" onclick="toggle5(this);">
-                                </form>
                                 <div id="imageupload5">
                                     <div>
                                         <span class="theLabels" for="add_art5">Select an image:</span>
@@ -191,26 +190,22 @@
                                     <div id="tinyTextDivContainer5">
                                         <div id="tinyTextDiv5">
                                             <br>
-                                            <textarea id="tinyText5" style="width:800px;" placeholder="Enter your text here.">
+                                            <textarea id="tinyText5" name="tinyText5" style="width:800px;" placeholder="Enter your text here.">
                                             </textarea>
                                             
                                         </div>
                                     </div>      
                                 </div>
                                 <div class="addEntry">
-                                    <form action="">
                                         <input type="button" id="showEntry5" onclick="showEntryFive(this)" value="Add Entry">
                                         
-                                    </form>
                                     <br>
                                 </div>
                             </div>
                             <div id="entryFive">
                                 Toggle button to select art medium.
                                 
-                                <form action="">
                                     <input type="button" id="6" value="Text" onclick="toggle6(this);">
-                                </form>
                                 <div id="imageupload6">
                                     <div>
                                         <span class="theLabels" for="add_art6">Select an image:</span>
@@ -225,26 +220,23 @@
                                     <div id="tinyTextDivContainer6">
                                         <div id="tinyTextDiv6">
                                             <br>
-                                            <textarea id="tinyText6" style="width:800px;" placeholder="Enter your text here.">
+                                            <textarea id="tinyText6" name="tinyText6" style="width:800px;" placeholder="Enter your text here.">
                                             </textarea>
                                             
                                         </div>
                                     </div>      
                                 </div>
                                 <div class="addEntry">
-                                    <form action="">
                                         <input type="button" id="showEntry6" onclick="showEntrySix(this)" value="Add Entry">
                                         
-                                    </form><br>
+                                    <br>
                                     
                                 </div>
                             </div>
                             <div id="entrySix">
                                 Toggle button to select art medium.
                                 
-                                <form action="">
                                     <input type="button" id="7" value="Text" onclick="toggle7(this);">
-                                </form>
                                 <div id="imageupload7">
                                     <div>
                                         <span class="theLabels" for="add_art7">Select an image:</span>
@@ -259,14 +251,16 @@
                                     <div id="tinyTextDivContainer7">
                                         <div id="tinyTextDiv7">
                                             <br>
-                                            <textarea id="tinyText7" style="width:800px;" placeholder="Enter your text here.">
+                                            <textarea id="tinyText7" name="tinyText7" style="width:800px;" placeholder="Enter your text here.">
                                             </textarea>
-                                            
-                                        </div><br>
-                                        Maximum entries reached.  Please create a new collection to add more entries.  
+                                            <br>
+                                        Maximum entries reached.  Please create a new collection to add more entries. 
+                                        </div> 
                                     </div>      
                                 </div>
                             </div>
+                            <button type="submit">Submit Collection</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -274,7 +268,7 @@
             </div>
         </artdiv>
         <footer>
-            Test it! This doesn't make any sense. I hate CSS.
+            <h3>| ©Creative Crossroads |</h3>
         </footer>
     </mydiv>
     

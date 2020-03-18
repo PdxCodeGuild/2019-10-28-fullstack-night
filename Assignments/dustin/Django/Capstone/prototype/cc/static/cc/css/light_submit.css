@@ -132,14 +132,14 @@ arttitle {
     
     footer {
         padding: 5px;
+        padding-top: 3vh;
         width: 100%;
         height: 60px;
         background-color: #d9f0ff;
         color: #593f62;
         display:inline-block;
         text-align:center;
-        vertical-align: bottom;
-        border-top: solid 2px black;
+        vertical-align: middle;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
     }

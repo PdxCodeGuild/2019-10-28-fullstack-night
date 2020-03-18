@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Theme, Layout, Medium
+from cc.models import ArtPiece, ArtCollection, CollectionPiece
 from .forms import UserForm, ProfileForm
 import os
 from django.conf import settings
@@ -43,24 +44,43 @@ def logout(request):
     return HttpResponseRedirect(reverse('users:register_login'))
 
 
-# @login_required
+@login_required
 def profile(request):
     user = request.user.profile
+    user2 = request.user
+    username = request.user.username
+
+    print(user, user2, username)
     
     banner_image, standard_css, details_css, index_css, submit_css, profile_css = look_select(request)
     css_select = profile_css
     banner_image = banner_image
 
+    gallery = user2.artpiece_set.all() 
+    gallery2 = user2.collectionpiece_set.all()
+    # print(gallery, gallery2)
+    pictures = sorted(chain(gallery, gallery2), key=lambda x:x.pub_date)
+
+    if len(pictures) > 0:
+        featured = pictures[len(pictures)-1]
+    else:
+        featured = None
+
+
     name = user.name
     bio = user.bio
     location = user.location
-    medium = user.mediums
+    otherinfo = user.misc
+    # medium = user.mediums.filter(contains)
     instagram = f"https://www.instagram.com/{user.instagram}"
     patreon = f"https://www.patreon.com/{user.patreon}"
     soundcloud = f"https://www.soundcloud.com/{user.soundcloud}"
     instagram_username = user.instagram
     patreon_username = user.patreon
     soundcloud_username = user.soundcloud
+    profile_pic = user.profile_pic
+    print(profile_pic)
+    
     # print(instagram)
 
 
@@ -70,13 +90,19 @@ def profile(request):
         'bio': bio,
         'name': name, 
         'location': location, 
-        'medium': medium,
+        # 'medium': medium,
         'instagram': instagram,
         'patreon': patreon,
         'soundcloud': soundcloud,
         'instagram_username': instagram_username,
         'patreon_username': patreon_username,
         'soundcloud_username': soundcloud_username,
+        'pictures': pictures,
+        'featured': featured,
+        'username': username,
+        'profile_pic': profile_pic,
+        'user': user,
+        'otherinfo': otherinfo,
      }
     return render(request, 'users/profile.html', context)
 
@@ -124,7 +150,7 @@ def update_profile(request):
     #     'layouts': layouts,
     # })
 
-
+@login_required
 def look_select(request):
     user = request.user.profile
     if user.theme.text == 'Light':

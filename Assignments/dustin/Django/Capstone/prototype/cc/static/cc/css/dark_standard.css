@@ -1,5 +1,5 @@
 * {
-    /* border: 2px lime dotted; */
+    /* border: 2px lightgreen dotted; */
     box-sizing: border-box;
 }
 
@@ -8,6 +8,10 @@ body {
     padding: 8px;
     margin: 0px 0px;
     min-width: 45vw;
+}
+
+a {
+    color: lime;
 }
 
 hr {
@@ -33,7 +37,7 @@ menubar {
     padding: 5px;
     width: 100%;
     background-color: #104f55;
-    color: lime;
+    color: lightgreen;
     display:inline-block;
     text-align:center;
     vertical-align: bottom;
@@ -46,7 +50,7 @@ header {
     width: 100%;
     height: 30px;
     background-color:#011502;
-    color: lime;
+    color: lightgreen;
     display:inline-block;
     text-align:center;
     vertical-align: bottom;
@@ -178,7 +182,7 @@ footer {
     width: 100%;
     height: 60px;
     background-color: #104f55;
-    color: lime;
+    color: lightgreen;
     display:inline-block;
     text-align:center;
     vertical-align: bottom;

@@ -7,252 +7,77 @@
     {% with 'cc/css/'|add:css_select as css_select_template %}
       <link rel="stylesheet" href="{% static css_select_template %}">
     {% endwith %}
-    <title>Index / Homepage</title>
-    <style>
-        body {
-            background-image: linear-gradient(to right, black, darkgray, black);
-            padding: 0px;
-            margin: 0px 0px;
-        }
-        mydiv {
-            margin: auto 8%;
-            display: flex;
-            flex-direction: column;
-        }
-        menubar {
-            padding: 5px;
-            width: 100%;
-            background-color: rgb(0, 55, 65);
-            color: lime;
-            display:inline-block;
-            text-align:center;
-            vertical-align: bottom;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
+    <title>Creative Crossroads Home</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'light/src/css/lightslider.css' %}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{% static 'light/src/js/lightslider.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $("#light-slider1").lightSlider({
+              item: 4,
+              autoWidth: false,
+              adaptiveHeight: true,
+              thumbItem: 8,
+              loop: true,
+              pager: true,
+              gallery: true,
+              controls: true,
+          });
+        });
+    </script>
 
-        header {
-            padding: 5px;
-            width: 100%;
-            height: 50px;
-            background-color: rgb(0, 22, 37);
-            color: lime;
-            display:inline-block;
-            text-align:center;
-            vertical-align: bottom;
-            /* border: dotted 2px lightgreen; */
-        }
-
-        spotlight {
-            padding: 5px;
-            width: 100%;
-            height: 200px;
-            background-color: rgb(44, 44, 44);
-            display: flex;
-            justify-content:space-evenly;
-            color: lightgreen;
-        }
-
-        spotlight span {
-            display: flex;
-            width: 46%;
-            border: solid lime 2px;
-        }
-        analogwonders {
-            padding: 5px;
-            width: 100%;
-            height: 150px;
-            background-color: rgb(44, 44, 44);
-            display: flex;
-            flex-direction: row;
-            justify-content:space-evenly;
-            color: lightgreen;
-        }
-        
-        div#analogtitle {
-            padding: 5px;
-            width: 100%;
-            height: 20px;
-            background-color: rgb(44, 44, 44);
-            display: inline-flex;
-            justify-content: left;
-            color: lightgreen;
-            text-decoration: underline;
-            font-size: 3ex;
-        }
-
-        analogwonders span {
-            margin: 2px;
-            width: 30%;
-            border: solid lime 2px;
-        }
-
-        digitalmasterpieces {
-            padding: 5px;
-            width: 100%;
-            height: 150px;
-            background-color: rgb(44, 44, 44);
-            display: flex;
-            flex-direction: row;
-            justify-content:space-evenly;
-            color: lightgreen;
-        }
-        
-        div#digitaltitle {
-            padding: 5px;
-            width: 100%;
-            height: 20px;
-            background-color: rgb(44, 44, 44);
-            display: inline-flex;
-            justify-content: left;
-            color: lightgreen;
-            text-decoration: underline;
-            font-size: 3ex;
-        }
-
-        digitalmasterpieces span {
-            margin: 2px;
-            width: 30%;
-            border: solid lime 2px;
-        }
-
-        jukeboxhits {
-            padding: 5px;
-            width: 100%;
-            height: 150px;
-            background-color: rgb(44, 44, 44);
-            display: flex;
-            flex-direction: row;
-            justify-content:space-evenly;
-            color: lightgreen;
-        }
-        
-        div#musictitle {
-            padding: 5px;
-            width: 100%;
-            height: 20px;
-            background-color: rgb(44, 44, 44);
-            display: inline-flex;
-            justify-content: left;
-            color: lightgreen;
-            text-decoration: underline;
-            font-size: 3ex;
-        }
-
-        jukeboxhits span {
-            margin: 2px;
-            width: 30%;
-            border: solid lime 2px;
-        }
-        
-        writersblock {
-            padding: 5px;
-            width: 100%;
-            height: 150px;
-            background-color: rgb(44, 44, 44);
-            display: flex;
-            flex-direction: row;
-            justify-content:space-evenly;
-            color: lightgreen;
-        }
-        
-        div#writingtitle {
-            padding: 5px;
-            width: 100%;
-            height: 20px;
-            background-color: rgb(44, 44, 44);
-            display: inline-flex;
-            justify-content: left;
-            color: lightgreen;
-            text-decoration: underline;
-            font-size: 3ex;
-        }
-
-        writersblock span {
-            margin: 2px;
-            width: 30%;
-            border: solid lime 2px;
-        }
-        footer {
-            padding: 5px;
-            width: 100%;
-            height: 60px;
-            background-color: rgb(0, 55, 65);
-            color: lime;
-            display:inline-block;
-            text-align:center;
-            vertical-align: bottom;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-    </style>
 </head>
 <body>
     <mydiv>
-    <div>
-        <menubar>{% with 'media/'|add:banner_image as banner_image_file %}
-            <img src="{% static banner_image_file %}" width="50%" height="50%">
-        {% endwith %}  </menubar>
-    </div>
-    <div>
-        <header>
-            This is filler text.  User and other miscellaneous information will go here.
-
-        </header>
-    </div>
-    <div>
-        <spotlight><span><h2>Artist Spotlight:User Name</h2></span><span><h3>Image title!</h3></span></spotlight>
-    </div>
-    <div>
-        <div id="analogtitle">
-            Analog Wonders
+        <div>
+            <menubar>{% with 'media/'|add:banner_image as banner_image_file %}
+                <img src="{% static banner_image_file %}" width="50%" height="50%">
+            {% endwith %}  </menubar>
         </div>
-        <analogwonders>
-                <span>Image</span>
-                <span>Image</span>
-                <span>Image</span>
-        </analogwonders>
-    </div>
-    <div>
-        <div id="digitaltitle">
-            Digital Masterpieces
+        <div>
+            <header>
+                {{user.username}}
+            </header>
         </div>
-        <analogwonders>
-                <span>Image</span>
-                <span>Image</span>
-                <span>Image</span>
-        </analogwonders>
-    </div>
-    <div>
-        <div id="musictitle">
-            Jukebox Hits
-        </div>
-        <jukeboxhits>
-                <span>Album Artwork</span>
-                <span>Album Artwork</span>
-                <span>Album Artwork</span>
-        </jukeboxhits>
-    </div>
-    <div>
-        <div id="writingtitle">
-            Writer's Block
-        </div>
-        <writersblock>
-                <span>Text Content</span>
-                <span>Text Content</span>
-                <span>Text Content</span>
-        </writersblock>
-    </div>
+        <maindiv>
+            <div id="artist_spot">
+                <div id="artist_info">
+                    <h3>Artist Spotlight</h3><br>
+                    Artist Info will go here!
+                </div>
+                <div id="artist_featured">
+                    <br><br>
+                    Artist's Featured Work will go here!
+                </div>
+            </div>
+            <div id="digital">
+                <h3>Digital Masterpieces</h3>
+                <br>
+                    <ul id="light-slider1">
+                    {% for picture in pictures %}
+                    {% if picture.image %}
+                        <li data-thumb="{{picture.present}}""><a href="{% url 'cc:details' pk=picture.pk is_collectionpiece=picture.is_collectionpiece %}"><img src="{{picture.present}}"></a><br></li>
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
+            </div>
+            <div id="analog">
+                <h3>Analog Wonders</h3>
+                <br>
+                <h3>Coming soon!</h3>
+                <br>
+            </div>
+            <div id="jukebox">
+                <h3>The Jukebox</h3>
+                <br>
+                <h3>Coming soon!</h3>
+                <br>
+            </div>
+        
+        </maindiv>
         <footer>
-            Test it! This doesn't make any sense. I hate CSS.
+            <h3>| ©Creative Crossroads |</h3>
         </footer>
-
-    
-
-
-
-
-
-</mydiv>
+    </mydiv>
 </body>
 </html>

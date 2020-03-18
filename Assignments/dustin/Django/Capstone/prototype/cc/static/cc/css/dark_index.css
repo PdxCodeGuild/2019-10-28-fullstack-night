@@ -1,0 +1,172 @@
+* {
+    /* border: 2px lightgreen dotted; */
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to right, black, darkgray, black);
+    padding: 8px;
+    margin: 0px 0px;
+    min-width: 45vw;
+}
+
+a {
+    color: lime;
+}
+
+hr {
+    border: solid 1px black;
+    width: 100%;
+}
+
+h2, h3, h4, h5, h6 {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+mydiv {
+    margin: auto;
+    min-width: 40vw;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+}
+
+menubar {
+    padding: 5px;
+    width: 100%;
+    background-color: #104f55;
+    color: lightgreen;
+    display:inline-block;
+    text-align:center;
+    vertical-align: bottom;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+header {
+    padding: 5px;
+    width: 100%;
+    height: 30px;
+    background-color:#011502;
+    color: lightgreen;
+    display:inline-block;
+    text-align:center;
+    vertical-align: bottom;
+    border: solid 2px black;
+    /* border: solid 2px #9ec5ab; */
+}
+
+usertitle {
+    padding-left: 2%;
+    padding-right: 5px;
+    width: 100%;
+    height: 30px;
+    text-align: left;
+    text-decoration: underline;
+    background-color: #32746d;
+    display: inline-block;
+    color: lightgreen;
+    font-size: 24px;
+}
+
+maindiv {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #c1b595;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    /* text-align: center; */
+    color: lightgreen;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+maindiv > * {
+    background-color: #104f55;
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 2px black;
+}
+
+.lslider {
+    width: 100%;
+    text-align: center;
+    
+}
+
+div#artist_spot {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 1;
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 1;
+}
+
+    div#artist_info {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+    div#artist_featured {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+
+div#digital {
+    grid-column: 1 / span 4;
+    grid-row: 2 / span 1;
+
+}
+
+div#analog {
+    grid-column: 1 / span 4;
+    grid-row: 3 / span 1;
+}
+
+div#jukebox {
+    grid-column: 1 / span 4;
+    grid-row: 4 / span 1;
+}
+
+    ul {
+        list-style: none outside none;
+        padding-left: 0;
+        margin-bottom:5px;
+        text-align: center;
+    }
+    li {
+        display: block;
+        float: right;
+        margin-right: 6px;
+        cursor:pointer;
+        width: 24%;
+    }
+    #digital img {
+        display: block;
+        height: auto;
+        max-width: 100%;
+        border-radius: 10px;
+        border: solid 2px black;
+    }
+
+
+footer {
+    padding: 5px;
+    width: 100%;
+    height: 60px;
+    background-color: #104f55;
+    color: lightgreen;
+    display:inline-block;
+    text-align:center;
+    vertical-align: bottom;
+    border-top: solid 2px black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}

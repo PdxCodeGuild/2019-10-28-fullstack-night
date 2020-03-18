@@ -20,8 +20,7 @@
         </div>
         <div>
             <header>
-                This is filler text.  User and other miscellaneous information will go here.
-    
+                {{user.username}}     
             </header>
         </div>
 
@@ -83,6 +82,19 @@
                     {% endfor %}
                 </select>
             </div>
+
+            <div class="column">
+                <label  class="theLabels">Instagram:</label>
+                <input class="theInputs" type="text" name="instagram" placeholder="username" value="{% if initial.instagram is None %}{% else %}{{initial.instagram}}{% endif %}">
+            </div>
+            <div class="column">
+                <label  class="theLabels">Patreon:</label>
+                <input class="theInputs" type="text" name="patreon" placeholder="username" value="{% if initial.patreon is None %}{% else %}{{initial.patreon}}{% endif %}">
+            </div>
+            <div class="column">
+                <label  class="theLabels">Soundcloud:</label>
+                <input class="theInputs" type="text" name="soundcloud" placeholder="username" value="{% if initial.soundcloud is None %}{% else %}{{initial.soundcloud}}{% endif %}">
+            </div>
                 
 		    <div id="column">
                 <label class="theLabels" for="profile_pic">Select an image:</label>
@@ -95,7 +107,7 @@
     </settingsdiv>
     </maindiv2>
     <footer>
-        Test it! This doesn't make any sense. I hate CSS.
+        <h3>| ©Creative Crossroads |</h3>
     </footer>
 </maindiv>
 </mydiv>

@@ -1,6 +1,6 @@
 
 * {
-    /* border: 2px lime dotted; */
+    /* border: 2px lightgreen dotted; */
     box-sizing: border-box;
 }
 
@@ -9,6 +9,10 @@ body {
     padding: 8px;
     margin: 0px 0px;
     min-width: 45vw;
+}
+
+a {
+    color: lime;
 }
 
 hr {
@@ -38,7 +42,7 @@ menubar {
     padding: 5px;
     width: 100%;
     background-color: #104f55;
-    color: lime;
+    color: lightgreen;
     display:inline-block;
     text-align:left;
     vertical-align: bottom;
@@ -51,7 +55,7 @@ header {
     width: 100%;
     height: 30px;
     background-color:#011502;
-    color: lime;
+    color: lightgreen;
     display:inline-block;
     text-align:center;
     vertical-align: bottom;
@@ -91,17 +95,44 @@ arttitle {
         background-color: #104f55;
         border-radius: 20px;
         padding: 40px;
+        border: 1px solid black;
     }
 
 
-    #tinyTextDiv {
+    #single_art {
+        display: none;
+    }
+
+    #collection_art {
+        display: none;
+    }
+
+    #entryOne {
+        display: block;
+    }
+
+    #entryTwo, #entryThree, #entryFour, #entryFive, #entrySix {
+        display: none;
+    }
+
+    #imageupload1, #imageupload2, #imageupload3, #imageupload4, #imageupload5, #imageupload6, #imageupload7 {
+        display: none;
+        text-align: center;
+    }
+
+    #textupload1, #textupload2, #textupload3, #textupload4, #textupload5, #textupload6, #textupload7 {
+        display: block;
+    }
+
+
+    #tinyTextDiv1, #tinyTextDiv2, #tinyTextDiv3, #tinyTextDiv4, #tinyTextDiv5, #tinyTextDiv6, #tinyTextDiv7 {
         margin: 0 auto;
         width: min-content;
     }
 
-    #tinyText {
+    /* #tinyText1, #tinyText2, #tinyText3, #tinyText4, #tinyText5, #tinyText6, #tinyText7 {
         
-    }
+    } */
 
     
     footer {
@@ -109,7 +140,7 @@ arttitle {
         width: 100%;
         height: 60px;
         background-color: #104f55;
-        color: lime;
+        color: lightgreen;
         display:inline-block;
         text-align:center;
         vertical-align: bottom;
