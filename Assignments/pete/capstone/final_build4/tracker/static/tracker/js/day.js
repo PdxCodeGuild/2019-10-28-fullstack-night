@@ -128,7 +128,7 @@ function drawGraph() {
 
         ctx.textAlign = 'end';
         ctx.fillText(
-            counter,
+            Math.round(counter),
             t*prog + .375*barH,
             y + .775*barH
         );
@@ -142,32 +142,75 @@ function drawGraph() {
     ctx.stroke();
 
     //animation
-    if (countUp.kcal < totals.kcal) {
-        countUp.kcal ++;
+    // if (countUp.kcal < totals.kcal) {
+    //     countUp.kcal ++;
+    //     requestAnimationFrame(drawGraph);
+    if (countUp.kcal < totals.kcal - macros.kcal / 50) {
+        countUp.kcal = countUp.kcal + (macros.kcal / 240)
+        if (countUp.kcal > totals.kcal - macros.kcal / 50) {
+            countUp.kcal = totals.kcal
+        }
         requestAnimationFrame(drawGraph);
-    } else if (countUp.kcal > totals.kcal) {
-        countUp.kcal --;
+    // } else if (countUp.kcal < totals.kcal) {
+    //     countUp.kcal++
+    //     requestAnimationFrame(drawGraph);
+
+    } else if (countUp.fat < totals.fat - macros.fat / 50) {
+        countUp.fat = countUp.fat + (macros.fat / 240)
+        if (countUp.fat > totals.fat - macros.fat / 50) {
+            countUp.fat = totals.fat
+        }
         requestAnimationFrame(drawGraph);
-    } else if (countUp.fat < totals.fat) {
-        countUp.fat ++;
+    // } else if (countUp.fat < totals.fat) {
+    //     countUp.fat++
+    //     requestAnimationFrame(drawGraph);
+
+    } else if (countUp.carb < totals.carb - macros.carb / 50) {
+        countUp.carb = countUp.carb + (macros.carb / 240)
+        if (countUp.carb > totals.carb - macros.carb / 50) {
+            countUp.carb = totals.carb
+        }
         requestAnimationFrame(drawGraph);
-    } else if (countUp.fat > totals.fat) {
-        countUp.fat --;
+    // } else if (countUp.carb < totals.carb) {
+    //     countUp.carb++
+    //     requestAnimationFrame(drawGraph);
+
+    } else if (countUp.protein < totals.protein - macros.protein / 50) {
+        countUp.protein = countUp.protein + (macros.protein / 240)
+        if (countUp.protein > totals.protein - macros.protein / 50) {
+            countUp.protein = totals.protein
+        }
         requestAnimationFrame(drawGraph);
-    } else if (countUp.carb < totals.carb) {
-        countUp.carb ++;
-        requestAnimationFrame(drawGraph);
-    } else if (countUp.carb > totals.carb) {
-        countUp.carb --;
-        requestAnimationFrame(drawGraph);
-    } else if (countUp.protein < totals.protein) {
-        countUp.protein ++;
-        requestAnimationFrame(drawGraph); 
-    } else if (countUp.protein > totals.protein) {
-        countUp.protein --;
-        requestAnimationFrame(drawGraph);
+    // } else if (countUp.protein < totals.protein) {
+    //     countUp.protein++
+    //     requestAnimationFrame(drawGraph);
+
     } else {
         console.log('meep');
+
+
+
+    // else if (countUp.kcal > totals.kcal) {
+    //     countUp.kcal --;
+    //     requestAnimationFrame(drawGraph);
+    // } else if (countUp.fat < totals.fat) {
+    //     countUp.fat ++;
+    //     requestAnimationFrame(drawGraph);
+    // } else if (countUp.fat > totals.fat) {
+    //     countUp.fat --;
+    //     requestAnimationFrame(drawGraph);
+    // } else if (countUp.carb < totals.carb) {
+    //     countUp.carb ++;
+    //     requestAnimationFrame(drawGraph);
+    // } else if (countUp.carb > totals.carb) {
+    //     countUp.carb --;
+    //     requestAnimationFrame(drawGraph);
+    // } else if (countUp.protein < totals.protein) {
+    //     countUp.protein ++;
+    //     requestAnimationFrame(drawGraph); 
+    // } else if (countUp.protein > totals.protein) {
+    //     countUp.protein --;
+    //     requestAnimationFrame(drawGraph);
         // return;
     };
 };

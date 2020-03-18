@@ -16,6 +16,7 @@ urlpatterns = [
     path('add-day/<str:date>/<int:training_bool>/', views.add_day, name='add_day'),
     path('change-day/<str:date>/', views.change_day, name='change_day'),
     path('day/<str:date>/', views.get_day, name='day'),
+    path('get-today/', views.get_today, name='get_today'),
     path('day-last/<str:date>/', views.day_last, name='day_last'),
     path('day-next/<str:date>/', views.day_next, name='day_next'),
     

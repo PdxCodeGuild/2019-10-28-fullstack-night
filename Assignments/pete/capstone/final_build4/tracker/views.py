@@ -81,6 +81,11 @@ def get_day(request, date):
     except ObjectDoesNotExist:
         return render(request, 'tracker/day.html', {'date_str': date_str, 'date_link': date_link})
 
+@login_required
+def get_today(request):
+    today = datetime.date.today()
+    return HttpResponseRedirect(reverse('tracker:day', kwargs={'date': today.strftime('%Y-%m-%d')}))
+
 @login_required # TO BE RENAMED "add_day()"
 def add_day(request, date, training_bool):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
