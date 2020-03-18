@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.sidenav {
+    height: 100%;
+    position: fixed;
+    width: 210px;
+    background-color: black;
+    z-index: 1;
+    overflow-x: hidden;
+}
+
+.sidenav a {
+    padding: 10px;
+    margin-top: 20px;
+    color: blanchedalmond;
+    width: 100px;
+}
+
+#crime_div {
+    padding: 10px;
+    color: grey;
+}
+
+.details {
+    margin-left: 220px;
+}
+
+#header_text {
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#body_text {
+    font-size: 28px;
+    max-width: 1200px;
+}
+
+

@@ -1,0 +1,175 @@
+body {
+    background-color: lightgray;
+}
+
+#center_div {
+    background-color: white;
+    margin: 3%;
+    min-height: 60vh;
+    max-width: 1200px;
+    align-self: center;
+    margin: auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #003399;
+}
+
+#topnav {
+    font-size: 11pt;
+    color: white;
+    font-family: verdana,arial,sans-serif,helvetica;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+#topnav_left {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+#topnav_right {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.nav_link {
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    width: 100%;
+}
+
+#logo_id {
+    display: block;
+    height: 144px;
+    width: 450px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#sub_header {
+    display: flex;
+    justify-content: center;
+    font-size: 11pt;
+    color: white;
+    background-color: #6698CB;
+    font-family: verdana,arial,sans-serif,helvetica;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+}
+
+.signed_out_table {
+    width: 100%;
+}
+
+.new_user_table {
+    border: 2px solid #ffcc99;
+    width: 100%;
+    margin: 3%;
+    margin-left: 50px;
+    margin-right: -50px;
+}
+
+#new_user_title {
+    background-color: #ffcc99;
+    font-family: Verdana, Arial, sans-serif, Helvetica;
+    font-size: 12pt;
+    color: #000000;
+}
+
+.user_td {
+ width: 25%;
+ text-align: center;
+}
+
+.username_text {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+}
+
+.profile_pic_class {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+
+.login_field_td {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login_field {
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: 3%;
+}
+
+#login_title {
+    color: #003399;
+    width: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+}
+
+.login_text {
+    width: 70px;
+    height: 13.5px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#login_signup_prompt {
+    display: flex;
+    justify-content: space-around;
+    width: auto;
+}
+
+#forgot_td {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#forgot_link {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    text-decoration: none;
+    color: #003399;
+}
+
+#footer_div {
+    margin: auto;
+    max-width: 1200px;
+    background-color: #003399;
+    min-height: 65px;
+}
+
+.footer_text {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 4pt;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

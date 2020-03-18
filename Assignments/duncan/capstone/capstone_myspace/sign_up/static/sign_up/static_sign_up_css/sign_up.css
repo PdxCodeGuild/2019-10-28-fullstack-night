@@ -1,0 +1,134 @@
+
+body {
+    background-color: lightgray;
+}
+
+#center_div {
+    background-color: white;
+    margin: 3%;
+    min-height: 60vh;
+    max-width: 1200px;
+    align-self: center;
+    margin: auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #003399;
+}
+
+#topnav {
+    font-size: 11pt;
+    color: white;
+    font-family: verdana,arial,sans-serif,helvetica;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+#topnav_left {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+#topnav_right {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.nav_link {
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    width: 100%;
+}
+
+#logo_id {
+    display: block;
+    height: 144px;
+    width: 450px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#sub_header {
+    display: flex;
+    justify-content: center;
+    font-size: 11pt;
+    color: white;
+    background-color: #6698CB;
+    font-family: verdana,arial,sans-serif,helvetica;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+}
+
+#middle_div {
+    display: flex;
+    justify-content: center;
+}
+
+.signup_table {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px;
+    border-color: #6699cc;
+    border: 3px solid #6699cc;
+    max-width: 463px;
+}
+
+#signup_tbody {
+    margin: -5px;
+}
+
+#signup_header {
+    font-family: verdana,arial,sans-serif,helvetica;
+    font-weight: bold;
+    color: white;
+    background-color: #6699cc;
+}
+
+.signup_text {
+    font-family: verdana,arial,sans-serif,helvetica;
+    color: #ff3300;
+    font-size: 10pt;
+    margin-left: 20px;
+}
+
+.signup_input {
+    min-width: 250px;
+}
+
+#button_tr {
+    display: flex;
+    justify-content: center;
+    padding: 10px
+}
+
+#footer_div {
+    margin: auto;
+    max-width: 1200px;
+    background-color: #003399;
+    min-height: 65px;
+}
+
+.footer_text {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 4pt;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+

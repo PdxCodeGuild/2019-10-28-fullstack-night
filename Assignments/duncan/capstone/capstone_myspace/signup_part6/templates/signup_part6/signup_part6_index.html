@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UR Myspace</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="{% static 'sign_up/static_sign_up_css/sign_up.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <div id="center_div">
+            <div class="flex-container" id="header">
+                <div id="topnav">
+                    <div id="topnav_left">
+                        <a class="nav_link" href="#MySpace.com">MySpace.com</a>
+                        |
+                        <a class="nav_link" href="#Home" >Home</a>
+                    </div>
+                    <div id="topnav_right">
+                        The Web
+                        <input type="radio" name="search" value="The Web">
+                        MySpace
+                        <input type="radio" name="search" value="MySpace">
+                        <input type="search" name="search">
+                        <button type="button" name="search">Search</button>
+                        Help | 
+                        <a class="nav_link" href="{% url 'login:logout_user' %}">SignOut</a>
+                    </div>
+                </div>
+                <div class="logo">
+                    <img id="logo_id" src="/media/images/myspace_logo2.png" alt="myspace2_logo">
+                </div>
+            </div>
+
+            <div id="sub_header">
+                <a class="nav_link" href="#Home">Home</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Browse">Browse</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Search">Search</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Invite">Invite</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Rank">Rank</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Mail">Mail</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Blog">Blog</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Favorites">Favorites</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Forums">Forums</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Groups">Groups</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Events">Events</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Games">Games</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Music">Music</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Classifieds">Classifieds</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="{% url 'login:logout_user' %}">SignOut</a>
+            </div>
+            <div id="middle_div">
+                <table class="signup_table">
+                    <tbody id="signup_tbody">
+                        <tr colspan="2">
+                            <th colspan="2" id="signup_header">Join "Myspace 2004: a place for friends 2"™ Here!</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="signup_text">Date of Birth:</div>
+                            </td>
+                            <td>
+                                <form action="{% url 'signup6:signup_user6' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{{next}}">
+                                    <input class="signup_input" type="text" name="user_birth" placeholder="What's your birthday?">
+                            </td>
+                        </tr>
+                        <tr id="button_tr" colspan="2">
+                            <td colspan="2">
+                                    <button type="submit">Sign Up</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="footer_div">
+            <div class="footer_text">By signing up or engaging with "Myspace 2004: a place for friends2"™ in ANY way you agree to give Duncan Weir complete ownership over any products created or discussed here-within. Furthermore Duncan Weir and "Myspace 2004: a place for friends 2"™ is not responsible for any personal or emotional damages with sustained throughout the remainder of your lifetime. Additionally by accessing "Myspace 2004: a place for friends 2"™ you hereby agree to watch the 1992 Barry Levinson, Robin William film "Toys" until you realize how dang good it is! Seriously stop being so serious and check it out! It's really fun and the cinematography is beautiful. Actually you know what, while you're at it check out "True Stories" too. It's not nearly as great but it has heart and the high-highs definitely make up for all the slow and weird parts with John Goodman.
+            </div>
+            <div class="footer_text">Through me you pass into the city of woe: 
+            Through me you pass into eternal pain: 
+            Through me among the people lost for aye. 
+            Justice the founder of my fabric moved: 
+            To rear me was the task of Power divine,        
+            Supremest Wisdom, and primeval Love.
+            Before me things create were none, save things 
+            Eternal, and eternal I endure. 
+            Abandon all hope, ye who enter here.
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,153 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MYSP</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="{% static 'static_login/login.css' %}">
+    </head>
+
+    <body>
+        <div id="center_div">
+            <div class="flex-container" id="header">
+                <div id="topnav">
+                    <div id="topnav_left">
+                        <a class="nav_link" href="#MySpace.com">MySpace.com</a>
+                        |
+                        <a class="nav_link" href="#Home" >Home</a>
+                    </div>
+                    <div id="topnav_right">
+                        The Web
+                        <input type="radio" name="search" value="The Web">
+                        MySpace
+                        <input type="radio" name="search" value="MySpace">
+                        <input type="search" name="search">
+                        <button type="button" name="search">Search</button>
+                        Help | 
+                        <a class="nav_link" href="{% url 'login:signup_redirect' %}">SignUp</a>
+                    </div>
+                </div>
+                <div class="logo">
+                    <img id="logo_id" src="/media/images/myspace_logo2.png" alt="myspace2_logo">
+                </div>
+            </div>
+
+            <div id="sub_header">
+                <a class="nav_link" href="#Home">Home</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Browse">Browse</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Search">Search</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Invite">Invite</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Rank">Rank</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Mail">Mail</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Blog">Blog</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Favorites">Favorites</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Forums">Forums</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Groups">Groups</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Events">Events</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Games">Games</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Music">Music</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Classifieds">Classifieds</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="{% url 'login:signup_redirect' %}">SignUp</a>
+            </div>
+
+            <table class="signed_out_table">
+                <tr colspan="4">
+                    <td class="new_user_td">
+                        <table class="new_user_table" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <th colspan="2" id="new_user_title">Cool New People</th>
+                            </tr>
+                            <tr>
+                                <td class="user_td">
+                                    <h1 class="username_text">Emo Philips</h1>
+                                    <img class="profile_pic_class" src="/media/images/emo.png" alt="emo_pic">
+                                </td>
+                                <td class="user_td">
+                                    <h1 class="username_text">A. Human</h1>
+                                    <img class="profile_pic_class" src="/media/images/business_dog.jpg" alt="emo_pic2">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="login_field_td">
+                        <table class="login_field">
+                            <tr>
+                                <th colspan="2" id="login_title">Member Login</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h1 class="login_text">User Name</h1>
+                                </td>
+                                <td>
+                                    <form action="{% url 'login:login_user' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{{next}}">
+                                        <input type="text" name="username" placeholder="username">
+                                </td>
+                            </tr>
+                            <tr>
+                                    <td>
+                                        <h1 class="login_text">Password</h1>
+                                    </td>
+                                    <td>
+                                    <input type="text" name="password" placeholder="password">
+                                    </td>
+                            </tr>
+                            <tr id="login_signup_prompt">
+                                <td>
+                                    <button type="submit">Login</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{% url 'login:signup_redirect' %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit">Sign Up</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr style="display: block;">
+                                <td colspan="2" id="forgot_td">
+                                    <form action="{% url 'login:forgot_pass_redirect' %}" method="POST">
+                                        {% csrf_token %}
+                                        <a id="forgot_link" href="{% url 'login:forgot_pass_redirect' %}">Forgot Your Password?</a>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer_div">
+            <div class="footer_text">By signing up or engaging with "Myspace 2004: a place for friends2"™ in ANY way you agree to give Duncan Weir complete ownership over any products created or discussed here-within. Furthermore Duncan Weir and "Myspace 2004: a place for friends 2"™ is not responsible for any personal or emotional damages with sustained throughout the remainder of your lifetime. Additionally by accessing "Myspace 2004: a place for friends 2"™ you hereby agree to watch the 1992 Barry Levinson, Robin William film "Toys" until you realize how dang good it is! Seriously stop being so serious and check it out! It's really fun and the cinematography is beautiful. Actually you know what, while you're at it check out "True Stories" too. It's not nearly as great but it has heart and the high-highs definitely make up for all the slow and weird parts with John Goodman.
+            </div>
+            <div class="footer_text">Through me you pass into the city of woe: 
+            Through me you pass into eternal pain: 
+            Through me among the people lost for aye. 
+            Justice the founder of my fabric moved: 
+            To rear me was the task of Power divine,        
+            Supremest Wisdom, and primeval Love.
+            Before me things create were none, save things 
+            Eternal, and eternal I endure. 
+            Abandon all hope, ye who enter here.
+            </div>
+        </div>
+    </body>
+</html>

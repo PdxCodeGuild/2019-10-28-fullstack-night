@@ -1,0 +1,216 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UR Myspace</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="{% static 'myspace_pages/static_myspace_css/myspace_pages.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        <div id="center_div">
+            <div class="flex-container" id="header">
+                <div id="topnav">
+                    <div id="topnav_left">
+                        <a class="nav_link" href="#MySpace.com">MySpace.com</a>
+                        |
+                        <a class="nav_link" href="#Home" >Home</a>
+                    </div>
+                    <div id="topnav_right">
+                        The Web
+                        <input type="radio" name="search" value="The Web">
+                        MySpace
+                        <input type="radio" name="search" value="MySpace">
+                        <input type="search" name="search">
+                        <button type="button" name="search">Search</button>
+                        Help | 
+                        <a class="nav_link" href="{% url 'login:logout_user' %}">SignOut</a>
+                    </div>
+                </div>
+                <div class="logo">
+                    <img id="logo_id" src="/media/images/myspace_logo2.png" alt="myspace2_logo">
+                </div>
+            </div>
+
+            <div id="sub_header">
+                <a class="nav_link" href="#Home">Home</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Browse">Browse</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Search">Search</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Invite">Invite</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Rank">Rank</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Mail">Mail</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Blog">Blog</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Favorites">Favorites</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Forums">Forums</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Groups">Groups</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Events">Events</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Games">Games</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Music">Music</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="#Classifieds">Classifieds</a>
+                <span style="color: black;">|</span>
+                <a class="nav_link" href="{% url 'login:logout_user' %}">SignOut</a>
+            </div>
+            <div id="app1">
+                {% csrf_token %}
+                {{ postgroup_send|json_script:"postgroup-el" }}
+                {{ submit_to|json_script:"submit-to" }}
+                {{ profile_pic|json_script:"profile-pic" }}
+                <table class="user_table">
+                    <tr colspan="3">
+                        <td colspan="2" id="user_section">
+
+                            <div class="left_column">
+                                <div id="user_name">{{user}}</div>
+                                <br/>
+                                <br/>
+                                <div id="user_info">
+                                    <img class="profile_image" src="{{user.userprofile.profile_pic.image.url}}"  alt="profile_pic" >
+                                    <br/>
+                                    <br/>
+                                    31 years old<br/>
+                                    Portland,<br/>
+                                    OREGON<br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    Last Login:<br/>
+                                    04/05/2005
+                                </div>
+                                <table class="user_friends">
+                                    <tbody id="friend_tbody">
+                                        <tr id="friend_row1" colspan="2">
+                                            <th colspan="2" class="user_friends_header">{{user}}'s Top 2</th>
+                                        </tr>
+                                        <tr class="friend_row2">
+                                            <td class="friend_div">
+                                                <div class="friend_name" href="#Duncan">Duncan</div>
+                                                <img class="friend_image" src="/media/images/founder_pic.png">
+                                            </td>
+                                            <td class="friend_div">
+                                                <div class="friend_name" href="#Placeholder_Name">{{your_friend}}</div>
+                                                <img class="friend_image" src="/media/{{friend_pic}}">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="user_interests">
+                                    <tbody id="interests_tbody">
+                                        <tr id="interests_row1" colspan="2">
+                                            <th id="interest_header" colspan="2">{{user}}'s Interests</th>
+                                        </tr>
+                                        <tr class="interests_row2">
+                                            <td class="interest_key">Family</td>
+                                            <td class="interest_value">
+                                                {{user}}'s Mom: Momma {{user_details.user_mom}}</br>
+                                                </br>
+                                                {{user}}'s original pet: {{user_details.user_pet}}</br>
+                                                </br>
+                                                {{user}}'s favorite SSN: {{user_details.user_ssn}}</br>
+                                            </td>
+                                        </tr>
+                                        <tr class="interests_row3">
+                                            <td class="interest_key">Bank Deets</td>
+                                            <td class="interest_value">
+                                                {{user}}'s Credit Card Info:</br>
+                                                </br>
+                                                {{user.usercredit.user_ccn}}</br>
+                                                {{user_credit.user_exp}} / {{user_credit.user_ccid}}
+                                            </td>
+                                        </tr>
+                                        <tr class="interest_row4">
+                                            <td class="interest_key">Fun Stuff!</td>
+                                            <td class="interest_value">
+                                                {{user}}'s Netflix Password: {{user.usernetflix.user_net_pass}}</br>
+                                                </br>
+                                                Biggest Childhood Fear: {{user.usersecrets.user_fear}}</br>
+                                                </br>
+                                                {{user}}'s Weakness: {{user.usersecrets.user_weak}}</br>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                        <td id="music_td">
+                            <div id="music_header">
+                                Your "Music"
+                            </div>
+                            <div id="music_body">
+                                <ul style="list-style-type:none;">
+                                    {% for one_song in profile_music %}
+                                        <li>
+                                            {{one_song.show_song}} </br>
+                                            <audio id="music_controls" controls>
+                                                <source src="/media/{{one_song.music}}" type="audio/mpeg">
+                                            </audio>
+                                        </li>
+                                        </br>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </td>
+                        <td id="user_feed">
+                            <div id="user_feed_header">
+                                <img class="emoticon_gif" src="/media/images/emoticon.gif" alt="sad_face">
+                                Status and Mood
+                            </div>
+                            <div id="create_post_area">
+                                <div id="create_post_text">
+                                        <textarea name='body' v-model="postSubmit" placeholder='What are you doing right now?'></textarea>
+                                </div>
+                                <div id="create_post_action">
+                                        <button v-on:click="submitPost">Post!</button>
+                                </div>
+                            </div>
+                            </br>
+                            <div v-for="post in reversePost" :key="post.id">
+                                <div id="post_feed">
+                                    </br>
+                                    <post-likes
+                                        :post-response="post">
+                                    </post-likes>
+                                </div>
+                                </br>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="footer_div"></div>
+        <script src="{% static 'myspace_pages/static_myspace_js/myspace_vue.js' %}"></script>
+    </body>
+</html>
+
+<script>
+    $('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+        }, {
+        duration: 100000000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+            }
+        });
+    });
+</script>
