@@ -17,13 +17,20 @@
 {{ date_link|json_script:"date_link" }}
 {{ track_custom|json_script:"track_custom" }}
 {{ track_nutritionix|json_script:"track_nutritionix" }}
+{{ track_nutritionix_recipe|json_script:"track_nutritionix_recipe" }}
 {{ day|json_script:"day" }}
 <main class="entry">
 
     <div id="outer-container">
 
         <div id="nutritionix" class="middle-container">
-            <header class="small">Use Nutritionix to Track an Entry:</header>
+            <div id="header-container">
+                <header class="small">Use Nutritionix to Track an Entry:</header>
+                <div id="checkbox-container">
+                    <label>Recipe Mode:</label>
+                    <input name="recipe" type="checkbox" v-model="recipe">
+                </div>
+            </div>
             <!-- <div id="inputs-container"></div> -->
             <query-div v-model:query="query" v-on:axios-call-event="axiosCall"></query-div>
             <div id="entries-container">
@@ -41,7 +48,16 @@
                 <label for="recipe">Recipe</label>
                 <input name="recipe" type="checkbox" v-model="recipe">
             </div> -->
-            <button @click="trackIt">Track it!</button>
+            <div id="button-container">
+                <div id="button-upper">
+                    <label v-show="recipe">Recipe Name:</label>
+                    <input id="recipe-name" type="text" v-show="recipe" v-model="recipeName">
+                    <label v-show="recipe">Portions:</label>
+                    <input id="portions" type="number" v-model="portions" v-show="recipe">
+                </div>
+                <button @click="trackIt">Track it!</button>
+
+            </div>
         </div>
         
 

@@ -1,4 +1,4 @@
-.submit {
+/* .submit {
     display: flex;
     justify-content: center;
 }
@@ -6,8 +6,66 @@
 .form {
     display: flex;
     justify-content: space-between;
-}
+} */
 
 /* .container.form {
 
 } */
+
+
+main.calc * {
+    font-size: 1.75rem;
+}
+
+button {
+    size: 1rem;
+}
+
+.number {
+    width: 15vw;
+}
+
+.text {
+    width: 30vw;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* width: 30vw; */
+}
+
+#form-container {
+    width: 55vw;
+    /* background: gray; */
+    /* border: 2px solid black;
+    margin: 2vh;
+    border-radius: 2.5%; */
+}
+
+#button-row {
+    display: flex;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    /* -webkit-border */
+}
+
+.inputs {
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 700px) {
+    main {
+        /* background-color: black; */
+    }
+    #form-row {
+        display: block;
+        width: inherit;
+    }
+    main.calc {
+        font-size: 1.5rem;
+    }
+}

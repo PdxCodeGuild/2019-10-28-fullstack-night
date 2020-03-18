@@ -77,9 +77,20 @@ function drawGraph() {
             w,
             y + .775*barH
         );
+        
+        ////'GOAL'
+        // ctx.font = '2.5rem Odibee Sans';
+        // ctx.fillStyle = 'black';
+
+        // ctx.textAlign = 'end';
+        // ctx.fillText(
+        //     'G O A L',
+        //     t*1.1 + 0.5*barH,
+        //     y+ .775*barH
+        // )
 
         ////label
-        ctx.font = 'italic 2rem Odibee Sans';
+        ctx.font = '2rem Odibee Sans';
         ctx.textAlign = 'start';
         ctx.fillText(
             label + ':',
@@ -141,6 +152,24 @@ function drawGraph() {
     ctx.lineTo(t + 0.5*barH, h);
     ctx.stroke();
 
+    //// 'TARGET' 'RANGE'
+    ctx.font = '2rem Odibee Sans';
+    ctx.fillStyle = 'black';
+
+    ctx.textAlign = 'end';
+    ctx.fillText(
+        'TARGET >',
+        t*0.9 + 0.5*barH,
+        h*.08
+    )
+
+    ctx.textAlign = 'start';
+    ctx.fillText(
+        '< RANGE',
+        t*1.1 + 0.5*barH,
+        h*.08
+    )
+    
     //animation
     // if (countUp.kcal < totals.kcal) {
     //     countUp.kcal ++;

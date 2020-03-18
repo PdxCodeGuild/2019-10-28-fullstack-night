@@ -96,7 +96,7 @@ def add_day(request, date, training_bool):
 @login_required
 def change_day(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
-    day = DiaryDay.get(user=request.user, date=date)
+    day = DiaryDay.objects.get(user=request.user, date=date)
     if day.training:
         day.training = False
     else:
@@ -131,6 +131,7 @@ def entry(request, date):
         'date_link': date.strftime('%Y-%m-%d'),
         'track_custom': reverse('tracker:track_custom', kwargs={'date': '$'}),
         'track_nutritionix': reverse('tracker:track_nutritionix', kwargs={'date': '$'}),
+        'track_nutritionix_recipe': reverse('tracker:track_nutritionix_recipe', kwargs={'date': '$'}),
         'day': reverse('tracker:day', kwargs={'date': '$'}),
     }
     return render(request, 'tracker/entry.html', context)
@@ -149,13 +150,13 @@ def track_custom(request, date):
         protein=data['protein'],
     )
     meal.save()
-    # meal.user.add(request.user) #THIS WILL ADD TO SAVED MEALS
+    meal.user.add(request.user) #THIS WILL ADD TO SAVED MEALS
 
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponseRedirect(reverse('tracker:day', kwargs={'date': date.strftime('%Y-%m-%d')}))
 
 @login_required
-def track_nutritionix(request,date):
+def track_nutritionix(request, date):
     date = datetime.datetime.strptime(date, '%Y-%m-%d')
     day = DiaryDay.objects.get(user=request.user, date=date)
     data = json.loads(request.body)
@@ -171,4 +172,37 @@ def track_nutritionix(request,date):
         # meal.user.add(request.user) #THIS WILL ADD TO SAVED MEALS
 
         DiaryEntry(meal=meal, date=day).save()
+    return HttpResponse('hey')
+
+@login_required
+def track_nutritionix_recipe(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    data = json.loads(request.body)
+    recipe_dict = {
+        'name': f"1/{str(data['portions'])} {data['recipe_name']}",
+        'kcal': 0,
+        'fat': 0,
+        'carb': 0,
+        'protein': 0
+    }
+    for item in data['food_items']:
+        recipe_dict['kcal'] += item['kcal'] / data['portions']
+        recipe_dict['fat'] += item['fat'] / data['portions']
+        recipe_dict['carb'] += item['carb'] / data['portions']
+        recipe_dict['protein'] += item['protein'] / data['portions']
+    recipe_dict['kcal'] = round(recipe_dict['kcal'])
+    recipe_dict['fat'] = round(recipe_dict['fat'])
+    recipe_dict['carb'] = round(recipe_dict['carb'])
+    recipe_dict['protein'] = round(recipe_dict['protein'])
+    meal = Meal(
+        name = recipe_dict['name'],
+        kcal = recipe_dict['kcal'],
+        fat = recipe_dict['fat'],
+        carb = recipe_dict['carb'],
+        protein = recipe_dict['protein']
+    )
+    meal.save()
+    meal.user.add(request.user)
+    DiaryEntry(meal=meal, date=day).save()
     return HttpResponse('hey')

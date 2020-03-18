@@ -113,6 +113,24 @@ header.small {
     /* width: 100%; */
 }
 
+#button-container {
+    width: 100%;
+}
+
+#button-container button {
+    width: inherit;
+}
+
+#portions {
+    max-width: 5vw;
+    width: auto;
+}
+
+#recipe-name {
+    max-width: 15vw;
+    width: auto;
+}
+
 @media screen and (max-width: 700px) {
     #outer-container {
         display: block;

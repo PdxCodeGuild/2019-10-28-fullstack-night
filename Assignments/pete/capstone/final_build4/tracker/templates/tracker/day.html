@@ -93,7 +93,14 @@
     </div>
 </div>
 
-<a href="{% url 'tracker:entry' date=date_link %}"><button id="add-button">Add Entry!</button></a>
+<div id="buttons-container">
+    <a href="{% url 'tracker:entry' date=date_link %}"><button class="buttons">Add Entry!</button></a>
+    {% if day.training %}
+    <a href="{% url 'tracker:change_day' date=date_link %}"><button class="buttons">Change to Rest Day</button></a>
+    {% else %}
+    <a href="{% url 'tracker:change_day' date=date_link %}"><button class="buttons">Change to Training Day</button></a>
+    {% endif %}
+</div>
 
 {% endif %}
 </main>

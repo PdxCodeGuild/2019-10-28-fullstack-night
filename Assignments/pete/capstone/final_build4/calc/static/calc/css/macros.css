@@ -31,3 +31,9 @@ button.macros {
 body {
     box-sizing: border-box;
 }
+
+#buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+}

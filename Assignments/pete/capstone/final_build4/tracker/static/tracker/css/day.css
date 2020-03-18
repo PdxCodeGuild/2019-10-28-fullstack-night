@@ -1,3 +1,8 @@
+body {
+    min-height: 100vh;
+    background-color: hotpink;
+}
+
 main.day {
     flex-direction: column;
     height: auto;
@@ -54,9 +59,9 @@ header.small {
     font-size: 1.125rem;
 }
 
-main.day button {
+/* main.day button {
     font-size: 1.5rem;
-}
+} */
 
 #inner-entry {
     display: flex;
@@ -122,7 +127,7 @@ canvas {
     border: 2px dotted black;
 } */
 
-#add-button {
+.buttons {
     font-size: 2.5rem;
 }
 
@@ -170,6 +175,9 @@ header.smaller {
         font-size: 1.5rem;
     }
     button {
+        font-size: 1.25rem;
+    }
+    .buttons {
         font-size: 1.25rem;
     }
 }

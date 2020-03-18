@@ -64,10 +64,13 @@
 
     </div>
     
-    {% if user.is_authenticated %}
-    <a href="#" class="macros" id="recalc-button"><button class="macros">ReCalculate Macros</button></a>
-    {% else %}
-    <a href="{% url 'user:register_form' pk=macros.pk %}" class="macros" id="create-account"><button class="macros" type="submit">Create Account</button></a>
-    {% endif %}
+    <div id="buttons-container">
+        {% if user.is_authenticated %}
+        <a href="#" class="macros" id="recalc-button"><button class="macros">ReCalculate Macros</button></a>
+        {% else %}
+        <a href="{% url 'user:register_form' pk=macros.pk %}" class="macros" id="create-account"><button class="macros" type="submit">Create Account</button></a>
+        {% endif %}
+        <a href="{% url 'calc:faq' pk=macros.pk %}"><button class="macros">FAQ</button></a>
+    </div>
 </main>
 {% endblock %}

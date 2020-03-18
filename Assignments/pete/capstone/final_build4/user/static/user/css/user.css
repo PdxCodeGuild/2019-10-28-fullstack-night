@@ -1,5 +1,5 @@
 main.user {
-   color: greenyellow;
+   /* color: greenyellow; */
    display: flex;
    flex-direction: column;
    font-size: 1.5rem;

@@ -2,6 +2,7 @@ var csrftoken = document.querySelector("input[name='csrfmiddlewaretoken']").valu
 var dateLink = JSON.parse(document.querySelector('#date_link').textContent);
 var trackCustom = JSON.parse(document.querySelector('#track_custom').textContent);
 var trackNutritionix = JSON.parse(document.querySelector('#track_nutritionix').textContent);
+var trackNutritionixRecipe = JSON.parse(document.querySelector('#track_nutritionix_recipe').textContent);
 var day = JSON.parse(document.querySelector('#day').textContent);
 console.log('abcde')
 let url = 'https://trackapi.nutritionix.com/v2/natural/nutrients/'
@@ -72,6 +73,8 @@ var nutritionix = new Vue({
         query: '',
         foodItems: [],
         recipe: false,
+        recipeName: '',
+        portions: 1,
     },
 
     components: {
@@ -114,26 +117,50 @@ var nutritionix = new Vue({
 
         trackIt: function() {
             console.log('track it')
-            axios({
-                method: 'POST',
-                url: this.trackNutritionixDate,
-                data: this.foodItems,
-                headers: {
-                    'X-CSRFToken': csrftoken,
-                },
-            }).then((response) => {
-                window.location = this.day3Date
-            })
+            if (this.recipe) {
+
+                axios({
+                    method: 'POST',
+                    url: this.trackNutritionixRecipeDate,
+                    data: {
+                        food_items: this.foodItems,
+                        portions: parseInt(this.portions),
+                        recipe_name: this.recipeName,
+                    },
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                    },
+                }).then((response) => {
+                    window.location = this.dayDate
+                })
+
+            } else {
+
+                axios({
+                    method: 'POST',
+                    url: this.trackNutritionixDate,
+                    data: this.foodItems,
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                    },
+                }).then((response) => {
+                    window.location = this.dayDate
+                })
+            }
         },
     },
         
     computed: {
-        day3Date: function() {
+        dayDate: function() {
             return day.slice(0, day.length - 2) + dateLink + '/';
         },
 
         trackNutritionixDate: function() {
             return trackNutritionix.slice(0, trackNutritionix.length - 2) + dateLink + '/';
+        },
+
+        trackNutritionixRecipeDate: function() {
+            return trackNutritionixRecipe.slice(0, trackNutritionixRecipe.length - 2) + dateLink + '/';
         },
 
         totalsObj: function() {
@@ -235,7 +262,7 @@ var custom = new Vue({
         trackCustomDate: function() {
             return trackCustom.slice(0, trackCustom.length - 2) + dateLink + '/';
         },
-        day3Date: function() {
+        dayDate: function() {
             return day.slice(0, day.length - 2) + dateLink + '/';
         },
     },
@@ -256,7 +283,7 @@ var custom = new Vue({
                     'X-CSRFToken': csrftoken,
                 },
             }).then((response) => {
-                window.location = this.day3Date
+                window.location = this.dayDate
 
             });
         }
