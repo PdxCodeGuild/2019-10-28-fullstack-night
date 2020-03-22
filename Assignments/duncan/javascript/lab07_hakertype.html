@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Duncan Hacktype</title>
+        <style>
+            h1 {
+                display: flex;
+                justify-content: center;
+            }
+            
+            #hackArea {
+                word-wrap: break-word;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>
+            Begin typing to write the perfect movie
+        </h1>
+        <div id="hackArea">
+        </div>
+        <script>
+            let hackerDiv = document.querySelector("#hackArea");
+            let letterCounter = 0;
+            document.addEventListener("keydown", function() {
+                console.log("hi");
+                let hackString = `FADE IN: ON COMPUTER SCREEN so close it has no boundaries. A blinding cursor pulses in the electric darkness like aheart coursing with phosphorous light, burning beneaththe derma of black-neon glass. A PHONE begins to RING, we hear it as though we weremaking the call.
+
+                The cursor continues to throb,relentlessly patient, until --
+                
+                MAN (V.O.)Yeah?
+                
+                Data now slashes across the screen, information flashing faster then we can read:  "Call trans opt:  received.2-19-98 13:24:18  REC:Log>."
+                
+                WOMAN (V.O.)Is everything in place?
+                
+                On screen: "Trace program:  running."We listen to the phone conversation as though we were ona third line. The man's name is Cypher. The woman, Trinity.
+                
+                TRINITY (WOMANV.O.)I said, is everything in place?
+                
+                The entire screen with racing columns of numbers. Shimmering like green-electric rivers, they rush at a 10-digit phone number in the top corner.
+                
+                CYPHER (MANV.O.)You weren't supposed to relieveme.
+                
+                TRINITY (V.O.)I know but I felt like taking ashift.
+                
+                The area code is identified.  The first three numberssuddenly fixed, leaving only seven flowing columns.
+                
+                CYPHER (V.O.)You like him, don't you? You like watching him? We begin MOVING TOWARD the screen, CLOSING IN as eachdigit is matched, one by one, snapping into place likethe wheels of a slot machine`;
+                hackerDiv.innerHTML += hackString[letterCounter++%hackString.length];
+            });
+        </script>
+    </body>
+</html>
