@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Duncan's Bouncing Ball</title>
+    </head>
+    <body>
+        <canvas id="cnv" width="500" height="500" style="border: 2px solid black;"></canvas>
+
+        <script>
+            let cnv = document.querySelector("canvas");
+            let ctx = cnv.getContext("2d");
+            let colorArr = ["black", "green"];
+            let colorCounter = 0;
+            let width = 500;
+            let height = 500;
+            let ball = {
+                px: Math.random()*width,
+                py: Math.random()*height,
+                radius: 40,
+                vx: (2*Math.random()-1)*10,
+                vy: (2*Math.random()-1)*10,
+                ay: Math.random() / 10, // represents gravity
+            };
+            console.log(ball["radius"])
+            console.log(ball.radius)
+            function main_loop() {
+                console.log('bouncing ball');
+                ctx.clearRect(0, 0, width, height);
+                if ((ball.py + ball.py >= height) || (ball.py + ball.py <= 0))  {
+                    ball.py = -ball.vy;
+                    ctx.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI);
+                    ctx.fill();
+                    ctx.beginPath;
+                }
+                else if ((ball.px + ball.px >= width) || (ball.px + ball.px <= 0)) {
+                    ball.px = -ball.vx;
+                    // ball.radius *=5;
+                    // ctx.fillStyle = "blue";
+                    // ctx.arc(ball.px, ball.py, ball.radius, 0, 2*Math.PI);
+                    // ctx.fill();
+                    // ctx.beginPath;
+                    // if (ball.radius < 500) {
+                    //     window.requestAnimationFrame();
+                    // }
+                    // else{
+                    //     ball = {
+                    //     px: 1,
+                    //     py: height-1,
+                    //     radius: 100,
+                    //     vx: 1,
+                    //     vy: -1.5,
+                    //     ay: .01,
+                    //     }
+                    //     window.requestAnimationFrame();
+                    // }
+                }
+                else {
+                    ctx.arc(ball.px, ball.py, ball.radius, 0, 2*Math.PI);
+                    ball.vy += ball.ay;
+                    ball.px += ball.vx;
+                    ball.py += ball.vy;
+                    ctx.fillStyle = colorArr[Math.floor(colorCounter++/20)%colorArr.length];
+                    ctx.fill();
+                    ctx.beginPath();
+                    window.requestAnimationFrame(main_loop);
+                }
+            }
+            main_loop();
+        </script>
+    </body>
+</html>
