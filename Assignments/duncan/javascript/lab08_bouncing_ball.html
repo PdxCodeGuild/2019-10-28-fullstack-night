@@ -19,7 +19,7 @@
             let ball = {
                 px: Math.random()*width,
                 py: Math.random()*height,
-                radius: 40,
+                radius: 10,
                 vx: (2*Math.random()-1)*10,
                 vy: (2*Math.random()-1)*10,
                 ay: Math.random() / 10, // represents gravity
@@ -29,33 +29,19 @@
             function main_loop() {
                 console.log('bouncing ball');
                 ctx.clearRect(0, 0, width, height);
-                if ((ball.py + ball.py >= height) || (ball.py + ball.py <= 0))  {
-                    ball.py = -ball.vy;
-                    ctx.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI);
-                    ctx.fill();
-                    ctx.beginPath;
+                if ((ball.py + ball.vy >= height) || (ball.py + ball.vy <= 0)) {
+                    ball.vy = -ball.vy;
+                    ball.vy += ball.ay; // applying gravity
+                    ball.vy *= .99; //represents friction - slowing of velocity by 1% per wall bounce
+                    ball.vx *= .99;
+                    window.requestAnimationFrame(main_loop);
                 }
-                else if ((ball.px + ball.px >= width) || (ball.px + ball.px <= 0)) {
-                    ball.px = -ball.vx;
-                    // ball.radius *=5;
-                    // ctx.fillStyle = "blue";
-                    // ctx.arc(ball.px, ball.py, ball.radius, 0, 2*Math.PI);
-                    // ctx.fill();
-                    // ctx.beginPath;
-                    // if (ball.radius < 500) {
-                    //     window.requestAnimationFrame();
-                    // }
-                    // else{
-                    //     ball = {
-                    //     px: 1,
-                    //     py: height-1,
-                    //     radius: 100,
-                    //     vx: 1,
-                    //     vy: -1.5,
-                    //     ay: .01,
-                    //     }
-                    //     window.requestAnimationFrame();
-                    // }
+                else if ((ball.px + ball.vx >= width) || (ball.px + ball.vx <= 0)) {
+                    ball.vx = -ball.vx;
+                    ball.vy += ball.ay; // applying gravity
+                    ball.vy *= .99; //represents friction - slowing of velocity by 1% per wall bounce
+                    ball.vx *= .99;
+                    window.requestAnimationFrame(main_loop);
                 }
                 else {
                     ctx.arc(ball.px, ball.py, ball.radius, 0, 2*Math.PI);
