@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <title>Duncan's Number Facts</title>
+        <style>
+            h2 {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            #numfactDiv {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            #numResult {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Number Facts via API</h2>
+        <div id="numfactDiv">
+            <input id="search_text" placeholder="Enter a number...">
+            <select id="type_select">
+                <option value="trivia">Trivia</option>
+                <option value="math">Math</option>
+                <option value="date">Date</option>
+                <option value="year">Year</option>
+            </select>
+            <button id="search_button" type="button">Search</button>
+        </div>
+        </br>
+        <div id="numResult"></div>
+        <script>
+            let searchText = document.querySelector("#search_text")
+            let typeSelect = document.querySelector("#type_select")
+            let searchButton = document.querySelector("#search_button")
+            searchButton.onclick = function() {
+                // console.log(searchText.value);
+                // console.log(typeSelect.value);
+                let num_url = "http://numbersapi.com/"+searchText.value+"/"+typeSelect.value;
+                console.log(num_url);
+                axios.get(num_url, {}).then(function(response) {
+                    console.log(response);
+                    document.querySelector("#numResult").innerHTML = `Here is your ${typeSelect.value} based Number Fact: ${response.data}`;
+                })
+            }
+        </script>
+    </body>
+</html>
