@@ -14,15 +14,17 @@
         <button type='submit'>Submit URL</button>
     </form>
     <h4>Short URL:</h4>
-    {% for url in submitted_url %}
-        <div style="background-color: teal; min-width: 100px; min-height: 100px;">
-            <li>
-                <a href="{{ url.long_url }}">{{ url.long_url }}</a>
-            </li>
-            <li>
-                <a href="{% url 'index:redirect_func' url_code=url.shortened_url %}">{{ url.shortened_url }}</a>
-            </li>
-        </div>
+    {% for url in urls %}
+        <ul>
+            {% if url.shortened_url %}
+                <li>
+                    <a href="{{ url.long_url }}">{{ url.long_url }}</a>
+                </li>
+                <li>
+                    <a href="{% url 'url_short_app:shortened_url_name' url_code=url.shortened_url %}">{{ url.shortened_url }}</a>
+                </li>
+            {% endif %}
+        </ul>
     {% endfor %}
 </body>
 </html>

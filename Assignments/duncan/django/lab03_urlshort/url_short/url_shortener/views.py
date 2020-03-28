@@ -17,7 +17,7 @@ def index(request):
     return render(request, 'url_shortener/index.html', submitted_url)
 
 def redirect_func(request, url_code):
-    red_url = Url.object.get(shortened_url=url_code)
+    red_url = UrlTask.objects.get(shortened_url=url_code)
     return redirect(red_url.long_url)
 
 
