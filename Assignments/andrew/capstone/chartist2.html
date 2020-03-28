@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <title>Sample Page</title>
+    <style>
+      table {
+  margin: 0 auto;
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid #d4d4d4;
+}
+ 
+tr:nth-child(even) {
+  background: white;
+}
+ 
+th, td {
+  padding: 10px 30px;
+}
+ 
+th {
+  border-bottom: 1px solid white;
+}     
+    </style>
+  </head>
+
+  <body>
+    <div id="myData">
+
+    </div>
+    <canvas id="myChart"></canvas>
+    <script>
+      var J_Pull = {
+        async: true,
+        crossDomain: true,
+        url:
+          "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo",
+        method: "GET"
+      };
+
+      $.ajax(J_Pull).done(function(response) {
+        dateObj = response["Time Series (Daily)"];
+        Object.keys(dateObj);
+        function getdataClose(inData) {
+          return [inData, dateObj[inData]["4. close"]];
+        }
+        dateKeys = Object.keys(dateObj);
+        closeData = dateKeys.map(getdataClose);
+        console.log(closeData)
+        dateClose = closeData.map(el => el[0]);
+        priceClose = closeData.map(el => el[1]);
+        myChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: dateClose.reverse(),
+            datasets: [
+              {
+                label: "Close",
+                data: priceClose.reverse(),
+                backgroundColor: "rgba(153,255,51,0.4)",
+                duration: 3000,
+              }
+            ]
+          },
+        });
+        //$("#Closings").append(priceClose);
+      });
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var myChart;
+
+      //current quote table request
+      $.ajax({
+          url: 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo&datatype=csv',
+          dataType: 'text',
+        }).done(successFunction);
+
+      //current quote table generation
+      function successFunction(data) {
+          var allRows = data.split(/\r?\n|\r/);
+          var table = '<table>';
+          for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+            if (singleRow === 0) {
+              table += '<thead>';
+              table += '<tr>';
+            } else {
+              table += '<tr>';
+            }
+            var rowCells = allRows[singleRow].split(',');
+            for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+              if (singleRow === 0) {
+                table += '<th>';
+                table += rowCells[rowCell];
+                table += '</th>';
+              } else {
+                table += '<td>';
+                table += rowCells[rowCell];
+                table += '</td>';
+              }
+            }
+            if (singleRow === 0) {
+              table += '</tr>';
+              table += '</thead>';
+              table += '<tbody>';
+            } else {
+              table += '</tr>';
+            }
+          }
+          table += '</tbody>';
+          table += '</table>';
+          $('body').append(table);
+        }
+
+        //News
+        var nPull = {
+            async: true,
+            crossDomain: true,
+            url:
+              "http://newsapi.org/v2/everything?q=AAPL&apiKey=6f9b4323e0e44d5bba8060f009f9ed31",
+            method: "GET"
+          };
+          $.ajax(nPull).done(function (response) {
+              console.log(response);
+          })
+    </script>
+  </body>
+</html>
