@@ -15,12 +15,14 @@
     </form>
     <h4>Short URL:</h4>
     {% for url in submitted_url %}
-        <li>
-            <a href="{{ url.long_url }}">{{ url.long_url }}</a>
-        </li>
-        <li>
-            <a href="{% url 'index:redirect_func' pk=url.pk %}">{{ url.shortened_url }}</a>
-        </li>
+        <div style="background-color: teal; min-width: 100px; min-height: 100px;">
+            <li>
+                <a href="{{ url.long_url }}">{{ url.long_url }}</a>
+            </li>
+            <li>
+                <a href="{% url 'index:redirect_func' url_code=url.shortened_url %}">{{ url.shortened_url }}</a>
+            </li>
+        </div>
     {% endfor %}
 </body>
 </html>
