@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var context;
+        var x=100;
+        var y=200;
+        var dx=6;
+        var dy=5;     
+        function canvasContext()
+        {
+          context = myCanvas.getContext('2d');
+          setInterval(draw,10);
+        } 
+        function draw()
+        {
+          context.clearRect(0,0,500,500);
+          context.beginPath();
+          context.fillStyle="red";
+          context.arc(x,y,20,0,Math.PI*2,true);
+          context.closePath();
+          context.fill();
+        if(x<0 || x>500) dx=-dx; 
+        if(y<0 || y>500) dy=-dy; 
+        x+=dx; 
+        y+=dy;
+        }
+        </script>
+</head>
+<body onLoad="canvasContext();">
+    <canvas id="myCanvas" width="500" height="500">
+    </canvas>
+</body>
+</html>

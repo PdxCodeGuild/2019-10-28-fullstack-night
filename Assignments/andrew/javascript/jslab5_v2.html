@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Random Redirector</title>
+        <script>
+            function random_element(array) {
+                let random_index = Math.floor(Math.random()*sites.length);
+                return array[random_index];}
+            let sites = ["https://www.amazon.com/", "https://www.google.com/", "https://www.yahoo.com/", "https://www.reddit.com/",
+            "https://www.theonion.com/"];
+            let random = random_element(sites);
+            var max_time = 5;
+            var cinterval;
+            /*
+            alert(random);
+            location.assign(random);
+            */
+        </script>
+    </head>
+    <body>
+        <div id = 'div'>
+            5
+        </div>
+        <script>
+            let oneDiv = document.querySelector('div');
+            function countDown() {
+                oneDiv.innerText = parseInt(oneDiv.innerText) - 1;
+                if(oneDiv.innerText === '0') {
+                    console.log('hello al')
+                    location.assign(random);}
+                setTimeout(countDown, 1000);
+            }
+                setTimeout(countDown, 1000);
+        </script>
+    </body>
+</html>

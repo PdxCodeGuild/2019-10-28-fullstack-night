@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <h1>
+        cd...
+    </h1>
+    <div id="main">
+    </div>
+    <script>
+        let mainDiv = document.querySelector("#main");
+        let letterCounter = 0;
+        document.addEventListener("keydown", function () {
+            let logWords = `abcdefghijklmnopqrstuvwxyz1234567890`;
+            mainDiv.innerHTML += logWords[letterCounter++ % logWords.length];
+        });
+    </script>
+</body>
+
+</html>

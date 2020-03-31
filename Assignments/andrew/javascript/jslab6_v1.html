@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime() {
+  let today = new Date();
+  let hours = today.getHours();
+  let minute = today.getMinutes();
+  let second = today.getSeconds();
+  let year = today.getFullYear();
+  let day = today.getDate();
+  let month = today.getMonth();
+  minute = checkTime(minute);
+  second = checkTime(second);
+  document.getElementById('txt').innerHTML =
+  hours + ":" + minute + ":" + second + ' ' + month + '/' + day + '/' + year;
+  let t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  
+  return i;
+}
+</script>
+</head>
+<body onload="startTime()">
+<div id="txt"></div>
+</body>
+</html>
