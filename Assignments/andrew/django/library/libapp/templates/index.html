@@ -1,0 +1,17 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8" />
+</head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+    
+    <body>
+        <ul>
+            {% for book in books %}
+            <li>
+                <h3><a href="{% url 'library:history' title=book.title %}">{{ book.title }}</a></h3>by
+                {{ book.author }}, {{ book.pub_date.year }}
+            </li>
+            {% endfor %}
+        </ul>
+    </body>

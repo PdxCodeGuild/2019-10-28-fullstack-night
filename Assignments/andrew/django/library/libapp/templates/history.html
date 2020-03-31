@@ -1,0 +1,33 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8" />
+    </head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+
+    <body>
+        <h1>{{ book.title }}, {{ book.author }}, {{ book.pub_date.year }}</h1>
+        <h2>History:</h2>
+        
+        {% if book.available %}
+        <form action="/checkout/{{book.title}}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="user" placeholder="Name">
+            <button type="submit">Check Out</button>
+        </form>
+        {% else %}
+        <form action="/return/{{book.title}}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="user" placeholder="Name">
+            <button type="submit">Return</button>
+        </form>
+        {% endif %}
+        
+        
+        <ul>
+            {% for checkout in checkouts %}
+            <li>{% if checkout.checked_out %}out: {% else %}in: {% endif %} {{ checkout.timestamp }} by
+                {{ checkout.user }}</li>
+            {% endfor %}
+        </ul>
+    </body>
