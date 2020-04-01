@@ -1,0 +1,6 @@
+<h1>{{author.auth_name}}</h1>
+<ul>
+    {% for book in books %}
+    <li> {{book.publish}} - {{book.title}} </li>
+    {% endfor %}
+</ul>
