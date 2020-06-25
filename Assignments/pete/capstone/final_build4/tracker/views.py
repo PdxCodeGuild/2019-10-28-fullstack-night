@@ -206,3 +206,11 @@ def track_nutritionix_recipe(request, date):
     meal.user.add(request.user)
     DiaryEntry(meal=meal, date=day).save()
     return HttpResponse('hey')
+
+@login_required
+def track_saved(request, date):
+    date = datetime.datetime.strptime(date, '%Y-%m-%d')
+    day = DiaryDay.objects.get(user=request.user, date=date)
+    meal = Meal.objects.get(pk=request.POST['meal'])
+    DiaryEntry(meal=meal, date=day).save()
+    return HttpResponseRedirect(reverse('tracker:day', kwargs={'date': date.strftime('%Y-%m-%d')}))

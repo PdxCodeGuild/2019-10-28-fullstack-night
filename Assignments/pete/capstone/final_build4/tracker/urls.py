@@ -25,4 +25,5 @@ urlpatterns = [
     path('track-custom/<str:date>/', views.track_custom, name='track_custom'),
     path('track-nutritionix/<str:date>/', views.track_nutritionix, name='track_nutritionix'),
     path('track-nutritionix-recipe/<str:date>/', views.track_nutritionix_recipe, name='track_nutritionix_recipe'),
+    path('track-saved/<str:date>/', views.track_saved, name='track_saved'),   
 ]
